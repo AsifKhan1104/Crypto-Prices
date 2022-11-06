@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.crypto.prices">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/app_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/app_logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.startapp.sdk.APPLICATION_ID"
+            android:value="@string/startapp_app_id" />
+
+        <activity
+            android:name="com.crypto.prices.view.activity.SplashActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.crypto.prices.view.activity.ui.NavDrawerMainActivity"
+            android:exported="false"
+            android:label="@string/title_market"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.crypto.prices.view.activity.MainActivity2"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.crypto.prices.view.activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.crypto.prices.view.activity.SignInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.crypto.prices.view.activity.TnCActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.crypto.prices.view.activity.PrivacyPolicyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.crypto.prices.view.activity.ResetPwdActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.crypto.prices.view.activity.MarketDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.crypto.prices.view.activity.ProFeaturesActivity"
+            android:label="@string/upgrade"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.crypto.prices.view.activity.SettingsActivity"
+            android:label="@string/settings"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.crypto.prices.view.activity.WithdrawHistoryActivity"
+            android:label="@string/withdrawRequests"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.crypto.prices.view.activity.WithdrawHistoryOldActivity"
+            android:label="@string/withdrawRequestsOld"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name="com.crypto.prices.utils.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- Package visibility -->
+        <!--<queries>
+            &lt;!&ndash; Mail &ndash;&gt;
+            <intent>
+                <action android:name="android.intent.action.SENDTO" />
+                <data android:scheme="mailto" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent>
+        </queries>-->
+    </application>
+
+</manifest>

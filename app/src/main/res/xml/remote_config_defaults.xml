@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- START xml_defaults -->
+<defaultsMap>
+    <entry>
+        <key>minWithdrawCoins</key>
+        <value>10000.00</value>
+    </entry>
+    <entry>
+        <key>appServerUp</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>serverDownMsg</key>
+        <value>Server Down</value>
+    </entry>
+</defaultsMap>

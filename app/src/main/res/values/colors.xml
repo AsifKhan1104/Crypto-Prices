@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#AFB42B</color>
+    <color name="colorPrimaryDark">#9E9D24</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="app_background">#FEDBD0</color>
+    <color name="app_background2">#fdfcfc</color>
+
+    <color name="divider_color">#dfddde</color>
+    <color name="divider_color_1">#230046</color>
+    <color name="divider_color_2">#F4F2F6</color>
+</resources>

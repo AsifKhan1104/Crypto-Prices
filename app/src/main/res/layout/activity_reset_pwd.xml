@@ -1,0 +1,73 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        tools:context="com.crypto.prices.view.activity.ResetPwdActivity">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutLogIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/textViewHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:text="Reset Password"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editTextEmailLogIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewHeader"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30dp"
+                android:focusable="true"
+                android:hint="Enter Email"
+                android:textColorHighlight="#ff7eff15"
+                android:textColorHint="#ffff25e6" />
+
+            <Button
+                android:id="@+id/buttonReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextEmailLogIn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/selector_button"
+                android:text="Reset Password"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/textViewResetSent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/buttonReset"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="30dp"
+                android:visibility="gone"
+                android:textColor="#FF0000"
+                android:text="A password reset email is sent to you. Kindly check your email id for further actions."
+                android:textStyle="italic" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>

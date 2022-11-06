@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "280917259689",
+    "project_id": "doge-miner-83931",
+    "storage_bucket": "doge-miner-83931.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280917259689:android:24c65d4661c0d8ea2940b8",
+        "android_client_info": {
+          "package_name": "com.miner.doge_miner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280917259689-r28rl7l7euq2i24pso86p0d30pba6rgd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOW1clxKpHS56L-SDJpBAGajljF1bRoTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280917259689-r28rl7l7euq2i24pso86p0d30pba6rgd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_faucet"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_faucet" />
+
+    <item
+        android:id="@+id/navigation_market"
+        android:icon="@drawable/ic_market_24"
+        android:title="@string/title_market" />
+
+    <!--<item
+        android:id="@+id/navigation_fun"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/title_fun" />-->
+
+</menu>
