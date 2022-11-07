@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.crypto.prices.R
 import com.crypto.prices.model.Data
 import com.crypto.prices.view.activity.MarketDetailActivity
@@ -27,6 +28,7 @@ class MarketAdapter(context: Context?, var data: List<Data>?) :
 
     class MarketViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val tableLayout = view.table_layout
+        private val imageViewIcon = view.imageView_id
         private val textViewId = view.textView_id
         private val textViewSymbol = view.textView_symbol
         private val textViewName = view.textView_name
@@ -50,6 +52,12 @@ class MarketAdapter(context: Context?, var data: List<Data>?) :
             } catch (ex: Exception) {
                 ex.printStackTrace()
             }
+
+            // set icons
+            val imageUrl = "https://s2.coinmarketcap.com/static/img/coins/64x64/"+data.id.toString()+".png"
+            Glide.with(context)
+                .load(imageUrl)
+                .into(imageViewIcon)
 
             // on click listener
             tableLayout.setOnClickListener(object:View.OnClickListener{
