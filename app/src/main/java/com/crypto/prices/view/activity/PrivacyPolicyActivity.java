@@ -26,7 +26,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         web_view.getSettings().setJavaScriptEnabled(true);
         web_view.getSettings().setGeolocationEnabled(true);
         web_view.setSoundEffectsEnabled(true);
-        web_view.loadUrl("https://doge-miner.flycricket.io/privacy.html");
+        web_view.loadUrl("https://pages.flycricket.io/crypto-prices-0/privacy.html");
         web_view.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, int progress) {
                 if (progress < 100) {
