@@ -2,7 +2,10 @@ package com.crypto.prices.view.activity
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +14,7 @@ import com.crypto.prices.R
 import com.crypto.prices.utils.MySharedPrefs
 import com.crypto.prices.utils.Utility
 import kotlinx.android.synthetic.main.activity_settings.*
+
 
 class SettingsActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +35,17 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         relativeLayoutPP.setOnClickListener(this)
         relativeLayoutTnC.setOnClickListener(this)
         relativeLayoutMoreApps.setOnClickListener(this)
+
+        // attribution text link
+        val htmlText =
+            "<a style='text-decoration:underline' href=\"https://www.flaticon.com\">Icons created by Freepik - Flaticon</a>"
+        textViewAttribution.setClickable(true);
+        textViewAttribution.setMovementMethod(LinkMovementMethod.getInstance());
+        if (Build.VERSION.SDK_INT >= 24) {
+            textViewAttribution.setText(Html.fromHtml(htmlText, Html.FROM_HTML_MODE_LEGACY))
+        } else {
+            textViewAttribution.setText(Html.fromHtml(htmlText))
+        }
     }
 
     private fun setProfileData() {
