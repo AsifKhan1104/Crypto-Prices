@@ -66,7 +66,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cardViewProfile">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -77,8 +77,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageViewRateUs"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:layout_margin="20dp"
                         android:background="@drawable/rate_us" />
 
@@ -109,8 +109,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageViewShare"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_margin="20dp"
                         android:background="@drawable/share" />
 
@@ -140,8 +140,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageViewCS"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_margin="20dp"
                         android:background="@drawable/customer_support" />
 
@@ -171,8 +171,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageViewPP"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_margin="20dp"
                         android:background="@drawable/privacy_policy" />
 
@@ -202,8 +202,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageViewTnC"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_margin="20dp"
                         android:background="@drawable/tnc" />
 
@@ -233,10 +233,10 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageViewMoreApps"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_margin="20dp"
-                        android:background="@drawable/ic_baseline_more_apps_24" />
+                        android:background="@drawable/more_apps" />
 
                     <TextView
                         android:id="@+id/textViewMoreApps"
@@ -264,8 +264,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageViewVersion"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_margin="20dp"
                         android:background="@drawable/version" />
 
@@ -289,5 +289,18 @@
                 </RelativeLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textViewAttribution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            android:drawableLeft="@drawable/info"
+            android:drawablePadding="5dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="12sp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
