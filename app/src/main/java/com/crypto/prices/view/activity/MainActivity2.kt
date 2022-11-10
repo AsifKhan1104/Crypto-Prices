@@ -32,9 +32,8 @@ import com.crypto.prices.utils.CoinManagement
 import com.crypto.prices.utils.MySharedPrefs
 import com.crypto.prices.utils.TableManagement
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.activity.ui.home.HomeFragment
 import com.crypto.prices.view.activity.ui.market.FragmentMarket
-import com.crypto.prices.view.activity.ui.news.FragmentNews
+import com.crypto.prices.view.activity.ui.explore.FragmentMore
 import kotlin.system.exitProcess
 
 class MainActivity2 : AppCompatActivity() {
@@ -44,11 +43,11 @@ class MainActivity2 : AppCompatActivity() {
     private var mName: String? = null
     private var mEmail: String? = null
 
-    private val homeFragment = HomeFragment()
+    //private val homeFragment = HomeFragment()
     private val marketFragment = FragmentMarket()
-    private val newsFragment = FragmentNews()
+    private val newsFragment = FragmentMore()
     private val fragmentManager = supportFragmentManager
-    private var activeFragment: Fragment = homeFragment
+    private var activeFragment: Fragment = marketFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,30 +56,36 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(binding.root)
 
         // check if pro pop up shown
-        if (!MySharedPrefs.getInstance(this).getBoolean(Utility.isProPopUpShown)) {
+        /*if (!MySharedPrefs.getInstance(this).getBoolean(Utility.isProPopUpShown)) {
             showUpgradeTourDialog()
             MySharedPrefs.getInstance(this).saveBoolean(Utility.isProPopUpShown, true)
-        }
+        }*/
 
         // add fragments
         fragmentManager.beginTransaction().apply {
-            add(R.id.container, newsFragment, getString(R.string.title_news)).hide(
+            /*add(R.id.container, newsFragment, getString(R.string.title_more)).hide(
+                newsFragment
+            )*/
+            add(R.id.container, newsFragment, getString(R.string.title_explore)).hide(
                 newsFragment
             )
             add(R.id.container, marketFragment, getString(R.string.title_market)).hide(
                 marketFragment
             )
-            add(R.id.container, homeFragment, getString(R.string.title_faucet))
+            /*add(R.id.container, marketFragment, getString(R.string.title_home)).hide(
+                marketFragment
+            )*/
+            //add(R.id.container, homeFragment, getString(R.string.title_faucet))
         }.commit()
 
         // handle bottom navigation
         binding.navView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.navigation_faucet -> {
-                    supportActionBar?.title = getString(R.string.title_faucet)
-                    fragmentManager.beginTransaction().hide(activeFragment).show(homeFragment)
+                R.id.navigation_home -> {
+                    supportActionBar?.title = getString(R.string.title_home)
+                    fragmentManager.beginTransaction().hide(activeFragment).show(marketFragment)
                         .commit()
-                    activeFragment = homeFragment
+                    activeFragment = marketFragment
                     true
                 }
                 R.id.navigation_market -> {
@@ -90,7 +95,13 @@ class MainActivity2 : AppCompatActivity() {
                     activeFragment = marketFragment
                     true
                 }
-                R.id.navigation_news -> {
+                R.id.navigation_explore -> {
+                    fragmentManager.beginTransaction().hide(activeFragment)
+                        .show(newsFragment).commit()
+                    activeFragment = newsFragment
+                    true
+                }
+                R.id.navigation_more -> {
                     fragmentManager.beginTransaction().hide(activeFragment)
                         .show(newsFragment).commit()
                     activeFragment = newsFragment

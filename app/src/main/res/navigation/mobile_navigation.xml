@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_market" />
 
     <fragment
-        android:id="@+id/navigation_news"
-        android:name="com.crypto.prices.view.activity.ui.news.FragmentNews"
+        android:id="@+id/navigation_explore"
+        android:name="com.crypto.prices.view.activity.ui.explore.FragmentMore"
         android:label="@string/title_news"
         tools:layout="@layout/fragment_news" />
 </navigation>

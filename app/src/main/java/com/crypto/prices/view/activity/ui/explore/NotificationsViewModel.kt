@@ -1,4 +1,4 @@
-package com.crypto.prices.view.activity.ui.news
+package com.crypto.prices.view.activity.ui.explore
 
 import androidx.lifecycle.ViewModel
 

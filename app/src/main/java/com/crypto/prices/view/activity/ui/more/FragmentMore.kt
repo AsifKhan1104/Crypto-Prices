@@ -1,4 +1,4 @@
-package com.crypto.prices.view.activity.ui.news
+package com.crypto.prices.view.activity.ui.explore
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_market.textView_error
 import kotlinx.android.synthetic.main.fragment_news.*
 import kotlinx.coroutines.*
 
-class FragmentNews : Fragment(), View.OnClickListener {
+class FragmentMore : Fragment(), View.OnClickListener {
     val service = Service().getNewsService()
     var job: Job? = null
     val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -79,7 +79,7 @@ class FragmentNews : Fragment(), View.OnClickListener {
     }
 
     companion object {
-        fun newInstance(): FragmentNews = FragmentNews()
+        fun newInstance(): FragmentMore = FragmentMore()
         /*val domain = "https://shibminer.page.link"
         val baseUrl =
             Uri.parse("https://play.google.com/store/apps/details?id=com.miner.shib_miner")*/

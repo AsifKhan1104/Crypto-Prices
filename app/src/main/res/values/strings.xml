@@ -57,8 +57,10 @@
     <string name="wallet_refer_text">Users can refer to this app via below link to easily get XRP wallet address and Tag. (Just a suggestion not mandatory, may work for India only)</string>
     <string name="binace_refer_text">Users can easily create their Binance account via below link.</string>
     <string name="title_activity_main2">MainActivity2</string>
-    <string name="title_faucet">Faucet</string>
+    <string name="title_home">Home</string>
     <string name="title_market">Market</string>
+    <string name="title_explore">Explore</string>
+    <string name="title_more">More</string>
     <string name="title_fun">Fun</string>
     <string name="title_news">News</string>
     <string name="title_games">Games</string>

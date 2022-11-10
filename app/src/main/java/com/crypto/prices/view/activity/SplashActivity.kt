@@ -113,7 +113,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
             }*/
             // move to MainActivity
-            val intent = Intent(this, NavDrawerMainActivity::class.java)
+            val intent = Intent(this, MainActivity2::class.java)
             intent.flags =
                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)

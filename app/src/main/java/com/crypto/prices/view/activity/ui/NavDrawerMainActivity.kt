@@ -42,10 +42,8 @@ import com.crypto.prices.utils.TableManagement
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.activity.SettingsActivity
 import com.crypto.prices.view.activity.SignInActivity
-import com.crypto.prices.view.activity.WithdrawHistoryActivity
 import com.crypto.prices.view.activity.ui.market.FragmentMarket
-import com.crypto.prices.view.activity.ui.news.FragmentNews
-import kotlinx.android.synthetic.main.nav_header_nav_drawer_main.view.*
+import com.crypto.prices.view.activity.ui.explore.FragmentMore
 import kotlin.system.exitProcess
 
 class NavDrawerMainActivity : AppCompatActivity() {
@@ -59,7 +57,7 @@ class NavDrawerMainActivity : AppCompatActivity() {
 
     //private val homeFragment = HomeFragment()
     private val marketFragment = FragmentMarket()
-    private val newsFragment = FragmentNews()
+    private val newsFragment = FragmentMore()
     private val fragmentManager = supportFragmentManager
     private var activeFragment: Fragment = marketFragment
 
@@ -147,7 +145,7 @@ class NavDrawerMainActivity : AppCompatActivity() {
                     activeFragment = marketFragment
                     true
                 }
-                R.id.navigation_news -> {
+                R.id.navigation_explore -> {
                     Utility.logAnalyitcsEvent(getString(R.string.title_news))
                     supportActionBar?.title = getString(R.string.title_news)
                     fragmentManager.beginTransaction().hide(activeFragment)
