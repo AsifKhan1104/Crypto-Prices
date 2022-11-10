@@ -153,7 +153,7 @@ class FragmentEarn : Fragment(), View.OnClickListener, VideoListener, IUnityAdsL
     private fun showVideoAd() {
         showProgressDialog()
         // check if video is available
-        mStartAppAd.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, object : AdEventListener {
+        /*mStartAppAd.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, object : AdEventListener {
             override fun onReceiveAd(ad: Ad) {
                 dismissProgressDialog()
 
@@ -166,7 +166,7 @@ class FragmentEarn : Fragment(), View.OnClickListener, VideoListener, IUnityAdsL
                 // Can't show rewarded video ad from start app
                 Utility.showToast(context, "Unable to load Ad, Please try again.")
             }
-        })
+        })*/
     }
 
     // Implement a function to display an ad if the Ad Unit or Placement is ready:
