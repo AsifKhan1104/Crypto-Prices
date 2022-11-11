@@ -90,6 +90,9 @@
     <string name="binace_email">Binance Email</string>
     <string name="binace_phone">Binance Phone</string>
     <string name="binace_payid">Binance Pay Id</string>
+    <string name="no_internet_msg">No Internet connection !!</string>
+    <string name="network_failure">Network Failure !!</string>
+    <string name="conversion_error">Conversion Error !!</string>
     <!--<string name="default_web_client_id">877942844398-29tt3cav4h8mkdjnh58lr4c5q8epcpgj.apps.googleusercontent.com</string>-->
 
 </resources>

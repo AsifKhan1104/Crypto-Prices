@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.crypto.prices.view.AppRepositoryImpl
+import com.crypto.prices.CryptoApplication
 import com.crypto.prices.databinding.FragmentCryptoBinding
 import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.adapter.MarketAdapter
 
 class CryptoFragment : Fragment(), View.OnClickListener {
@@ -23,6 +26,7 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     private val binding get() = _binding!!
 
     private fun onError(s: String) {
+        binding.textViewError.text = s
         binding.textViewError.visibility = View.VISIBLE
         binding.loadingView.visibility = View.GONE
     }
@@ -44,19 +48,24 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     ): View? {
         _binding = FragmentCryptoBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        mCryptoViewModel = ViewModelProviders.of(this).get(CryptoViewModel::class.java)
+        setUpViewModel()
         return root
+    }
+
+    private fun setUpViewModel() {
+        val repository = AppRepositoryImpl()
+        val factory = ViewModelFactory(CryptoApplication.instance!!, repository)
+        mCryptoViewModel = ViewModelProvider(this, factory).get(CryptoViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requestData()
+        loadData()
     }
 
-    fun requestData() {
+    fun loadData() {
         try {
-            mCryptoViewModel.loadCryptoData()
-            mCryptoViewModel.getNetworkResult().observe(viewLifecycleOwner, Observer {
+            mCryptoViewModel.cryptoLiveData.observe(viewLifecycleOwner, Observer {
                 // blank observe here
                 when (it) {
                     is NetworkResult.Success -> {
