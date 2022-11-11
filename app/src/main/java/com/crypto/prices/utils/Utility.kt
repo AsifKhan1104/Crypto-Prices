@@ -6,11 +6,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.net.ParseException
-import android.net.Uri
+import android.net.*
+import android.os.Build
 import android.util.Patterns
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
+import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
@@ -167,6 +168,21 @@ object Utility {
             e.printStackTrace()
         }
         return ""
+    }
+
+    fun isInternetAvailable(): Boolean {
+        val conMgr =
+            CryptoApplication.instance?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val network: Network? = conMgr.activeNetwork
+            val networkCapabilities = conMgr.getNetworkCapabilities(network)
+            networkCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                ?: false
+        } else {
+            // below API Level 23
+            (conMgr.activeNetworkInfo != null && conMgr.activeNetworkInfo!!.isAvailable
+                    && conMgr.activeNetworkInfo!!.isConnected)
+        }
     }
 }
 

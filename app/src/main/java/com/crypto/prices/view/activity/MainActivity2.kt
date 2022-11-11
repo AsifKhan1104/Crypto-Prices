@@ -32,9 +32,8 @@ import com.crypto.prices.utils.CoinManagement
 import com.crypto.prices.utils.MySharedPrefs
 import com.crypto.prices.utils.TableManagement
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.activity.ui.market.CryptoFragment
-import com.crypto.prices.view.activity.ui.explore.MoreFragment
-import com.crypto.prices.view.activity.ui.market.MarketFragment
+import com.crypto.prices.view.ui.explore.MoreFragment
+import com.crypto.prices.view.ui.market.MarketFragment
 import kotlin.system.exitProcess
 
 class MainActivity2 : AppCompatActivity() {

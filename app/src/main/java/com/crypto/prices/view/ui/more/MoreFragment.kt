@@ -1,4 +1,4 @@
-package com.crypto.prices.view.activity.ui.explore
+package com.crypto.prices.view.ui.explore
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import com.crypto.prices.view.adapter.NewsAdapter
 import kotlinx.android.synthetic.main.fragment_news.*
 import kotlinx.coroutines.*
 
-class NewsFragment : Fragment(), View.OnClickListener {
+class MoreFragment : Fragment(), View.OnClickListener {
     val service = Service().getNewsService()
     var job: Job? = null
     val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->

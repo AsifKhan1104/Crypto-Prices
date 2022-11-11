@@ -7,19 +7,19 @@
 
     <!--<fragment
         android:id="@+id/navigation_faucet"
-        android:name="com.crypto.prices.view.activity.ui.home.HomeFragment"
+        android:name="com.crypto.prices.view.ui.home.HomeFragment"
         android:label="@string/title_faucet"
         tools:layout="@layout/fragment_home" />-->
 
     <fragment
         android:id="@+id/navigation_market"
-        android:name="com.crypto.prices.view.activity.ui.market.CryptoFragment"
+        android:name="com.crypto.prices.view.ui.market.CryptoFragment"
         android:label="@string/title_market"
         tools:layout="@layout/fragment_crypto" />
 
     <fragment
         android:id="@+id/navigation_explore"
-        android:name="com.crypto.prices.view.activity.ui.explore.MoreFragment"
+        android:name="com.crypto.prices.view.ui.explore.MoreFragment"
         android:label="@string/title_news"
         tools:layout="@layout/fragment_news" />
 </navigation>

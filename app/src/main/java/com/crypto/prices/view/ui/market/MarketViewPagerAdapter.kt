@@ -1,4 +1,4 @@
-package com.crypto.prices.view.activity.ui.market
+package com.crypto.prices.view.ui.market
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

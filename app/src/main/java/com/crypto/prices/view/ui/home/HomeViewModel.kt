@@ -1,4 +1,4 @@
-package com.crypto.prices.view.activity.ui.home
+package com.crypto.prices.view.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

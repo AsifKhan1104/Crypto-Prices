@@ -1,5 +1,6 @@
-package com.crypto.prices.view.activity.ui.market
+package com.crypto.prices.view.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,13 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
-import com.crypto.prices.databinding.FragmentMarketBinding
-import com.crypto.prices.utils.Utility
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.crypto.prices.R
+import com.crypto.prices.databinding.FragmentHomeBinding
+import com.crypto.prices.utils.CoinManagement
+import com.crypto.prices.utils.Utility
+import com.crypto.prices.view.ui.market.MarketViewPagerAdapter
 
-class MarketFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private var _binding: FragmentMarketBinding? = null
+    private lateinit var homeViewModel: HomeViewModel
+    private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,8 +31,8 @@ class MarketFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.e("MarketFragment", "OnCreateView")
-        _binding = FragmentMarketBinding.inflate(inflater, container, false)
+        Log.e("HomeFragent", "OnCreateView")
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         /*homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -39,7 +46,7 @@ class MarketFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e("MarketFragment", "OnViewCreated")
+        Log.e("HomeFragent", "OnViewCreated")
         val adapter = MarketViewPagerAdapter(requireActivity().supportFragmentManager)
 
         //view_pager.offscreenPageLimit = 3
@@ -62,18 +69,18 @@ class MarketFragment : Fragment() {
         binding.viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
                 when (binding.viewPager.currentItem) {
-                    0 -> Utility.logAnalyitcsEvent("Crypto")
-                    //1 -> Utility.logAnalyitcsEvent("Withdraw")
-                    //2 -> Utility.logAnalyitcsEvent("Refer")
+                    0 -> Utility.logAnalyitcsEvent("Earn")
+                    1 -> Utility.logAnalyitcsEvent("Withdraw")
+                    2 -> Utility.logAnalyitcsEvent("Refer")
                     //3 -> logScreenEvent("Market")
-                    else -> Utility.logAnalyitcsEvent("Crypto")
+                    else -> Utility.logAnalyitcsEvent("Earn")
                 }
             }
         })
-        // showRewardDialogs()
+        showRewardDialogs()
 
         // set default values from remote config
-        /*val remoteConfig = Firebase.remoteConfig
+        val remoteConfig = Firebase.remoteConfig
         remoteConfig.fetchAndActivate()
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
@@ -89,10 +96,10 @@ class MarketFragment : Fragment() {
                         apply()
                     }
                 }
-            }*/
+            }
     }
 
-    /*private fun showRewardDialogs() {
+    private fun showRewardDialogs() {
         val referral = requireActivity().intent?.getBooleanExtra("referralUser", false)
         val newUser = requireActivity().intent?.getBooleanExtra("newUser", false)
 
@@ -127,11 +134,11 @@ class MarketFragment : Fragment() {
                 )
             )
         }
-    }*/
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.e("MarketFragment", "OnDestroyView")
+        Log.e("HomeFragent", "OnDestroyView")
         _binding = null
     }
 }

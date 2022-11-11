@@ -1,6 +1,5 @@
-package com.crypto.prices.view.activity.ui.home
+package com.crypto.prices.view.ui.market
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,45 +7,34 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.remoteconfig.ktx.remoteConfig
-import com.crypto.prices.R
-import com.crypto.prices.databinding.FragmentHomeBinding
-import com.crypto.prices.utils.CoinManagement
+import com.crypto.prices.databinding.FragmentMarketBinding
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.activity.ui.market.MarketViewPagerAdapter
+import com.google.android.material.tabs.TabLayout
 
-class HomeFragment : Fragment() {
+class MarketFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentMarketBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private val TAG = "MarketFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.e("HomeFragent", "OnCreateView")
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        Log.e(TAG, "OnCreateView")
+        _binding = FragmentMarketBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        /*homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })*/
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e("HomeFragent", "OnViewCreated")
+        Log.e(TAG, "OnViewCreated")
         val adapter = MarketViewPagerAdapter(requireActivity().supportFragmentManager)
 
         //view_pager.offscreenPageLimit = 3
@@ -69,18 +57,18 @@ class HomeFragment : Fragment() {
         binding.viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
                 when (binding.viewPager.currentItem) {
-                    0 -> Utility.logAnalyitcsEvent("Earn")
-                    1 -> Utility.logAnalyitcsEvent("Withdraw")
-                    2 -> Utility.logAnalyitcsEvent("Refer")
+                    0 -> Utility.logAnalyitcsEvent("Crypto")
+                    //1 -> Utility.logAnalyitcsEvent("Withdraw")
+                    //2 -> Utility.logAnalyitcsEvent("Refer")
                     //3 -> logScreenEvent("Market")
-                    else -> Utility.logAnalyitcsEvent("Earn")
+                    else -> Utility.logAnalyitcsEvent("Crypto")
                 }
             }
         })
-        showRewardDialogs()
+        // showRewardDialogs()
 
         // set default values from remote config
-        val remoteConfig = Firebase.remoteConfig
+        /*val remoteConfig = Firebase.remoteConfig
         remoteConfig.fetchAndActivate()
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
@@ -96,10 +84,10 @@ class HomeFragment : Fragment() {
                         apply()
                     }
                 }
-            }
+            }*/
     }
 
-    private fun showRewardDialogs() {
+    /*private fun showRewardDialogs() {
         val referral = requireActivity().intent?.getBooleanExtra("referralUser", false)
         val newUser = requireActivity().intent?.getBooleanExtra("newUser", false)
 
@@ -134,11 +122,11 @@ class HomeFragment : Fragment() {
                 )
             )
         }
-    }
+    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.e("HomeFragent", "OnDestroyView")
+        Log.e(TAG, "OnDestroyView")
         _binding = null
     }
 }

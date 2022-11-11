@@ -1,4 +1,4 @@
-package com.crypto.prices.view.activity.ui
+package com.crypto.prices.view.ui
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -42,8 +42,8 @@ import com.crypto.prices.utils.TableManagement
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.activity.SettingsActivity
 import com.crypto.prices.view.activity.SignInActivity
-import com.crypto.prices.view.activity.ui.market.CryptoFragment
-import com.crypto.prices.view.activity.ui.explore.MoreFragment
+import com.crypto.prices.view.ui.market.CryptoFragment
+import com.crypto.prices.view.ui.explore.MoreFragment
 import kotlin.system.exitProcess
 
 class NavDrawerMainActivity : AppCompatActivity() {

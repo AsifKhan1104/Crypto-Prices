@@ -18,7 +18,7 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.crypto.prices.R
 import com.crypto.prices.utils.CoinManagement
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.activity.ui.market.MarketViewPagerAdapter
+import com.crypto.prices.view.ui.market.MarketViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

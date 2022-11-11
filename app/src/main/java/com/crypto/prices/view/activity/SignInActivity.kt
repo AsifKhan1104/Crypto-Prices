@@ -24,7 +24,7 @@ import com.crypto.prices.model.User
 import com.crypto.prices.utils.CoinManagement
 import com.crypto.prices.utils.TableManagement
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.activity.ui.NavDrawerMainActivity
+import com.crypto.prices.view.ui.NavDrawerMainActivity
 import kotlinx.android.synthetic.main.activity_signin.buttonLogin
 import kotlinx.android.synthetic.main.activity_signin.buttonSignUp
 import kotlinx.android.synthetic.main.activity_signin.checkbox
