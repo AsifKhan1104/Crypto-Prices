@@ -12,8 +12,8 @@ import com.crypto.prices.view.adapter.MarketAdapter
 import kotlinx.android.synthetic.main.fragment_market.*
 import kotlinx.coroutines.*
 
-class FragmentMarket : Fragment(), View.OnClickListener {
-    val service = Service().getUsersService()
+class FragmentMarket : Fragment()/*, View.OnClickListener*/ {
+    /*val service = Service().getUsersService()
     var job: Job? = null
     val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
         onError("Exception handled: ${throwable.localizedMessage}")
@@ -29,7 +29,7 @@ class FragmentMarket : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater!!.inflate(R.layout.fragment_market, container, false)
+        return inflater!!.inflate(R.layout.fragment_crypto, container, false)
     }
 
     private fun loadData() {
@@ -46,14 +46,14 @@ class FragmentMarket : Fragment(), View.OnClickListener {
                 }
             }
         }
-        /*textView_error.text = ""
-        loadingView.visibility = View.GONE*/
+        *//*textView_error.text = ""
+        loadingView.visibility = View.GONE*//*
     }
 
-    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
+    *//*override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         loadData()
-    }*/
+    }*//*
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,9 +62,9 @@ class FragmentMarket : Fragment(), View.OnClickListener {
 
     companion object {
         fun newInstance(): FragmentMarket = FragmentMarket()
-        /*val domain = "https://shibminer.page.link"
+        *//*val domain = "https://shibminer.page.link"
         val baseUrl =
-            Uri.parse("https://play.google.com/store/apps/details?id=com.miner.shib_miner")*/
+            Uri.parse("https://play.google.com/store/apps/details?id=com.miner.shib_miner")*//*
     }
 
     override fun onClick(v: View?) {
@@ -82,7 +82,7 @@ class FragmentMarket : Fragment(), View.OnClickListener {
         job?.cancel()
     }
 
-    /*override fun onResume() {
+    *//*override fun onResume() {
         super.onResume()
         // track screen event
         val params = Bundle()

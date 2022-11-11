@@ -7,12 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.R
+import com.crypto.prices.databinding.FragmentCryptoBinding
+import com.crypto.prices.databinding.FragmentMarketBinding
 import com.crypto.prices.remote.Service
 import com.crypto.prices.view.adapter.MarketAdapter
-import kotlinx.android.synthetic.main.fragment_market.*
 import kotlinx.coroutines.*
 
-class FragmentMarket : Fragment(), View.OnClickListener {
+class CryptoFragment : Fragment(), View.OnClickListener {
+    private var _binding: FragmentCryptoBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
     val service = Service().getUsersService()
     var job: Job? = null
     val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -20,8 +27,8 @@ class FragmentMarket : Fragment(), View.OnClickListener {
     }
 
     private fun onError(s: String) {
-        textView_error.visibility = View.VISIBLE
-        loadingView.visibility = View.GONE
+        binding.textViewError.visibility = View.VISIBLE
+        binding.loadingView.visibility = View.GONE
     }
 
     override fun onCreateView(
@@ -29,12 +36,14 @@ class FragmentMarket : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater!!.inflate(R.layout.fragment_market, container, false)
+        _binding = FragmentCryptoBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        return root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        button_loadData.visibility = View.GONE
+        binding.buttonLoadData.visibility = View.GONE
         loadData()
     }
 
@@ -43,10 +52,10 @@ class FragmentMarket : Fragment(), View.OnClickListener {
             val response = service.getListingsLatest()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    recyclerView_listings.layoutManager = LinearLayoutManager(context)
-                    recyclerView_listings.adapter = MarketAdapter(context, response.body()?.data)
-                    textView_error.visibility = View.GONE
-                    loadingView.visibility = View.GONE
+                    binding.recyclerViewListings.layoutManager = LinearLayoutManager(context)
+                    binding.recyclerViewListings.adapter = MarketAdapter(context, response.body()?.data)
+                    binding.textViewError.visibility = View.GONE
+                    binding.loadingView.visibility = View.GONE
                 } else {
                     onError("Error : ${response.message()} ")
                 }
@@ -64,14 +73,14 @@ class FragmentMarket : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        button_loadData.setOnClickListener(View.OnClickListener {
-            button_loadData.visibility = View.GONE
+        binding.buttonLoadData.setOnClickListener(View.OnClickListener {
+            binding.buttonLoadData.visibility = View.GONE
             loadData()
         })
     }
 
     companion object {
-        fun newInstance(): FragmentMarket = FragmentMarket()
+        fun newInstance(): CryptoFragment = CryptoFragment()
         /*val domain = "https://shibminer.page.link"
         val baseUrl =
             Uri.parse("https://play.google.com/store/apps/details?id=com.miner.shib_miner")*/

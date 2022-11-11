@@ -18,7 +18,7 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.crypto.prices.R
 import com.crypto.prices.utils.CoinManagement
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.adapter.MyViewPagerAdapter
+import com.crypto.prices.view.activity.ui.market.MarketViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         mEmail = intent.getStringExtra("email")
 
         initToolbar()
-        val adapter = MyViewPagerAdapter(supportFragmentManager)
+        val adapter = MarketViewPagerAdapter(supportFragmentManager)
 
         view_pager.offscreenPageLimit = 3
         view_pager.adapter = adapter

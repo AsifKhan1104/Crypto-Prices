@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_market"
-        android:name="com.crypto.prices.view.activity.ui.market.FragmentMarket"
+        android:name="com.crypto.prices.view.activity.ui.market.CryptoFragment"
         android:label="@string/title_market"
-        tools:layout="@layout/fragment_market" />
+        tools:layout="@layout/fragment_crypto" />
 
     <fragment
         android:id="@+id/navigation_explore"
-        android:name="com.crypto.prices.view.activity.ui.explore.FragmentMore"
+        android:name="com.crypto.prices.view.activity.ui.explore.MoreFragment"
         android:label="@string/title_news"
         tools:layout="@layout/fragment_news" />
 </navigation>

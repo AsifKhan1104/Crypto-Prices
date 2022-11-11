@@ -42,8 +42,8 @@ import com.crypto.prices.utils.TableManagement
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.activity.SettingsActivity
 import com.crypto.prices.view.activity.SignInActivity
-import com.crypto.prices.view.activity.ui.market.FragmentMarket
-import com.crypto.prices.view.activity.ui.explore.FragmentMore
+import com.crypto.prices.view.activity.ui.market.CryptoFragment
+import com.crypto.prices.view.activity.ui.explore.MoreFragment
 import kotlin.system.exitProcess
 
 class NavDrawerMainActivity : AppCompatActivity() {
@@ -56,8 +56,8 @@ class NavDrawerMainActivity : AppCompatActivity() {
     private var mEmail: String? = null
 
     //private val homeFragment = HomeFragment()
-    private val marketFragment = FragmentMarket()
-    private val newsFragment = FragmentMore()
+    private val marketFragment = CryptoFragment()
+    private val newsFragment = MoreFragment()
     private val fragmentManager = supportFragmentManager
     private var activeFragment: Fragment = marketFragment
 

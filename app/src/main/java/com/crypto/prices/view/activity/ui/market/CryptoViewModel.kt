@@ -2,7 +2,7 @@ package com.crypto.prices.view.activity.ui.market
 
 import androidx.lifecycle.ViewModel
 
-class MarketViewModel : ViewModel() {
+class CryptoViewModel : ViewModel() {
     /*val service = Service().getUsersService()
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"

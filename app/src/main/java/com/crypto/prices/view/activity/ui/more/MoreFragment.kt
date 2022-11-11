@@ -9,13 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.R
 import com.crypto.prices.remote.Service
 import com.crypto.prices.view.adapter.NewsAdapter
-import kotlinx.android.synthetic.main.fragment_market.button_loadData
-import kotlinx.android.synthetic.main.fragment_market.loadingView
-import kotlinx.android.synthetic.main.fragment_market.textView_error
 import kotlinx.android.synthetic.main.fragment_news.*
 import kotlinx.coroutines.*
 
-class FragmentMore : Fragment(), View.OnClickListener {
+class MoreFragment : Fragment(), View.OnClickListener {
     val service = Service().getNewsService()
     var job: Job? = null
     val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -79,7 +76,7 @@ class FragmentMore : Fragment(), View.OnClickListener {
     }
 
     companion object {
-        fun newInstance(): FragmentMore = FragmentMore()
+        fun newInstance(): MoreFragment = MoreFragment()
         /*val domain = "https://shibminer.page.link"
         val baseUrl =
             Uri.parse("https://play.google.com/store/apps/details?id=com.miner.shib_miner")*/

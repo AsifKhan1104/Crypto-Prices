@@ -34,6 +34,7 @@
         <entry key="app/src/main/res/layout/app_bar_nav_drawer_main.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1373873873873874" />
         <entry key="app/src/main/res/layout/content_nav_drawer_main.xml" value="0.10540540540540541" />
+        <entry key="app/src/main/res/layout/fragment_crypto.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_earn.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
