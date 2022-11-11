@@ -1,4 +1,4 @@
-package com.crypto.prices.view.adapter
+package com.crypto.prices.view.ui.market
 
 import android.content.Context
 import android.content.Intent
@@ -10,23 +10,23 @@ import com.bumptech.glide.Glide
 import com.crypto.prices.R
 import com.crypto.prices.model.Data
 import com.crypto.prices.view.activity.MarketDetailActivity
-import kotlinx.android.synthetic.main.item_market.view.*
+import kotlinx.android.synthetic.main.item_crypto.view.*
 
-class MarketAdapter(context: Context?, var data: List<Data>?) :
-    RecyclerView.Adapter<MarketAdapter.MarketViewHolder>() {
+class CryptoAdapter(context: Context?, var data: List<Data>?) :
+    RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
     private val context = context
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MarketViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_market, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = CryptoViewHolder(
+        LayoutInflater.from(parent.context).inflate(R.layout.item_crypto, parent, false)
     )
 
     override fun getItemCount() = data!!.size
 
-    override fun onBindViewHolder(holder: MarketViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CryptoViewHolder, position: Int) {
         holder.bind(context!!, position, data!!.get(position))
     }
 
-    class MarketViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class CryptoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val tableLayout = view.table_layout
         private val imageViewIcon = view.imageView_id
         private val textViewId = view.textView_id

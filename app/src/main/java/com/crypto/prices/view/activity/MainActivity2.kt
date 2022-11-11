@@ -18,6 +18,15 @@ import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.crypto.prices.R
+import com.crypto.prices.databinding.ActivityMain2Binding
+import com.crypto.prices.utils.CoinManagement
+import com.crypto.prices.utils.MySharedPrefs
+import com.crypto.prices.utils.TableManagement
+import com.crypto.prices.utils.Utility
+import com.crypto.prices.view.ui.explore.MoreFragment
+import com.crypto.prices.view.ui.home.HomeFragment
+import com.crypto.prices.view.ui.market.MarketFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -26,14 +35,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig
-import com.crypto.prices.R
-import com.crypto.prices.databinding.ActivityMain2Binding
-import com.crypto.prices.utils.CoinManagement
-import com.crypto.prices.utils.MySharedPrefs
-import com.crypto.prices.utils.TableManagement
-import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.ui.explore.MoreFragment
-import com.crypto.prices.view.ui.market.MarketFragment
 import kotlin.system.exitProcess
 
 class MainActivity2 : AppCompatActivity() {
@@ -43,11 +44,11 @@ class MainActivity2 : AppCompatActivity() {
     private var mName: String? = null
     private var mEmail: String? = null
 
-    //private val homeFragment = HomeFragment()
+    private val homeFragment = HomeFragment()
     private val marketFragment = MarketFragment()
     private val newsFragment = MoreFragment()
     private val fragmentManager = supportFragmentManager
-    private var activeFragment: Fragment = marketFragment
+    private var activeFragment: Fragment = homeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +73,7 @@ class MainActivity2 : AppCompatActivity() {
             add(R.id.container, marketFragment, getString(R.string.title_market)).hide(
                 marketFragment
             )
-            /*add(R.id.container, marketFragment, getString(R.string.title_home)).hide(
+            add(R.id.container, homeFragment, getString(R.string.title_home))/*.hide(
                 marketFragment
             )*/
             //add(R.id.container, homeFragment, getString(R.string.title_faucet))

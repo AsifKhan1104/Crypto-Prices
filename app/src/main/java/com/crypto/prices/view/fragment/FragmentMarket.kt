@@ -1,16 +1,6 @@
 package com.crypto.prices.view.fragment
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.crypto.prices.R
-import com.crypto.prices.remote.Service
-import com.crypto.prices.view.adapter.MarketAdapter
-import kotlinx.android.synthetic.main.fragment_market.*
-import kotlinx.coroutines.*
 
 class FragmentMarket : Fragment()/*, View.OnClickListener*/ {
     /*val service = Service().getUsersService()

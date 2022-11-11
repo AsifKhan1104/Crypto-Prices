@@ -9,12 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.databinding.FragmentCryptoBinding
 import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
-import com.crypto.prices.view.adapter.MarketAdapter
 
 class CryptoFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentCryptoBinding? = null
@@ -72,8 +71,9 @@ class CryptoFragment : Fragment(), View.OnClickListener {
                         it.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinished()
-                            binding.recyclerViewListings.layoutManager = LinearLayoutManager(context)
-                            binding.recyclerViewListings.adapter = MarketAdapter(context, it.data)
+                            binding.recyclerViewListings.layoutManager =
+                                LinearLayoutManager(context)
+                            binding.recyclerViewListings.adapter = CryptoAdapter(context, it.data)
                         }
                     }
                     is NetworkResult.Error -> {
