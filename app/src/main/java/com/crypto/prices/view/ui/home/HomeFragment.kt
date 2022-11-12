@@ -14,11 +14,14 @@ import com.crypto.prices.databinding.FragmentHomeBinding
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
+import com.crypto.prices.view.ui.explore.NewsAdapter
+import com.crypto.prices.view.ui.explore.NewsViewModel
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private lateinit var mHomeViewModel: HomeViewModel
+    private lateinit var mNewsViewModel: NewsViewModel
     private val TAG = HomeFragment.javaClass.simpleName
 
     // This property is only valid between onCreateView and
@@ -56,11 +59,13 @@ class HomeFragment : Fragment() {
         val repository = AppRepositoryImpl()
         val factory = ViewModelFactory(CryptoApplication.instance!!, repository)
         mHomeViewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
+        mNewsViewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadData()
+        loadNewsData()
     }
 
     fun loadData() {
@@ -74,6 +79,35 @@ class HomeFragment : Fragment() {
                             onLoadingFinished()
                             binding.recyclerViewTrending.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                             binding.recyclerViewTrending.adapter = HomeTrendingAdapter(context, it.coins)
+                        }
+                    }
+                    is NetworkResult.Error -> {
+                        //show error message
+                        onError(it.networkErrorMessage.toString())
+                    }
+
+                    is NetworkResult.Loading -> {
+                        //show loader, shimmer effect etc
+                        onLoading()
+                    }
+                }
+            })
+        } catch (ex: Exception) {
+            ex.message?.let { Log.e(TAG, it) }
+        }
+    }
+
+    fun loadNewsData() {
+        try {
+            mNewsViewModel.newsLiveData.observe(viewLifecycleOwner, Observer {
+                // blank observe here
+                when (it) {
+                    is NetworkResult.Success -> {
+                        it.networkData?.let {
+                            //bind the data to the ui
+                            onLoadingFinished()
+                            binding.recyclerViewNews.layoutManager = LinearLayoutManager(context)
+                            binding.recyclerViewNews.adapter = NewsAdapter(context, it.articles.subList(0, 3))
                         }
                     }
                     is NetworkResult.Error -> {
