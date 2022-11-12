@@ -28,20 +28,43 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private fun onError(s: String) {
-        binding.textViewError.text = s
-        binding.textViewError.visibility = View.VISIBLE
-        binding.loadingView.visibility = View.GONE
+    private fun onErrorT(s: String) {
+        binding.textViewErrorT.text = s
+        binding.textViewErrorT.visibility = View.VISIBLE
+        binding.shimmerLayoutTrending.visibility = View.GONE
+        binding.shimmerLayoutTrending.stopShimmer()
     }
 
-    private fun onLoading() {
-        binding.textViewError.visibility = View.GONE
-        binding.loadingView.visibility = View.VISIBLE
+    private fun onLoadingT() {
+        binding.textViewErrorT.visibility = View.GONE
+        binding.shimmerLayoutTrending.visibility = View.VISIBLE
+        binding.shimmerLayoutTrending.startShimmer()
     }
 
-    private fun onLoadingFinished() {
-        binding.textViewError.visibility = View.GONE
-        binding.loadingView.visibility = View.GONE
+    private fun onLoadingFinishedT() {
+        binding.textViewErrorT.visibility = View.GONE
+        binding.shimmerLayoutTrending.visibility = View.GONE
+        binding.shimmerLayoutTrending.stopShimmer()
+    }
+
+    private fun onErrorN(s: String) {
+        binding.textViewErrorN.text = s
+        binding.textViewErrorN.visibility = View.VISIBLE
+        binding.shimmerLayoutNews.visibility = View.GONE
+        binding.shimmerLayoutNews.stopShimmer()
+    }
+
+    private fun onLoadingN() {
+        binding.textViewErrorN.visibility = View.GONE
+        binding.shimmerLayoutNews.visibility = View.VISIBLE
+        binding.shimmerLayoutNews.startShimmer()
+    }
+
+    private fun onLoadingFinishedN() {
+        binding.textViewErrorN.visibility = View.GONE
+        binding.shimmerLayoutNews.visibility = View.GONE
+        binding.shimmerLayoutNews.stopShimmer()
+        binding.textViewNewsMore.visibility = View.VISIBLE
     }
 
     override fun onCreateView(
@@ -76,19 +99,19 @@ class HomeFragment : Fragment() {
                     is NetworkResult.Success -> {
                         it.networkData?.let {
                             //bind the data to the ui
-                            onLoadingFinished()
+                            onLoadingFinishedT()
                             binding.recyclerViewTrending.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                             binding.recyclerViewTrending.adapter = HomeTrendingAdapter(context, it.coins)
                         }
                     }
                     is NetworkResult.Error -> {
                         //show error message
-                        onError(it.networkErrorMessage.toString())
+                        onErrorT(it.networkErrorMessage.toString())
                     }
 
                     is NetworkResult.Loading -> {
                         //show loader, shimmer effect etc
-                        onLoading()
+                        onLoadingT()
                     }
                 }
             })
@@ -105,19 +128,19 @@ class HomeFragment : Fragment() {
                     is NetworkResult.Success -> {
                         it.networkData?.let {
                             //bind the data to the ui
-                            onLoadingFinished()
+                            onLoadingFinishedN()
                             binding.recyclerViewNews.layoutManager = LinearLayoutManager(context)
                             binding.recyclerViewNews.adapter = NewsAdapter(context, it.articles.subList(0, 3))
                         }
                     }
                     is NetworkResult.Error -> {
                         //show error message
-                        onError(it.networkErrorMessage.toString())
+                        onErrorN(it.networkErrorMessage.toString())
                     }
 
                     is NetworkResult.Loading -> {
                         //show loader, shimmer effect etc
-                        onLoading()
+                        onLoadingN()
                     }
                 }
             })

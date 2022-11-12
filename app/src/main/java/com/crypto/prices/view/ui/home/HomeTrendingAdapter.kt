@@ -32,7 +32,7 @@ class HomeTrendingAdapter(context: Context?, var data: List<CoinX>?) :
         private val textViewChange = view.textViewRank
 
         fun bind(context: Context, position: Int, data: CoinX) {
-            textViewName.text = data.item.name + " ( " + data.item.symbol + " )"
+            textViewName.text = data.item.name + " (" + data.item.symbol + ")"
             textViewPrice.text = String.format("%.9f", data.item.price_btc) + " btc"
             textViewChange.text = data.item.market_cap_rank.toString()
 

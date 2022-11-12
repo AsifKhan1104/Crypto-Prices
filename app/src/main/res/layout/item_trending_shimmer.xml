@@ -11,8 +11,8 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardElevation="4dp"
         android:elevation="4dp"
+        app:cardElevation="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -31,16 +31,17 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="5dp"
+                android:background="#B3B3B3"
                 android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@mipmap/ic_launcher_round" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textViewName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="#B3B3B3"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
@@ -52,6 +53,7 @@
                 android:id="@+id/textViewPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#B3B3B3"
                 android:fontFamily="sans-serif-medium"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="#B3B3B3"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:textColor="@android:color/holo_red_light"
                 android:textSize="16sp"
@@ -75,6 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:background="#B3B3B3"
                 android:fontFamily="sans-serif-thin"
                 android:text="Market Cap Rank"
                 android:textSize="10sp"
