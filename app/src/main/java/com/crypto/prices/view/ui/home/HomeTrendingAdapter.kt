@@ -25,30 +25,30 @@ class HomeTrendingAdapter(context: Context?, var data: List<CoinX>?) :
     }
 
     class TrendingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val cardView = view.cardView
+        //private val cardView = view.cardView
         private val imageViewId = view.imageViewId
         private val textViewName = view.textViewName
         private val textViewPrice = view.textViewPrice
-        private val textViewChange = view.textViewChange
+        private val textViewChange = view.textViewRank
 
         fun bind(context: Context, position: Int, data: CoinX) {
-            textViewName.text = data.item.name
-            textViewPrice.text = data.item.price_btc.toString()
-            textViewChange.text = data.item.score.toString()
+            textViewName.text = data.item.name + " ( " + data.item.symbol + " )"
+            textViewPrice.text = String.format("%.9f", data.item.price_btc) + " btc"
+            textViewChange.text = data.item.market_cap_rank.toString()
 
             // set icons
             Glide.with(context)
-                .load(data.item.symbol)
+                .load(data.item.small)
                 .into(imageViewId)
 
             // on click listener
-            cardView.setOnClickListener(object : View.OnClickListener {
+            /*cardView.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
-                    /*val intent = Intent(context, MarketDetailActivity::class.java)
+                    *//*val intent = Intent(context, MarketDetailActivity::class.java)
                     intent.putExtra("market_listings_data", data)
-                    context.startActivity(intent)*/
+                    context.startActivity(intent)*//*
                 }
-            })
+            })*/
         }
     }
 }

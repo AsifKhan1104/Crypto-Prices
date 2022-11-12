@@ -18,6 +18,8 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/drawable/ic_market_24.xml" value="0.13513513513513514" />
         <entry key="app/src/main/res/drawable/list_not_pressed.xml" value="0.12162162162162163" />
+        <entry key="app/src/main/res/drawable/selector_button.xml" value="0.1215" />
+        <entry key="app/src/main/res/drawable/selector_list.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.12297297297297298" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.10855855855855856" />
