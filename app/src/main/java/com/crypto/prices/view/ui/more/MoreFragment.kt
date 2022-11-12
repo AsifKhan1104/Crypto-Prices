@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.R
 import com.crypto.prices.remote.Service
-import com.crypto.prices.view.adapter.NewsAdapter
 import kotlinx.android.synthetic.main.fragment_news.*
 import kotlinx.coroutines.*
 

@@ -1,4 +1,4 @@
-package com.crypto.prices.view.adapter
+package com.crypto.prices.view.ui.explore
 
 import android.content.Context
 import android.view.LayoutInflater

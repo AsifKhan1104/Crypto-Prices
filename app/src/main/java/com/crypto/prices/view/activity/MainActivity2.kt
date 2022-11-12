@@ -25,6 +25,7 @@ import com.crypto.prices.utils.MySharedPrefs
 import com.crypto.prices.utils.TableManagement
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.ui.explore.MoreFragment
+import com.crypto.prices.view.ui.explore.NewsFragment
 import com.crypto.prices.view.ui.home.HomeFragment
 import com.crypto.prices.view.ui.market.MarketFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -46,7 +47,7 @@ class MainActivity2 : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
     private val marketFragment = MarketFragment()
-    private val newsFragment = MoreFragment()
+    private val newsFragment = NewsFragment()
     private val fragmentManager = supportFragmentManager
     private var activeFragment: Fragment = homeFragment
 
