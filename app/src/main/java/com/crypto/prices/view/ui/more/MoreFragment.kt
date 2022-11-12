@@ -33,7 +33,6 @@ class MoreFragment : Fragment(), View.OnClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        button_loadData.visibility = View.GONE
         loadData()
     }
 
@@ -67,11 +66,6 @@ class MoreFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        button_loadData.setOnClickListener(View.OnClickListener {
-            button_loadData.visibility = View.GONE
-            loadData()
-        })
     }
 
     companion object {
