@@ -23,7 +23,7 @@
         <entry key="app/src/main/res/drawable/selector_list.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.12297297297297298" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23143115942028986" />
-        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.10855855855855856" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_main_nav_drawer.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/layout/activity_market_detail.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_pro_features.xml" value="0.33" />
@@ -32,7 +32,7 @@
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.35286102294921873" />
         <entry key="app/src/main/res/layout/activity_signin.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_signin_revamped.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.10053748053473394" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_withdraw_history.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/app_bar_nav_drawer_main.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1373873873873874" />
