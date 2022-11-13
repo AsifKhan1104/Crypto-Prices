@@ -23,7 +23,7 @@
         <entry key="app/src/main/res/drawable/selector_list.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.12297297297297298" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23143115942028986" />
-        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.10250518798828122" />
         <entry key="app/src/main/res/layout/activity_main_nav_drawer.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/layout/activity_market_detail.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_pro_features.xml" value="0.33" />
@@ -37,7 +37,7 @@
         <entry key="app/src/main/res/layout/app_bar_nav_drawer_main.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1373873873873874" />
         <entry key="app/src/main/res/layout/content_nav_drawer_main.xml" value="0.10540540540540541" />
-        <entry key="app/src/main/res/layout/fragment_crypto.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_crypto.xml" value="0.2888243831640058" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_earn.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.34346103038309117" />
