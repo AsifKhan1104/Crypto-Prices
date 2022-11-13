@@ -71,9 +71,9 @@ class CryptoFragment : Fragment(), View.OnClickListener {
                         it.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinished()
-                            binding.recyclerViewListings.layoutManager =
+                            binding.recyclerViewCrypto.layoutManager =
                                 LinearLayoutManager(context)
-                            binding.recyclerViewListings.adapter = CryptoAdapter(context, it.data)
+                            binding.recyclerViewCrypto.adapter = CryptoAdapter(context, it)
                         }
                     }
                     is NetworkResult.Error -> {

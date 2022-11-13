@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.crypto.prices.R
-import com.crypto.prices.model.Data
+import com.crypto.prices.model.CryptoDataa
 import com.crypto.prices.view.activity.MarketDetailActivity
 import kotlinx.android.synthetic.main.item_crypto.view.*
 
-class CryptoAdapter(context: Context?, var data: List<Data>?) :
+class CryptoAdapter(context: Context?, var data: List<CryptoDataa>?) :
     RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
     private val context = context
 
@@ -36,34 +36,31 @@ class CryptoAdapter(context: Context?, var data: List<Data>?) :
         private val textView24hp = view.textView_24hp
         private val textViewMarketCap = view.textView_market_cap
 
-        fun bind(context: Context, position: Int, data: Data) {
-            textViewId.text = (position+1).toString()
+        fun bind(context: Context, position: Int, data: CryptoDataa) {
+            //textViewId.text = (position+1).toString()
             textViewSymbol.text = data.symbol
             textViewName.text = data.name
-            /*if (!data.symbol.equals("SHIB"))
-                textViewPrice.text =
-                    String.format("%.9f", data.quote.USD.price).toDouble().toString()
-            else*/
-                textViewPrice.text = data.quote.USD.price.toString()
+            textViewPrice.text = data.current_price.toString()
             try {
                 textView24hp.text =
-                    String.format("%.1f", data.quote.USD.percent_change_24h).toDouble().toString()+"%"
-                textViewMarketCap.text = String.format("%.1f", data.quote.USD.market_cap)
+                    String.format("%.1f", data.price_change_percentage_24h).toString() + "%"
+                textViewMarketCap.text = String.format("%.1f", data.market_cap)
             } catch (ex: Exception) {
                 ex.printStackTrace()
             }
 
             // set icons
-            val imageUrl = "https://s2.coinmarketcap.com/static/img/coins/64x64/"+data.id.toString()+".png"
+            /*val imageUrl =
+                "https://s2.coinmarketcap.com/static/img/coins/64x64/" + data.id.toString() + ".png"*/
             Glide.with(context)
-                .load(imageUrl)
+                .load(data.image)
                 .into(imageViewIcon)
 
             // on click listener
-            tableLayout.setOnClickListener(object:View.OnClickListener{
+            tableLayout.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
                     val intent = Intent(context, MarketDetailActivity::class.java)
-                    intent.putExtra("market_listings_data", data)
+                    intent.putExtra("crypto_data", data)
                     context.startActivity(intent)
                 }
             })

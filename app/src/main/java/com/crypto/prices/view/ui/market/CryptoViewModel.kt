@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
-import com.crypto.prices.model.ListingsLatest
+import com.crypto.prices.model.CryptoDataa
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
@@ -17,7 +17,7 @@ class CryptoViewModel(
     private val appRepository: AppRepository
 ) : ViewModel() {
     val application = app
-    val cryptoLiveData: MutableLiveData<NetworkResult<ListingsLatest>> = MutableLiveData()
+    val cryptoLiveData: MutableLiveData<NetworkResult<List<CryptoDataa>>> = MutableLiveData()
 
     init {
         getCrypto()
@@ -31,7 +31,14 @@ class CryptoViewModel(
         cryptoLiveData.postValue(NetworkResult.Loading())
         try {
             if (Utility.isInternetAvailable()) {
-                val response = appRepository.getCryptoPrices()
+                val map: MutableMap<String, Any> = HashMap()
+                map["vs_currency"] = "usd"
+                map["order"] = "market_cap_desc"
+                map["per_page"] = 100
+                map["page"] = 1
+                map["sparkline"] = false
+
+                val response = appRepository.getCryptoPrices(map)
                 if (response.isSuccessful) {
                     cryptoLiveData.postValue(response.body()?.let { NetworkResult.Success(it) })
                 } else {
