@@ -3,8 +3,8 @@ package com.crypto.prices.model
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-/*@Parcelize*/
-data class CryptoDataa(
+@Parcelize
+data class CryptoData(
     val ath: Double,
     val ath_change_percentage: Double,
     val ath_date: String,
@@ -19,7 +19,7 @@ data class CryptoDataa(
     val image: String,
     val last_updated: String,
     val low_24h: Double,
-    val market_cap: Long,
+    val market_cap: Double,
     val market_cap_change_24h: Double,
     val market_cap_change_percentage_24h: Double,
     val market_cap_rank: Int,
@@ -27,15 +27,14 @@ data class CryptoDataa(
     val name: String,
     val price_change_24h: Double,
     val price_change_percentage_24h: Double,
-    val roi: Roi,
+    //val roi: Roi,
     val symbol: String,
     val total_supply: Double,
     val total_volume: Double
-) /*: Parcelable*/
+) : Parcelable
 
-/*@Parcelize*/
 data class Roi(
     val currency: String,
     val percentage: Double,
     val times: Double
-) /*: Parcelable*/
+)

@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.crypto.prices.R
-import com.crypto.prices.model.CryptoDataa
-import com.crypto.prices.view.activity.MarketDetailActivity
+import com.crypto.prices.model.CryptoData
 import kotlinx.android.synthetic.main.item_crypto.view.*
 
-class CryptoAdapter(context: Context?, var data: List<CryptoDataa>?) :
+class CryptoAdapter(context: Context?, var data: List<CryptoData>?) :
     RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
     private val context = context
 
@@ -36,7 +35,7 @@ class CryptoAdapter(context: Context?, var data: List<CryptoDataa>?) :
         private val textView24hp = view.textView_24hp
         private val textViewMarketCap = view.textView_market_cap
 
-        fun bind(context: Context, position: Int, data: CryptoDataa) {
+        fun bind(context: Context, position: Int, data: CryptoData) {
             //textViewId.text = (position+1).toString()
             textViewSymbol.text = data.symbol
             textViewName.text = data.name
@@ -59,9 +58,9 @@ class CryptoAdapter(context: Context?, var data: List<CryptoDataa>?) :
             // on click listener
             tableLayout.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
-                    /*val intent = Intent(context, MarketDetailActivity::class.java)
+                    val intent = Intent(context, CryptoDetailActivity::class.java)
                     intent.putExtra("crypto_data", data)
-                    context.startActivity(intent)*/
+                    context.startActivity(intent)
                 }
             })
         }

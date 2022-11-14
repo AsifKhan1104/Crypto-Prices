@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.crypto.prices.view.activity.MarketDetailActivity">
+    tools:context="com.crypto.prices.view.ui.market.CryptoDetailActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,38 +31,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:textSize="12sp"
                 android:textColor="#FF7F7F"
+                android:textSize="12sp"
                 android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/textView_price"
                 app:layout_constraintLeft_toRightOf="@+id/textView_price"
                 app:layout_constraintTop_toTopOf="@id/textView_price"
-                app:layout_constraintBottom_toBottomOf="@id/textView_price"
                 tools:text="2.7%" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="30dp"
-                android:textSize="16sp"
+                android:text="Market Cap Rank"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_price"
-                android:text="Market Cap Rank" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_price" />
 
             <TextView
                 android:id="@+id/textView_mcr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="30dp"
-                android:textSize="16sp"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_price"
@@ -72,20 +72,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
+                android:text="Market Cap"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_mcr"
-                android:text="Market Cap" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_mcr" />
 
             <TextView
                 android:id="@+id/textView_mc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_mcr"
@@ -95,20 +95,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
+                android:text="Fully Diluted Market Cap"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_mc"
-                android:text="Fully Diluted Market Cap" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_mc" />
 
             <TextView
                 android:id="@+id/textView_fdmc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_mc"
@@ -118,66 +118,66 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
+                android:text="Total Volume"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_fdmc"
-                android:text="Trading Volume (24H)" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_fdmc" />
 
             <TextView
-                android:id="@+id/textView_trdng_vol"
+                android:id="@+id/textView_total_vol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_fdmc"
-                tools:text="Trading Volume (24H)" />
+                tools:text="Total Volume" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
+                android:text="Max Supply"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_trdng_vol"
-                android:text="Max Supply" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_total_vol" />
 
             <TextView
                 android:id="@+id/textView_max_supply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_trdng_vol"
+                app:layout_constraintTop_toBottomOf="@+id/textView_total_vol"
                 tools:text="Max Supply" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
+                android:text="Circulating Supply"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_max_supply"
-                android:text="Circulating Supply" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_max_supply" />
 
             <TextView
                 android:id="@+id/textView_circ_supply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_max_supply"
@@ -187,20 +187,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
+                android:text="Total Supply"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_circ_supply"
-                android:text="Total Supply" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_circ_supply" />
 
             <TextView
                 android:id="@+id/textView_total_supply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_circ_supply"
@@ -210,20 +210,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
+                android:text="% change (7d)"
+                android:visibility="gone"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply"
-                android:text="% change (7d)" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply" />
 
             <TextView
                 android:id="@+id/textView_pc_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_total_supply"
@@ -233,20 +234,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
+                android:text="% change (30d)"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_pc_7"
-                android:text="% change (30d)" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_pc_7" />
 
             <TextView
                 android:id="@+id/textView_pc_30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_pc_7"
@@ -256,20 +257,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
+                android:text="% change (60d)"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_pc_30"
-                android:text="% change (60d)" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_pc_30" />
 
             <TextView
                 android:id="@+id/textView_pc_60"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_pc_30"
@@ -279,20 +280,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
+                android:text="% change (90d)"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_pc_60"
-                android:text="% change (90d)" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_pc_60" />
 
             <TextView
                 android:id="@+id/textView_pc_90"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="16sp"
                 android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_pc_60"

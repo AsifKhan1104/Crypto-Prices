@@ -60,7 +60,7 @@
             android:name="com.crypto.prices.view.activity.ResetPwdActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.crypto.prices.view.activity.MarketDetailActivity"
+            android:name="com.crypto.prices.view.ui.market.CryptoDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.crypto.prices.view.activity.ProFeaturesActivity"

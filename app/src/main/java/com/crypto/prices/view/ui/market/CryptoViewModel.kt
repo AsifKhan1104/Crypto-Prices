@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
-import com.crypto.prices.model.CryptoDataa
+import com.crypto.prices.model.CryptoData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
@@ -17,7 +17,7 @@ class CryptoViewModel(
     private val appRepository: AppRepository
 ) : ViewModel() {
     val application = app
-    val cryptoLiveData: MutableLiveData<NetworkResult<List<CryptoDataa>>> = MutableLiveData()
+    val cryptoLiveData: MutableLiveData<NetworkResult<List<CryptoData>>> = MutableLiveData()
 
     init {
         getCrypto()
