@@ -11,6 +11,7 @@ import android.os.Build
 import android.util.Patterns
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
+import com.crypto.prices.BuildConfig
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -145,7 +146,7 @@ object Utility {
         intent.putExtra(
             Intent.EXTRA_TEXT,
             "Hey, Check out this amazing app which provides live " + context.getString(R.string.app_name) + ". Click to download: " +
-                    "https://play.google.com/store/apps/details?id=com.miner.shib_miner"
+                    "https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}"
         )
 
         context.startActivity(Intent.createChooser(intent, "Share"))
@@ -183,6 +184,52 @@ object Utility {
             (conMgr.activeNetworkInfo != null && conMgr.activeNetworkInfo!!.isAvailable
                     && conMgr.activeNetworkInfo!!.isConnected)
         }
+    }
+
+    fun openAppInPlayStore(context: Context) {
+        try {
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=${BuildConfig.APPLICATION_ID}")
+                )
+            )
+        } catch (exception: android.content.ActivityNotFoundException) {
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}")
+                )
+            )
+        }
+    }
+
+    fun composeEmail(context: Context) {
+        // compose subject
+        var subject: String = context.getString(R.string.app_name) + " Issue"
+        val selectorIntent = Intent(Intent.ACTION_SENDTO)
+        selectorIntent.data =
+            Uri.parse("mailto:indianapps47@gmail.com") // only email apps should handle this
+
+        val emailIntent = Intent(Intent.ACTION_SEND).apply {
+            putExtra(Intent.EXTRA_SUBJECT, subject)
+            selector = selectorIntent
+        }
+        if (emailIntent.resolveActivity(context.packageManager) != null) {
+            context.startActivity(emailIntent)
+        }
+    }
+
+    fun openWebURL(context: Context, url: String) {
+        var url = url
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            url = "http://$url"
+        }
+        val browserIntent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse(url)
+        )
+        context.startActivity(browserIntent)
     }
 }
 

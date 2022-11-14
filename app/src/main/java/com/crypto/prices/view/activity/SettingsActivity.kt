@@ -9,17 +9,15 @@ import android.text.method.LinkMovementMethod
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.crypto.prices.BuildConfig
 import com.crypto.prices.R
 import com.crypto.prices.utils.MySharedPrefs
 import com.crypto.prices.utils.Utility
-import kotlinx.android.synthetic.main.activity_settings.*
 
 
-class SettingsActivity : AppCompatActivity(), View.OnClickListener {
+class SettingsActivity : AppCompatActivity(){/*, View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        setContentView(R.layout.fragment_more)
 
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
         initData()
@@ -90,46 +88,6 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun openAppInPlayStore() {
-        try {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=${BuildConfig.APPLICATION_ID}")
-                )
-            )
-        } catch (exception: android.content.ActivityNotFoundException) {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}")
-                )
-            )
-        }
-    }
-
-    fun composeEmail() {
-        // compose subject
-        var subject:String
-        if(MySharedPrefs.getInstance(this).getBoolean(Utility.isPro)) {
-            subject = getString(R.string.app_name) + " (PRO USER)"
-        } else {
-            subject = getString(R.string.app_name)
-        }
-
-        val selectorIntent = Intent(Intent.ACTION_SENDTO)
-        selectorIntent.data =
-            Uri.parse("mailto:elanvagueapps@gmail.com") // only email apps should handle this
-
-        val emailIntent = Intent(Intent.ACTION_SEND).apply {
-            putExtra(Intent.EXTRA_SUBJECT, subject)
-            selector = selectorIntent
-        }
-        if (emailIntent.resolveActivity(packageManager) != null) {
-            startActivity(emailIntent)
-        }
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
             android.R.id.home -> {
@@ -138,5 +96,5 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
+    }*/
 }

@@ -1,98 +1,89 @@
 package com.crypto.prices.view.ui.explore
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.crypto.prices.CryptoApplication
-import com.crypto.prices.databinding.FragmentNewsBinding
-import com.crypto.prices.utils.NetworkResult
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
+import com.crypto.prices.BuildConfig
+import com.crypto.prices.R
+import com.crypto.prices.databinding.FragmentMoreBinding
+import com.crypto.prices.utils.Utility
+import com.crypto.prices.view.activity.PrivacyPolicyActivity
+import com.crypto.prices.view.activity.TnCActivity
 
-class MoreFragment : Fragment() {
-    private var _binding: FragmentNewsBinding? = null
-    private lateinit var mNewsViewModel: NewsViewModel
-    private val TAG = NewsFragment.javaClass.simpleName
+class MoreFragment : Fragment(), View.OnClickListener {
+    private var _binding: FragmentMoreBinding? = null
+    private val TAG = MoreFragment.javaClass.simpleName
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
-    private fun onError(s: String) {
-        binding.textViewError.text = s
-        binding.textViewError.visibility = View.VISIBLE
-        binding.loadingView.visibility = View.GONE
-    }
-
-    private fun onLoading() {
-        binding.textViewError.visibility = View.GONE
-        binding.loadingView.visibility = View.VISIBLE
-    }
-
-    private fun onLoadingFinished() {
-        binding.textViewError.visibility = View.GONE
-        binding.loadingView.visibility = View.GONE
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentNewsBinding.inflate(inflater, container, false)
+        _binding = FragmentMoreBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        setUpViewModel()
         return root
-    }
-
-    private fun setUpViewModel() {
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository)
-        mNewsViewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadData()
+        setUpData()
     }
 
-    fun loadData() {
-        try {
-            mNewsViewModel.newsLiveData.observe(viewLifecycleOwner, Observer {
-                // blank observe here
-                when (it) {
-                    is NetworkResult.Success -> {
-                        it.networkData?.let {
-                            //bind the data to the ui
-                            onLoadingFinished()
-                            binding.recyclerViewNews.layoutManager = LinearLayoutManager(context)
-                            binding.recyclerViewNews.adapter = NewsAdapter(context, it.articles)
-                        }
-                    }
-                    is NetworkResult.Error -> {
-                        //show error message
-                        onError(it.networkErrorMessage.toString())
-                    }
+    private fun setUpData() {
+        binding.textViewEnjoy.text = "Enjoy using ${getString(R.string.app_name)}?"
+        binding.textViewRateUs.text = "Rate the ${getString(R.string.app_name)} App"
+        binding.textViewShare.text = "Share the ${getString(R.string.app_name)} App"
+        binding.textViewAppVersion.text =
+            getString(R.string.app_name) + " " + BuildConfig.VERSION_NAME
 
-                    is NetworkResult.Loading -> {
-                        //show loader, shimmer effect etc
-                        onLoading()
-                    }
-                }
-            })
-        } catch (ex: Exception) {
-            ex.message?.let { Log.e(TAG, it) }
-        }
+        // on click listeners
+        binding.relativeLayoutRateUs.setOnClickListener(this)
+        binding.relativeLayoutShare.setOnClickListener(this)
+        binding.relativeLayoutCS.setOnClickListener(this)
+        binding.relativeLayoutCG.setOnClickListener(this)
+        binding.relativeLayoutFI.setOnClickListener(this)
+        binding.relativeLayoutPP.setOnClickListener(this)
+        binding.relativeLayoutTnC.setOnClickListener(this)
     }
 
     companion object {
         fun newInstance(): MoreFragment = MoreFragment()
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            binding.relativeLayoutRateUs.id -> {
+                Utility.openAppInPlayStore(requireContext())
+            }
+            binding.relativeLayoutShare.id -> {
+                Utility.sendShareLink(requireContext())
+            }
+            binding.relativeLayoutCS.id -> {
+                Utility.composeEmail(requireContext())
+            }
+            binding.relativeLayoutCG.id -> {
+                Utility.openWebURL(requireContext(), "https://www.coingecko.com")
+            }
+            binding.relativeLayoutFI.id -> {
+                Utility.openWebURL(requireContext(), "https://www.flaticon.com")
+            }
+            binding.relativeLayoutPP.id -> {
+                val intent = Intent(requireContext(), PrivacyPolicyActivity::class.java)
+                startActivity(intent)
+            }
+            binding.relativeLayoutTnC.id -> {
+                val intent = Intent(requireContext(), TnCActivity::class.java)
+                startActivity(intent)
+            }
+            else -> {}
+        }
     }
 
 }
