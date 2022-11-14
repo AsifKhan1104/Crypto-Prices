@@ -89,6 +89,12 @@ class MainActivity : AppCompatActivity() {
             .commit()*/
     }
 
+    // handling show more button from home page
+    fun clickExploreMenu() {
+        binding?.bottomNavigationView?.menu.getItem(2).setChecked(true)
+        openFragment(newsFragment)
+    }
+
     /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return true

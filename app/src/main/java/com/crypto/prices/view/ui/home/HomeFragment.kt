@@ -14,10 +14,11 @@ import com.crypto.prices.databinding.FragmentHomeBinding
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
+import com.crypto.prices.view.activity.MainActivity
 import com.crypto.prices.view.ui.explore.NewsAdapter
 import com.crypto.prices.view.ui.explore.NewsViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private lateinit var mHomeViewModel: HomeViewModel
@@ -87,6 +88,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.textViewNewsMore.setOnClickListener(this)
         loadData()
         loadNewsData()
     }
@@ -100,8 +103,10 @@ class HomeFragment : Fragment() {
                         it.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinishedT()
-                            binding.recyclerViewTrending.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                            binding.recyclerViewTrending.adapter = HomeTrendingAdapter(context, it.coins)
+                            binding.recyclerViewTrending.layoutManager =
+                                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                            binding.recyclerViewTrending.adapter =
+                                HomeTrendingAdapter(context, it.coins)
                         }
                     }
                     is NetworkResult.Error -> {
@@ -130,7 +135,8 @@ class HomeFragment : Fragment() {
                             //bind the data to the ui
                             onLoadingFinishedN()
                             binding.recyclerViewNews.layoutManager = LinearLayoutManager(context)
-                            binding.recyclerViewNews.adapter = NewsAdapter(context, it.articles.subList(0, 3))
+                            binding.recyclerViewNews.adapter =
+                                NewsAdapter(context, it.articles.subList(0, 3))
                         }
                     }
                     is NetworkResult.Error -> {
@@ -151,6 +157,14 @@ class HomeFragment : Fragment() {
 
     companion object {
         fun newInstance(): HomeFragment = HomeFragment()
+    }
+
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            binding.textViewNewsMore.id -> (activity as MainActivity?)?.clickExploreMenu()
+            else -> {}
+        }
+
     }
 
 }
