@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.crypto.prices.databinding.FragmentMarketBinding
 import com.crypto.prices.utils.Utility
+import com.crypto.prices.view.ui.explore.NewsFragment
 import com.google.android.material.tabs.TabLayout
 
 class MarketFragment : Fragment() {
@@ -28,13 +29,11 @@ class MarketFragment : Fragment() {
         Log.e(TAG, "OnCreateView")
         _binding = FragmentMarketBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        setUpAdapter()
         return root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Log.e(TAG, "OnViewCreated")
+    fun setUpAdapter() {
         val adapter = MarketViewPagerAdapter(requireActivity().supportFragmentManager)
 
         //view_pager.offscreenPageLimit = 3
@@ -65,6 +64,11 @@ class MarketFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.e(TAG, "OnViewCreated")
         // showRewardDialogs()
 
         // set default values from remote config
@@ -123,6 +127,10 @@ class MarketFragment : Fragment() {
             )
         }
     }*/
+
+    companion object {
+        fun newInstance(): MarketFragment = MarketFragment()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

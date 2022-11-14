@@ -1,26 +1,43 @@
 package com.crypto.prices.view.ui.explore
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.crypto.prices.R
-import com.crypto.prices.remote.Service
-import kotlinx.android.synthetic.main.fragment_news.*
-import kotlinx.coroutines.*
+import com.crypto.prices.CryptoApplication
+import com.crypto.prices.databinding.FragmentNewsBinding
+import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.view.AppRepositoryImpl
+import com.crypto.prices.view.ViewModelFactory
 
-class MoreFragment : Fragment(), View.OnClickListener {
-    val service = Service().getNewsService()
-    var job: Job? = null
-    val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
-        onError("Exception handled: ${throwable.localizedMessage}")
-    }
+class MoreFragment : Fragment() {
+    private var _binding: FragmentNewsBinding? = null
+    private lateinit var mNewsViewModel: NewsViewModel
+    private val TAG = NewsFragment.javaClass.simpleName
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
     private fun onError(s: String) {
-        textView_error.visibility = View.VISIBLE
-        loadingView.visibility = View.GONE
+        binding.textViewError.text = s
+        binding.textViewError.visibility = View.VISIBLE
+        binding.loadingView.visibility = View.GONE
+    }
+
+    private fun onLoading() {
+        binding.textViewError.visibility = View.GONE
+        binding.loadingView.visibility = View.VISIBLE
+    }
+
+    private fun onLoadingFinished() {
+        binding.textViewError.visibility = View.GONE
+        binding.loadingView.visibility = View.GONE
     }
 
     override fun onCreateView(
@@ -28,74 +45,54 @@ class MoreFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater!!.inflate(R.layout.fragment_news, container, false)
+        _binding = FragmentNewsBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        setUpViewModel()
+        return root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        loadData()
+    private fun setUpViewModel() {
+        val repository = AppRepositoryImpl()
+        val factory = ViewModelFactory(CryptoApplication.instance!!, repository)
+        mNewsViewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
     }
-
-    private fun loadData() {
-        val params: MutableMap<String, String> = HashMap()
-        params["q"] = "Crypto"
-        params["apiKey"] = "0bfddc1dafb24e8b883576fba4b58235"
-        params["sortBy"] = "publishedAt"
-
-        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = service.getAllNews(params)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    recyclerView_news.layoutManager = LinearLayoutManager(context)
-                    recyclerView_news.adapter = NewsAdapter(context, response.body()?.articles)
-                    textView_error.visibility = View.GONE
-                    loadingView.visibility = View.GONE
-                } else {
-                    onError("Error : ${response.message()} ")
-                }
-            }
-        }
-        /*textView_error.text = ""
-        loadingView.visibility = View.GONE*/
-    }
-
-    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        loadData()
-    }*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadData()
+    }
+
+    fun loadData() {
+        try {
+            mNewsViewModel.newsLiveData.observe(viewLifecycleOwner, Observer {
+                // blank observe here
+                when (it) {
+                    is NetworkResult.Success -> {
+                        it.networkData?.let {
+                            //bind the data to the ui
+                            onLoadingFinished()
+                            binding.recyclerViewNews.layoutManager = LinearLayoutManager(context)
+                            binding.recyclerViewNews.adapter = NewsAdapter(context, it.articles)
+                        }
+                    }
+                    is NetworkResult.Error -> {
+                        //show error message
+                        onError(it.networkErrorMessage.toString())
+                    }
+
+                    is NetworkResult.Loading -> {
+                        //show loader, shimmer effect etc
+                        onLoading()
+                    }
+                }
+            })
+        } catch (ex: Exception) {
+            ex.message?.let { Log.e(TAG, it) }
+        }
     }
 
     companion object {
         fun newInstance(): MoreFragment = MoreFragment()
-        /*val domain = "https://shibminer.page.link"
-        val baseUrl =
-            Uri.parse("https://play.google.com/store/apps/details?id=com.miner.shib_miner")*/
     }
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.buttonInvite -> {
-                //createLink()
-            }
-            else -> {
-            }
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        job?.cancel()
-    }
-
-    /*override fun onResume() {
-        super.onResume()
-        // track screen event
-        val params = Bundle()
-        params.putString(FirebaseAnalytics.Param.SCREEN_NAME, "Market")
-        params.putString(FirebaseAnalytics.Param.SCREEN_CLASS, "MainActivity")
-        Firebase.analytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, params)
-    }*/
 }

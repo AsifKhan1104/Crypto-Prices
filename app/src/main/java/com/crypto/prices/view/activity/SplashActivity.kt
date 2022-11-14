@@ -11,6 +11,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.crypto.prices.R
+import com.crypto.prices.databinding.ActivitySplashBinding
 import com.crypto.prices.utils.TableManagement
 import com.startapp.sdk.adsbase.StartAppAd
 import com.startapp.sdk.adsbase.StartAppSDK
@@ -18,10 +19,16 @@ import com.startapp.sdk.adsbase.StartAppSDK
 class SplashActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     var referralUser: Boolean = false
+    private var _binding: ActivitySplashBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        _binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(_binding?.root)
 
         // set remote config
         val remoteConfig = Firebase.remoteConfig
@@ -110,7 +117,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
             }*/
             // move to MainActivity
-            val intent = Intent(this, MainActivityOld::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             intent.flags =
                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
