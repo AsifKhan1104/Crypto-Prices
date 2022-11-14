@@ -368,7 +368,7 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="Coin Prices v1.0.0"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardViewOthers" />
