@@ -31,12 +31,12 @@ class CryptoViewModel(
         cryptoLiveData.postValue(NetworkResult.Loading())
         try {
             if (Utility.isInternetAvailable()) {
-                val map: MutableMap<String, Any> = HashMap()
+                val map: MutableMap<String, String> = HashMap()
                 map["vs_currency"] = "usd"
-                map["order"] = "market_cap_desc"
+                /*map["order"] = "market_cap_desc"
                 map["per_page"] = 100
                 map["page"] = 1
-                map["sparkline"] = false
+                map["sparkline"] = false*/
 
                 val response = appRepository.getCryptoPrices(map)
                 if (response.isSuccessful) {

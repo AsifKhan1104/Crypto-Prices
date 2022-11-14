@@ -12,7 +12,7 @@ class AppRepositoryImpl : AppRepository {
     val serviceNews = Service().getNewsService()
 
     //override suspend fun getCryptoPrices(): Response<ListingsLatest> = serviceCM.getListingsLatest()
-    override suspend fun getCryptoPrices(map: MutableMap<String, Any>): Response<List<CryptoDataa>> = service.getCryptoCoins(map)
+    override suspend fun getCryptoPrices(map: MutableMap<String, String>): Response<List<CryptoDataa>> = service.getCryptoCoins(map)
     override suspend fun getTrendingCoins(): Response<Trending> = service.getTrendingCoins()
     override suspend fun getAllNews(map: MutableMap<String, String>): Response<NewsData> = serviceNews.getAllNews(map)
 

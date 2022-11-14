@@ -59,9 +59,9 @@ class CryptoAdapter(context: Context?, var data: List<CryptoDataa>?) :
             // on click listener
             tableLayout.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
-                    val intent = Intent(context, MarketDetailActivity::class.java)
+                    /*val intent = Intent(context, MarketDetailActivity::class.java)
                     intent.putExtra("crypto_data", data)
-                    context.startActivity(intent)
+                    context.startActivity(intent)*/
                 }
             })
         }

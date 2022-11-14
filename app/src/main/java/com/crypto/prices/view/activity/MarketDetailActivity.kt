@@ -10,7 +10,7 @@ import com.crypto.prices.model.CryptoDataa
 import kotlinx.android.synthetic.main.activity_market_detail.*
 
 class MarketDetailActivity : AppCompatActivity() {
-    @RequiresApi(api = Build.VERSION_CODES.P)
+    /*@RequiresApi(api = Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_market_detail)
@@ -31,10 +31,10 @@ class MarketDetailActivity : AppCompatActivity() {
         textView_max_supply.text = data?.max_supply?.toString()
         textView_circ_supply.text = data?.circulating_supply?.toString()
         textView_total_supply.text = data?.total_supply?.toString()
-        /*textView_pc_7.text = data?.quote?.USD?.percent_change_7d?.toString()
+        *//*textView_pc_7.text = data?.quote?.USD?.percent_change_7d?.toString()
         textView_pc_30.text = data?.quote?.USD?.percent_change_30d?.toString()
         textView_pc_60.text = data?.quote?.USD?.percent_change_60d?.toString()
-        textView_pc_90.text = data?.quote?.USD?.percent_change_90d?.toString()*/
+        textView_pc_90.text = data?.quote?.USD?.percent_change_90d?.toString()*//*
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -45,5 +45,5 @@ class MarketDetailActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
+    }*/
 }

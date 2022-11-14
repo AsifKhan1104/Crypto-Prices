@@ -15,7 +15,7 @@ interface Api {
     suspend fun getListingsLatest(): Response<ListingsLatest>
 
     @GET("v3/coins/markets")
-    suspend fun getCryptoCoins(@QueryMap map: Map<String, Any>): Response<List<CryptoDataa>>
+    suspend fun getCryptoCoins(@QueryMap map: Map<String, String>): Response<List<CryptoDataa>>
 
     @GET("v3/search/trending")
     suspend fun getTrendingCoins(): Response<Trending>
