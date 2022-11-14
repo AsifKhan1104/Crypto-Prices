@@ -39,12 +39,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.crypto.prices.view.activity.MainActivity2"
+            android:name="com.crypto.prices.view.activity.MainActivityOld"
             android:exported="false"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.crypto.prices.view.activity.MainActivity"
+            android:name="com.crypto.prices.view.activity.MainActivitySuperOld"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

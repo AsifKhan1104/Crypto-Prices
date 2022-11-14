@@ -19,16 +19,16 @@ import com.crypto.prices.R
 import com.crypto.prices.utils.CoinManagement
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.ui.market.MarketViewPagerAdapter
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main_superold.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivitySuperOld : AppCompatActivity() {
     private var mUid: String? = null
     private var mName: String? = null
     private var mEmail: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main_superold)
 
         // set user data
         mUid = intent.getStringExtra("uid")
@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }*/
             R.id.menu_settings -> {
-                val intent = Intent(this@MainActivity, SettingsActivity::class.java)
+                val intent = Intent(this@MainActivitySuperOld, SettingsActivity::class.java)
                 intent.putExtra("email", mEmail)
                 intent.putExtra("name", mName)
                 startActivity(intent)

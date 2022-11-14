@@ -9,7 +9,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.view.Window
@@ -19,12 +18,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.crypto.prices.R
-import com.crypto.prices.databinding.ActivityMain2Binding
+import com.crypto.prices.databinding.ActivityMainOldBinding
 import com.crypto.prices.utils.CoinManagement
 import com.crypto.prices.utils.MySharedPrefs
 import com.crypto.prices.utils.TableManagement
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.ui.explore.MoreFragment
 import com.crypto.prices.view.ui.explore.NewsFragment
 import com.crypto.prices.view.ui.home.HomeFragment
 import com.crypto.prices.view.ui.market.MarketFragment
@@ -38,9 +36,9 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import kotlin.system.exitProcess
 
-class MainActivity2 : AppCompatActivity() {
+class MainActivityOld : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMain2Binding
+    private lateinit var binding: ActivityMainOldBinding
     private var mUid: String? = null
     private var mName: String? = null
     private var mEmail: String? = null
@@ -54,7 +52,7 @@ class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMain2Binding.inflate(layoutInflater)
+        binding = ActivityMainOldBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // check if pro pop up shown
@@ -168,7 +166,7 @@ class MainActivity2 : AppCompatActivity() {
                         for (ds in dataSnapshot.children) {
                             val proUserId = ds.key
                             if (mUid!!.equals(proUserId)) {
-                                MySharedPrefs.getInstance(this@MainActivity2)
+                                MySharedPrefs.getInstance(this@MainActivityOld)
                                     .saveBoolean(Utility.isPro, true)
                             }
                         }
@@ -248,7 +246,7 @@ class MainActivity2 : AppCompatActivity() {
                 true
             }*/
             R.id.menu_settings -> {
-                val intent = Intent(this@MainActivity2, SettingsActivity::class.java)
+                val intent = Intent(this@MainActivityOld, SettingsActivity::class.java)
                 intent.putExtra("email", mEmail)
                 intent.putExtra("name", mName)
                 startActivity(intent)
@@ -271,7 +269,7 @@ class MainActivity2 : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setPositiveButton("Yes") { dialog, _ ->
             FirebaseAuth.getInstance().signOut()
-            MySharedPrefs.getInstance(this@MainActivity2)
+            MySharedPrefs.getInstance(this@MainActivityOld)
                 .saveBoolean(Utility.isPro, false)
             // move to sign in activity
             val intent = Intent(this, SignInActivity::class.java)
