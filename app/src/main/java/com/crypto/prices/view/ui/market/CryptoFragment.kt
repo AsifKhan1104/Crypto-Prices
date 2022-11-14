@@ -27,17 +27,20 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     private fun onError(s: String) {
         binding.textViewError.text = s
         binding.textViewError.visibility = View.VISIBLE
-        binding.loadingView.visibility = View.GONE
+        binding.shimmerLayoutCrypto.visibility = View.GONE
+        binding.shimmerLayoutCrypto.stopShimmer()
     }
 
     private fun onLoading() {
         binding.textViewError.visibility = View.GONE
-        binding.loadingView.visibility = View.VISIBLE
+        binding.shimmerLayoutCrypto.visibility = View.VISIBLE
+        binding.shimmerLayoutCrypto.startShimmer()
     }
 
     private fun onLoadingFinished() {
         binding.textViewError.visibility = View.GONE
-        binding.loadingView.visibility = View.GONE
+        binding.shimmerLayoutCrypto.visibility = View.GONE
+        binding.shimmerLayoutCrypto.stopShimmer()
     }
 
     override fun onCreateView(
