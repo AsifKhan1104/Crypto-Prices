@@ -22,7 +22,7 @@ import com.crypto.prices.view.ui.market.MarketViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main_superold.*
 
 class MainActivitySuperOld : AppCompatActivity() {
-    private var mUid: String? = null
+    /*private var mUid: String? = null
     private var mName: String? = null
     private var mEmail: String? = null
 
@@ -142,11 +142,11 @@ class MainActivitySuperOld : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            /*R.id.menu_logout -> {
+            *//*R.id.menu_logout -> {
                 signOut()
 
                 true
-            }*/
+            }*//*
             R.id.menu_settings -> {
                 val intent = Intent(this@MainActivitySuperOld, SettingsActivity::class.java)
                 intent.putExtra("email", mEmail)
@@ -155,14 +155,14 @@ class MainActivitySuperOld : AppCompatActivity() {
 
                 true
             }
-            /*R.id.menu_withdraw_req -> {
+            *//*R.id.menu_withdraw_req -> {
                 val intent = Intent(this@MainActivity, WithdrawHistoryActivity::class.java)
                 intent.putExtra("uid", mUid)
                 intent.putExtra("name", mName)
                 startActivity(intent)
 
                 true
-            }*/
+            }*//*
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -184,5 +184,5 @@ class MainActivitySuperOld : AppCompatActivity() {
         val dialog = builder.create()
         dialog.show()
 
-    }
+    }*/
 }

@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.crypto.prices.databinding.FragmentMarketBinding
-import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.ui.explore.NewsFragment
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class MarketFragment : Fragment() {
 
@@ -34,26 +33,12 @@ class MarketFragment : Fragment() {
     }
 
     fun setUpAdapter() {
-        val adapter = MarketViewPagerAdapter(requireActivity().supportFragmentManager)
-
+        val adapter = MarketViewPagerAdapter(requireActivity().supportFragmentManager, lifecycle)
         //view_pager.offscreenPageLimit = 3
         binding.viewPager.adapter = adapter
-        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        binding.tabLayout.setupWithViewPager(binding.viewPager, listOf("Crypto", "Crypto2"))
 
-        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-
-            }
-        })
-        binding.viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+        /*binding.viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
                 when (binding.viewPager.currentItem) {
                     0 -> Utility.logAnalyitcsEvent("Crypto")
@@ -63,7 +48,7 @@ class MarketFragment : Fragment() {
                     else -> Utility.logAnalyitcsEvent("Crypto")
                 }
             }
-        })
+        })*/
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -136,5 +121,15 @@ class MarketFragment : Fragment() {
         super.onDestroyView()
         Log.e(TAG, "OnDestroyView")
         _binding = null
+    }
+
+    fun TabLayout.setupWithViewPager(viewPager: ViewPager2, labels: List<String>) {
+        if (labels.size != viewPager.adapter?.itemCount)
+            throw Exception("The size of list and the tab count should be equal!")
+
+        TabLayoutMediator(this, viewPager,
+            { tab, position ->
+                tab.text = labels[position]
+            }).attach()
     }
 }
