@@ -13,4 +13,6 @@
     <color name="divider_color">#dfddde</color>
     <color name="divider_color_1">#230046</color>
     <color name="divider_color_2">#F4F2F6</color>
+
+    <color name="tab_indicator_color">#AFB42B</color>
 </resources>

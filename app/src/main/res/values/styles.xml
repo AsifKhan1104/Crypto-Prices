@@ -23,9 +23,9 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
     <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorColor">#AFB42B</item>
+        <item name="tabIndicatorColor">@color/tab_indicator_color</item>
         <item name="tabIndicatorHeight">3dp</item>
         <item name="tabBackground">?attr/selectableItemBackground</item>
-        <item name="tabSelectedTextColor">#AFB42B</item>
+        <item name="tabSelectedTextColor">@color/tab_indicator_color</item>
     </style>
 </resources>

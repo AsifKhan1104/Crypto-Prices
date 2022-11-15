@@ -35,7 +35,8 @@
             android:layout_gravity="left"
             android:background="@color/colorPrimary"
             app:tabGravity="fill"
-            app:tabMode="fixed" />
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="scrollable" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

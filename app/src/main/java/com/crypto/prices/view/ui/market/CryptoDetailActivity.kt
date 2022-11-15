@@ -32,7 +32,7 @@ class CryptoDetailActivity : AppCompatActivity() {
             .into(binding.imageViewSymbol)
 
         binding.textViewSymbol.text = data?.symbol
-        binding.textViewPrice.text = "$" + String.format("%.2f", data?.current_price)
+        binding.textViewPrice.text = "$" + String.format("%.8f", data?.current_price)
         binding.textView24hp.text =
             String.format("%.1f", data?.price_change_percentage_24h) + "%"
         binding.textViewMcr.text = data?.market_cap_rank?.toString()
