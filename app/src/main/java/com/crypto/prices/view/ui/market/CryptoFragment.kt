@@ -56,7 +56,7 @@ class CryptoFragment : Fragment(), View.OnClickListener {
 
     private fun setUpViewModel() {
         val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository)
+        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
         mCryptoViewModel = ViewModelProvider(this, factory).get(CryptoViewModel::class.java)
     }
 

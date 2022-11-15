@@ -1,5 +1,6 @@
 package com.crypto.prices.view
 
+import com.crypto.prices.model.CryptoChartData
 import com.crypto.prices.model.CryptoData
 import com.crypto.prices.model.NewsData
 import com.crypto.prices.model.Trending
@@ -14,6 +15,12 @@ class AppRepositoryImpl : AppRepository {
     //override suspend fun getCryptoPrices(): Response<ListingsLatest> = serviceCM.getListingsLatest()
     override suspend fun getCryptoPrices(map: MutableMap<String, String>): Response<List<CryptoData>> =
         service.getCryptoCoins(map)
+
+    override suspend fun getCryptoPricesChart(
+        id: String,
+        map: MutableMap<String, String>
+    ): Response<CryptoChartData> =
+        service.getCryptoChart(id, map)
 
     override suspend fun getTrendingCoins(): Response<Trending> = service.getTrendingCoins()
     override suspend fun getAllNews(map: MutableMap<String, String>): Response<NewsData> =

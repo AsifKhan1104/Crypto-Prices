@@ -1,12 +1,10 @@
 package com.crypto.prices.remote
 
-import com.crypto.prices.model.CryptoData
-import com.crypto.prices.model.ListingsLatest
-import com.crypto.prices.model.NewsData
-import com.crypto.prices.model.Trending
+import com.crypto.prices.model.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Path
 import retrofit2.http.QueryMap
 
 interface Api {
@@ -16,6 +14,12 @@ interface Api {
 
     @GET("v3/coins/markets")
     suspend fun getCryptoCoins(@QueryMap map: Map<String, String>): Response<List<CryptoData>>
+
+    @GET("v3/coins/{id}/market_chart")
+    suspend fun getCryptoChart(
+        @Path("id") id: String,
+        @QueryMap map: Map<String, String>
+    ): Response<CryptoChartData>
 
     @GET("v3/search/trending")
     suspend fun getTrendingCoins(): Response<Trending>

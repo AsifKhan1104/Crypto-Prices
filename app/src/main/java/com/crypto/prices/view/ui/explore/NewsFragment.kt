@@ -53,7 +53,7 @@ class NewsFragment : Fragment() {
 
     private fun setUpViewModel() {
         val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository)
+        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
         mNewsViewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
     }
 

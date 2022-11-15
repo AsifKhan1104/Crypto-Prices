@@ -81,7 +81,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     private fun setUpViewModel() {
         val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository)
+        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
         mHomeViewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
         mNewsViewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
     }
