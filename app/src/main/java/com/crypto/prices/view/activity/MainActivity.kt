@@ -31,10 +31,10 @@ class MainActivity : AppCompatActivity() {
         openFragment(homeFragment)
 
         // add fragments
-        /*fragmentManager.beginTransaction().apply {
-            add(R.id.container, moreFragment, getString(R.string.title_more))*//*.hide(
+        fragmentManager.beginTransaction().apply {
+            add(R.id.container, moreFragment, getString(R.string.title_more)).hide(
                 newsFragment
-            )*//*
+            )
             add(R.id.container, newsFragment, getString(R.string.title_news)).hide(
                 moreFragment
             )
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 newsFragment
             )
             add(R.id.container, homeFragment, getString(R.string.title_home)).hide(marketFragment)
-        }.commit()*/
+        }.commit()
 
         // handle bottom navigation
         binding?.bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
@@ -78,15 +78,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun openFragment(fragment: Fragment) {
         //Log.d(TAG, "openFragment: ")
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        /*val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         // this is a helper class that replaces the container with the fragment. You can replace or add fragments.
         transaction.replace(binding.container.id, fragment)
         // if you add fragments it will be added to the backStack. If you replace the fragment it will
         // add only the last fragment
-        transaction.addToBackStack(null)
-        transaction.commit()
-        /*fragmentManager.beginTransaction().hide(activeFragment).show(fragment)
-            .commit()*/
+        //transaction.addToBackStack(null)
+        transaction.commitNow()*/
+        fragmentManager.beginTransaction().hide(activeFragment).show(fragment)
+            .commit()
     }
 
     // handling show more button from home page
