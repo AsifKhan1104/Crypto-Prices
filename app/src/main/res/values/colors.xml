@@ -17,6 +17,8 @@
     <color name="divider_color_2">#F4F2F6</color>
 
     <color name="tab_indicator_color">#AFB42B</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <!--chart styling-->
     <color name="chart_bg_color">#FFFFFF</color>
     <color name="chart_color">#800000FF</color>

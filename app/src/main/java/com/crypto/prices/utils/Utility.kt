@@ -119,12 +119,32 @@ object Utility {
 
     fun openChromeCustomTabUrlNews(context: Context, webUrl: String) {
         try {
-            val builder: CustomTabsIntent.Builder = CustomTabsIntent.Builder()
-            val customTabsIntent: CustomTabsIntent = builder.build()
-            if (isAppInstalled(context, "com.android.chrome")) {
-                customTabsIntent.intent.setPackage("com.android.chrome")
+            // initializing object for custom chrome tabs.
+            val customIntent = CustomTabsIntent.Builder()
+
+            // below line is setting toolbar color
+            // for our custom chrome tab.
+            /*customIntent.setToolbarColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.white
+                )
+            )*/
+            val customTabsIntent = customIntent.build()
+
+            // package name is the default package
+            // for our custom chrome tab
+            val packageName = "com.android.chrome"
+            if (packageName != null) {
+
+                // we are checking if the package name is not null
+                // if package name is not null then we are calling
+                // that custom chrome tab with intent by passing its
+                // package name.
+                customTabsIntent.intent.setPackage(packageName)
             }
-            customTabsIntent.intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            // in that custom tab intent we are passing
+            // our url which we have to browse.
             customTabsIntent.launchUrl(context, Uri.parse(webUrl))
         } catch (ex: Exception) {
             ex.printStackTrace()
