@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.crypto.prices.CryptoApplication
+import com.crypto.prices.R
 import com.crypto.prices.databinding.ActivityCryptoDetailBinding
 import com.crypto.prices.model.CryptoChartData
 import com.crypto.prices.model.CryptoData
@@ -17,6 +18,7 @@ import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -77,17 +79,19 @@ class CryptoDetailActivity : AppCompatActivity() {
     private fun initChart() {
         chart = binding.chart
         chart.setViewPortOffsets(0f, 0f, 0f, 0f)
-        chart.setBackgroundColor(Color.rgb(104, 241, 175))
+        //chart.setBackgroundColor(Color.rgb(104, 241, 175))
+        chart.setBackgroundColor(getColor(R.color.chart_bg_color))
 
-        // no description text
-        chart.description.isEnabled = false
+        // description text
+        chart.description.text = "price ($) vs time"
+        chart.description.isEnabled = true
 
         // enable touch gestures
         chart.setTouchEnabled(true)
 
         // enable scaling and dragging
-        chart.isDragEnabled = true
-        chart.setScaleEnabled(true)
+        chart.isDragEnabled = false
+        chart.setScaleEnabled(false)
 
         // if disabled, scaling can be done on x- and y-axis separately
         chart.setPinchZoom(false)
@@ -96,25 +100,27 @@ class CryptoDetailActivity : AppCompatActivity() {
         chart.maxHighlightDistance = 300f
 
         val x = chart.xAxis
-        x.isEnabled = false
+        x.isEnabled = true
+        //x.setLabelCount(6, false)
+        x.labelRotationAngle = 90f
+        x.textColor = Color.BLACK
+        x.setPosition(XAxis.XAxisPosition.BOTTOM)
+        x.setDrawAxisLine(true)
+        x.setDrawGridLines(true)
+        x.axisLineColor = Color.BLACK
 
         val y = chart.axisLeft
         //y.setTypeface(tfLight);
         y.setLabelCount(6, false)
-        y.textColor = Color.WHITE
+        y.textColor = Color.BLACK
         y.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART)
         y.setDrawGridLines(false)
-        y.axisLineColor = Color.WHITE
+        y.axisLineColor = Color.BLACK
 
         chart.axisRight.isEnabled = false
-
         chart.legend.isEnabled = false
 
         chart.animateXY(2000, 2000)
-
-        // setData(45, 100f)
-        // don't forget to refresh the drawing
-        chart.invalidate()
     }
 
     private fun setChartData(cryptoChartData: CryptoChartData) {
@@ -132,34 +138,34 @@ class CryptoDetailActivity : AppCompatActivity() {
                 ex.printStackTrace()
             }
         }
-        val set1: LineDataSet
+        val set: LineDataSet
         if (chart.data != null &&
             chart.data.dataSetCount > 0
         ) {
-            set1 = chart.data.getDataSetByIndex(0) as LineDataSet
-            set1.values = values
+            set = chart.data.getDataSetByIndex(0) as LineDataSet
+            set.values = values
             chart.data.notifyDataChanged()
             chart.notifyDataSetChanged()
         } else {
-            // create a dataset and give it a type
-            set1 = LineDataSet(values, "DataSet 1")
-            set1.mode = LineDataSet.Mode.CUBIC_BEZIER
-            set1.cubicIntensity = 0.2f
-            set1.setDrawFilled(true)
-            set1.setDrawCircles(false)
-            set1.lineWidth = 1.8f
-            set1.circleRadius = 4f
-            set1.setCircleColor(Color.WHITE)
-            set1.highLightColor = Color.rgb(244, 117, 117)
-            set1.color = Color.WHITE
-            set1.fillColor = Color.WHITE
-            set1.fillAlpha = 100
-            set1.setDrawHorizontalHighlightIndicator(false)
-            set1.fillFormatter =
+            // create a data set and give it a type
+            set = LineDataSet(values, "DataSet")
+            set.mode = LineDataSet.Mode.CUBIC_BEZIER
+            set.cubicIntensity = 0.2f
+            set.setDrawFilled(true)
+            set.setDrawCircles(false)
+            set.lineWidth = 1.8f
+            set.circleRadius = 4f
+            set.setCircleColor(Color.BLUE)
+            set.highLightColor = Color.rgb(244, 117, 117)
+            set.color = resources.getColor(R.color.chart_color)
+            set.fillColor = resources.getColor(R.color.chart_fill_color)
+            //set.fillAlpha = 40
+            set.setDrawHorizontalHighlightIndicator(true)
+            set.fillFormatter =
                 IFillFormatter { dataSet, dataProvider -> chart.axisLeft.axisMinimum }
 
             // create a data object with the data sets
-            val data = LineData(set1)
+            val data = LineData(set)
             //data.setValueTypeface(tfLight)
             data.setValueTextSize(9f)
             data.setDrawValues(false)
