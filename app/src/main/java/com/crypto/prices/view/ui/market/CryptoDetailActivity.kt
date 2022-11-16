@@ -55,16 +55,16 @@ class CryptoDetailActivity : AppCompatActivity() {
             .into(binding.imageViewSymbol)
 
         binding.textViewSymbol.text = data?.symbol
-        binding.textViewPrice.text = "$" + String.format("%.8f", data?.current_price)
+        binding.textViewPrice.text = "$" + String.format("%.6f", data?.current_price)
         binding.textView24hp.text =
             String.format("%.1f", data?.price_change_percentage_24h) + "%"
         binding.textViewMcr.text = "#" + data?.market_cap_rank?.toString()
-        binding.textViewMc.text = "$" + data?.market_cap?.toString()
-        binding.textViewFdmc.text = "$" + data?.fully_diluted_valuation?.toString()
-        binding.textViewTotalVol.text = data?.total_volume.toString()
-        binding.textViewMaxSupply.text = data?.max_supply?.toString()
-        binding.textViewCircSupply.text = data?.circulating_supply?.toString()
-        binding.textViewTotalSupply.text = data?.total_supply?.toString()
+        binding.textViewMc.text = "$" + String.format("%.2f", data?.market_cap)
+        binding.textViewFdmc.text = "$" + String.format("%.2f", data?.fully_diluted_valuation)
+        binding.textViewTotalVol.text = String.format("%.2f", data?.total_volume)
+        binding.textViewMaxSupply.text = String.format("%.2f", data?.max_supply)
+        binding.textViewCircSupply.text = String.format("%.2f", data?.circulating_supply)
+        binding.textViewTotalSupply.text = String.format("%.2f", data?.total_supply)
         binding.textView24h.text = "$" + data?.high_24h?.toString()
         binding.textView24l.text = "$" + data?.low_24h?.toString()
         binding.textViewAth.text = "$" + data?.ath?.toString()
