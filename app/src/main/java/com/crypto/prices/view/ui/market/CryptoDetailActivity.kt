@@ -1,8 +1,12 @@
 package com.crypto.prices.view.ui.market
 
+import android.R
+import android.graphics.Color
+import android.graphics.DashPathEffect
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -45,17 +49,19 @@ class CryptoDetailActivity : AppCompatActivity() {
         binding.textViewPrice.text = "$" + String.format("%.8f", data?.current_price)
         binding.textView24hp.text =
             String.format("%.1f", data?.price_change_percentage_24h) + "%"
-        binding.textViewMcr.text = data?.market_cap_rank?.toString()
-        binding.textViewMc.text = data?.market_cap?.toString() + "$"
-        binding.textViewFdmc.text = data?.fully_diluted_valuation?.toString() + "$"
+        binding.textViewMcr.text = "#" + data?.market_cap_rank?.toString()
+        binding.textViewMc.text = "$" + data?.market_cap?.toString()
+        binding.textViewFdmc.text = "$" + data?.fully_diluted_valuation?.toString()
         binding.textViewTotalVol.text = data?.total_volume.toString()
         binding.textViewMaxSupply.text = data?.max_supply?.toString()
         binding.textViewCircSupply.text = data?.circulating_supply?.toString()
         binding.textViewTotalSupply.text = data?.total_supply?.toString()
-        binding.textView24h.text = data?.high_24h?.toString() + "$"
-        binding.textView24l.text = data?.low_24h?.toString() + "$"
-        binding.textViewAth.text = data?.ath?.toString() + "$"
-        binding.textViewAtl.text = data?.atl?.toString() + "$"
+        binding.textView24h.text = "$" + data?.high_24h?.toString()
+        binding.textView24l.text = "$" + data?.low_24h?.toString()
+        binding.textViewAth.text = "$" + data?.ath?.toString()
+        binding.textViewAthPerc.text = data?.ath_change_percentage?.toString()+"%"
+        binding.textViewAtl.text = "$" + data?.atl?.toString()
+        binding.textViewAtlPerc.text = data?.atl_change_percentage?.toString()+"%"
 
     }
 
@@ -76,6 +82,24 @@ class CryptoDetailActivity : AppCompatActivity() {
         loadData()
     }
 
+    private fun onError(s: String) {
+        binding.textViewError.text = s
+        binding.textViewError.visibility = View.VISIBLE
+        binding.loadingView.visibility = View.GONE
+        binding.chart.visibility = View.GONE
+    }
+
+    private fun onLoading() {
+        binding.textViewError.visibility = View.GONE
+        binding.loadingView.visibility = View.VISIBLE
+    }
+
+    private fun onLoadingFinished() {
+        binding.chart.visibility = View.VISIBLE
+        binding.textViewError.visibility = View.GONE
+        binding.loadingView.visibility = View.GONE
+    }
+
     fun loadData() {
         try {
             mCryptoDetailViewModel.cryptoChartLiveData.observe(this, Observer {
@@ -84,22 +108,18 @@ class CryptoDetailActivity : AppCompatActivity() {
                     is NetworkResult.Success -> {
                         it.networkData?.let {
                             //bind the data to the ui
-                            /*onLoadingFinished()
-                            binding.recyclerViewCrypto.layoutManager =
-                                LinearLayoutManager(context)
-                            binding.recyclerViewCrypto.adapter = CryptoAdapter(context, it)*/
-                            Log.v("chatData", it.toString())
+                            onLoadingFinished()
+                            //setChartData(it)
                         }
                     }
                     is NetworkResult.Error -> {
                         //show error message
-                        //onError(it.networkErrorMessage.toString())
-                        Log.v("chatData", it.networkErrorMessage.toString())
+                        onError(it.networkErrorMessage.toString())
                     }
 
                     is NetworkResult.Loading -> {
-                        //show loader, shimmer effect etc
-                        //onLoading()
+                        //show loader
+                        onLoading()
                     }
                 }
             })

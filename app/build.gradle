@@ -90,6 +90,9 @@ dependencies {
     // dependency for using facebook shimmer layout
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation "com.airbnb.android:lottie:5.2.0"
+    // graph / chart library
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
