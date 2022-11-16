@@ -5,20 +5,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
 import com.crypto.prices.databinding.ActivityCryptoDetailBinding
+import com.crypto.prices.model.CryptoChartData
 import com.crypto.prices.model.CryptoData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -30,7 +28,7 @@ class CryptoDetailActivity : AppCompatActivity() {
     private lateinit var mCryptoDetailViewModel: CryptoDetailViewModel
     private val TAG = "CryptoDetailActivity"
 
-    private lateinit var chart:LineChart
+    private lateinit var chart: LineChart
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -68,9 +66,9 @@ class CryptoDetailActivity : AppCompatActivity() {
         binding.textView24h.text = "$" + data?.high_24h?.toString()
         binding.textView24l.text = "$" + data?.low_24h?.toString()
         binding.textViewAth.text = "$" + data?.ath?.toString()
-        binding.textViewAthPerc.text = data?.ath_change_percentage?.toString()+"%"
+        binding.textViewAthPerc.text = data?.ath_change_percentage?.toString() + "%"
         binding.textViewAtl.text = "$" + data?.atl?.toString()
-        binding.textViewAtlPerc.text = data?.atl_change_percentage?.toString()+"%"
+        binding.textViewAtlPerc.text = data?.atl_change_percentage?.toString() + "%"
 
         initChart()
     }
@@ -114,16 +112,25 @@ class CryptoDetailActivity : AppCompatActivity() {
 
         chart.animateXY(2000, 2000)
 
-        setData(45, 100f)
+        // setData(45, 100f)
         // don't forget to refresh the drawing
         chart.invalidate()
     }
 
-    private fun setData(count: Int, range: Float) {
+    private fun setChartData(cryptoChartData: CryptoChartData) {
         val values = ArrayList<Entry>()
-        for (i in 0 until count) {
-            val `val` = (Math.random() * (range + 1)).toFloat() + 20
-            values.add(Entry(i.toFloat(), `val`))
+
+        for (i in 0 until cryptoChartData?.prices?.size) {
+            try {
+                values.add(
+                    Entry(
+                        cryptoChartData?.prices?.get(i).get(0).toFloat(), // timestamp
+                        cryptoChartData?.prices?.get(i).get(1).toFloat() // price
+                    )
+                )
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+            }
         }
         val set1: LineDataSet
         if (chart.data != null &&
@@ -160,6 +167,8 @@ class CryptoDetailActivity : AppCompatActivity() {
             // set data
             chart.data = data
         }
+        // don't forget to refresh the drawing
+        chart.invalidate()
     }
 
     private fun setUpViewModel(data: CryptoData?) {
@@ -206,7 +215,7 @@ class CryptoDetailActivity : AppCompatActivity() {
                         it.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinished()
-                            //setChartData(it)
+                            setChartData(it)
                         }
                     }
                     is NetworkResult.Error -> {
