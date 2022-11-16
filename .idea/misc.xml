@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/drawable/selector_list.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.12297297297297298" />
         <entry key="app/src/main/res/layout/activity_crypto_detail.xml" value="0.24576321163692988" />
+        <entry key="app/src/main/res/layout/activity_linechart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23841583251953125" />
         <entry key="app/src/main/res/layout/activity_main_nav_drawer.xml" value="0.11576576576576576" />
