@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,24 +22,22 @@ import com.crypto.prices.utils.chart.YAxisValueFormatter
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IFillFormatter
-import com.github.mikephil.charting.formatter.ValueFormatter
-import java.text.SimpleDateFormat
-import java.util.*
 
 
-class CryptoDetailActivity : AppCompatActivity() {
+class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: ActivityCryptoDetailBinding? = null
     private lateinit var mCryptoDetailViewModel: CryptoDetailViewModel
     private val TAG = "CryptoDetailActivity"
 
     private lateinit var chart: LineChart
+    private lateinit var data: CryptoData
+    private lateinit var selectedTextView: TextView
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -52,10 +51,13 @@ class CryptoDetailActivity : AppCompatActivity() {
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
 
         // get data from intent
-        var data = intent.extras?.getParcelable<CryptoData>("crypto_data")
+        data = intent?.extras?.getParcelable<CryptoData>("crypto_data")!!
         setUpViewModel(data)
+        setMarketStatsData()
+    }
 
-        // set data
+    private fun setMarketStatsData() {
+        // set title
         setTitle(data?.name)
         // set coin icon
         Glide.with(this)
@@ -80,6 +82,15 @@ class CryptoDetailActivity : AppCompatActivity() {
         binding.textViewAtl.text = "$" + data?.atl?.toString()
         binding.textViewAtlPerc.text = data?.atl_change_percentage?.toString() + "%"
 
+        // on click listeners
+        binding.textView1h.setOnClickListener(this)
+        binding.textView24hr.setOnClickListener(this)
+        binding.textView7d.setOnClickListener(this)
+        binding.textView1m.setOnClickListener(this)
+        binding.textView3m.setOnClickListener(this)
+        binding.textView1y.setOnClickListener(this)
+        binding.textViewAllTime.setOnClickListener(this)
+
         initChart()
     }
 
@@ -89,6 +100,7 @@ class CryptoDetailActivity : AppCompatActivity() {
         chart.setViewPortOffsets(0f, 0f, 0f, 0f)
         //chart.setBackgroundColor(Color.rgb(104, 241, 175))
 
+        chart.setNoDataText("Building chart ...");
         // description text
         chart.description.text = "price ($) vs time"
         chart.description.isEnabled = true
@@ -113,7 +125,7 @@ class CryptoDetailActivity : AppCompatActivity() {
         x.enableGridDashedLine(2f, 7f, 0f)
         //x.setAxisMaximum(5f)
         //x.setAxisMinimum(0f)
-        x.setLabelCount(6, true)
+        x.setLabelCount(6, false)
         x.setDrawLabels(true)
         x.setEnabled(true)
         x.setDrawAxisLine(true)
@@ -124,7 +136,6 @@ class CryptoDetailActivity : AppCompatActivity() {
         x.valueFormatter = XAxisValueFormatter()
         x.setCenterAxisLabels(false)
         x.setDrawLimitLinesBehindData(true)
-
 
 
         val y = chart.axisLeft
@@ -207,7 +218,10 @@ class CryptoDetailActivity : AppCompatActivity() {
         val map: MutableMap<String, String> = HashMap()
         map["symbol"] = data?.id.toString()
         map["currency"] = "usd"
-        val days = 14
+        // default day selection
+        binding.textView24hr.isSelected = true
+        selectedTextView = binding.textView24hr
+        val days = 1
         map["days"] = days.toString()
 
         val repository = AppRepositoryImpl()
@@ -273,5 +287,47 @@ class CryptoDetailActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onClick(view: View?) {
+        selectedTextView.isSelected = false
+        when (view?.id) {
+            binding.textView1h.id -> {
+                selectedTextView = binding.textView1h
+                binding.textView1h.isSelected = true
+                mCryptoDetailViewModel.getCryptoChart(0.04.toString())
+            }
+            binding.textView24hr.id -> {
+                selectedTextView = binding.textView24hr
+                binding.textView24hr.isSelected = true
+                mCryptoDetailViewModel.getCryptoChart(1.toString())
+            }
+            binding.textView7d.id -> {
+                selectedTextView = binding.textView7d
+                binding.textView7d.isSelected = true
+                mCryptoDetailViewModel.getCryptoChart(7.toString())
+            }
+            binding.textView1m.id -> {
+                selectedTextView = binding.textView1m
+                binding.textView1m.isSelected = true
+                mCryptoDetailViewModel.getCryptoChart(30.toString())
+            }
+            binding.textView3m.id -> {
+                selectedTextView = binding.textView3m
+                binding.textView3m.isSelected = true
+                mCryptoDetailViewModel.getCryptoChart(90.toString())
+            }
+            binding.textView1y.id -> {
+                selectedTextView = binding.textView1y
+                binding.textView1y.isSelected = true
+                mCryptoDetailViewModel.getCryptoChart(365.toString())
+            }
+            binding.textViewAllTime.id -> {
+                selectedTextView = binding.textViewAllTime
+                binding.textViewAllTime.isSelected = true
+                mCryptoDetailViewModel.getCryptoChart("max")
+            }
+            else -> {}
+        }
     }
 }

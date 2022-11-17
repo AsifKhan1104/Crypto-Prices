@@ -22,20 +22,24 @@ class CryptoDetailViewModel(
     val cryptoChartLiveData: MutableLiveData<NetworkResult<CryptoChartData>> = MutableLiveData()
 
     init {
-        getCryptoChart()
+        getCryptoChart("-1")
     }
 
-    fun getCryptoChart() = viewModelScope.launch {
-        fetchData()
+    fun getCryptoChart(days: String) = viewModelScope.launch {
+        fetchData(days)
     }
 
-    private suspend fun fetchData() {
+    private suspend fun fetchData(days: String) {
         cryptoChartLiveData.postValue(NetworkResult.Loading())
         try {
             if (Utility.isInternetAvailable()) {
                 val map: MutableMap<String, String> = HashMap()
                 map["vs_currency"] = paramMap["currency"]!!
-                map["days"] = paramMap["days"]!!
+                if (days.equals("-1")) {
+                    map["days"] = paramMap["days"]!!
+                } else {
+                    map["days"] = days
+                }
 
                 val response = appRepository.getCryptoPricesChart(paramMap["symbol"]!!, map)
                 if (response.isSuccessful) {

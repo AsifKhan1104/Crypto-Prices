@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/drawable/border_more_apps.xml" value="0.13513513513513514" />
         <entry key="app/src/main/res/drawable/border_show_more_btn.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/border_spin.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/border_time_filter.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/gradient_bg.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/gradient_bg1.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1445" />
@@ -23,10 +24,15 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/drawable/ic_market_24.xml" value="0.13513513513513514" />
         <entry key="app/src/main/res/drawable/list_not_pressed.xml" value="0.12162162162162163" />
+        <entry key="app/src/main/res/drawable/list_pressed.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/selector_button.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/selector_list.xml" value="0.1215" />
+        <entry key="app/src/main/res/drawable/selector_text_bg.xml" value="0.1095" />
+        <entry key="app/src/main/res/drawable/selector_text_view.xml" value="0.128" />
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.12297297297297298" />
-        <entry key="app/src/main/res/layout/activity_crypto_detail.xml" value="0.24576321163692988" />
+        <entry key="app/src/main/res/drawable/textbox_selected.xml" value="0.1035" />
+        <entry key="app/src/main/res/drawable/textbox_un_selected.xml" value="0.1035" />
+        <entry key="app/src/main/res/layout/activity_crypto_detail.xml" value="0.2499593786291174" />
         <entry key="app/src/main/res/layout/activity_linechart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23841583251953125" />

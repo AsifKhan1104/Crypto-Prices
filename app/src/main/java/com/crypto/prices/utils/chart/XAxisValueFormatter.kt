@@ -14,8 +14,10 @@ class XAxisValueFormatter() : ValueFormatter() {
         and date as value. This is required for my data to show properly, you can customize
         according to your needs.
         */
-        val sdf = SimpleDateFormat("MMM dd")
-        val date = Date(Math.round(value).toLong())
+        // format date
+        val sdf = SimpleDateFormat("yyyy-MM-dd, HH:mm")
+        val dateValue = String.format("%.0f", value)
+        val date = Date(dateValue.toLong())
         return sdf.format(date)
     }
 }

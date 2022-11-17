@@ -27,8 +27,9 @@ public class CustomMarkerView extends MarkerView {
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
         // format date
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd");
-        Date date = new Date(Long.valueOf(Math.round(e.getX())));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
+        String dateValue = String.format("%.0f", e.getX());
+        Date date = new Date(Long.valueOf(dateValue));
         String formattedDate = sdf.format(date);
         // set the entry-value as the display text
         textViewEntry.setText("$" + e.getY() + "\n" + formattedDate);
