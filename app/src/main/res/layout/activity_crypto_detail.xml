@@ -71,16 +71,50 @@
                 app:layout_constraintTop_toTopOf="@id/textView_price"
                 tools:text="2.7%" />
 
+            <LinearLayout
+                android:id="@+id/linearLayoutFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_time_filter"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@id/textView_price"
+                app:layout_constraintTop_toBottomOf="@+id/textView_price">
+
+                <TextView
+                    android:id="@+id/textView_price_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_text_bg"
+                    android:fontFamily="sans-serif"
+                    android:padding="5dp"
+                    android:text="Price"
+                    android:textColor="@drawable/selector_text_color"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/textView_mc_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_text_bg"
+                    android:fontFamily="sans-serif"
+                    android:padding="5dp"
+                    android:textSize="11sp"
+                    android:text="MC"
+                    android:textColor="@drawable/selector_text_color" />
+            </LinearLayout>
+
             <RelativeLayout
                 android:id="@+id/relativeLayoutChart"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
-                app:layout_constraintTop_toBottomOf="@+id/textView_price">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutFilter">
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/chart"
@@ -135,11 +169,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/selector_text_bg"
-                        android:textColor="@drawable/selector_text_color"
                         android:fontFamily="sans-serif"
                         android:padding="5dp"
                         android:text="1H"
-                        android:textSize="16sp" />
+                        android:textColor="@drawable/selector_text_color" />
 
                     <TextView
                         android:id="@+id/textView_24hr"
@@ -147,10 +180,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/selector_text_bg"
-                        android:textColor="@drawable/selector_text_color"
                         android:fontFamily="sans-serif"
                         android:padding="5dp"
-                        android:text="24H" />
+                        android:text="24H"
+                        android:textColor="@drawable/selector_text_color" />
 
                     <TextView
                         android:id="@+id/textView_7d"
@@ -158,10 +191,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/selector_text_bg"
-                        android:textColor="@drawable/selector_text_color"
                         android:fontFamily="sans-serif"
                         android:padding="5dp"
-                        android:text="7D"/>
+                        android:text="7D"
+                        android:textColor="@drawable/selector_text_color" />
 
                     <TextView
                         android:id="@+id/textView_1m"
@@ -169,10 +202,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/selector_text_bg"
-                        android:textColor="@drawable/selector_text_color"
                         android:fontFamily="sans-serif"
                         android:padding="5dp"
-                        android:text="1M" />
+                        android:text="1M"
+                        android:textColor="@drawable/selector_text_color" />
 
                     <TextView
                         android:id="@+id/textView_3m"
@@ -180,10 +213,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/selector_text_bg"
-                        android:textColor="@drawable/selector_text_color"
                         android:fontFamily="sans-serif"
                         android:padding="5dp"
-                        android:text="3M" />
+                        android:text="3M"
+                        android:textColor="@drawable/selector_text_color" />
 
                     <TextView
                         android:id="@+id/textView_1y"
@@ -191,10 +224,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/selector_text_bg"
-                        android:textColor="@drawable/selector_text_color"
                         android:fontFamily="sans-serif"
                         android:padding="5dp"
-                        android:text="1Y" />
+                        android:text="1Y"
+                        android:textColor="@drawable/selector_text_color" />
 
                     <TextView
                         android:id="@+id/textView_allTime"
@@ -202,10 +235,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/selector_text_bg"
-                        android:textColor="@drawable/selector_text_color"
                         android:fontFamily="sans-serif"
                         android:padding="5dp"
-                        android:text="All Time" />
+                        android:text="All Time"
+                        android:textColor="@drawable/selector_text_color" />
 
                     <View
                         android:id="@+id/view_divider"
