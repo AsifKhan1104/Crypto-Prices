@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable-v24/list_normal.xml" value="0.12162162162162163" />
         <entry key="app/src/main/res/drawable/border.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/border_card_view.xml" value="0.1215" />
+        <entry key="app/src/main/res/drawable/border_game.xml" value="0.128" />
         <entry key="app/src/main/res/drawable/border_more.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/border_more_apps.xml" value="0.13513513513513514" />
         <entry key="app/src/main/res/drawable/border_show_more_btn.xml" value="0.1215" />
@@ -42,6 +43,7 @@
         <entry key="app/src/main/res/layout/app_bar_nav_drawer_main.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1373873873873874" />
         <entry key="app/src/main/res/layout/content_nav_drawer_main.xml" value="0.10540540540540541" />
+        <entry key="app/src/main/res/layout/custom_marker_view.xml" value="0.5230236706432996" />
         <entry key="app/src/main/res/layout/fragment_crypto.xml" value="0.2888243831640058" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_earn.xml" value="0.23143115942028986" />
@@ -51,7 +53,7 @@
         <entry key="app/src/main/res/layout/fragment_market.xml" value="0.12906646728515622" />
         <entry key="app/src/main/res/layout/fragment_market2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.2095367431640625" />
-        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.11351351351351352" />
+        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.35189544677734375" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.10720720720720721" />
         <entry key="app/src/main/res/layout/fragment_refer.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/fragment_withdraw.xml" value="0.25280199252801994" />
@@ -65,6 +67,7 @@
         <entry key="app/src/main/res/layout/item_trending.xml" value="0.44923828125000004" />
         <entry key="app/src/main/res/layout/item_trending_shimmer.xml" value="0.43339385986328127" />
         <entry key="app/src/main/res/layout/item_withdraw_history.xml" value="0.11351351351351352" />
+        <entry key="app/src/main/res/layout/marker_view.xml" value="0.19954954954954954" />
         <entry key="app/src/main/res/layout/nav_header_nav_drawer_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/refer_app_layout.xml" value="0.13648648648648648" />
         <entry key="app/src/main/res/layout/tnc_activity.xml" value="0.23143115942028986" />

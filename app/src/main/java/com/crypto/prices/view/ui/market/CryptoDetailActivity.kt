@@ -15,11 +15,14 @@ import com.crypto.prices.databinding.ActivityCryptoDetailBinding
 import com.crypto.prices.model.CryptoChartData
 import com.crypto.prices.model.CryptoData
 import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.utils.chart.CustomMarkerView
+import com.crypto.prices.utils.chart.XAxisValueFormatter
+import com.crypto.prices.utils.chart.YAxisValueFormatter
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.AxisBase
-import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -85,7 +88,6 @@ class CryptoDetailActivity : AppCompatActivity() {
         chart = binding.chart
         chart.setViewPortOffsets(0f, 0f, 0f, 0f)
         //chart.setBackgroundColor(Color.rgb(104, 241, 175))
-        chart.setBackgroundColor(getColor(R.color.chart_bg_color))
 
         // description text
         chart.description.text = "price ($) vs time"
@@ -96,7 +98,7 @@ class CryptoDetailActivity : AppCompatActivity() {
 
         // enable scaling and dragging
         chart.isDragEnabled = false
-        chart.setScaleEnabled(false)
+        chart.setScaleEnabled(true)
 
         // if disabled, scaling can be done on x- and y-axis separately
         chart.setPinchZoom(false)
@@ -105,29 +107,45 @@ class CryptoDetailActivity : AppCompatActivity() {
         chart.maxHighlightDistance = 300f
 
         val x = chart.xAxis
-        x.isEnabled = true
-        //x.setLabelCount(6, false)
-        x.labelRotationAngle = 90f
         x.textColor = Color.BLACK
-        x.setPosition(XAxis.XAxisPosition.BOTTOM)
+        x.axisLineColor = Color.BLACK
+        x.setPosition(XAxisPosition.BOTTOM)
+        x.enableGridDashedLine(2f, 7f, 0f)
+        //x.setAxisMaximum(5f)
+        //x.setAxisMinimum(0f)
+        x.setLabelCount(6, true)
+        x.setDrawLabels(true)
+        x.setEnabled(true)
         x.setDrawAxisLine(true)
         x.setDrawGridLines(true)
+        x.isGranularityEnabled = true
+        x.granularity = 7f
+        x.labelRotationAngle = 315f
         x.valueFormatter = XAxisValueFormatter()
-        x.axisLineColor = Color.BLACK
+        x.setCenterAxisLabels(false)
+        x.setDrawLimitLinesBehindData(true)
+
+
 
         val y = chart.axisLeft
-        //y.setTypeface(tfLight);
+        //y.setTypeface(tfLight)
         y.setLabelCount(6, false)
+        y.setDrawAxisLine(true)
         y.textColor = Color.BLACK
         y.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART)
         y.setDrawGridLines(false)
         y.valueFormatter = YAxisValueFormatter()
         y.axisLineColor = Color.BLACK
+        y.setDrawZeroLine(false)
+        y.setDrawLimitLinesBehindData(false);
 
         chart.axisRight.isEnabled = false
         chart.legend.isEnabled = false
 
         chart.animateXY(2000, 2000)
+        // set marker
+        val customMarker = CustomMarkerView(this, R.layout.custom_marker_view)
+        chart.marker = customMarker
     }
 
     private fun setChartData(cryptoChartData: CryptoChartData) {
@@ -255,26 +273,5 @@ class CryptoDetailActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    class XAxisValueFormatter() : ValueFormatter() {
-        override fun getAxisLabel(value: Float, axis: AxisBase): String {
-            /*
-            Depends on the position number on the X axis, we need to display the label, Here,
-            this is the logic to convert the float value to integer so that I can get the value
-            from array based on that integer and can convert it to the required value here, month
-            and date as value. This is required for my data to show properly, you can customize
-            according to your needs.
-            */
-            val sdf = SimpleDateFormat("MMM dd")
-            val date = Date(Math.round(value).toLong())
-            return sdf.format(date)
-        }
-    }
-
-    class YAxisValueFormatter : ValueFormatter() {
-        override fun getAxisLabel(value: Float, axis: AxisBase): String {
-            return "$" + value.toString()
-        }
     }
 }
