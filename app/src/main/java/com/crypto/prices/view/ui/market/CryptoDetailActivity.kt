@@ -18,12 +18,17 @@ import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IFillFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class CryptoDetailActivity : AppCompatActivity() {
     private var _binding: ActivityCryptoDetailBinding? = null
@@ -107,6 +112,7 @@ class CryptoDetailActivity : AppCompatActivity() {
         x.setPosition(XAxis.XAxisPosition.BOTTOM)
         x.setDrawAxisLine(true)
         x.setDrawGridLines(true)
+        x.valueFormatter = XAxisValueFormatter()
         x.axisLineColor = Color.BLACK
 
         val y = chart.axisLeft
@@ -115,6 +121,7 @@ class CryptoDetailActivity : AppCompatActivity() {
         y.textColor = Color.BLACK
         y.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART)
         y.setDrawGridLines(false)
+        y.valueFormatter = YAxisValueFormatter()
         y.axisLineColor = Color.BLACK
 
         chart.axisRight.isEnabled = false
@@ -248,5 +255,26 @@ class CryptoDetailActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    class XAxisValueFormatter() : ValueFormatter() {
+        override fun getAxisLabel(value: Float, axis: AxisBase): String {
+            /*
+            Depends on the position number on the X axis, we need to display the label, Here,
+            this is the logic to convert the float value to integer so that I can get the value
+            from array based on that integer and can convert it to the required value here, month
+            and date as value. This is required for my data to show properly, you can customize
+            according to your needs.
+            */
+            val sdf = SimpleDateFormat("MMM dd")
+            val date = Date(Math.round(value).toLong())
+            return sdf.format(date)
+        }
+    }
+
+    class YAxisValueFormatter : ValueFormatter() {
+        override fun getAxisLabel(value: Float, axis: AxisBase): String {
+            return "$" + value.toString()
+        }
     }
 }
