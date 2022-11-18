@@ -157,7 +157,8 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         chart.axisRight.isEnabled = false
         chart.legend.isEnabled = false
 
-        chart.animateXY(2000, 2000)
+        //chart.animateXY(2000, 2000)
+        chart.animateX(2000)
         // set marker
         val customMarker = CustomMarkerView(this, R.layout.custom_marker_view)
         chart.marker = customMarker
@@ -226,6 +227,7 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setUpViewModel(data: CryptoData?) {
         binding.textViewPriceFilter.isSelected = true
+        selectedTextViewFilter = binding.textViewPriceFilter
         // create map of params needed for api
         val map: MutableMap<String, String> = HashMap()
         map["symbol"] = data?.id.toString()
@@ -272,7 +274,10 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
                         it.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinished()
-                            setChartData(it, true)
+                            setChartData(
+                                it,
+                                if (selectedTextViewFilter == binding.textViewPriceFilter) true else false
+                            )
                         }
                     }
                     is NetworkResult.Error -> {
@@ -302,51 +307,59 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        selectedTextViewTimeFilter.isSelected = false
         when (view?.id) {
             binding.textView1h.id -> {
-                selectedTextViewTimeFilter = binding.textView1h
+                selectedTextViewTimeFilter.isSelected = false
                 binding.textView1h.isSelected = true
+                selectedTextViewTimeFilter = binding.textView1h
                 mCryptoDetailViewModel.getCryptoChart(0.04.toString())
             }
             binding.textView24hr.id -> {
-                selectedTextViewTimeFilter = binding.textView24hr
+                selectedTextViewTimeFilter.isSelected = false
                 binding.textView24hr.isSelected = true
+                selectedTextViewTimeFilter = binding.textView24hr
                 mCryptoDetailViewModel.getCryptoChart(1.toString())
             }
             binding.textView7d.id -> {
-                selectedTextViewTimeFilter = binding.textView7d
+                selectedTextViewTimeFilter.isSelected = false
                 binding.textView7d.isSelected = true
+                selectedTextViewTimeFilter = binding.textView7d
                 mCryptoDetailViewModel.getCryptoChart(7.toString())
             }
             binding.textView1m.id -> {
-                selectedTextViewTimeFilter = binding.textView1m
+                selectedTextViewTimeFilter.isSelected = false
                 binding.textView1m.isSelected = true
+                selectedTextViewTimeFilter = binding.textView1m
                 mCryptoDetailViewModel.getCryptoChart(30.toString())
             }
             binding.textView3m.id -> {
-                selectedTextViewTimeFilter = binding.textView3m
+                selectedTextViewTimeFilter.isSelected = false
                 binding.textView3m.isSelected = true
+                selectedTextViewTimeFilter = binding.textView3m
                 mCryptoDetailViewModel.getCryptoChart(90.toString())
             }
             binding.textView1y.id -> {
-                selectedTextViewTimeFilter = binding.textView1y
+                selectedTextViewTimeFilter.isSelected = false
                 binding.textView1y.isSelected = true
+                selectedTextViewTimeFilter = binding.textView1y
                 mCryptoDetailViewModel.getCryptoChart(365.toString())
             }
             binding.textViewAllTime.id -> {
-                selectedTextViewTimeFilter = binding.textViewAllTime
+                selectedTextViewTimeFilter.isSelected = false
                 binding.textViewAllTime.isSelected = true
+                selectedTextViewTimeFilter = binding.textViewAllTime
                 mCryptoDetailViewModel.getCryptoChart("max")
             }
             binding.textViewPriceFilter.id -> {
-                selectedTextViewFilter = binding.textViewPriceFilter
+                selectedTextViewFilter.isSelected = false
                 binding.textViewPriceFilter.isSelected = true
+                selectedTextViewFilter = binding.textViewPriceFilter
                 setChartData(chartData, true)
             }
             binding.textViewMcFilter.id -> {
-                selectedTextViewFilter = binding.textViewMcFilter
+                selectedTextViewFilter.isSelected = false
                 binding.textViewMcFilter.isSelected = true
+                selectedTextViewFilter = binding.textViewMcFilter
                 setChartData(chartData, false)
             }
             else -> {}
