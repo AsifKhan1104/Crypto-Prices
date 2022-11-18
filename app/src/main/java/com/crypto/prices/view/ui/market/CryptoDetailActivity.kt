@@ -68,8 +68,20 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.textViewSymbol.text = data?.symbol
         binding.textViewPrice.text = "$" + String.format("%.6f", data?.current_price)
-        binding.textView24hp.text =
-            String.format("%.1f", data?.price_change_percentage_24h) + "%"
+
+        // set arrow %
+        var priceChangePercNegative = false
+        var priceArrow = R.drawable.ic_arrow_up_24
+        if (data?.price_change_percentage_24h < 0.0) {
+            priceArrow = R.drawable.ic_arrow_down_24
+            priceChangePercNegative = true
+        }
+        binding.textView24hp.setCompoundDrawablesWithIntrinsicBounds(priceArrow, 0, 0, 0)
+
+        var formattedPriceChangePerc = String.format("%.1f", data?.price_change_percentage_24h)
+        binding.textView24hp.text = if (priceChangePercNegative) formattedPriceChangePerc.substring(
+            1, formattedPriceChangePerc.length
+        ) else formattedPriceChangePerc + "%"
         binding.textViewMcr.text = "#" + data?.market_cap_rank?.toString()
         binding.textViewMc.text = "$" + String.format("%.2f", data?.market_cap)
         binding.textViewFdmc.text = "$" + String.format("%.2f", data?.fully_diluted_valuation)
@@ -79,10 +91,29 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         binding.textViewTotalSupply.text = String.format("%.2f", data?.total_supply)
         binding.textView24h.text = "$" + data?.high_24h?.toString()
         binding.textView24l.text = "$" + data?.low_24h?.toString()
+
+        // set arrow %
+        var athChangePerc: String = data?.ath_change_percentage.toString()
+        var atlChangePerc: String = data?.atl_change_percentage.toString()
+        var priceArrowAltH = R.drawable.ic_arrow_up_24
+        if (data?.ath_change_percentage < 0.0) {
+            priceArrowAltH = R.drawable.ic_arrow_down_24
+            athChangePerc = data?.ath_change_percentage?.toString()
+                .substring(1, data?.ath_change_percentage?.toString().length)
+        }
+        binding.textViewAthPerc.setCompoundDrawablesWithIntrinsicBounds(priceArrowAltH, 0, 0, 0)
+        var priceArrowAltL = R.drawable.ic_arrow_up_24
+        if (data?.atl_change_percentage < 0.0) {
+            priceArrowAltL = R.drawable.ic_arrow_down_24
+            atlChangePerc = data?.atl_change_percentage?.toString()
+                .substring(1, data?.atl_change_percentage?.toString().length)
+        }
+        binding.textViewAtlPerc.setCompoundDrawablesWithIntrinsicBounds(priceArrowAltL, 0, 0, 0)
+
         binding.textViewAth.text = "$" + data?.ath?.toString()
-        binding.textViewAthPerc.text = data?.ath_change_percentage?.toString() + "%"
+        binding.textViewAthPerc.text = athChangePerc + "%"
         binding.textViewAtl.text = "$" + data?.atl?.toString()
-        binding.textViewAtlPerc.text = data?.atl_change_percentage?.toString() + "%"
+        binding.textViewAtlPerc.text = atlChangePerc + "%"
 
         // on click listeners
         binding.textView1h.setOnClickListener(this)

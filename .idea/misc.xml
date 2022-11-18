@@ -17,6 +17,8 @@
         <entry key="app/src/main/res/drawable/border_time_filter.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/gradient_bg.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/gradient_bg1.xml" value="0.183" />
+        <entry key="app/src/main/res/drawable/ic_arrow_down_24.xml" value="0.1055" />
+        <entry key="app/src/main/res/drawable/ic_arrow_up_24.xml" value="0.1055" />
         <entry key="app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1445" />
         <entry key="app/src/main/res/drawable/ic_baseline_history_24.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/ic_baseline_library_books_24.xml" value="0.1355" />
@@ -33,7 +35,8 @@
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.12297297297297298" />
         <entry key="app/src/main/res/drawable/textbox_selected.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/textbox_un_selected.xml" value="0.1035" />
-        <entry key="app/src/main/res/layout/activity_crypto_detail.xml" value="0.3924398803710938" />
+        <entry key="app/src/main/res/drawable/ticker_selected.xml" value="0.1055" />
+        <entry key="app/src/main/res/layout/activity_crypto_detail.xml" value="0.23445877412140181" />
         <entry key="app/src/main/res/layout/activity_linechart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23841583251953125" />
