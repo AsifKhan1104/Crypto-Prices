@@ -16,7 +16,7 @@ class ViewModelFactory(
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CryptoViewModel::class.java)) {
-            return CryptoViewModel(app, appRepository) as T
+            return CryptoViewModel(app, appRepository, map) as T
         }
 
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {

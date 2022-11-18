@@ -14,31 +14,26 @@ import java.io.IOException
 
 class CryptoViewModel(
     app: CryptoApplication,
-    private val appRepository: AppRepository
+    private val appRepository: AppRepository,
+    map: MutableMap<String, String>
 ) : ViewModel() {
     val application = app
+    val paramMap = map
     val cryptoLiveData: MutableLiveData<NetworkResult<List<CryptoData>>> = MutableLiveData()
 
     init {
-        getCrypto()
+        getCrypto(paramMap)
     }
 
-    fun getCrypto() = viewModelScope.launch {
-        fetchData()
+    fun getCrypto(mp:MutableMap<String, String>) = viewModelScope.launch {
+        fetchData(mp)
     }
 
-    private suspend fun fetchData() {
+    private suspend fun fetchData(latestMap: MutableMap<String, String>) {
         cryptoLiveData.postValue(NetworkResult.Loading())
         try {
             if (Utility.isInternetAvailable()) {
-                val map: MutableMap<String, String> = HashMap()
-                map["vs_currency"] = "usd"
-                /*map["order"] = "market_cap_desc"
-                map["per_page"] = 100
-                map["page"] = 1
-                map["sparkline"] = false*/
-
-                val response = appRepository.getCryptoPrices(map)
+                val response = appRepository.getCryptoPrices(latestMap)
                 if (response.isSuccessful) {
                     cryptoLiveData.postValue(response.body()?.let { NetworkResult.Success(it) })
                 } else {

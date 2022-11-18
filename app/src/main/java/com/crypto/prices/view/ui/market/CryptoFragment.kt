@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
+import com.crypto.prices.R
 import com.crypto.prices.databinding.FragmentCryptoBinding
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
@@ -19,6 +20,8 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentCryptoBinding? = null
     private lateinit var mCryptoViewModel: CryptoViewModel
     private val TAG = CryptoFragment.javaClass.simpleName
+    private var selectedMarketCap: String = "market_cap_desc"
+    private lateinit var map: MutableMap<String, String>
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -51,12 +54,25 @@ class CryptoFragment : Fragment(), View.OnClickListener {
         _binding = FragmentCryptoBinding.inflate(inflater, container, false)
         val root: View = binding.root
         setUpViewModel()
+        initData()
         return root
     }
 
+    private fun initData() {
+        // on click listener
+        binding.linearLayoutMC.setOnClickListener(this)
+    }
+
     private fun setUpViewModel() {
+        map = HashMap()
+        map["vs_currency"] = "usd"
+        map["order"] = selectedMarketCap
+        map["per_page"] = "250"
+        map["page"] = "1"
+        /*map["sparkline"] = false*/
+
         val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
+        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
         mCryptoViewModel = ViewModelProvider(this, factory).get(CryptoViewModel::class.java)
     }
 
@@ -101,6 +117,19 @@ class CryptoFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
+            binding.linearLayoutMC.id -> {
+                if (selectedMarketCap.equals("market_cap_desc", true)) {
+                    selectedMarketCap = "market_cap_asc"
+                    binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_up_24))
+                    map["order"] = selectedMarketCap
+                    mCryptoViewModel.getCrypto(map)
+                } else {
+                    selectedMarketCap = "market_cap_desc"
+                    binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_down_24))
+                    map["order"] = selectedMarketCap
+                    mCryptoViewModel.getCrypto(map)
+                }
+            }
             else -> {
             }
         }
