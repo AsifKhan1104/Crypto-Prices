@@ -35,15 +35,15 @@ class CryptoAdapter(context: Context?, var data: List<CryptoData>?) :
         private val textView24hp = view.textView_24hp
         private val textViewMarketCap = view.textView_market_cap
 
-        fun bind(context: Context, position: Int, data: CryptoData) {
+        fun bind(context: Context, position: Int, data: CryptoData?) {
             //textViewId.text = (position+1).toString()
-            textViewSymbol.text = data.symbol
-            textViewName.text = data.name
-            textViewPrice.text = data.current_price.toString()
+            textViewSymbol.text = data?.symbol
+            textViewName.text = data?.name
+            textViewPrice.text = data?.current_price?.toString()
             try {
                 textView24hp.text =
-                    String.format("%.1f", data.price_change_percentage_24h).toString() + "%"
-                textViewMarketCap.text = String.format("%.1f", data.market_cap)
+                    String.format("%.1f", data?.price_change_percentage_24h).toString() + "%"
+                textViewMarketCap.text = data?.market_cap?.toString()
             } catch (ex: Exception) {
                 ex.printStackTrace()
             }
@@ -52,7 +52,7 @@ class CryptoAdapter(context: Context?, var data: List<CryptoData>?) :
             /*val imageUrl =
                 "https://s2.coinmarketcap.com/static/img/coins/64x64/" + data.id.toString() + ".png"*/
             Glide.with(context)
-                .load(data.image)
+                .load(data?.image)
                 .into(imageViewIcon)
 
             // on click listener
