@@ -37,8 +37,8 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
     private val TAG = "CryptoDetailActivity"
 
     private lateinit var chart: LineChart
-    private lateinit var data: CryptoData
-    private lateinit var chartData: CryptoChartData
+    private var data: CryptoData? = null
+    private var chartData: CryptoChartData? = null
     private lateinit var selectedTextViewTimeFilter: TextView
     private lateinit var selectedTextViewFilter: TextView
 
@@ -197,22 +197,22 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         chart.marker = customMarker
     }
 
-    private fun setChartData(cryptoChartData: CryptoChartData, priceFilterActive: Boolean) {
+    private fun setChartData(cryptoChartData: CryptoChartData?, priceFilterActive: Boolean) {
         chartData = cryptoChartData
         val values = ArrayList<Entry>()
 
-        var chartFillData: List<List<Double>>
+        var chartFillData: List<List<BigDecimal?>>
         if (priceFilterActive) {
-            chartFillData = cryptoChartData?.prices
+            chartFillData = cryptoChartData?.prices!!
         } else {
-            chartFillData = cryptoChartData?.market_caps
+            chartFillData = cryptoChartData?.market_caps!!
         }
         for (i in 0 until chartFillData.size) {
             try {
                 values.add(
                     Entry(
-                        chartFillData.get(i).get(0).toFloat(), // timestamp
-                        chartFillData.get(i).get(1).toFloat() // price
+                        chartFillData.get(i).get(0)!!.toFloat(), // timestamp
+                        chartFillData.get(i).get(1)!!.toFloat() // price
                     )
                 )
             } catch (ex: Exception) {
