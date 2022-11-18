@@ -75,6 +75,80 @@
                 app:layout_constraintTop_toTopOf="@id/textView_price"
                 tools:text="2.7%" />
 
+            <TextView
+                android:id="@+id/textView_24h_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif"
+                android:text="24H High:"
+                android:textColor="@android:color/black"
+                android:textSize="11sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayoutFilter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/linearLayoutFilter" />
+
+            <TextView
+                android:id="@+id/textView_24h"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif"
+                android:textColor="@android:color/black"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayoutFilter"
+                app:layout_constraintStart_toEndOf="@+id/textView_24h_header"
+                app:layout_constraintTop_toTopOf="@+id/linearLayoutFilter"
+                tools:text="24H High" />
+
+            <View
+                android:id="@+id/view_divider"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="5dp"
+                android:background="@color/divider_color"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_24h"
+                app:layout_constraintStart_toEndOf="@+id/textView_24h"
+                app:layout_constraintTop_toTopOf="@+id/textView_24h" />
+
+            <TextView
+                android:id="@+id/textView_24l_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif"
+                android:text="24H Low:"
+                android:textColor="@android:color/black"
+                android:textSize="11sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayoutFilter"
+                app:layout_constraintStart_toEndOf="@+id/view_divider"
+                app:layout_constraintTop_toTopOf="@+id/linearLayoutFilter" />
+
+            <TextView
+                android:id="@+id/textView_24l"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif"
+                android:textColor="@android:color/black"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayoutFilter"
+                app:layout_constraintStart_toEndOf="@+id/textView_24l_header"
+                app:layout_constraintTop_toTopOf="@+id/linearLayoutFilter"
+                tools:text="24H High" />
+
             <LinearLayout
                 android:id="@+id/linearLayoutFilter"
                 android:layout_width="wrap_content"
@@ -83,8 +157,8 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/border_time_filter"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="@id/textView_price"
-                app:layout_constraintTop_toBottomOf="@+id/textView_price">
+                app:layout_constraintEnd_toEndOf="@id/textView_24hp"
+                app:layout_constraintTop_toBottomOf="@+id/textView_24hp">
 
                 <TextView
                     android:id="@+id/textView_price_filter"
@@ -243,14 +317,6 @@
                         android:padding="5dp"
                         android:text="All Time"
                         android:textColor="@drawable/selector_text_color" />
-
-                    <View
-                        android:id="@+id/view_divider"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:background="@color/divider_color"
-                        android:visibility="gone" />
                 </TableRow>
             </TableLayout>
 
@@ -445,32 +511,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView_circ_supply"
                 tools:text="Total Supply" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="24H High"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply" />
-
-            <TextView
-                android:id="@+id/textView_24h"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply"
-                tools:text="24H High" />
-
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -480,7 +521,7 @@
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_24h" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply" />
 
             <TextView
                 android:id="@+id/textView_24l"
@@ -492,8 +533,8 @@
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_24h"
-                tools:text="24H Low" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply"
+                tools:text="24H Low" />-->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -505,7 +546,7 @@
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_24l" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply" />
 
             <TextView
                 android:id="@+id/textView_ath"
@@ -520,7 +561,7 @@
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toStartOf="@+id/textView_ath_perc"
-                app:layout_constraintTop_toBottomOf="@+id/textView_24l"
+                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply"
                 tools:text="All-Time High" />
 
             <TextView
