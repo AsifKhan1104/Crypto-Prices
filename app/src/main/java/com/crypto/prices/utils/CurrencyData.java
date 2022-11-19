@@ -386,6 +386,26 @@ public class CurrencyData {
         return list;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public String getType() {
+        return type;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

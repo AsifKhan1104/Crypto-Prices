@@ -1,18 +1,18 @@
 package com.crypto.prices.view.ui.more
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.crypto.prices.BuildConfig
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.databinding.FragmentCurrencySelectBinding
+import com.crypto.prices.R
 import com.crypto.prices.databinding.FragmentMoreBinding
 import com.crypto.prices.utils.CurrencyData
 import com.crypto.prices.utils.NetworkResult
@@ -21,7 +21,7 @@ import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.activity.PrivacyPolicyActivity
 import com.crypto.prices.view.activity.TnCActivity
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
 
 
 class MoreFragment : Fragment(), View.OnClickListener {
@@ -119,7 +119,19 @@ class MoreFragment : Fragment(), View.OnClickListener {
                             //bind the data to the ui
                             //onLoadingFinished()
                             val currencyList = CurrencyData().buildCurrencyList(it?.rates)
-                            showBottomSheetDialog()
+                            // now save this list in shared prefs
+                            val sharedPref = requireActivity()?.getPreferences(MODE_PRIVATE)
+                            with(sharedPref.edit()) {
+                                putString(
+                                    "currencyList",
+                                    Gson().toJson(currencyList)
+                                )
+                                apply()
+                            }
+
+                            // open bottom sheet dialog fragment
+                            val fragment = CurrencySelectFragment()
+                            fragment.show(requireActivity()?.supportFragmentManager, "")
                         }
                     }
                     is NetworkResult.Error -> {
