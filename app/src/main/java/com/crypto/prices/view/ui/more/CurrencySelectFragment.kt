@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.databinding.FragmentCurrencySelectBinding
 import com.crypto.prices.utils.CurrencyData
+import com.crypto.prices.utils.SharedPrefsDataRetrieval
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
 
 
 class CurrencySelectFragment : BottomSheetDialogFragment() {
@@ -35,17 +35,13 @@ class CurrencySelectFragment : BottomSheetDialogFragment() {
 
     private fun showCurrencyList() {
         // get currency list from shared prefs
-        val sharedPref = requireActivity()?.getPreferences(Context.MODE_PRIVATE)
-        val json: String? = sharedPref.getString("currencyList", null)
-        val type: Type = object : TypeToken<ArrayList<CurrencyData?>?>() {}.type
-
-        val currencyList = Gson().fromJson(json, type)
-        /*// checking below if the array list is empty or not
+        var currencyList = SharedPrefsDataRetrieval().getData(requireActivity())
+        // checking below if the array list is empty or not
         if (currencyList == null) {
             // if the array list is empty
             // creating a new array list.
             currencyList = ArrayList()
-        }*/
+        }
         binding.recyclerViewCurrency.layoutManager =
             LinearLayoutManager(context)
         binding.recyclerViewCurrency.adapter = CurrencySelectAdapter(context, currencyList)
