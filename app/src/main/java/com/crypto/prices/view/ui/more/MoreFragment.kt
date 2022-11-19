@@ -1,20 +1,29 @@
-package com.crypto.prices.view.ui.explore
+package com.crypto.prices.view.ui.more
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.crypto.prices.BuildConfig
+import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.crypto.prices.databinding.FragmentMoreBinding
+import com.crypto.prices.utils.CurrencyData
+import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
+import com.crypto.prices.view.AppRepositoryImpl
+import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.activity.PrivacyPolicyActivity
 import com.crypto.prices.view.activity.TnCActivity
 
 class MoreFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentMoreBinding? = null
+    private lateinit var mMoreViewModel: MoreViewModel
     private val TAG = MoreFragment.javaClass.simpleName
 
     // This property is only valid between onCreateView and
@@ -36,6 +45,12 @@ class MoreFragment : Fragment(), View.OnClickListener {
         setUpData()
     }
 
+    private fun setUpViewModel() {
+        val repository = AppRepositoryImpl()
+        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
+        mMoreViewModel = ViewModelProvider(this, factory).get(MoreViewModel::class.java)
+    }
+
     private fun setUpData() {
         binding.textViewEnjoy.text = "Enjoy using ${getString(R.string.app_name)}?"
         binding.textViewRateUs.text = "Rate the ${getString(R.string.app_name)} App"
@@ -51,6 +66,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
         binding.relativeLayoutFI.setOnClickListener(this)
         binding.relativeLayoutPP.setOnClickListener(this)
         binding.relativeLayoutTnC.setOnClickListener(this)
+        binding.relativeLayoutCC.setOnClickListener(this)
     }
 
     companion object {
@@ -82,8 +98,41 @@ class MoreFragment : Fragment(), View.OnClickListener {
                 val intent = Intent(requireContext(), TnCActivity::class.java)
                 startActivity(intent)
             }
+            binding.relativeLayoutCC.id -> {
+                setUpViewModel()
+                loadData()
+            }
             else -> {}
         }
     }
 
+    fun loadData() {
+        try {
+            mMoreViewModel.exchangeRateLiveData.observe(viewLifecycleOwner, Observer {
+                // blank observe here
+                when (it) {
+                    is NetworkResult.Success -> {
+                        it.networkData?.let {
+                            //bind the data to the ui
+                            //onLoadingFinished()
+                            val currencyList = CurrencyData().buildCurrencyList(it?.rates)
+                            Log.e("currency", currencyList.size.toString())
+                            Log.e("currency", currencyList.toString())
+                        }
+                    }
+                    is NetworkResult.Error -> {
+                        //show error message
+                        //onError(it.networkErrorMessage.toString())
+                    }
+
+                    is NetworkResult.Loading -> {
+                        //show loader, shimmer effect etc
+                        //onLoading()
+                    }
+                }
+            })
+        } catch (ex: Exception) {
+            ex.message?.let { Log.e(TAG, it) }
+        }
+    }
 }

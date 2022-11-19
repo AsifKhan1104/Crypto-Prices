@@ -43,7 +43,7 @@ import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.activity.SettingsActivity
 import com.crypto.prices.view.activity.SignInActivity
 import com.crypto.prices.view.ui.market.CryptoFragment
-import com.crypto.prices.view.ui.explore.MoreFragment
+import com.crypto.prices.view.ui.more.MoreFragment
 import kotlin.system.exitProcess
 
 class NavDrawerMainActivity : AppCompatActivity() {
