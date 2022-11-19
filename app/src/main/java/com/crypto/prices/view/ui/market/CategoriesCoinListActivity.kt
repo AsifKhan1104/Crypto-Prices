@@ -2,6 +2,7 @@ package com.crypto.prices.view.ui.market
 
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -58,6 +59,16 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
         // get data from intent
         setUpViewModel()
         initData()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun initData() {
