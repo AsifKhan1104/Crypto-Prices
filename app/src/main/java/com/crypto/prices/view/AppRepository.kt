@@ -1,6 +1,7 @@
 package com.crypto.prices.view
 
 import com.crypto.prices.model.*
+import com.crypto.prices.model.exchangeRates.ExchangeRates
 import retrofit2.Response
 
 interface AppRepository {
@@ -13,5 +14,6 @@ interface AppRepository {
 
     suspend fun getCategories(map: MutableMap<String, String>): Response<List<CategoriesData>>
     suspend fun getTrendingCoins(): Response<Trending>
+    suspend fun getExchangeRates(): Response<ExchangeRates>
     suspend fun getAllNews(map: MutableMap<String, String>): Response<NewsData>
 }

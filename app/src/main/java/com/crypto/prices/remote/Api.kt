@@ -1,6 +1,7 @@
 package com.crypto.prices.remote
 
 import com.crypto.prices.model.*
+import com.crypto.prices.model.exchangeRates.ExchangeRates
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -26,6 +27,9 @@ interface Api {
 
     @GET("v3/search/trending")
     suspend fun getTrendingCoins(): Response<Trending>
+
+    @GET("v3/exchange_rates")
+    suspend fun getExchangeRates(): Response<ExchangeRates>
 
     @GET("v2/everything")
     suspend fun getAllNews(@QueryMap map: Map<String, String>): Response<NewsData>

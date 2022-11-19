@@ -1,6 +1,7 @@
 package com.crypto.prices.view
 
 import com.crypto.prices.model.*
+import com.crypto.prices.model.exchangeRates.ExchangeRates
 import com.crypto.prices.remote.Service
 import retrofit2.Response
 
@@ -22,6 +23,7 @@ class AppRepositoryImpl : AppRepository {
     override suspend fun getCategories(map: MutableMap<String, String>): Response<List<CategoriesData>> = service.getCategories(map)
 
     override suspend fun getTrendingCoins(): Response<Trending> = service.getTrendingCoins()
+    override suspend fun getExchangeRates(): Response<ExchangeRates> = service.getExchangeRates()
 
     override suspend fun getAllNews(map: MutableMap<String, String>): Response<NewsData> =
         serviceNews.getAllNews(map)
