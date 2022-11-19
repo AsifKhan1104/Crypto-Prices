@@ -36,7 +36,10 @@ class MarketFragment : Fragment() {
         val adapter = MarketViewPagerAdapter(requireActivity().supportFragmentManager, lifecycle)
         //view_pager.offscreenPageLimit = 3
         binding.viewPager.adapter = adapter
-        binding.tabLayout.setupWithViewPager(binding.viewPager, listOf("Crypto", "Crypto2"))
+        binding.tabLayout.setupWithViewPager(
+            binding.viewPager,
+            listOf("Cryptocurrency", "Categories")
+        )
 
         /*binding.viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {

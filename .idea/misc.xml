@@ -33,10 +33,11 @@
         <entry key="app/src/main/res/drawable/selector_text_color.xml" value="0.128" />
         <entry key="app/src/main/res/drawable/selector_text_view.xml" value="0.128" />
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.12297297297297298" />
+        <entry key="app/src/main/res/drawable/textbox_filter.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/textbox_selected.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/textbox_un_selected.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/ticker_selected.xml" value="0.1055" />
-        <entry key="app/src/main/res/layout/activity_crypto_detail.xml" value="0.3909973521624007" />
+        <entry key="app/src/main/res/layout/activity_crypto_detail.xml" value="0.11369785265068194" />
         <entry key="app/src/main/res/layout/activity_linechart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23841583251953125" />
@@ -54,7 +55,8 @@
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1373873873873874" />
         <entry key="app/src/main/res/layout/content_nav_drawer_main.xml" value="0.10540540540540541" />
         <entry key="app/src/main/res/layout/custom_marker_view.xml" value="0.5230236706432996" />
-        <entry key="app/src/main/res/layout/fragment_crypto.xml" value="0.2888243831640058" />
+        <entry key="app/src/main/res/layout/fragment_categories.xml" value="0.23191053602430559" />
+        <entry key="app/src/main/res/layout/fragment_crypto.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_earn.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2822695035460993" />
@@ -67,6 +69,7 @@
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.10720720720720721" />
         <entry key="app/src/main/res/layout/fragment_refer.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/fragment_withdraw.xml" value="0.25280199252801994" />
+        <entry key="app/src/main/res/layout/item_categories.xml" value="0.2729278564453125" />
         <entry key="app/src/main/res/layout/item_crypto.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_crypto_shimmer.xml" value="0.109009009009009" />
         <entry key="app/src/main/res/layout/item_listings.xml" value="0.22293676312968919" />

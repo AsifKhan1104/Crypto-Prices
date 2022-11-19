@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.view.ui.explore.NewsViewModel
 import com.crypto.prices.view.ui.home.HomeViewModel
+import com.crypto.prices.view.ui.market.CategoriesViewModel
 import com.crypto.prices.view.ui.market.CryptoDetailViewModel
 import com.crypto.prices.view.ui.market.CryptoViewModel
 
@@ -29,6 +30,10 @@ class ViewModelFactory(
 
         if (modelClass.isAssignableFrom(CryptoDetailViewModel::class.java)) {
             return CryptoDetailViewModel(app, appRepository, map) as T
+        }
+
+        if (modelClass.isAssignableFrom(CategoriesViewModel::class.java)) {
+            return CategoriesViewModel(app, appRepository, map) as T
         }
         throw IllegalArgumentException("Unknown class name")
     }

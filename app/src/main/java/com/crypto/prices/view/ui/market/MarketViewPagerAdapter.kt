@@ -11,7 +11,7 @@ class MarketViewPagerAdapter(fm: FragmentManager, lf: Lifecycle) : FragmentState
 
     override fun createFragment(position: Int): Fragment = when (position) {
         0 -> CryptoFragment.newInstance()
-        1 -> CryptoFragment.newInstance()
+        1 -> CategoriesFragment.newInstance()
         else -> CryptoFragment.newInstance()
     }
 }

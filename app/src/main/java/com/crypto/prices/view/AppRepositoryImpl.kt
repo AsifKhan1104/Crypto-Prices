@@ -1,9 +1,6 @@
 package com.crypto.prices.view
 
-import com.crypto.prices.model.CryptoChartData
-import com.crypto.prices.model.CryptoData
-import com.crypto.prices.model.NewsData
-import com.crypto.prices.model.Trending
+import com.crypto.prices.model.*
 import com.crypto.prices.remote.Service
 import retrofit2.Response
 
@@ -22,7 +19,10 @@ class AppRepositoryImpl : AppRepository {
     ): Response<CryptoChartData> =
         service.getCryptoChart(id, map)
 
+    override suspend fun getCategories(): Response<List<CategoriesData>> = service.getCategories()
+
     override suspend fun getTrendingCoins(): Response<Trending> = service.getTrendingCoins()
+
     override suspend fun getAllNews(map: MutableMap<String, String>): Response<NewsData> =
         serviceNews.getAllNews(map)
 
