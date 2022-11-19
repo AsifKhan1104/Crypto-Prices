@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 newsFragment
             )
             add(R.id.container, homeFragment, getString(R.string.title_home)).hide(marketFragment)
-        }.commit()
+        }.commitNow()
 
         // handle bottom navigation
         binding?.bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         //transaction.addToBackStack(null)
         transaction.commitNow()*/
         fragmentManager.beginTransaction().hide(activeFragment).show(fragment)
-            .commit()
+            .commitNow()
     }
 
     // handling show more button from home page
