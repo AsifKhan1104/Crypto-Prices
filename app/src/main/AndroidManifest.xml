@@ -68,6 +68,9 @@
             android:name="com.crypto.prices.view.ui.market.CryptoDetailActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.crypto.prices.view.ui.market.CategoriesCoinListActivity"
+            android:screenOrientation="portrait" />
+        <!--<activity
             android:name="com.crypto.prices.view.activity.ProFeaturesActivity"
             android:label="@string/upgrade"
             android:screenOrientation="portrait" />
@@ -82,7 +85,7 @@
         <activity
             android:name="com.crypto.prices.view.activity.WithdrawHistoryOldActivity"
             android:label="@string/withdrawRequestsOld"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" />-->
 
         <service
             android:name="com.crypto.prices.utils.MyFirebaseMessagingService"

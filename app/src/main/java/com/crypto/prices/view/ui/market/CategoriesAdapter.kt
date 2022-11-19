@@ -61,8 +61,9 @@ class CategoriesAdapter(context: Context?, var data: List<CategoriesData>?) :
             // on click listener
             tableLayout.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
-                    val intent = Intent(context, CryptoDetailActivity::class.java)
-                    intent.putExtra("detail_data", data)
+                    val intent = Intent(context, CategoriesCoinListActivity::class.java)
+                    intent.putExtra("categoryId", data?.id)
+                    intent.putExtra("categoryName", data?.name)
                     context.startActivity(intent)
                 }
             })

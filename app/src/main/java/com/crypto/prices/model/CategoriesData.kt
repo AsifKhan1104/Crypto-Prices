@@ -1,10 +1,7 @@
 package com.crypto.prices.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
 import java.math.BigDecimal
 
-@Parcelize
 data class CategoriesData(
     val content: String,
     val id: String,
@@ -14,4 +11,4 @@ data class CategoriesData(
     val top_3_coins: List<String>,
     val updated_at: String,
     val volume_24h: BigDecimal
-) : Parcelable
+)

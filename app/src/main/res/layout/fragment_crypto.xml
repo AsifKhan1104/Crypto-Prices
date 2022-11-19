@@ -207,6 +207,18 @@
 
             <include layout="@layout/item_crypto_shimmer" />
 
+            <include layout="@layout/item_crypto_shimmer" />
+
+            <include layout="@layout/item_crypto_shimmer" />
+
+            <include layout="@layout/item_crypto_shimmer" />
+
+            <include layout="@layout/item_crypto_shimmer" />
+
+            <include layout="@layout/item_crypto_shimmer" />
+
+            <include layout="@layout/item_crypto_shimmer" />
+
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
