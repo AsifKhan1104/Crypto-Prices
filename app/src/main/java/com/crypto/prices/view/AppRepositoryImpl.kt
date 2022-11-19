@@ -19,7 +19,7 @@ class AppRepositoryImpl : AppRepository {
     ): Response<CryptoChartData> =
         service.getCryptoChart(id, map)
 
-    override suspend fun getCategories(): Response<List<CategoriesData>> = service.getCategories()
+    override suspend fun getCategories(map: MutableMap<String, String>): Response<List<CategoriesData>> = service.getCategories(map)
 
     override suspend fun getTrendingCoins(): Response<Trending> = service.getTrendingCoins()
 

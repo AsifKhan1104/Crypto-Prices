@@ -22,7 +22,7 @@ interface Api {
     ): Response<CryptoChartData>
 
     @GET("v3/coins/categories")
-    suspend fun getCategories(): Response<List<CategoriesData>>
+    suspend fun getCategories(@QueryMap map: Map<String, String>): Response<List<CategoriesData>>
 
     @GET("v3/search/trending")
     suspend fun getTrendingCoins(): Response<Trending>

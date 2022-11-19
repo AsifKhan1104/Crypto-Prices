@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.crypto.prices.databinding.FragmentCategoriesBinding
-import com.crypto.prices.databinding.FragmentCryptoBinding
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
@@ -66,11 +65,7 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
 
     private fun setUpViewModel() {
         map = HashMap()
-        /*map["vs_currency"] = "usd"
         map["order"] = selectedMarketCap
-        map["per_page"] = "250"
-        map["page"] = "1"
-        map["sparkline"] = false*/
 
         val repository = AppRepositoryImpl()
         val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
@@ -118,30 +113,21 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            /*binding.linearLayoutMC.id -> {
+            binding.linearLayoutMC.id -> {
                 if (selectedMarketCap.equals("market_cap_desc", true)) {
                     selectedMarketCap = "market_cap_asc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_up_24))
                     map["order"] = selectedMarketCap
-                    mCategoriesViewModel.getCrypto(map)
+                    mCategoriesViewModel.getDataViaApi(map)
                 } else {
                     selectedMarketCap = "market_cap_desc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_down_24))
                     map["order"] = selectedMarketCap
-                    mCategoriesViewModel.getCrypto(map)
+                    mCategoriesViewModel.getDataViaApi(map)
                 }
-            }*/
+            }
             else -> {
             }
         }
     }
-
-    /*override fun onResume() {
-        super.onResume()
-        // track screen event
-        val params = Bundle()
-        params.putString(FirebaseAnalytics.Param.SCREEN_NAME, "Market")
-        params.putString(FirebaseAnalytics.Param.SCREEN_CLASS, "MainActivity")
-        Firebase.analytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, params)
-    }*/
 }

@@ -22,10 +22,10 @@ class CategoriesViewModel(
     val categoriesLiveData: MutableLiveData<NetworkResult<List<CategoriesData>>> = MutableLiveData()
 
     init {
-        getCrypto(paramMap)
+        getDataViaApi(paramMap)
     }
 
-    fun getCrypto(mp: MutableMap<String, String>) = viewModelScope.launch {
+    fun getDataViaApi(mp: MutableMap<String, String>) = viewModelScope.launch {
         fetchData(mp)
     }
 
@@ -33,7 +33,7 @@ class CategoriesViewModel(
         categoriesLiveData.postValue(NetworkResult.Loading())
         try {
             if (Utility.isInternetAvailable()) {
-                val response = appRepository.getCategories()
+                val response = appRepository.getCategories(latestMap)
                 if (response.isSuccessful) {
                     categoriesLiveData.postValue(response.body()?.let { NetworkResult.Success(it) })
                 } else {

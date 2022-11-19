@@ -11,7 +11,7 @@ interface AppRepository {
         map: MutableMap<String, String>
     ): Response<CryptoChartData>
 
-    suspend fun getCategories(): Response<List<CategoriesData>>
+    suspend fun getCategories(map: MutableMap<String, String>): Response<List<CategoriesData>>
     suspend fun getTrendingCoins(): Response<Trending>
     suspend fun getAllNews(map: MutableMap<String, String>): Response<NewsData>
 }
