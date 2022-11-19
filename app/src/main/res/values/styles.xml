@@ -23,9 +23,14 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
     <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="background">@color/colorPrimary</item>
         <item name="tabIndicatorColor">@color/tab_indicator_color</item>
         <item name="tabIndicatorHeight">3dp</item>
         <item name="tabBackground">?attr/selectableItemBackground</item>
         <item name="tabSelectedTextColor">@color/tab_indicator_color</item>
+        <item name="tabTextColor">@android:color/darker_gray</item>
+        <item name="tabGravity">center</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabMode">scrollable</item>
     </style>
 </resources>
