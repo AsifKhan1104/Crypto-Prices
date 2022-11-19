@@ -6,12 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.crypto.prices.BuildConfig
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
+import com.crypto.prices.databinding.FragmentCurrencySelectBinding
 import com.crypto.prices.databinding.FragmentMoreBinding
 import com.crypto.prices.utils.CurrencyData
 import com.crypto.prices.utils.NetworkResult
@@ -20,6 +21,8 @@ import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.activity.PrivacyPolicyActivity
 import com.crypto.prices.view.activity.TnCActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
+
 
 class MoreFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentMoreBinding? = null
@@ -116,8 +119,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
                             //bind the data to the ui
                             //onLoadingFinished()
                             val currencyList = CurrencyData().buildCurrencyList(it?.rates)
-                            Log.e("currency", currencyList.size.toString())
-                            Log.e("currency", currencyList.toString())
+                            showBottomSheetDialog()
                         }
                     }
                     is NetworkResult.Error -> {
