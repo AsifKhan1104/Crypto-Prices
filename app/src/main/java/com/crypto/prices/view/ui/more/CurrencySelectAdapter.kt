@@ -1,7 +1,6 @@
 package com.crypto.prices.view.ui.more
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +11,6 @@ import com.crypto.prices.utils.CurrencyData
 import com.crypto.prices.utils.Utility
 import kotlinx.android.synthetic.main.item_crypto.view.textView_name
 import kotlinx.android.synthetic.main.item_currency_select.view.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 
 class CurrencySelectAdapter(
@@ -54,23 +50,23 @@ class CurrencySelectAdapter(
                     Utility.setCurrencySymbol(context as Activity, data?.symbol)
                     mItemClick.onItemClicked()
 
-                    // show dialog before restarting the app
+                    /*// show dialog before restarting the app
                     val builder = AlertDialog.Builder(context)
                     builder.setMessage("To make selected currency active, app restart is required. \nRestarting in 10 seconds")
                         .setTitle("Alert")
                         .setIcon(R.drawable.alert)
                     builder.setCancelable(false)
-                    /*.setNeutralButton("OK", { dialog, id ->
+                    *//*.setNeutralButton("OK", { dialog, id ->
                         Utility.restartApp(context)
-                    })*/
+                    })*//*
                     val alert: AlertDialog = builder.create()
                     alert.show()
 
                     // restarting the app in 10 secs
                     GlobalScope.launch {
-                        delay(10000)
-                        Utility.restartApp(context)
-                    }
+                        delay(10000)*/
+                    Utility.restartApp(context)
+                    /*}*/
                 }
             })
         }

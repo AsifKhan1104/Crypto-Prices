@@ -16,6 +16,7 @@ import com.crypto.prices.databinding.ActivityCryptoDetailBinding
 import com.crypto.prices.model.CryptoChartData
 import com.crypto.prices.model.CryptoData
 import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.utils.Utility
 import com.crypto.prices.utils.chart.CustomMarkerView
 import com.crypto.prices.utils.chart.XAxisValueFormatter
 import com.crypto.prices.utils.chart.YAxisValueFormatter
@@ -68,7 +69,7 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
             .into(binding.imageViewSymbol)
 
         binding.textViewSymbol.text = data?.symbol
-        binding.textViewPrice.text = "$" + data?.current_price?.toString()
+        binding.textViewPrice.text = Utility.getCurrencySymbol(this) + data?.current_price?.toString()
 
         // set arrow %
         var priceChangePercNegative = false
@@ -84,15 +85,15 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
             1, formattedPriceChangePerc.length
         ) else formattedPriceChangePerc + "%"
         binding.textViewMcr.text = "#" + data?.market_cap_rank?.toString()
-        binding.textViewMc.text = "$" + data?.market_cap?.toString()
+        binding.textViewMc.text = Utility.getCurrencySymbol(this) + data?.market_cap?.toString()
         binding.textViewFdmc.text =
-            if (data?.fully_diluted_valuation != null) "$" + data?.fully_diluted_valuation?.toString() else ""
+            if (data?.fully_diluted_valuation != null) Utility.getCurrencySymbol(this) + data?.fully_diluted_valuation?.toString() else ""
         binding.textViewTotalVol.text = data?.total_volume?.toString()
         binding.textViewMaxSupply.text = data?.max_supply?.toString()
         binding.textViewCircSupply.text = data?.circulating_supply?.toString()
         binding.textViewTotalSupply.text = data?.total_supply?.toString()
-        binding.textView24h.text = "$" + data?.high_24h?.toString()
-        binding.textView24l.text = "$" + data?.low_24h?.toString()
+        binding.textView24h.text = Utility.getCurrencySymbol(this) + data?.high_24h?.toString()
+        binding.textView24l.text = Utility.getCurrencySymbol(this) + data?.low_24h?.toString()
 
         // set arrow %
         var athChangePerc: String? = data?.ath_change_percentage?.toString()
@@ -112,9 +113,9 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         }
         binding.textViewAtlPerc.setCompoundDrawablesWithIntrinsicBounds(priceArrowAltL, 0, 0, 0)
 
-        binding.textViewAth.text = "$" + data?.ath?.toString()
+        binding.textViewAth.text = Utility.getCurrencySymbol(this) + data?.ath?.toString()
         binding.textViewAthPerc.text = athChangePerc + "%"
-        binding.textViewAtl.text = "$" + data?.atl?.toString()
+        binding.textViewAtl.text = Utility.getCurrencySymbol(this) + data?.atl?.toString()
         binding.textViewAtlPerc.text = atlChangePerc + "%"
 
         // on click listeners
@@ -264,7 +265,7 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         // create map of params needed for api
         val map: MutableMap<String, String> = HashMap()
         map["symbol"] = data?.id.toString()
-        map["currency"] = "usd"
+        Utility.getCurrency(this)?.let { map["currency"] = it }
         // default day selection
         binding.textView24hr.isSelected = true
         selectedTextViewTimeFilter = binding.textView24hr

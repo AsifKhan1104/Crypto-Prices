@@ -13,6 +13,7 @@ import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.crypto.prices.databinding.FragmentCryptoBinding
 import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 
@@ -59,13 +60,14 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     }
 
     private fun initData() {
+        binding.textViewPrice.text = "Price (" + Utility.getCurrencySymbol(requireActivity()) + ")"
         // on click listener
         binding.linearLayoutMC.setOnClickListener(this)
     }
 
     private fun setUpViewModel() {
         map = HashMap()
-        map["vs_currency"] = "usd"
+        Utility.getCurrency(requireActivity())?.let { map["vs_currency"] = it }
         map["order"] = selectedMarketCap
         map["per_page"] = "250"
         map["page"] = "1"
