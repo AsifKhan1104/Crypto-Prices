@@ -85,6 +85,7 @@ class MainActivity : AppCompatActivity() {
             // set default currency as usd
             Utility.setCurrency(this, "usd")
             Utility.setCurrencyName(this, "US Dollar")
+            Utility.setCurrencySymbol(this, "$")
         }
     }
 

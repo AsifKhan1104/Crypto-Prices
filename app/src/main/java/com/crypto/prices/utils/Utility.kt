@@ -271,6 +271,14 @@ object Utility {
         }
     }
 
+    fun setCurrencySymbol(activity: Activity, currency: String?) {
+        val sharedPref = activity.getPreferences(AppCompatActivity.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putString("selected_currency_symbol", currency)
+            apply()
+        }
+    }
+
     // get currency from shared prefs
     fun getCurrency(activity: Activity): String? {
         val sharedPref = activity.getPreferences(AppCompatActivity.MODE_PRIVATE)
@@ -281,6 +289,12 @@ object Utility {
     fun getCurrencyName(activity: Activity): String? {
         val sharedPref = activity.getPreferences(AppCompatActivity.MODE_PRIVATE)
         val selectedCurrency = sharedPref.getString("selected_currency_name", null)
+        return selectedCurrency
+    }
+
+    fun getCurrencySymbol(activity: Activity): String? {
+        val sharedPref = activity.getPreferences(AppCompatActivity.MODE_PRIVATE)
+        val selectedCurrency = sharedPref.getString("selected_currency_symbol", null)
         return selectedCurrency
     }
 

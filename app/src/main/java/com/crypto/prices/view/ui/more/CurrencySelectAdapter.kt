@@ -51,6 +51,7 @@ class CurrencySelectAdapter(
                     // save selected currency in shared prefs
                     Utility.setCurrency(context as Activity, data?.currency)
                     Utility.setCurrencyName(context as Activity, data?.name)
+                    Utility.setCurrencySymbol(context as Activity, data?.symbol)
                     mItemClick.onItemClicked()
 
                     // show dialog before restarting the app

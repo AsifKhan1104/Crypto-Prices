@@ -51,7 +51,8 @@ class MoreFragment : Fragment(), View.OnClickListener {
     private fun setUpViewModel() {
         val repository = AppRepositoryImpl()
         val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
-        mCurrencySelectViewModel = ViewModelProvider(this, factory).get(CurrencySelectViewModel::class.java)
+        mCurrencySelectViewModel =
+            ViewModelProvider(this, factory).get(CurrencySelectViewModel::class.java)
     }
 
     private fun setUpData() {
@@ -61,7 +62,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
         binding.textViewAppVersion.text =
             getString(R.string.app_name) + " " + BuildConfig.VERSION_NAME
         binding.textViewCurrencySelected.text = Utility.getCurrencyName(requireActivity()) + " (" +
-                Utility.getCurrency(requireActivity()) + ")"
+                Utility.getCurrencySymbol(requireActivity()) + ")"
 
         // on click listeners
         binding.relativeLayoutRateUs.setOnClickListener(this)
