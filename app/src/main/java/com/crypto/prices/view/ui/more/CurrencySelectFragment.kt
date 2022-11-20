@@ -1,20 +1,15 @@
 package com.crypto.prices.view.ui.more
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.databinding.FragmentCurrencySelectBinding
-import com.crypto.prices.utils.CurrencyData
 import com.crypto.prices.utils.SharedPrefsDataRetrieval
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
-
-class CurrencySelectFragment : BottomSheetDialogFragment() {
+class CurrencySelectFragment : BottomSheetDialogFragment(), CurrencySelectAdapter.ItemClick {
     private var _binding: FragmentCurrencySelectBinding? = null
     private val TAG = CurrencySelectFragment.javaClass.simpleName
 
@@ -47,7 +42,7 @@ class CurrencySelectFragment : BottomSheetDialogFragment() {
 
         binding.recyclerViewCurrency.layoutManager =
             LinearLayoutManager(context)
-        binding.recyclerViewCurrency.adapter = CurrencySelectAdapter(context, currencyList)
+        binding.recyclerViewCurrency.adapter = CurrencySelectAdapter(context, currencyList, this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,5 +51,10 @@ class CurrencySelectFragment : BottomSheetDialogFragment() {
 
     companion object {
         fun newInstance(): CurrencySelectFragment = CurrencySelectFragment()
+    }
+
+    override fun onItemClicked() {
+        // dimiss bottom sheet
+        dismiss()
     }
 }

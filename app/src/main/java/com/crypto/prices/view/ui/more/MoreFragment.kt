@@ -61,6 +61,8 @@ class MoreFragment : Fragment(), View.OnClickListener {
         binding.textViewShare.text = "Share the ${getString(R.string.app_name)} App"
         binding.textViewAppVersion.text =
             getString(R.string.app_name) + " " + BuildConfig.VERSION_NAME
+        binding.textViewCurrencySelected.text = Utility.getCurrencyName(requireActivity()) + " (" +
+                Utility.getCurrency(requireActivity()) + ")"
 
         // on click listeners
         binding.relativeLayoutRateUs.setOnClickListener(this)

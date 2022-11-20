@@ -262,10 +262,24 @@ object Utility {
         }
     }
 
+    fun setCurrencyName(activity: Activity, currency: String?) {
+        val sharedPref = activity.getPreferences(AppCompatActivity.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putString("selected_currency_name", currency)
+            apply()
+        }
+    }
+
     // get currency from shared prefs
     fun getCurrency(activity: Activity): String? {
         val sharedPref = activity.getPreferences(AppCompatActivity.MODE_PRIVATE)
         val selectedCurrency = sharedPref.getString("selected_currency", null)
+        return selectedCurrency
+    }
+
+    fun getCurrencyName(activity: Activity): String? {
+        val sharedPref = activity.getPreferences(AppCompatActivity.MODE_PRIVATE)
+        val selectedCurrency = sharedPref.getString("selected_currency_name", null)
         return selectedCurrency
     }
 }
