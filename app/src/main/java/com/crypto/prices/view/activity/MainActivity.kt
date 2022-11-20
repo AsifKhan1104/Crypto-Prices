@@ -106,6 +106,7 @@ class MainActivity : AppCompatActivity() {
     fun clickExploreMenu() {
         binding?.bottomNavigationView?.menu.getItem(2).setChecked(true)
         openFragment(newsFragment)
+        activeFragment = newsFragment
     }
 
     /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
