@@ -3,7 +3,7 @@ package com.crypto.prices.view
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.view.ui.more.MoreViewModel
+import com.crypto.prices.view.ui.more.CurrencySelectViewModel
 import com.crypto.prices.view.ui.explore.NewsViewModel
 import com.crypto.prices.view.ui.home.HomeViewModel
 import com.crypto.prices.view.ui.market.CategoriesViewModel
@@ -37,8 +37,8 @@ class ViewModelFactory(
             return CategoriesViewModel(app, appRepository, map) as T
         }
 
-        if (modelClass.isAssignableFrom(MoreViewModel::class.java)) {
-            return MoreViewModel(app, appRepository, map) as T
+        if (modelClass.isAssignableFrom(CurrencySelectViewModel::class.java)) {
+            return CurrencySelectViewModel(app, appRepository, map) as T
         }
         throw IllegalArgumentException("Unknown class name")
     }

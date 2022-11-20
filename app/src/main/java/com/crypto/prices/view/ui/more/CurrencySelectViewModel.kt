@@ -12,7 +12,7 @@ import com.crypto.prices.view.AppRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-class MoreViewModel(
+class CurrencySelectViewModel(
     app: CryptoApplication,
     private val appRepository: AppRepository,
     map: MutableMap<String, String>

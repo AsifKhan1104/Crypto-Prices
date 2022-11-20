@@ -24,10 +24,9 @@ import com.crypto.prices.view.activity.PrivacyPolicyActivity
 import com.crypto.prices.view.activity.TnCActivity
 import com.google.gson.Gson
 
-
 class MoreFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentMoreBinding? = null
-    private lateinit var mMoreViewModel: MoreViewModel
+    private lateinit var mCurrencySelectViewModel: CurrencySelectViewModel
     private val TAG = MoreFragment.javaClass.simpleName
 
     // This property is only valid between onCreateView and
@@ -52,7 +51,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
     private fun setUpViewModel() {
         val repository = AppRepositoryImpl()
         val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
-        mMoreViewModel = ViewModelProvider(this, factory).get(MoreViewModel::class.java)
+        mCurrencySelectViewModel = ViewModelProvider(this, factory).get(CurrencySelectViewModel::class.java)
     }
 
     private fun setUpData() {
@@ -123,7 +122,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
 
     fun loadData() {
         try {
-            mMoreViewModel.exchangeRateLiveData.observe(viewLifecycleOwner, Observer {
+            mCurrencySelectViewModel.exchangeRateLiveData.observe(viewLifecycleOwner, Observer {
                 // blank observe here
                 when (it) {
                     is NetworkResult.Success -> {
