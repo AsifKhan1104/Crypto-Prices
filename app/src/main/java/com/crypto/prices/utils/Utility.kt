@@ -15,6 +15,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import com.crypto.prices.BuildConfig
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
+import com.crypto.prices.view.activity.MainActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
@@ -281,6 +282,13 @@ object Utility {
         val sharedPref = activity.getPreferences(AppCompatActivity.MODE_PRIVATE)
         val selectedCurrency = sharedPref.getString("selected_currency_name", null)
         return selectedCurrency
+    }
+
+    // restart app method
+    fun restartApp(context: Context) {
+        val intent = Intent(context, MainActivity::class.java)
+        context.startActivity(intent)
+        (context as Activity).finishAffinity()
     }
 }
 
