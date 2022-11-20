@@ -57,6 +57,7 @@
         <entry key="app/src/main/res/layout/custom_marker_view.xml" value="0.5230236706432996" />
         <entry key="app/src/main/res/layout/fragment_categories.xml" value="0.23191053602430559" />
         <entry key="app/src/main/res/layout/fragment_crypto.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_currency_select.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_earn.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2822695035460993" />
@@ -73,7 +74,7 @@
         <entry key="app/src/main/res/layout/item_categories.xml" value="0.2729278564453125" />
         <entry key="app/src/main/res/layout/item_crypto.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_crypto_shimmer.xml" value="0.109009009009009" />
-        <entry key="app/src/main/res/layout/item_currency_select.xml" value="0.31721038818359376" />
+        <entry key="app/src/main/res/layout/item_currency_select.xml" value="0.2506927490234375" />
         <entry key="app/src/main/res/layout/item_listings.xml" value="0.22293676312968919" />
         <entry key="app/src/main/res/layout/item_market.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_market2.xml" value="0.11441441441441441" />

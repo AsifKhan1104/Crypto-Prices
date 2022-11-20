@@ -16,6 +16,7 @@ import com.crypto.prices.R
 import com.crypto.prices.databinding.FragmentMoreBinding
 import com.crypto.prices.utils.CurrencyData
 import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.utils.SharedPrefsDataRetrieval
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
@@ -102,8 +103,17 @@ class MoreFragment : Fragment(), View.OnClickListener {
                 startActivity(intent)
             }
             binding.relativeLayoutCC.id -> {
-                setUpViewModel()
-                loadData()
+                // get currency list from shared prefs
+                var currencyList = SharedPrefsDataRetrieval().getData(requireActivity())
+                if (currencyList == null) {
+                    setUpViewModel()
+                    loadData()
+                } else {
+                    // load currency list from shared prefs
+                    // open bottom sheet dialog fragment
+                    val fragment = CurrencySelectFragment()
+                    fragment.show(requireActivity()?.supportFragmentManager, "")
+                }
             }
             else -> {}
         }

@@ -42,6 +42,9 @@ class CurrencySelectFragment : BottomSheetDialogFragment() {
             // creating a new array list.
             currencyList = ArrayList()
         }
+        // sort by type fiat / crypto
+        currencyList.sortBy { it.type }
+
         binding.recyclerViewCurrency.layoutManager =
             LinearLayoutManager(context)
         binding.recyclerViewCurrency.adapter = CurrencySelectAdapter(context, currencyList)

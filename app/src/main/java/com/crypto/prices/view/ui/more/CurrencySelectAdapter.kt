@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.crypto.prices.R
 import com.crypto.prices.utils.CurrencyData
 import kotlinx.android.synthetic.main.item_crypto.view.textView_name
-import kotlinx.android.synthetic.main.item_crypto.view.textView_symbol
 import kotlinx.android.synthetic.main.item_currency_select.view.*
 
 class CurrencySelectAdapter(context: Context?, var data: List<CurrencyData>?) :
@@ -28,13 +27,9 @@ class CurrencySelectAdapter(context: Context?, var data: List<CurrencyData>?) :
     class CryptoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val parentLayout = view.parent_layout
         private val textViewName = view.textView_name
-        private val textViewCurrency = view.textView_currency
-        private val textViewSymbol = view.textView_symbol
 
         fun bind(context: Context, position: Int, data: CurrencyData?) {
-            textViewName.text = data?.name
-            textViewCurrency.text = data?.currency
-            textViewSymbol.text = data?.symbol
+            textViewName.text = data?.name + " (" + data?.symbol + ")"
 
             // on click listener
             parentLayout.setOnClickListener(object : View.OnClickListener {
