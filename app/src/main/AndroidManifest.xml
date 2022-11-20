@@ -22,8 +22,9 @@
             android:value="@string/startapp_app_id" />
 
         <activity
-            android:name="com.crypto.prices.view.activity.SplashActivity"
+            android:name=".view.activity.SplashActivity"
             android:configChanges="orientation"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -33,62 +34,62 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.crypto.prices.view.ui.NavDrawerMainActivity"
+            android:name=".view.ui.NavDrawerMainActivity"
             android:exported="false"
             android:label="@string/title_market"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.crypto.prices.view.activity.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:exported="false"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.crypto.prices.view.activity.MainActivityOld"
+            android:name=".view.activity.MainActivityOld"
             android:exported="false"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.crypto.prices.view.activity.MainActivitySuperOld"
+            android:name=".view.activity.MainActivitySuperOld"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.crypto.prices.view.activity.SignInActivity"
+            android:name=".view.activity.SignInActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.crypto.prices.view.activity.TnCActivity"
+            android:name=".view.activity.TnCActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.crypto.prices.view.activity.PrivacyPolicyActivity"
+            android:name=".view.activity.PrivacyPolicyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.crypto.prices.view.activity.ResetPwdActivity"
+            android:name=".view.activity.ResetPwdActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.crypto.prices.view.ui.market.CryptoDetailActivity"
+            android:name=".view.ui.market.CryptoDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.crypto.prices.view.ui.market.CategoriesCoinListActivity"
+            android:name=".view.ui.market.CategoriesCoinListActivity"
             android:screenOrientation="portrait" />
         <!--<activity
-            android:name="com.crypto.prices.view.activity.ProFeaturesActivity"
+            android:name=".view.activity.ProFeaturesActivity"
             android:label="@string/upgrade"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.crypto.prices.view.activity.SettingsActivity"
+            android:name=".view.activity.SettingsActivity"
             android:label="@string/settings"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.crypto.prices.view.activity.WithdrawHistoryActivity"
+            android:name=".view.activity.WithdrawHistoryActivity"
             android:label="@string/withdrawRequests"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.crypto.prices.view.activity.WithdrawHistoryOldActivity"
+            android:name=".view.activity.WithdrawHistoryOldActivity"
             android:label="@string/withdrawRequestsOld"
             android:screenOrientation="portrait" />-->
 
         <service
-            android:name="com.crypto.prices.utils.MyFirebaseMessagingService"
+            android:name=".MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
