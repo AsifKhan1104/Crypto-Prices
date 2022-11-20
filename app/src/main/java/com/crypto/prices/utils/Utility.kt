@@ -10,6 +10,7 @@ import android.net.*
 import android.os.Build
 import android.util.Patterns
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import com.crypto.prices.BuildConfig
 import com.crypto.prices.CryptoApplication
@@ -250,6 +251,22 @@ object Utility {
             Uri.parse(url)
         )
         context.startActivity(browserIntent)
+    }
+
+    // save currency in shared prefs
+    fun setCurrency(activity: Activity, currency: String?) {
+        val sharedPref = activity.getPreferences(AppCompatActivity.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putString("selected_currency", currency)
+            apply()
+        }
+    }
+
+    // get currency from shared prefs
+    fun getCurrency(activity: Activity): String? {
+        val sharedPref = activity.getPreferences(AppCompatActivity.MODE_PRIVATE)
+        val selectedCurrency = sharedPref.getString("selected_currency", null)
+        return selectedCurrency
     }
 }
 

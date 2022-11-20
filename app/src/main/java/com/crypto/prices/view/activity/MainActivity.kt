@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.crypto.prices.R
 import com.crypto.prices.databinding.ActivityMainBinding
-import com.crypto.prices.view.ui.more.MoreFragment
+import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.ui.explore.NewsFragment
 import com.crypto.prices.view.ui.home.HomeFragment
 import com.crypto.prices.view.ui.market.MarketFragment
+import com.crypto.prices.view.ui.more.MoreFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setDefaultCurrency()
         // default home page
         openFragment(homeFragment)
 
@@ -72,6 +75,15 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+    }
+
+    // set default currency in shared prefs
+    private fun setDefaultCurrency() {
+        val selectedCurrency = Utility.getCurrency(this)
+        if (selectedCurrency == null) {
+            // set default currency as usd
+            Utility.setCurrency(this, "usd")
         }
     }
 
