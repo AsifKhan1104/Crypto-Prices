@@ -22,21 +22,21 @@ import com.crypto.prices.utils.MySharedPrefs
 import com.crypto.prices.utils.TableManagement
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.activity.ProFeaturesActivity
-import com.startapp.sdk.adsbase.Ad
+/*import com.startapp.sdk.adsbase.Ad
 import com.startapp.sdk.adsbase.StartAppAd
 import com.startapp.sdk.adsbase.StartAppSDK
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener
-import com.startapp.sdk.adsbase.adlisteners.VideoListener
+import com.startapp.sdk.adsbase.adlisteners.VideoListener*/
 import com.unity3d.ads.IUnityAdsListener
 import com.unity3d.ads.UnityAds
 import com.unity3d.ads.metadata.MetaData
 import kotlinx.android.synthetic.main.fragment_earn.*
 
-class FragmentEarn : Fragment(), View.OnClickListener, VideoListener, IUnityAdsListener {
+class FragmentEarn : Fragment(), View.OnClickListener, /*VideoListener,*/ IUnityAdsListener {
     private val TAG = FragmentEarn::class.java.simpleName
     private var mUser: User? = null
     private var mUid: String? = null
-    private lateinit var mStartAppAd: StartAppAd
+    // private lateinit var mStartAppAd: StartAppAd
     private lateinit var mProgressDialog: ProgressDialog
     private val testMode = false
     private val surfacingId = "Rewarded_Video"
@@ -63,8 +63,8 @@ class FragmentEarn : Fragment(), View.OnClickListener, VideoListener, IUnityAdsL
         setData()
 
         // initialize startapp sdk
-        StartAppSDK.setTestAdsEnabled(BuildConfig.DEBUG);
-        initStartAppAd()
+        /*StartAppSDK.setTestAdsEnabled(BuildConfig.DEBUG);
+        initStartAppAd()*/
 
         // Initialize the SDK:
         UnityAds.initialize(activity, getString(R.string.unity_ad_id), testMode)
@@ -82,8 +82,8 @@ class FragmentEarn : Fragment(), View.OnClickListener, VideoListener, IUnityAdsL
     }
 
     private fun initStartAppAd() {
-        mStartAppAd = StartAppAd(requireContext())
-        mStartAppAd.setVideoListener(this)
+        /*mStartAppAd = StartAppAd(requireContext())
+        mStartAppAd.setVideoListener(this)*/
     }
 
     private fun setData() {
@@ -247,10 +247,10 @@ class FragmentEarn : Fragment(), View.OnClickListener, VideoListener, IUnityAdsL
         )
     }
 
-    override fun onVideoCompleted() {
+    /*override fun onVideoCompleted() {
         // on video completion, reward user
         rewardUser()
-    }
+    }*/
 
     fun showProgressDialog() {
         if (activity != null) {

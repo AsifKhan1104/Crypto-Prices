@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.startapp.sdk.ads.banner.Banner
+        <!--<com.startapp.sdk.ads.banner.Banner
             android:id="@+id/adViewTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutReferApp1"
@@ -157,7 +157,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonStartMining" />
 
-        <com.startapp.sdk.ads.banner.Banner
+        <!--<com.startapp.sdk.ads.banner.Banner
             android:id="@+id/adViewBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonStartMiningPro" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonStartMiningPro" />-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutReferApp"

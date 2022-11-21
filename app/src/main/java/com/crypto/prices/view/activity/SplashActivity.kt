@@ -13,8 +13,8 @@ import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.crypto.prices.R
 import com.crypto.prices.databinding.ActivitySplashBinding
 import com.crypto.prices.utils.TableManagement
-import com.startapp.sdk.adsbase.StartAppAd
-import com.startapp.sdk.adsbase.StartAppSDK
+/*import com.startapp.sdk.adsbase.StartAppAd
+import com.startapp.sdk.adsbase.StartAppSDK*/
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -39,8 +39,8 @@ class SplashActivity : AppCompatActivity() {
         remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
 
         // initialize start app sdk
-        StartAppSDK.init(this, getString(R.string.startapp_app_id), false)
-        StartAppAd.disableSplash()
+        /*StartAppSDK.init(this, getString(R.string.startapp_app_id), false)
+        StartAppAd.disableSplash()*/
 
         // Initialize Firebase Auth
         auth = Firebase.auth
