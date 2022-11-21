@@ -40,6 +40,12 @@ class CurrencySelectAdapter(
 
         fun bind(context: Context, position: Int, data: CurrencyData?) {
             textViewName.text = data?.name + " (" + data?.symbol + ")"
+            val currentSelectedCurrency = Utility.getCurrency(context as Activity).let { it }
+            if (data?.currency!!.equals(currentSelectedCurrency)) {
+                parentLayout.background = context.getDrawable(R.drawable.list_pressed)
+            } else {
+                parentLayout.background = context.getDrawable(R.drawable.list_not_pressed)
+            }
 
             // on click listener
             parentLayout.setOnClickListener(object : View.OnClickListener {
