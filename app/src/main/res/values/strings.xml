@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Crypto Prices</string>
+    <string name="app_name">CryptoTrail</string>
     <string name="earned_coins">Earned Coins</string>
     <string name="start_mining">Start Mining</string>
     <string name="title_activity_splash">SplashActivity</string>
