@@ -69,7 +69,8 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
             .into(binding.imageViewSymbol)
 
         binding.textViewSymbol.text = data?.symbol
-        binding.textViewPrice.text = Utility.getCurrencySymbol(this) + data?.current_price?.toString()
+        binding.textViewPrice.text =
+            Utility.getCurrencySymbol(this) + data?.current_price?.toString()
 
         // set arrow %
         var priceChangePercNegative = false
@@ -140,7 +141,8 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
 
         chart.setNoDataText("Building chart ...");
         // description text
-        chart.description.text = "price ($) vs time"
+        chart.description.text =
+            "price (" + Utility.getCurrencySymbol(this)?.let { it } + ") vs time"
         chart.description.isEnabled = true
 
         // enable touch gestures
