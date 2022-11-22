@@ -70,6 +70,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
         binding.relativeLayoutCS.setOnClickListener(this)
         binding.relativeLayoutCG.setOnClickListener(this)
         binding.relativeLayoutFI.setOnClickListener(this)
+        binding.relativeLayoutGames.setOnClickListener(this)
         binding.relativeLayoutPP.setOnClickListener(this)
         binding.relativeLayoutTnC.setOnClickListener(this)
         binding.relativeLayoutCC.setOnClickListener(this)
@@ -95,6 +96,12 @@ class MoreFragment : Fragment(), View.OnClickListener {
             }
             binding.relativeLayoutFI.id -> {
                 Utility.openWebURL(requireContext(), "https://www.flaticon.com")
+            }
+            binding.relativeLayoutGames.id -> {
+                Utility.openChromeCustomTabUrlNews(
+                    requireContext(),
+                    requireContext().getString(R.string.gamezop_url)
+                )
             }
             binding.relativeLayoutPP.id -> {
                 val intent = Intent(requireContext(), PrivacyPolicyActivity::class.java)

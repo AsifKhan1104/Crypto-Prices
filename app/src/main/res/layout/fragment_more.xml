@@ -383,10 +383,42 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/relativeLayoutPP"
+                    android:id="@+id/relativeLayoutGames"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewGames"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/games" />
+
+                    <TextView
+                        android:id="@+id/textViewGames"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/imageViewGames"
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:text="Games"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_margin="10dp"
+                    android:alpha="0.5"
+                    android:background="@color/divider_color"
+                    app:layout_constraintTop_toBottomOf="@+id/table_layout" />
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutPP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageViewPP"

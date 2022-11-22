@@ -16,10 +16,6 @@ import com.crypto.prices.BuildConfig
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.crypto.prices.view.activity.MainActivity
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.analytics.ktx.logEvent
-import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 
 object Utility {
