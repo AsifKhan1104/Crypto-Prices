@@ -9,6 +9,7 @@ import com.crypto.prices.view.ui.home.HomeViewModel
 import com.crypto.prices.view.ui.market.CategoriesViewModel
 import com.crypto.prices.view.ui.market.CryptoDetailViewModel
 import com.crypto.prices.view.ui.market.CryptoViewModel
+import com.crypto.prices.view.ui.market.NftViewModel
 
 class ViewModelFactory(
     val app: CryptoApplication,
@@ -35,6 +36,10 @@ class ViewModelFactory(
 
         if (modelClass.isAssignableFrom(CategoriesViewModel::class.java)) {
             return CategoriesViewModel(app, appRepository, map) as T
+        }
+
+        if (modelClass.isAssignableFrom(NftViewModel::class.java)) {
+            return NftViewModel(app, appRepository, map) as T
         }
 
         if (modelClass.isAssignableFrom(CurrencySelectViewModel::class.java)) {

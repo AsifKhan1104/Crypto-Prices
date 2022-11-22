@@ -7,11 +7,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class MarketViewPagerAdapter(fm: FragmentManager, lf: Lifecycle) : FragmentStateAdapter(fm, lf) {
 
-    override fun getItemCount(): Int = 2
+    override fun getItemCount(): Int = 3
 
     override fun createFragment(position: Int): Fragment = when (position) {
         0 -> CryptoFragment.newInstance()
         1 -> CategoriesFragment.newInstance()
+        2 -> NftFragment.newInstance()
         else -> CryptoFragment.newInstance()
     }
 }
