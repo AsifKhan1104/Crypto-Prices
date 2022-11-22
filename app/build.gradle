@@ -67,7 +67,7 @@ dependencies {
     // start app sdk
     // implementation 'com.startapp:inapp-sdk:4.10.2'
     // unity ads
-    implementation(name: 'unity_ads', ext: 'aar')
+    implementation(name: 'unity_ads_441', ext: 'aar')
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     // Retrofit dependency
