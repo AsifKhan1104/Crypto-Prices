@@ -28,6 +28,9 @@ interface Api {
     @GET("v3/nfts/list")
     suspend fun getNfts(@QueryMap map: Map<String, String>): Response<List<NftData>>
 
+    @GET("v3/nfts/{id}")
+    suspend fun getNftData(@Path("id") id: String): Response<NftDetailData>
+
     @GET("v3/search/trending")
     suspend fun getTrendingCoins(): Response<Trending>
 

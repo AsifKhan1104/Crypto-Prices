@@ -3,13 +3,10 @@ package com.crypto.prices.view
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.view.ui.more.CurrencySelectViewModel
 import com.crypto.prices.view.ui.explore.NewsViewModel
 import com.crypto.prices.view.ui.home.HomeViewModel
-import com.crypto.prices.view.ui.market.CategoriesViewModel
-import com.crypto.prices.view.ui.market.CryptoDetailViewModel
-import com.crypto.prices.view.ui.market.CryptoViewModel
-import com.crypto.prices.view.ui.market.NftViewModel
+import com.crypto.prices.view.ui.market.*
+import com.crypto.prices.view.ui.more.CurrencySelectViewModel
 
 class ViewModelFactory(
     val app: CryptoApplication,
@@ -40,6 +37,10 @@ class ViewModelFactory(
 
         if (modelClass.isAssignableFrom(NftViewModel::class.java)) {
             return NftViewModel(app, appRepository, map) as T
+        }
+
+        if (modelClass.isAssignableFrom(NftDetailViewModel::class.java)) {
+            return NftDetailViewModel(app, appRepository, map) as T
         }
 
         if (modelClass.isAssignableFrom(CurrencySelectViewModel::class.java)) {
