@@ -19,6 +19,7 @@ class NftFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentNftBinding? = null
     private lateinit var mViewModel: NftViewModel
     private val TAG = NftFragment.javaClass.simpleName
+    private var selectedMarketCap: String = "market_cap_usd_desc"
 
     //private var selectedMarketCap: String = "market_cap_desc"
     private lateinit var map: MutableMap<String, String>
@@ -66,10 +67,10 @@ class NftFragment : Fragment(), View.OnClickListener {
 
     private fun setUpViewModel() {
         map = HashMap()
-        /*Utility.getCurrency(requireActivity())?.let { map["vs_currency"] = it }
+        /*Utility.getCurrency(requireActivity())?.let { map["vs_currency"] = it }*/
         map["order"] = selectedMarketCap
         map["per_page"] = "250"
-        map["page"] = "1"
+        /*map["page"] = "1"
         map["sparkline"] = "false"*/
 
         val repository = AppRepositoryImpl()
