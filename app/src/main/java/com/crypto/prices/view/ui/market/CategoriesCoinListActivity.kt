@@ -106,7 +106,7 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
                             onLoadingFinished()
                             binding.recyclerViewCrypto.layoutManager =
                                 LinearLayoutManager(this)
-                            binding.recyclerViewCrypto.adapter = CryptoAdapter(this, it)
+                            binding.recyclerViewCrypto.adapter = CryptoAdapter(this, it.toMutableList())
                         }
                     }
                     is NetworkResult.Error -> {

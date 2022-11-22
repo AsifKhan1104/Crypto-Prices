@@ -15,6 +15,8 @@ import com.crypto.prices.databinding.FragmentCryptoBinding
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
+import com.crypto.prices.view.PaginationListener
+import com.crypto.prices.view.PaginationListener.PAGE_START
 import com.crypto.prices.view.ViewModelFactory
 
 class CryptoFragment : Fragment(), View.OnClickListener {
@@ -23,6 +25,12 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     private val TAG = CryptoFragment.javaClass.simpleName
     private var selectedMarketCap: String = "market_cap_desc"
     private lateinit var map: MutableMap<String, String>
+
+    var currentPage: Int = PAGE_START
+    var isLastPage = false
+    var totalPage = 10
+    var mIsLoading = false
+    var itemCount = 0
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -63,6 +71,27 @@ class CryptoFragment : Fragment(), View.OnClickListener {
         binding.textViewPrice.text = "Price (" + Utility.getCurrencySymbol(requireActivity()) + ")"
         // on click listener
         binding.linearLayoutMC.setOnClickListener(this)
+        /**
+         * add scroll listener while user reach in bottom load more will call
+         */
+        binding.recyclerViewCrypto.addOnScrollListener(Listener(LinearLayoutManager(requireContext())))
+    }
+
+    inner class Listener(manager: LinearLayoutManager): PaginationListener(manager){
+        override fun loadMoreItems() {
+            mIsLoading = true
+            currentPage++
+            loadData()
+        }
+
+        override fun isLastPage(): Boolean {
+            return isLastPage
+        }
+
+        override fun isLoading(): Boolean {
+            return isLoading
+        }
+
     }
 
     private fun setUpViewModel() {
@@ -94,7 +123,22 @@ class CryptoFragment : Fragment(), View.OnClickListener {
                             onLoadingFinished()
                             binding.recyclerViewCrypto.layoutManager =
                                 LinearLayoutManager(context)
-                            binding.recyclerViewCrypto.adapter = CryptoAdapter(context, it)
+                            var adapter = CryptoAdapter(context, it.toMutableList())
+                            binding.recyclerViewCrypto.adapter = adapter
+
+                            /**
+                             * manage progress view
+                             */
+                            if (currentPage != PAGE_START) adapter.removeLoading()
+                            adapter.addItems(it.toMutableList());
+                            //swipeRefresh.setRefreshing(false);
+                            // check weather is last page or not
+                            if (currentPage < totalPage) {
+                                adapter.addLoading();
+                            } else {
+                                isLastPage = true;
+                            }
+                            mIsLoading = false;
                         }
                     }
                     is NetworkResult.Error -> {

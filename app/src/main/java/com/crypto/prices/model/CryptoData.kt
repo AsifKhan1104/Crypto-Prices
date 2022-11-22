@@ -32,7 +32,36 @@ data class CryptoData(
     val symbol: String?,
     val total_supply: BigDecimal?,
     val total_volume: BigDecimal?
-) : Parcelable
+) : Parcelable {
+    constructor() : this(
+        BigDecimal.ZERO,
+        BigDecimal.ZERO,
+        "",
+        BigDecimal.ZERO,
+        BigDecimal.ZERO,
+        "",
+        BigDecimal.ZERO,
+        BigDecimal.ZERO,
+        BigDecimal.ZERO,
+        BigDecimal.ZERO,
+        "",
+        "",
+        "",
+        BigDecimal.ZERO,
+        BigDecimal.ZERO,
+        BigDecimal.ZERO,
+        BigDecimal.ZERO,
+        0,
+        BigDecimal.ZERO,
+        "",
+        BigDecimal.ZERO,
+        BigDecimal.ZERO,
+        //val roi: Roi,
+        "",
+        BigDecimal.ZERO,
+        BigDecimal.ZERO
+    )
+}
 
 data class Roi(
     val currency: String?,

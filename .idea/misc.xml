@@ -87,6 +87,7 @@
         <entry key="app/src/main/res/layout/item_crypto_shimmer.xml" value="0.109009009009009" />
         <entry key="app/src/main/res/layout/item_currency_select.xml" value="0.2506927490234375" />
         <entry key="app/src/main/res/layout/item_listings.xml" value="0.22293676312968919" />
+        <entry key="app/src/main/res/layout/item_loading.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_market.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_market2.xml" value="0.11441441441441441" />
         <entry key="app/src/main/res/layout/item_news.xml" value="0.2715057373046875" />
