@@ -12,7 +12,7 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.crypto.prices.R
 import com.crypto.prices.databinding.ActivitySplashBinding
-import com.crypto.prices.utils.TableManagement
+
 /*import com.startapp.sdk.adsbase.StartAppAd
 import com.startapp.sdk.adsbase.StartAppSDK*/
 
@@ -69,30 +69,6 @@ class SplashActivity : AppCompatActivity() {
                 startSplashTask()
             }*/
         startSplashTask()
-    }
-
-    private fun createAnonymousAccountWithReferrerInfo(referrerUid: String?) {
-        auth.signInAnonymously()
-            .addOnSuccessListener {
-                // Keep track of the referrer in the RTDB.
-                val user = Firebase.auth.currentUser
-                val userRecord = Firebase.database.reference
-                    .child(TableManagement.USERS)
-                    .child(user!!.uid)
-                userRecord.child("referred_by").setValue(referrerUid)
-
-                // move to sign in activity
-                val intent = Intent(this, SignInActivity::class.java)
-                intent.putExtra("referralUser", referralUser)
-                intent.putExtra("referrerUid", referrerUid)
-                intent.flags =
-                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-            }
-            .addOnFailureListener {
-                print(it.localizedMessage)
-                print(it.message)
-            }
     }
 
     private fun startSplashTask() {

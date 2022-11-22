@@ -22,15 +22,9 @@ import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 
-
 object Utility {
     const val isPro = "isPro"
-    const val isProPopUpShown = "isProPopUpShown"
     const val spinWheelTime = "spinWheelTime"
-    const val shibaScreenView = "shiba_screen_view"
-
-    const val bitBnsReferLink = "https://ref.bitbns.com/35257"
-    const val binanceReferLink = "https://accounts.binance.com/en/register?ref=323840147"
 
     fun showToast(context: Context?, msg: String) =
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
@@ -68,15 +62,6 @@ object Utility {
                 )
             )
         }
-    }
-
-    // retrieve from shared prefs
-    fun getMinWithdrawCoinsFromSharedPrefs(activity: Activity): Double {
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-        val minCoins =
-            sharedPref.getString(activity.getString(R.string.min_withdraw_coins), "10000.00")
-
-        return minCoins!!.toDouble()
     }
 
     fun openChromeCustomTabUrl(context: Context, webUrl: String) {
@@ -176,9 +161,9 @@ object Utility {
 
     // log event in firebase analytics
     fun logAnalyitcsEvent(screenName: String) {
-        Firebase.analytics.logEvent(shibaScreenView) {
+        /*Firebase.analytics.logEvent(shibaScreenView) {
             param(FirebaseAnalytics.Param.SCREEN_NAME, screenName)
-        }
+        }*/
     }
 
     // convert date/time to time ago
