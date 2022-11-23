@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
@@ -16,6 +17,9 @@ import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
+import com.crypto.prices.view.ui.market.paging.CryptoPagingAdapter
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class CryptoFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentCryptoBinding? = null
@@ -29,22 +33,22 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     private val binding get() = _binding!!
 
     private fun onError(s: String) {
-        binding.textViewError.text = s
+        /*binding.textViewError.text = s
         binding.textViewError.visibility = View.VISIBLE
         binding.shimmerLayoutCrypto.visibility = View.GONE
-        binding.shimmerLayoutCrypto.stopShimmer()
+        binding.shimmerLayoutCrypto.stopShimmer()*/
     }
 
     private fun onLoading() {
-        binding.textViewError.visibility = View.GONE
+        /*binding.textViewError.visibility = View.GONE
         binding.shimmerLayoutCrypto.visibility = View.VISIBLE
-        binding.shimmerLayoutCrypto.startShimmer()
+        binding.shimmerLayoutCrypto.startShimmer()*/
     }
 
     private fun onLoadingFinished() {
-        binding.textViewError.visibility = View.GONE
+        /*binding.textViewError.visibility = View.GONE
         binding.shimmerLayoutCrypto.visibility = View.GONE
-        binding.shimmerLayoutCrypto.stopShimmer()
+        binding.shimmerLayoutCrypto.stopShimmer()*/
     }
 
     override fun onCreateView(
@@ -80,7 +84,21 @@ class CryptoFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadData()
+        //loadData()
+
+        binding.shimmerLayoutCrypto.visibility = View.GONE
+        val myAdapter = CryptoPagingAdapter(requireContext())
+        binding.recyclerViewCrypto.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = myAdapter
+        }
+
+        requireActivity().lifecycleScope.launch {
+            mCryptoViewModel.cryptoList.collectLatest {
+                myAdapter.submitData(it)
+            }
+        }
     }
 
     fun loadData() {
