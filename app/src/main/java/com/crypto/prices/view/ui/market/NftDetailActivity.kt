@@ -116,16 +116,17 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
         binding.textViewError.text = s
         binding.textViewError.visibility = View.VISIBLE
         binding.loadingView.visibility = View.GONE
-        binding.chart.visibility = View.GONE
+        binding.scrollView.visibility = View.GONE
     }
 
     private fun onLoading() {
         binding.textViewError.visibility = View.GONE
+        binding.scrollView.visibility = View.GONE
         binding.loadingView.visibility = View.VISIBLE
     }
 
     private fun onLoadingFinished() {
-        binding.chart.visibility = View.VISIBLE
+        binding.scrollView.visibility = View.VISIBLE
         binding.textViewError.visibility = View.GONE
         binding.loadingView.visibility = View.GONE
     }
