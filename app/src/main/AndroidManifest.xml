@@ -51,7 +51,7 @@
             android:name=".view.ui.market.categories.CategoriesCoinListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.market.NftDetailActivity"
+            android:name=".view.ui.market.nfts.detail.NftDetailActivity"
             android:screenOrientation="portrait" />
 
         <service

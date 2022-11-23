@@ -1,4 +1,4 @@
-package com.crypto.prices.view.ui.market
+package com.crypto.prices.view.ui.market.nfts.detail
 
 import android.os.Bundle
 import android.util.Log

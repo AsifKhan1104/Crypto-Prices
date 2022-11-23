@@ -1,30 +1,34 @@
-package com.crypto.prices.view.ui.market
+package com.crypto.prices.view.ui.market.nfts
 
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.crypto.prices.R
 import com.crypto.prices.model.NftData
+import com.crypto.prices.view.ui.market.nfts.detail.NftDetailActivity
 import kotlinx.android.synthetic.main.item_crypto.view.table_layout
 import kotlinx.android.synthetic.main.item_crypto.view.textView_name
 import kotlinx.android.synthetic.main.item_crypto.view.textView_symbol
 import kotlinx.android.synthetic.main.item_nft.view.*
 
-class NftAdapter(context: Context?, var data: List<NftData>?) :
-    RecyclerView.Adapter<NftAdapter.MyViewHolder>() {
+class NftPagingAdapter(context: Context?) :
+    PagingDataAdapter<NftData, NftPagingAdapter.MyViewHolder>(NftPagingAdapter.MyComparator) {
     private val context = context
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MyViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_nft, parent, false)
-    )
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) =
+        NftPagingAdapter.MyViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_nft, parent, false)
+        )
 
-    override fun getItemCount() = data!!.size
+    //override fun getItemCount() = data!!.size
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(context!!, position, data!!.get(position))
+    override fun onBindViewHolder(holder: NftPagingAdapter.MyViewHolder, position: Int) {
+        holder.bind(context!!, position, getItem(position) as NftData)
     }
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -46,6 +50,17 @@ class NftAdapter(context: Context?, var data: List<NftData>?) :
                     context.startActivity(intent)
                 }
             })
+        }
+    }
+
+    object MyComparator : DiffUtil.ItemCallback<NftData>() {
+        override fun areItemsTheSame(oldItem: NftData, newItem: NftData): Boolean {
+            // Id is unique.
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: NftData, newItem: NftData): Boolean {
+            return oldItem == newItem
         }
     }
 }

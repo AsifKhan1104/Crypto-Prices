@@ -6,6 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.crypto.prices.view.ui.market.categories.CategoriesFragment
 import com.crypto.prices.view.ui.market.crypto.CryptoFragment
+import com.crypto.prices.view.ui.market.nfts.NftFragment
 
 class MarketViewPagerAdapter(fm: FragmentManager, lf: Lifecycle) : FragmentStateAdapter(fm, lf) {
 
