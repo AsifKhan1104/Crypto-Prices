@@ -1,30 +1,34 @@
-package com.crypto.prices.view.ui.market
+package com.crypto.prices.view.ui.market.categories
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.crypto.prices.databinding.FragmentCryptoBinding
-import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
+import com.crypto.prices.view.TrailLoadStateAdapter
 import com.crypto.prices.view.ViewModelFactory
-import com.crypto.prices.view.ui.market.crypto.CryptoFragment
+import com.crypto.prices.view.ui.market.crypto.CryptoPagingAdapter
 import com.crypto.prices.view.ui.market.crypto.CryptoViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: FragmentCryptoBinding? = null
     private lateinit var mCryptoViewModel: CryptoViewModel
-    private val TAG = CryptoFragment.javaClass.simpleName
+    private val TAG = "CategoriesCoinListActivity"
     private var selectedMarketCap: String = "market_cap_desc"
     private var selectedCategory: String = ""
     private lateinit var map: MutableMap<String, String>
+    private lateinit var myAdapter: CryptoPagingAdapter
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -82,53 +86,69 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setUpViewModel() {
         map = HashMap()
+        map = HashMap()
         Utility.getCurrency(this)?.let { map["vs_currency"] = it }
         map["order"] = selectedMarketCap
-        map["per_page"] = "250"
-        map["page"] = "1"
+        map["per_page"] = Constants.itemsPerPage
         map["category"] = selectedCategory
-        /*map["sparkline"] = false*/
 
         val repository = AppRepositoryImpl()
         val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
         mCryptoViewModel = ViewModelProvider(this, factory).get(CryptoViewModel::class.java)
 
-        // observe data
-        //loadData()
+        loadData()
     }
 
-    /*fun loadData() {
-        try {
-            mCryptoViewModel.cryptoLiveData.observe(this, Observer {
-                // blank observe here
-                when (it) {
-                    is NetworkResult.Success -> {
-                        it.networkData?.let {
-                            //bind the data to the ui
-                            onLoadingFinished()
-                            binding.recyclerViewCrypto.layoutManager =
-                                LinearLayoutManager(this)
-                            //binding.recyclerViewCrypto.adapter = CryptoAdapter(this, it)
-                        }
-                    }
-                    is NetworkResult.Error -> {
-                        //show error message
-                        onError(it.networkErrorMessage.toString())
-                    }
-
-                    is NetworkResult.Loading -> {
-                        //show loader, shimmer effect etc
-                        onLoading()
-                    }
-                }
-            })
-        } catch (ex: Exception) {
-            ex.message?.let { Log.e(TAG, it) }
+    fun loadData() {
+        // observe internet connection
+        if (!mCryptoViewModel.hasInternet) {
+            onError(getString(R.string.no_internet_msg))
+            return
         }
-    }*/
 
-    companion object {
-        fun newInstance(): CategoriesCoinListActivity = CategoriesCoinListActivity()
+        myAdapter = CryptoPagingAdapter(this)
+        binding.recyclerViewCrypto.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = myAdapter
+
+            //bind the LoadStateAdapter with the movieAdapter
+            adapter = myAdapter.withLoadStateFooter(
+                footer = TrailLoadStateAdapter { myAdapter.retry() }
+            )
+        }
+
+        lifecycleScope.launch {
+            mCryptoViewModel.cryptoList.collectLatest {
+                myAdapter.submitData(it)
+            }
+        }
+
+        myAdapter.addLoadStateListener { loadState ->
+            if (loadState.refresh is LoadState.Loading) {
+                onLoading()
+            } else {
+                onLoadingFinished()
+
+                // getting the error
+                val error = when {
+                    loadState.prepend is LoadState.Error -> {
+                        loadState.prepend as LoadState.Error
+                        onError(getString(R.string.error_msg))
+                    }
+                    loadState.append is LoadState.Error -> {
+                        loadState.append as LoadState.Error
+
+                    }
+                    loadState.refresh is LoadState.Error -> {
+                        loadState.refresh as LoadState.Error
+                        onError(getString(R.string.error_msg))
+                    }
+
+                    else -> null
+                }
+            }
+        }
     }
 
     override fun onClick(v: View?) {
@@ -139,11 +159,13 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_up_24))
                     map["order"] = selectedMarketCap
                     //mCryptoViewModel.getCrypto(map)
+                    myAdapter.refresh()
                 } else {
                     selectedMarketCap = "market_cap_desc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_down_24))
                     map["order"] = selectedMarketCap
                     //mCryptoViewModel.getCrypto(map)
+                    myAdapter.refresh()
                 }
             }
             else -> {

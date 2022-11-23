@@ -45,10 +45,10 @@
             android:name=".view.activity.PrivacyPolicyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.market.CryptoDetailActivity"
+            android:name=".view.ui.market.crypto.detail.CryptoDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.market.CategoriesCoinListActivity"
+            android:name=".view.ui.market.categories.CategoriesCoinListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.ui.market.NftDetailActivity"

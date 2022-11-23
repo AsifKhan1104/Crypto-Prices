@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.crypto.prices.R
 import com.crypto.prices.model.CryptoData
-import com.crypto.prices.view.ui.market.CryptoDetailActivity
+import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailActivity
 import kotlinx.android.synthetic.main.item_crypto.view.*
 
 class CryptoPagingAdapter(context: Context?) :

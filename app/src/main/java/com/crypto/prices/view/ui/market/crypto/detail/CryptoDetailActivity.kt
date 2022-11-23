@@ -1,4 +1,4 @@
-package com.crypto.prices.view.ui.market
+package com.crypto.prices.view.ui.market.crypto.detail
 
 import android.graphics.Color
 import android.os.Bundle

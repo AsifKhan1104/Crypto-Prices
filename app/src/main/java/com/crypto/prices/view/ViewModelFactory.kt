@@ -6,7 +6,9 @@ import com.crypto.prices.CryptoApplication
 import com.crypto.prices.view.ui.explore.NewsViewModel
 import com.crypto.prices.view.ui.home.HomeViewModel
 import com.crypto.prices.view.ui.market.*
+import com.crypto.prices.view.ui.market.categories.CategoriesViewModel
 import com.crypto.prices.view.ui.market.crypto.CryptoViewModel
+import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailViewModel
 import com.crypto.prices.view.ui.more.CurrencySelectViewModel
 
 class ViewModelFactory(
