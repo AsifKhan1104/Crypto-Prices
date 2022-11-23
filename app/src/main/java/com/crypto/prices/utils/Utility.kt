@@ -148,8 +148,9 @@ object Utility {
         intent.type = "text/plain"
         intent.putExtra(
             Intent.EXTRA_TEXT,
-            "Hey, Check out this amazing app which provides live " + context.getString(R.string.app_name) + ". Click to download: " +
-                    "https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}"
+            "Hey, Check out the <b>" + context.getString(R.string.app_name) + "</b> app which provides live prices for Crypto & NFTs. Click to download: " +
+                    /*"https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}"*/
+                    "shorturl.at/oRU12"
         )
 
         context.startActivity(Intent.createChooser(intent, "Share"))
