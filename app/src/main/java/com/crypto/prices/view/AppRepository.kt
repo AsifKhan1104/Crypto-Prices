@@ -13,6 +13,8 @@ interface AppRepository {
     ): Response<CryptoChartData>
 
     suspend fun getCategories(map: MutableMap<String, String>): Response<List<CategoriesData>>
+    suspend fun getNfts(map: MutableMap<String, String>): Response<List<NftData>>
+    suspend fun getNftData(id: String): Response<NftDetailData>
     suspend fun getTrendingCoins(): Response<Trending>
     suspend fun getExchangeRates(): Response<ExchangeRates>
     suspend fun getAllNews(map: MutableMap<String, String>): Response<NewsData>
