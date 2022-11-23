@@ -26,6 +26,7 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     private val TAG = CryptoFragment.javaClass.simpleName
     private var selectedMarketCap: String = "market_cap_desc"
     private lateinit var map: MutableMap<String, String>
+    private lateinit var myAdapter: CryptoPagingAdapter
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -87,7 +88,7 @@ class CryptoFragment : Fragment(), View.OnClickListener {
             return
         }
 
-        val myAdapter = CryptoPagingAdapter(requireContext())
+        myAdapter = CryptoPagingAdapter(requireContext())
         binding.recyclerViewCrypto.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
@@ -143,12 +144,14 @@ class CryptoFragment : Fragment(), View.OnClickListener {
                     selectedMarketCap = "market_cap_asc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_up_24))
                     map["order"] = selectedMarketCap
-                    mCryptoViewModel.loadPagingData(map)
+                    //mCryptoViewModel.loadPagingData(map)
+                    myAdapter.refresh()
                 } else {
                     selectedMarketCap = "market_cap_desc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_down_24))
                     map["order"] = selectedMarketCap
-                    mCryptoViewModel.loadPagingData(map)
+                    //mCryptoViewModel.loadPagingData(map)
+                    myAdapter.refresh()
                 }
             }
             else -> {
