@@ -21,7 +21,7 @@ data class NftDetailData(
 
 data class FloorPrice(
     val native_currency: BigDecimal,
-    val usd: Int
+    val usd: BigDecimal
 )
 
 data class Image(
@@ -29,11 +29,11 @@ data class Image(
 )
 
 data class MarketCap(
-    val native_currency: Int,
-    val usd: Int
+    val native_currency: BigDecimal,
+    val usd: BigDecimal
 )
 
 data class Volume24h(
     val native_currency: BigDecimal,
-    val usd: Int
+    val usd: BigDecimal
 )
