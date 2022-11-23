@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
@@ -16,6 +17,7 @@ import com.crypto.prices.databinding.FragmentCryptoBinding
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
+import com.crypto.prices.view.TrailLoadStateAdapter
 import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.ui.market.paging.CryptoPagingAdapter
 import kotlinx.coroutines.flow.collectLatest
@@ -33,22 +35,22 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     private val binding get() = _binding!!
 
     private fun onError(s: String) {
-        /*binding.textViewError.text = s
+        binding.textViewError.text = s
         binding.textViewError.visibility = View.VISIBLE
         binding.shimmerLayoutCrypto.visibility = View.GONE
-        binding.shimmerLayoutCrypto.stopShimmer()*/
+        binding.shimmerLayoutCrypto.stopShimmer()
     }
 
     private fun onLoading() {
-        /*binding.textViewError.visibility = View.GONE
+        binding.textViewError.visibility = View.GONE
         binding.shimmerLayoutCrypto.visibility = View.VISIBLE
-        binding.shimmerLayoutCrypto.startShimmer()*/
+        binding.shimmerLayoutCrypto.startShimmer()
     }
 
     private fun onLoadingFinished() {
-        /*binding.textViewError.visibility = View.GONE
+        binding.textViewError.visibility = View.GONE
         binding.shimmerLayoutCrypto.visibility = View.GONE
-        binding.shimmerLayoutCrypto.stopShimmer()*/
+        binding.shimmerLayoutCrypto.stopShimmer()
     }
 
     override fun onCreateView(
@@ -92,11 +94,45 @@ class CryptoFragment : Fragment(), View.OnClickListener {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = myAdapter
+
+            //bind the LoadStateAdapter with the movieAdapter
+            adapter = myAdapter.withLoadStateFooter(
+                footer = TrailLoadStateAdapter { myAdapter.retry() }
+            )
         }
 
         requireActivity().lifecycleScope.launch {
             mCryptoViewModel.cryptoList.collectLatest {
                 myAdapter.submitData(it)
+            }
+        }
+
+        myAdapter.addLoadStateListener { loadState ->
+            if (loadState.refresh is LoadState.Loading) {
+                onLoading()
+            } else {
+                onLoadingFinished()
+
+                // getting the error
+                val error = when {
+                    loadState.prepend is LoadState.Error -> {
+                        loadState.prepend as LoadState.Error
+                        onError(getString(R.string.error_msg))
+                    }
+                    loadState.append is LoadState.Error -> {
+                        loadState.append as LoadState.Error
+
+                    }
+                    loadState.refresh is LoadState.Error -> {
+                        loadState.refresh as LoadState.Error
+                        onError(getString(R.string.error_msg))
+                    }
+
+                    else -> null
+                }
+                /*errorState?.let {
+                    Toast.makeText(this, it.error.message, Toast.LENGTH_LONG).show()
+                }*/
             }
         }
     }
