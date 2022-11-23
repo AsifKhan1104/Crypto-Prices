@@ -1,4 +1,4 @@
-package com.crypto.prices.view.ui.market.paging
+package com.crypto.prices.view.ui.market.crypto
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -7,17 +7,19 @@ import com.crypto.prices.view.AppRepository
 
 class CryptoPagingSource(
     val appRepository: AppRepository,
+    val map: MutableMap<String, String>
 ) : PagingSource<Int, CryptoData>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CryptoData> {
         try {
             // Start refresh at page 1, if undefined.
             val pageNumber = params.key ?: 1
-            val map = HashMap<String, String> ()
-            map.put("vs_currency", "usd")
-            map["per_page"] = "5"
             map["page"] = pageNumber.toString()
-            val response = (appRepository.getCryptoPrices(map)).body()
+            val res = appRepository.getCryptoPrices(map)
+            var response: List<CryptoData>? = null
+            // check if request is successful
+            if (res.isSuccessful)
+                response = res.body()
 
             return LoadResult.Page(
                 data = response!!,
@@ -34,6 +36,5 @@ class CryptoPagingSource(
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
-        //return null
     }
 }

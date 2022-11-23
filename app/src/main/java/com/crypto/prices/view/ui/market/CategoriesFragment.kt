@@ -15,6 +15,7 @@ import com.crypto.prices.databinding.FragmentCategoriesBinding
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
+import com.crypto.prices.view.ui.market.crypto.CryptoFragment
 
 class CategoriesFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentCategoriesBinding? = null

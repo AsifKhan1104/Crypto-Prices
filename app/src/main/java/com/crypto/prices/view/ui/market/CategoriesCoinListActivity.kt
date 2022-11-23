@@ -15,6 +15,8 @@ import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
+import com.crypto.prices.view.ui.market.crypto.CryptoFragment
+import com.crypto.prices.view.ui.market.crypto.CryptoViewModel
 
 class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: FragmentCryptoBinding? = null
@@ -92,10 +94,10 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
         mCryptoViewModel = ViewModelProvider(this, factory).get(CryptoViewModel::class.java)
 
         // observe data
-        loadData()
+        //loadData()
     }
 
-    fun loadData() {
+    /*fun loadData() {
         try {
             mCryptoViewModel.cryptoLiveData.observe(this, Observer {
                 // blank observe here
@@ -106,7 +108,7 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
                             onLoadingFinished()
                             binding.recyclerViewCrypto.layoutManager =
                                 LinearLayoutManager(this)
-                            binding.recyclerViewCrypto.adapter = CryptoAdapter(this, it)
+                            //binding.recyclerViewCrypto.adapter = CryptoAdapter(this, it)
                         }
                     }
                     is NetworkResult.Error -> {
@@ -123,7 +125,7 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
         } catch (ex: Exception) {
             ex.message?.let { Log.e(TAG, it) }
         }
-    }
+    }*/
 
     companion object {
         fun newInstance(): CategoriesCoinListActivity = CategoriesCoinListActivity()
@@ -136,12 +138,12 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
                     selectedMarketCap = "market_cap_asc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_up_24))
                     map["order"] = selectedMarketCap
-                    mCryptoViewModel.getCrypto(map)
+                    //mCryptoViewModel.getCrypto(map)
                 } else {
                     selectedMarketCap = "market_cap_desc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_down_24))
                     map["order"] = selectedMarketCap
-                    mCryptoViewModel.getCrypto(map)
+                    //mCryptoViewModel.getCrypto(map)
                 }
             }
             else -> {

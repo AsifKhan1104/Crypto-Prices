@@ -1,4 +1,4 @@
-package com.crypto.prices.view.ui.market.paging
+package com.crypto.prices.view.ui.market.crypto
 
 import android.content.Context
 import android.content.Intent
@@ -61,9 +61,9 @@ class CryptoPagingAdapter(context: Context?) :
             // on click listener
             tableLayout.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
-                    /*val intent = Intent(context, CryptoDetailActivity::class.java)
+                    val intent = Intent(context, CryptoDetailActivity::class.java)
                     intent.putExtra("crypto_data", data)
-                    context.startActivity(intent)*/
+                    context.startActivity(intent)
                 }
             })
         }

@@ -1,12 +1,10 @@
-package com.crypto.prices.view.ui.market
+package com.crypto.prices.view.ui.market.crypto
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
@@ -14,12 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.crypto.prices.databinding.FragmentCryptoBinding
-import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.TrailLoadStateAdapter
 import com.crypto.prices.view.ViewModelFactory
-import com.crypto.prices.view.ui.market.paging.CryptoPagingAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -75,9 +72,7 @@ class CryptoFragment : Fragment(), View.OnClickListener {
         map = HashMap()
         Utility.getCurrency(requireActivity())?.let { map["vs_currency"] = it }
         map["order"] = selectedMarketCap
-        map["per_page"] = "250"
-        map["page"] = "1"
-        /*map["sparkline"] = false*/
+        map["per_page"] = Constants.itemsPerPage
 
         val repository = AppRepositoryImpl()
         val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
@@ -86,9 +81,12 @@ class CryptoFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //loadData()
+        // observe internet connection
+        if (!mCryptoViewModel.hasInternet) {
+            onError(getString(R.string.no_internet_msg))
+            return
+        }
 
-        binding.shimmerLayoutCrypto.visibility = View.GONE
         val myAdapter = CryptoPagingAdapter(requireContext())
         binding.recyclerViewCrypto.apply {
             layoutManager = LinearLayoutManager(context)
@@ -130,40 +128,7 @@ class CryptoFragment : Fragment(), View.OnClickListener {
 
                     else -> null
                 }
-                /*errorState?.let {
-                    Toast.makeText(this, it.error.message, Toast.LENGTH_LONG).show()
-                }*/
             }
-        }
-    }
-
-    fun loadData() {
-        try {
-            mCryptoViewModel.cryptoLiveData.observe(viewLifecycleOwner, Observer {
-                // blank observe here
-                when (it) {
-                    is NetworkResult.Success -> {
-                        it.networkData?.let {
-                            //bind the data to the ui
-                            onLoadingFinished()
-                            binding.recyclerViewCrypto.layoutManager =
-                                LinearLayoutManager(context)
-                            binding.recyclerViewCrypto.adapter = CryptoAdapter(context, it)
-                        }
-                    }
-                    is NetworkResult.Error -> {
-                        //show error message
-                        onError(it.networkErrorMessage.toString())
-                    }
-
-                    is NetworkResult.Loading -> {
-                        //show loader, shimmer effect etc
-                        onLoading()
-                    }
-                }
-            })
-        } catch (ex: Exception) {
-            ex.message?.let { Log.e(TAG, it) }
         }
     }
 
@@ -178,25 +143,16 @@ class CryptoFragment : Fragment(), View.OnClickListener {
                     selectedMarketCap = "market_cap_asc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_up_24))
                     map["order"] = selectedMarketCap
-                    mCryptoViewModel.getCrypto(map)
+                    mCryptoViewModel.loadPagingData(map)
                 } else {
                     selectedMarketCap = "market_cap_desc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_down_24))
                     map["order"] = selectedMarketCap
-                    mCryptoViewModel.getCrypto(map)
+                    mCryptoViewModel.loadPagingData(map)
                 }
             }
             else -> {
             }
         }
     }
-
-    /*override fun onResume() {
-        super.onResume()
-        // track screen event
-        val params = Bundle()
-        params.putString(FirebaseAnalytics.Param.SCREEN_NAME, "Market")
-        params.putString(FirebaseAnalytics.Param.SCREEN_CLASS, "MainActivity")
-        Firebase.analytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, params)
-    }*/
 }
