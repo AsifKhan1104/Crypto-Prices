@@ -47,7 +47,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="share">Share</string>
     <string name="error_msg">Oops !! Something went wrong. Please try again after sometime.</string>
-    <string name="error_msg_retry">Ohh !! Bumped into some error.\n Please retry</string>
+    <string name="error_msg_retry">Ohh !! Bumped in some error.\n Please retry</string>
     <string name="load_data">Load Data</string>
     <string name="gamezop_url">https://www.gamezop.com/?id=4323</string>
     <string name="spin_win">Spin &amp; Win</string>
