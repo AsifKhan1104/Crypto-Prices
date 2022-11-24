@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_market"
-        android:name="com.crypto.prices.view.ui.market.CryptoFragment"
+        android:name="com.crypto.prices.view.ui.market.crypto.CryptoFragment"
         android:label="@string/title_market"
         tools:layout="@layout/fragment_crypto" />
 

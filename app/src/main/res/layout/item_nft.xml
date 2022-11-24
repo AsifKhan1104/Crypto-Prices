@@ -22,69 +22,76 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp">
 
+            <TextView
+                android:id="@+id/textView_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="gone"
+                tools:text="#" />
+
+            <ImageView
+                android:id="@+id/imageView_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:textStyle="normal"
+                android:visibility="gone"
+                tools:text="#" />
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.5"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:layout_weight="1.5"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imageView_topCoin1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="5dp"
-                    tools:src="@mipmap/ic_launcher_round" />
-
-                <ImageView
-                    android:id="@+id/imageView_topCoin2"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="5dp"
-                    tools:src="@mipmap/ic_launcher_round" />
-
-                <ImageView
-                    android:id="@+id/imageView_topCoin3"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    tools:src="@mipmap/ic_launcher_round" />
+                <TextView
+                    android:id="@+id/textView_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="Symbol" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView_category"
+                android:id="@+id/textView_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="4.5"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                tools:text="Name" />
+
+            <TextView
+                android:id="@+id/textView_asset_plat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                tools:text="Category" />
-
-            <TextView
-                android:id="@+id/textView_24hp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:textColor="#FF7F7F"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                tools:text="24H" />
-
-            <TextView
-                android:id="@+id/textView_market_cap"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3.5"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:textColor="@android:color/black"
-                android:textSize="11sp"
-                android:textStyle="normal"
-                tools:text="Market Cap" />
+                tools:text="Asset Platform" />
         </TableRow>
     </TableLayout>
 

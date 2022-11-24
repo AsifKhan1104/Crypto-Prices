@@ -4,9 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailActivity">
+    tools:context="com.crypto.prices.view.ui.market.nfts.detail.NftDetailActivity">
+
+    <TextView
+        android:id="@+id/textViewError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/error_msg"
+        android:textColor="#FA1302"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/loadingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
@@ -29,11 +64,12 @@
                 tools:src="@mipmap/app_logo" />
 
             <TextView
-                android:id="@+id/textView_symbol"
-                android:layout_width="wrap_content"
+                android:id="@+id/textView_name"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:fontFamily="sans-serif-smallcaps"
+                android:maxLines="2"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -54,12 +90,12 @@
                 android:textColor="@android:color/black"
                 android:textSize="26sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/textView_24hp"
+                app:layout_constraintEnd_toStartOf="@+id/textView_floor_price_24h_perc"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="$67957.75" />
 
             <TextView
-                android:id="@+id/textView_24hp"
+                android:id="@+id/textView_floor_price_24h_perc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -77,23 +113,22 @@
                 tools:text="2.7%" />
 
             <TextView
-                android:id="@+id/textView_24h_header"
+                android:id="@+id/textView_asset_plat_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif"
-                android:text="24H High:"
+                android:text="Asset Platform:"
                 android:textColor="@android:color/black"
                 android:textSize="11sp"
                 android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayoutFilter"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/linearLayoutFilter" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_price" />
 
             <TextView
-                android:id="@+id/textView_24h"
+                android:id="@+id/textView_asset_plat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -103,52 +138,38 @@
                 android:textColor="@android:color/black"
                 android:textSize="11sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayoutFilter"
-                app:layout_constraintStart_toEndOf="@+id/textView_24h_header"
-                app:layout_constraintTop_toTopOf="@+id/linearLayoutFilter"
-                tools:text="24H High" />
-
-            <View
-                android:id="@+id/view_divider"
-                android:layout_width="1dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="5dp"
-                android:background="@color/divider_color"
-                app:layout_constraintBottom_toBottomOf="@+id/textView_24h"
-                app:layout_constraintStart_toEndOf="@+id/textView_24h"
-                app:layout_constraintTop_toTopOf="@+id/textView_24h" />
+                app:layout_constraintStart_toEndOf="@+id/textView_asset_plat_header"
+                app:layout_constraintTop_toBottomOf="@+id/textView_price"
+                tools:text="Etherum" />
 
             <TextView
-                android:id="@+id/textView_24l_header"
+                android:id="@+id/textView_contract_address_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif"
-                android:text="24H Low:"
+                android:text="Contract Address:"
                 android:textColor="@android:color/black"
                 android:textSize="11sp"
                 android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayoutFilter"
-                app:layout_constraintStart_toEndOf="@+id/view_divider"
-                app:layout_constraintTop_toTopOf="@+id/linearLayoutFilter" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_asset_plat_header" />
 
             <TextView
-                android:id="@+id/textView_24l"
+                android:id="@+id/textView_contract_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="sans-serif"
                 android:textColor="@android:color/black"
                 android:textSize="11sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayoutFilter"
-                app:layout_constraintStart_toEndOf="@+id/textView_24l_header"
-                app:layout_constraintTop_toTopOf="@+id/linearLayoutFilter"
-                tools:text="24H High" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_contract_address_header"
+                tools:text="Address" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutFilter"
@@ -158,8 +179,9 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/border_time_filter"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="@id/textView_24hp"
-                app:layout_constraintTop_toBottomOf="@+id/textView_24hp">
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/textView_floor_price_24h_perc"
+                app:layout_constraintTop_toBottomOf="@+id/textView_floor_price_24h_perc">
 
                 <TextView
                     android:id="@+id/textView_price_filter"
@@ -193,38 +215,13 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayoutFilter">
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/chart"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-
-                <ProgressBar
-                    android:id="@+id/loadingView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/textViewError"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="center"
-                    android:text="@string/error_msg"
-                    android:textColor="#FA1302"
-                    android:textSize="18sp"
-                    android:visibility="gone" />
             </RelativeLayout>
 
             <TableLayout
@@ -232,6 +229,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutChart">
 
                 <TableRow
@@ -322,7 +320,7 @@
             </TableLayout>
 
             <TextView
-                android:id="@+id/textView_market_stat"
+                android:id="@+id/textView_stat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -330,37 +328,12 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="Market Statistics:"
+                android:text="NFT Statistics:"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="Market Cap Rank"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_market_stat" />
-
-            <TextView
-                android:id="@+id/textView_mcr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_market_stat"
-                tools:text="Market Cap Rank" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_contract_address" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -372,7 +345,7 @@
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_mcr" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_stat" />
 
             <TextView
                 android:id="@+id/textView_mc"
@@ -380,11 +353,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
+                android:textColor="@color/dark_gray"
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_mcr"
+                app:layout_constraintTop_toBottomOf="@+id/textView_stat"
                 tools:text="Market Cap" />
 
             <TextView
@@ -392,7 +365,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:fontFamily="sans-serif"
-                android:text="Fully Diluted Market Cap"
+                android:text="Volume (24H)"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="normal"
@@ -400,92 +373,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView_mc" />
 
             <TextView
-                android:id="@+id/textView_fdmc"
+                android:id="@+id/textView_volume_24h"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
+                android:textColor="@color/dark_gray"
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_mc"
-                tools:text="Fully Diluted Market Cap" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="Total Volume"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_fdmc" />
-
-            <TextView
-                android:id="@+id/textView_total_vol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_fdmc"
-                tools:text="Total Volume" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="Max Supply"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_vol" />
-
-            <TextView
-                android:id="@+id/textView_max_supply"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_vol"
-                tools:text="Max Supply" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="Circulating Supply"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_max_supply" />
-
-            <TextView
-                android:id="@+id/textView_circ_supply"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_max_supply"
-                tools:text="Circulating Supply" />
+                tools:text="Volume 24H" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -497,7 +395,7 @@
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_circ_supply" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_volume_24h" />
 
             <TextView
                 android:id="@+id/textView_total_supply"
@@ -505,19 +403,19 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
+                android:textColor="@color/dark_gray"
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_circ_supply"
+                app:layout_constraintTop_toBottomOf="@+id/textView_volume_24h"
                 tools:text="Total Supply" />
 
-            <!--<TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:fontFamily="sans-serif"
-                android:text="24H Low"
+                android:text="Unique Addresses"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="normal"
@@ -525,101 +423,27 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView_total_supply" />
 
             <TextView
-                android:id="@+id/textView_24l"
+                android:id="@+id/textView_unique_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
+                android:textColor="@color/dark_gray"
                 android:textSize="16sp"
                 android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView_unique_address_perc"
                 app:layout_constraintTop_toBottomOf="@+id/textView_total_supply"
-                tools:text="24H Low" />-->
+                tools:text="Unique Addresses" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="All-Time High"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply" />
-
-            <TextView
-                android:id="@+id/textView_ath"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toStartOf="@+id/textView_ath_perc"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply"
-                tools:text="All-Time High" />
-
-            <TextView
-                android:id="@+id/textView_ath_perc"
+                android:id="@+id/textView_unique_address_perc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_margin="5dp"
-                android:background="@drawable/ticker_selected"
-                android:drawableStart="@drawable/ic_arrow_up_24"
-                android:fontFamily="sans-serif-light"
-                android:gravity="center_vertical"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/textView_ath"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/textView_ath"
-                tools:text="2.7%" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif"
-                android:text="All-Time Low"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_ath" />
-
-            <TextView
-                android:id="@+id/textView_atl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toStartOf="@+id/textView_atl_perc"
-                app:layout_constraintTop_toBottomOf="@+id/textView_ath"
-                tools:text="All-Time Low" />
-
-            <TextView
-                android:id="@+id/textView_atl_perc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/ticker_selected"
                 android:drawableStart="@drawable/ic_arrow_up_24"
                 android:fontFamily="sans-serif-light"
@@ -627,10 +451,41 @@
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/textView_atl"
+                app:layout_constraintBottom_toBottomOf="@id/textView_unique_address"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/textView_atl"
+                app:layout_constraintTop_toTopOf="@id/textView_unique_address"
                 tools:text="2.7%" />
+
+            <TextView
+                android:id="@+id/textView_about_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="About:"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_unique_address" />
+
+            <TextView
+                android:id="@+id/textView_about"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_about_header"
+                tools:text="About NFT Project" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

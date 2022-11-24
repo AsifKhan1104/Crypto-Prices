@@ -1,4 +1,4 @@
-package com.crypto.prices.view.ui.market
+package com.crypto.prices.view.ui.market.crypto.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

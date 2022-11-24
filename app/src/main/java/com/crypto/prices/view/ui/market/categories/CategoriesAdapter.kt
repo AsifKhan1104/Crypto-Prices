@@ -1,4 +1,4 @@
-package com.crypto.prices.view.ui.market
+package com.crypto.prices.view.ui.market.categories
 
 import android.content.Context
 import android.content.Intent

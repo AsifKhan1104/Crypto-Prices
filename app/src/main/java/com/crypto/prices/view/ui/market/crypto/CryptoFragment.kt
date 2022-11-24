@@ -1,27 +1,32 @@
-package com.crypto.prices.view.ui.market
+package com.crypto.prices.view.ui.market.crypto
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
-import com.crypto.prices.databinding.FragmentCategoriesBinding
-import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.databinding.FragmentCryptoBinding
+import com.crypto.prices.utils.Constants
+import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
+import com.crypto.prices.view.TrailLoadStateAdapter
 import com.crypto.prices.view.ViewModelFactory
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-class CategoriesFragment : Fragment(), View.OnClickListener {
-    private var _binding: FragmentCategoriesBinding? = null
-    private lateinit var mCategoriesViewModel: CategoriesViewModel
+class CryptoFragment : Fragment(), View.OnClickListener {
+    private var _binding: FragmentCryptoBinding? = null
+    private lateinit var mCryptoViewModel: CryptoViewModel
     private val TAG = CryptoFragment.javaClass.simpleName
     private var selectedMarketCap: String = "market_cap_desc"
     private lateinit var map: MutableMap<String, String>
+    private lateinit var myAdapter: CryptoPagingAdapter
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -51,7 +56,7 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
+        _binding = FragmentCryptoBinding.inflate(inflater, container, false)
         val root: View = binding.root
         setUpViewModel()
         initData()
@@ -59,56 +64,77 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
     }
 
     private fun initData() {
+        binding.textViewPrice.text = "Price (" + Utility.getCurrencySymbol(requireActivity()) + ")"
         // on click listener
         binding.linearLayoutMC.setOnClickListener(this)
     }
 
     private fun setUpViewModel() {
         map = HashMap()
+        Utility.getCurrency(requireActivity())?.let { map["vs_currency"] = it }
         map["order"] = selectedMarketCap
+        map["per_page"] = Constants.itemsPerPage
 
         val repository = AppRepositoryImpl()
         val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
-        mCategoriesViewModel = ViewModelProvider(this, factory).get(CategoriesViewModel::class.java)
+        mCryptoViewModel = ViewModelProvider(this, factory).get(CryptoViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadData()
-    }
+        // observe internet connection
+        if (!mCryptoViewModel.hasInternet) {
+            onError(getString(R.string.no_internet_msg))
+            return
+        }
 
-    fun loadData() {
-        try {
-            mCategoriesViewModel.categoriesLiveData.observe(viewLifecycleOwner, Observer {
-                // blank observe here
-                when (it) {
-                    is NetworkResult.Success -> {
-                        it.networkData?.let {
-                            //bind the data to the ui
-                            onLoadingFinished()
-                            binding.recyclerView.layoutManager =
-                                LinearLayoutManager(context)
-                            binding.recyclerView.adapter = CategoriesAdapter(context, it)
-                        }
+        myAdapter = CryptoPagingAdapter(requireContext())
+        binding.recyclerViewCrypto.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = myAdapter
+
+            //bind the LoadStateAdapter with the movieAdapter
+            adapter = myAdapter.withLoadStateFooter(
+                footer = TrailLoadStateAdapter { myAdapter.retry() }
+            )
+        }
+
+        requireActivity().lifecycleScope.launch {
+            mCryptoViewModel.cryptoList.collectLatest {
+                myAdapter.submitData(it)
+            }
+        }
+
+        myAdapter.addLoadStateListener { loadState ->
+            if (loadState.refresh is LoadState.Loading) {
+                onLoading()
+            } else {
+                onLoadingFinished()
+
+                // getting the error
+                val error = when {
+                    loadState.prepend is LoadState.Error -> {
+                        loadState.prepend as LoadState.Error
+                        onError(getString(R.string.error_msg))
                     }
-                    is NetworkResult.Error -> {
-                        //show error message
-                        onError(it.networkErrorMessage.toString())
+                    loadState.append is LoadState.Error -> {
+                        loadState.append as LoadState.Error
+
+                    }
+                    loadState.refresh is LoadState.Error -> {
+                        loadState.refresh as LoadState.Error
+                        onError(getString(R.string.error_msg))
                     }
 
-                    is NetworkResult.Loading -> {
-                        //show loader, shimmer effect etc
-                        onLoading()
-                    }
+                    else -> null
                 }
-            })
-        } catch (ex: Exception) {
-            ex.message?.let { Log.e(TAG, it) }
+            }
         }
     }
 
     companion object {
-        fun newInstance(): CategoriesFragment = CategoriesFragment()
+        fun newInstance(): CryptoFragment = CryptoFragment()
     }
 
     override fun onClick(v: View?) {
@@ -118,12 +144,14 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
                     selectedMarketCap = "market_cap_asc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_up_24))
                     map["order"] = selectedMarketCap
-                    mCategoriesViewModel.getDataViaApi(map)
+                    //mCryptoViewModel.loadPagingData(map)
+                    myAdapter.refresh()
                 } else {
                     selectedMarketCap = "market_cap_desc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_down_24))
                     map["order"] = selectedMarketCap
-                    mCategoriesViewModel.getDataViaApi(map)
+                    //mCryptoViewModel.loadPagingData(map)
+                    myAdapter.refresh()
                 }
             }
             else -> {

@@ -1,4 +1,4 @@
-package com.crypto.prices.view.ui.market
+package com.crypto.prices.view.ui.market.categories
 
 import android.os.Bundle
 import android.util.Log
@@ -11,15 +11,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
-import com.crypto.prices.databinding.FragmentCryptoBinding
+import com.crypto.prices.databinding.FragmentCategoriesBinding
 import com.crypto.prices.utils.NetworkResult
-import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
+import com.crypto.prices.view.ui.market.crypto.CryptoFragment
 
-class CryptoFragment : Fragment(), View.OnClickListener {
-    private var _binding: FragmentCryptoBinding? = null
-    private lateinit var mCryptoViewModel: CryptoViewModel
+class CategoriesFragment : Fragment(), View.OnClickListener {
+    private var _binding: FragmentCategoriesBinding? = null
+    private lateinit var mCategoriesViewModel: CategoriesViewModel
     private val TAG = CryptoFragment.javaClass.simpleName
     private var selectedMarketCap: String = "market_cap_desc"
     private lateinit var map: MutableMap<String, String>
@@ -52,7 +52,7 @@ class CryptoFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentCryptoBinding.inflate(inflater, container, false)
+        _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         val root: View = binding.root
         setUpViewModel()
         initData()
@@ -60,22 +60,17 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     }
 
     private fun initData() {
-        binding.textViewPrice.text = "Price (" + Utility.getCurrencySymbol(requireActivity()) + ")"
         // on click listener
         binding.linearLayoutMC.setOnClickListener(this)
     }
 
     private fun setUpViewModel() {
         map = HashMap()
-        Utility.getCurrency(requireActivity())?.let { map["vs_currency"] = it }
         map["order"] = selectedMarketCap
-        map["per_page"] = "250"
-        map["page"] = "1"
-        /*map["sparkline"] = false*/
 
         val repository = AppRepositoryImpl()
         val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
-        mCryptoViewModel = ViewModelProvider(this, factory).get(CryptoViewModel::class.java)
+        mCategoriesViewModel = ViewModelProvider(this, factory).get(CategoriesViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -85,16 +80,16 @@ class CryptoFragment : Fragment(), View.OnClickListener {
 
     fun loadData() {
         try {
-            mCryptoViewModel.cryptoLiveData.observe(viewLifecycleOwner, Observer {
+            mCategoriesViewModel.categoriesLiveData.observe(viewLifecycleOwner, Observer {
                 // blank observe here
                 when (it) {
                     is NetworkResult.Success -> {
                         it.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinished()
-                            binding.recyclerViewCrypto.layoutManager =
+                            binding.recyclerView.layoutManager =
                                 LinearLayoutManager(context)
-                            binding.recyclerViewCrypto.adapter = CryptoAdapter(context, it)
+                            binding.recyclerView.adapter = CategoriesAdapter(context, it)
                         }
                     }
                     is NetworkResult.Error -> {
@@ -114,7 +109,7 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     }
 
     companion object {
-        fun newInstance(): CryptoFragment = CryptoFragment()
+        fun newInstance(): CategoriesFragment = CategoriesFragment()
     }
 
     override fun onClick(v: View?) {
@@ -124,25 +119,16 @@ class CryptoFragment : Fragment(), View.OnClickListener {
                     selectedMarketCap = "market_cap_asc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_up_24))
                     map["order"] = selectedMarketCap
-                    mCryptoViewModel.getCrypto(map)
+                    mCategoriesViewModel.getDataViaApi(map)
                 } else {
                     selectedMarketCap = "market_cap_desc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_down_24))
                     map["order"] = selectedMarketCap
-                    mCryptoViewModel.getCrypto(map)
+                    mCategoriesViewModel.getDataViaApi(map)
                 }
             }
             else -> {
             }
         }
     }
-
-    /*override fun onResume() {
-        super.onResume()
-        // track screen event
-        val params = Bundle()
-        params.putString(FirebaseAnalytics.Param.SCREEN_NAME, "Market")
-        params.putString(FirebaseAnalytics.Param.SCREEN_CLASS, "MainActivity")
-        Firebase.analytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, params)
-    }*/
 }
