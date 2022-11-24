@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/selector_list">
+    android:layout_height="wrap_content">
 
     <TableLayout
         android:id="@+id/table_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector_list"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -24,18 +24,6 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp">
 
-            <TextView
-                android:id="@+id/textView_id"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                android:visibility="gone"
-                tools:text="#" />
-
             <ImageView
                 android:id="@+id/imageView_id"
                 android:layout_width="0dp"
@@ -45,49 +33,29 @@
                 android:layout_weight="0.5"
                 android:gravity="center"
                 android:textStyle="normal"
-                android:visibility="gone"
                 tools:text="#" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/textView_exchange"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:layout_weight="1.5"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView_symbol"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:background="#B3B3B3"
-                    android:fontFamily="sans-serif"
-                    android:gravity="center_horizontal"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    tools:text="Symbol" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_weight="4.5"
+                android:layout_weight="3.5"
                 android:background="#B3B3B3"
+                android:ellipsize="end"
                 android:fontFamily="sans-serif"
-                android:gravity="center"
+                android:gravity="center_horizontal"
+                android:maxLines="2"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                tools:text="Name" />
+                tools:text="Exchange" />
 
             <TextView
-                android:id="@+id/textView_asset_plat"
+                android:id="@+id/textView_volume"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="4"
                 android:background="#B3B3B3"
                 android:fontFamily="sans-serif"
@@ -95,7 +63,21 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                tools:text="Asset Platform" />
+                tools:text="Trade Volume" />
+
+            <TextView
+                android:id="@+id/textView_trust_score"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="2"
+                android:background="#B3B3B3"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:textColor="#FF7F7F"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                tools:text="Trust Score" />
         </TableRow>
     </TableLayout>
 

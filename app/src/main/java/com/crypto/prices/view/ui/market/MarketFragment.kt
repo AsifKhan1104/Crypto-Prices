@@ -38,7 +38,7 @@ class MarketFragment : Fragment() {
         binding.viewPager.adapter = adapter
         binding.tabLayout.setupWithViewPager(
             binding.viewPager,
-            listOf("Cryptocurrency", "Categories", "NFTs")
+            listOf("Cryptocurrency", "Categories", "NFTs", "Exchanges")
         )
 
         /*binding.viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.crypto.prices.R
 import com.crypto.prices.model.CoinX
 import kotlinx.android.synthetic.main.item_trending.view.*
@@ -39,6 +40,7 @@ class HomeTrendingAdapter(context: Context?, var data: List<CoinX>?) :
             // set icons
             Glide.with(context)
                 .load(data.item.small)
+                .apply(RequestOptions.circleCropTransform())
                 .into(imageViewId)
 
             // on click listener

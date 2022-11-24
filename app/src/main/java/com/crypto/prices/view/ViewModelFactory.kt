@@ -8,6 +8,7 @@ import com.crypto.prices.view.ui.home.HomeViewModel
 import com.crypto.prices.view.ui.market.categories.CategoriesViewModel
 import com.crypto.prices.view.ui.market.crypto.CryptoViewModel
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailViewModel
+import com.crypto.prices.view.ui.market.exchanges.ExchangesViewModel
 import com.crypto.prices.view.ui.market.nfts.NftViewModel
 import com.crypto.prices.view.ui.market.nfts.detail.NftDetailViewModel
 import com.crypto.prices.view.ui.more.CurrencySelectViewModel
@@ -49,6 +50,10 @@ class ViewModelFactory(
 
         if (modelClass.isAssignableFrom(CurrencySelectViewModel::class.java)) {
             return CurrencySelectViewModel(app, appRepository, map) as T
+        }
+
+        if (modelClass.isAssignableFrom(ExchangesViewModel::class.java)) {
+            return ExchangesViewModel(app, appRepository, map) as T
         }
         throw IllegalArgumentException("Unknown class name")
     }

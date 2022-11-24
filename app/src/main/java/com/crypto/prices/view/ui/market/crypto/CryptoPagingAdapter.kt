@@ -9,6 +9,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.crypto.prices.R
 import com.crypto.prices.model.CryptoData
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailActivity
@@ -56,6 +57,7 @@ class CryptoPagingAdapter(context: Context?) :
                 "https://s2.coinmarketcap.com/static/img/coins/64x64/" + data.id.toString() + ".png"*/
             Glide.with(context)
                 .load(data?.image)
+                .apply(RequestOptions.circleCropTransform())
                 .into(imageViewIcon)
 
             // on click listener
