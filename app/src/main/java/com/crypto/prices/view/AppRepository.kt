@@ -3,6 +3,7 @@ package com.crypto.prices.view
 import com.crypto.prices.model.*
 import com.crypto.prices.model.exchangeRates.ExchangeRates
 import retrofit2.Response
+import java.math.BigDecimal
 
 interface AppRepository {
     //suspend fun getCryptoPrices(): Response<ListingsLatest>
@@ -14,6 +15,11 @@ interface AppRepository {
 
     suspend fun getCategories(map: MutableMap<String, String>): Response<List<CategoriesData>>
     suspend fun getExchanges(map: MutableMap<String, String>): Response<List<ExchangesData>>
+    suspend fun getExchangesChart(
+        id: String,
+        map: MutableMap<String, String>
+    ): Response<ArrayList<ArrayList<BigDecimal>>>
+
     suspend fun getNfts(map: MutableMap<String, String>): Response<List<NftData>>
     suspend fun getNftData(id: String): Response<NftDetailData>
     suspend fun getTrendingCoins(): Response<Trending>

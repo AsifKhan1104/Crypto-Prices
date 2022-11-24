@@ -7,6 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.QueryMap
+import java.math.BigDecimal
 
 interface Api {
     @Headers("X-CMC_PRO_API_KEY: 5830540b-c91b-4428-8c1f-08b7073aa1b8")
@@ -27,6 +28,12 @@ interface Api {
 
     @GET("v3/exchanges")
     suspend fun getExchanges(@QueryMap map: Map<String, String>): Response<List<ExchangesData>>
+
+    @GET("v3/exchanges/{id}/volume_chart")
+    suspend fun getExchangesChart(
+        @Path("id") id: String,
+        @QueryMap map: Map<String, String>
+    ): Response<ArrayList<ArrayList<BigDecimal>>>
 
     @GET("v3/nfts/list")
     suspend fun getNfts(@QueryMap map: Map<String, String>): Response<List<NftData>>

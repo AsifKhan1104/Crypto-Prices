@@ -22,6 +22,10 @@ class AppRepositoryImpl : AppRepository {
 
     override suspend fun getCategories(map: MutableMap<String, String>): Response<List<CategoriesData>> = service.getCategories(map)
     override suspend fun getExchanges(map: MutableMap<String, String>): Response<List<ExchangesData>> =service.getExchanges(map)
+    override suspend fun getExchangesChart(
+        id: String,
+        map: MutableMap<String, String>
+    ) = service.getExchangesChart(id, map)
 
     override suspend fun getNfts(map: MutableMap<String, String>): Response<List<NftData>> = service.getNfts(map)
     override suspend fun getNftData(id: String): Response<NftDetailData> = service.getNftData(id)

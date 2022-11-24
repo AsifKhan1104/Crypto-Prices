@@ -1,6 +1,7 @@
 package com.crypto.prices.view.ui.market.exchanges
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.crypto.prices.R
 import com.crypto.prices.model.ExchangesData
+import com.crypto.prices.view.ui.market.exchanges.detail.ExchangesDetailActivity
 import kotlinx.android.synthetic.main.item_crypto.view.table_layout
 import kotlinx.android.synthetic.main.item_exchanges.view.*
 import kotlinx.android.synthetic.main.item_nft.view.*
@@ -52,9 +54,9 @@ class ExchangesPagingAdapter(context: Context?) :
             // on click listener
             tableLayout.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
-                    /*val intent = Intent(context, NftDetailActivity::class.java)
-                    intent.putExtra("id", data?.id)
-                    context.startActivity(intent)*/
+                    val intent = Intent(context, ExchangesDetailActivity::class.java)
+                    intent.putExtra("exchanges_data", data)
+                    context.startActivity(intent)
                 }
             })
         }
