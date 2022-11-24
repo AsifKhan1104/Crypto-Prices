@@ -17,14 +17,15 @@ class ExchangesDetailViewModel(
     private val appRepository: AppRepository,
     val map: MutableMap<String, String>
 ) : ViewModel() {
+    val paramMap = map
     val exchangesChartLiveData: MutableLiveData<NetworkResult<ArrayList<ArrayList<BigDecimal>>>> =
         MutableLiveData()
 
     init {
-        getCryptoChart("-1")
+        getChart("-1")
     }
 
-    fun getCryptoChart(days: String) = viewModelScope.launch {
+    fun getChart(days: String) = viewModelScope.launch {
         fetchData(days)
     }
 
@@ -32,16 +33,14 @@ class ExchangesDetailViewModel(
         exchangesChartLiveData.postValue(NetworkResult.Loading())
         try {
             if (Utility.isInternetAvailable()) {
+                val map = HashMap<String, String>()
                 if (days.equals("-1")) {
-                    map["days"] = map["days"]!!
+                    map["days"] = paramMap["days"]!!
                 } else {
                     map["days"] = days
                 }
-                val id = map["id"]!!
-                // remove id from map
-                map.remove("id")
 
-                val response = appRepository.getExchangesChart(id, map)
+                val response = appRepository.getExchangesChart(paramMap["id"]!!, map)
                 if (response.isSuccessful) {
                     exchangesChartLiveData.postValue(
                         response.body()?.let { NetworkResult.Success(it) })

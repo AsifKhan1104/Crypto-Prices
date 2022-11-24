@@ -17,7 +17,7 @@ import com.crypto.prices.model.ExchangesData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.chart.CustomMarkerView
 import com.crypto.prices.utils.chart.XAxisValueFormatter
-import com.crypto.prices.utils.chart.YAxisValueFormatter
+import com.crypto.prices.utils.chart.YAxisValueFormatterExchanges
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 import com.github.mikephil.charting.charts.LineChart
@@ -73,17 +73,15 @@ class ExchangesDetailActivity : AppCompatActivity(), View.OnClickListener {
         binding.textViewHomepage.text = data?.url
         binding.textViewCountry.text = data?.country
         binding.textViewTradingIncentive.text = data?.has_trading_incentive?.toString()
-        binding.textViewTradeVolNormHeader.text =
+        binding.textViewTradeVolNorm.text =
             "BTC" + data?.trade_volume_24h_btc_normalized?.toString()
 
         // on click listeners
-        binding.textView1h.setOnClickListener(this)
         binding.textView24hr.setOnClickListener(this)
         binding.textView7d.setOnClickListener(this)
         binding.textView1m.setOnClickListener(this)
         binding.textView3m.setOnClickListener(this)
         binding.textView1y.setOnClickListener(this)
-        binding.textViewAllTime.setOnClickListener(this)
 
         initChart()
     }
@@ -140,7 +138,7 @@ class ExchangesDetailActivity : AppCompatActivity(), View.OnClickListener {
         y.textColor = Color.BLACK
         y.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART)
         y.setDrawGridLines(false)
-        y.valueFormatter = YAxisValueFormatter()
+        y.valueFormatter = YAxisValueFormatterExchanges()
         y.axisLineColor = Color.BLACK
         y.setDrawZeroLine(false)
         y.setDrawLimitLinesBehindData(false);
@@ -287,47 +285,35 @@ class ExchangesDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         when (view?.id) {
-            binding.textView1h.id -> {
-                selectedTextViewTimeFilter.isSelected = false
-                binding.textView1h.isSelected = true
-                selectedTextViewTimeFilter = binding.textView1h
-                mDetailViewModel.getCryptoChart(0.04.toString())
-            }
             binding.textView24hr.id -> {
                 selectedTextViewTimeFilter.isSelected = false
                 binding.textView24hr.isSelected = true
                 selectedTextViewTimeFilter = binding.textView24hr
-                mDetailViewModel.getCryptoChart(1.toString())
+                mDetailViewModel.getChart(1.toString())
             }
             binding.textView7d.id -> {
                 selectedTextViewTimeFilter.isSelected = false
                 binding.textView7d.isSelected = true
                 selectedTextViewTimeFilter = binding.textView7d
-                mDetailViewModel.getCryptoChart(7.toString())
+                mDetailViewModel.getChart(7.toString())
             }
             binding.textView1m.id -> {
                 selectedTextViewTimeFilter.isSelected = false
                 binding.textView1m.isSelected = true
                 selectedTextViewTimeFilter = binding.textView1m
-                mDetailViewModel.getCryptoChart(30.toString())
+                mDetailViewModel.getChart(30.toString())
             }
             binding.textView3m.id -> {
                 selectedTextViewTimeFilter.isSelected = false
                 binding.textView3m.isSelected = true
                 selectedTextViewTimeFilter = binding.textView3m
-                mDetailViewModel.getCryptoChart(90.toString())
+                mDetailViewModel.getChart(90.toString())
             }
             binding.textView1y.id -> {
                 selectedTextViewTimeFilter.isSelected = false
                 binding.textView1y.isSelected = true
                 selectedTextViewTimeFilter = binding.textView1y
-                mDetailViewModel.getCryptoChart(365.toString())
-            }
-            binding.textViewAllTime.id -> {
-                selectedTextViewTimeFilter.isSelected = false
-                binding.textViewAllTime.isSelected = true
-                selectedTextViewTimeFilter = binding.textViewAllTime
-                mDetailViewModel.getCryptoChart("max")
+                mDetailViewModel.getChart(365.toString())
             }
             else -> {}
         }
