@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/drawable/border_game.xml" value="0.128" />
         <entry key="app/src/main/res/drawable/border_more.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/border_more_apps.xml" value="0.13513513513513514" />
+        <entry key="app/src/main/res/drawable/border_search_view.xml" value="0.1185" />
         <entry key="app/src/main/res/drawable/border_show_more_btn.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/border_spin.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/border_time_filter.xml" value="0.1035" />
@@ -101,6 +102,7 @@
         <entry key="app/src/main/res/layout/item_news_shimmer.xml" value="0.11711711711711711" />
         <entry key="app/src/main/res/layout/item_nft.xml" value="0.22598571777343754" />
         <entry key="app/src/main/res/layout/item_nft_shimmer.xml" value="0.24961853027343753" />
+        <entry key="app/src/main/res/layout/item_search.xml" value="0.2738555908203125" />
         <entry key="app/src/main/res/layout/item_trending.xml" value="0.44923828125000004" />
         <entry key="app/src/main/res/layout/item_trending_shimmer.xml" value="0.43339385986328127" />
         <entry key="app/src/main/res/layout/item_withdraw_history.xml" value="0.11351351351351352" />
@@ -108,10 +110,11 @@
         <entry key="app/src/main/res/layout/nav_header_nav_drawer_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/paging_load_view.xml" value="0.22" />
         <entry key="app/src/main/res/layout/refer_app_layout.xml" value="0.13648648648648648" />
+        <entry key="app/src/main/res/layout/search_view.xml" value="0.28968353271484376" />
         <entry key="app/src/main/res/layout/tnc_activity.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/menu/activity_main_nav_drawer_drawer.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
-        <entry key="app/src/main/res/menu/menu.xml" value="0.10405405405405406" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.18891733530405408" />
         <entry key="app/src/main/res/menu/nav_drawer_main.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/menu/nav_drawer_menu.xml" value="0.33" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2111111111111111" />

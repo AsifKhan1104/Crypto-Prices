@@ -13,6 +13,7 @@ import com.crypto.prices.view.ui.market.exchanges.detail.ExchangesDetailViewMode
 import com.crypto.prices.view.ui.market.nfts.NftViewModel
 import com.crypto.prices.view.ui.market.nfts.detail.NftDetailViewModel
 import com.crypto.prices.view.ui.more.CurrencySelectViewModel
+import com.crypto.prices.view.ui.search.SearchViewModel
 
 class ViewModelFactory(
     val app: CryptoApplication,
@@ -59,6 +60,10 @@ class ViewModelFactory(
 
         if (modelClass.isAssignableFrom(ExchangesDetailViewModel::class.java)) {
             return ExchangesDetailViewModel(app, appRepository, map) as T
+        }
+
+        if (modelClass.isAssignableFrom(SearchViewModel::class.java)) {
+            return SearchViewModel(app, appRepository, map) as T
         }
         throw IllegalArgumentException("Unknown class name")
     }

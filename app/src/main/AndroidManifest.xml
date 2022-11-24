@@ -56,6 +56,9 @@
         <activity
             android:name=".view.ui.market.exchanges.detail.ExchangesDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ui.search.SearchActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".utils.MyFirebaseMessagingService"

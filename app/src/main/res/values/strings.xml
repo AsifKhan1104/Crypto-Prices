@@ -55,4 +55,5 @@
     <string name="network_failure">Network Failure !!</string>
     <string name="conversion_error">Conversion Error !!</string>
     <string name="dash">-</string>
+    <string name="search_hint">Search coins</string>
 </resources>

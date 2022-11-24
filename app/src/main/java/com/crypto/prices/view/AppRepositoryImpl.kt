@@ -32,6 +32,7 @@ class AppRepositoryImpl : AppRepository {
 
     override suspend fun getTrendingCoins(): Response<Trending> = service.getTrendingCoins()
     override suspend fun getExchangeRates(): Response<ExchangeRates> = service.getExchangeRates()
+    override suspend fun getSearchResults(query: String): Response<SearchData> = service.getSearchResults(query)
 
     override suspend fun getAllNews(map: MutableMap<String, String>): Response<NewsData> =
         serviceNews.getAllNews(map)

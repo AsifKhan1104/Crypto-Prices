@@ -1,6 +1,9 @@
 package com.crypto.prices.view.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.crypto.prices.R
@@ -10,6 +13,7 @@ import com.crypto.prices.view.ui.explore.NewsFragment
 import com.crypto.prices.view.ui.home.HomeFragment
 import com.crypto.prices.view.ui.market.MarketFragment
 import com.crypto.prices.view.ui.more.MoreFragment
+import com.crypto.prices.view.ui.search.SearchActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -109,35 +113,19 @@ class MainActivity : AppCompatActivity() {
         activeFragment = newsFragment
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
-        return true
-    }*/
+        return super.onCreateOptionsMenu(menu)
+    }
 
-    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            *//*R.id.menu_logout -> {
-                signOut()
-
-                true
-            }*//*
-            R.id.menu_settings -> {
-                val intent = Intent(this@MainActivity, SettingsActivity::class.java)
-                intent.putExtra("email", mEmail)
-                intent.putExtra("name", mName)
+            R.id.action_search -> {
+                val intent = Intent(this, SearchActivity::class.java)
                 startActivity(intent)
-
                 true
             }
-            *//*R.id.menu_withdraw_req -> {
-                val intent = Intent(this@MainActivity2, WithdrawHistoryActivity::class.java)
-                intent.putExtra("uid", mUid)
-                intent.putExtra("name", mName)
-                startActivity(intent)
-
-                true
-            }*//*
             else -> super.onOptionsItemSelected(item)
         }
-    }*/
+    }
 }

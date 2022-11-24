@@ -24,5 +24,6 @@ interface AppRepository {
     suspend fun getNftData(id: String): Response<NftDetailData>
     suspend fun getTrendingCoins(): Response<Trending>
     suspend fun getExchangeRates(): Response<ExchangeRates>
+    suspend fun getSearchResults(query: String): Response<SearchData>
     suspend fun getAllNews(map: MutableMap<String, String>): Response<NewsData>
 }
