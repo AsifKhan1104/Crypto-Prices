@@ -21,6 +21,10 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mViewModel: SearchViewModel
     private val TAG = "SearchActivity"
 
+    private lateinit var mAdapterCoins: SearchCryptoAdapter
+    private lateinit var mAdapterNfts: SearchNftsAdapter
+    private lateinit var mAdapterExchanges: SearchExchangesAdapter
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -32,7 +36,22 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
         getSupportActionBar()?.hide()
         setUpListeners()
+        setUpRecyclerView()
         setUpViewModel()
+    }
+
+    private fun setUpRecyclerView() {
+        binding.recyclerViewCoins.layoutManager = LinearLayoutManager(this)
+        mAdapterCoins = SearchCryptoAdapter(this, ArrayList())
+        binding.recyclerViewCoins.adapter = mAdapterCoins
+
+        binding.recyclerViewNfts.layoutManager = LinearLayoutManager(this)
+        mAdapterNfts = SearchNftsAdapter(this, ArrayList())
+        binding.recyclerViewNfts.adapter = mAdapterNfts
+
+        binding.recyclerViewExchanges.layoutManager = LinearLayoutManager(this)
+        mAdapterExchanges = SearchExchangesAdapter(this, ArrayList())
+        binding.recyclerViewExchanges.adapter = mAdapterExchanges
     }
 
     private fun setUpListeners() {
@@ -92,7 +111,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
                         it.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinished()
-                            setView(it)
+                            setDataInView(it)
                         }
                     }
                     is NetworkResult.Error -> {
@@ -112,12 +131,11 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     // set data in all recycler views
-    private fun setView(it: SearchData) {
+    private fun setDataInView(it: SearchData) {
         binding.textViewCoins.visibility = View.VISIBLE
         binding.textViewNfts.visibility = View.VISIBLE
         binding.textViewExchanges.visibility = View.VISIBLE
 
-        binding.recyclerViewCoins.layoutManager = LinearLayoutManager(this)
         // set coins
         val coinList = it?.coins
         if (coinList.size == 0) {
@@ -126,14 +144,10 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             binding.textViewNoDataCoins.visibility = View.GONE
             binding.recyclerViewCoins.visibility = View.VISIBLE
-            binding.recyclerViewCoins.adapter =
-                SearchCryptoAdapter(
-                    this,
-                    if (coinList.size > 4) coinList.subList(0, 4) else coinList
-                )
+            mAdapterCoins.data = if (coinList.size > 4) coinList.subList(0, 4) else coinList
+            mAdapterCoins.notifyDataSetChanged()
         }
 
-        binding.recyclerViewNfts.layoutManager = LinearLayoutManager(this)
         // set nfts
         val nftList = it?.nfts
         if (nftList.size == 0) {
@@ -142,8 +156,8 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             binding.textViewNoDataNfts.visibility = View.GONE
             binding.recyclerViewNfts.visibility = View.VISIBLE
-            binding.recyclerViewNfts.adapter =
-                SearchNftsAdapter(this, if (nftList.size > 4) nftList.subList(0, 4) else nftList)
+            mAdapterNfts.data = if (nftList.size > 4) nftList.subList(0, 4) else nftList
+            mAdapterNfts.notifyDataSetChanged()
         }
 
         binding.recyclerViewExchanges.layoutManager = LinearLayoutManager(this)
@@ -155,11 +169,9 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             binding.textViewNoDataExchanges.visibility = View.GONE
             binding.recyclerViewExchanges.visibility = View.VISIBLE
-            binding.recyclerViewExchanges.adapter =
-                SearchExchangesAdapter(
-                    this,
-                    if (exchangeList.size > 4) exchangeList.subList(0, 4) else exchangeList
-                )
+            mAdapterExchanges.data =
+                if (exchangeList.size > 4) exchangeList.subList(0, 4) else exchangeList
+            mAdapterExchanges.notifyDataSetChanged()
         }
     }
 
