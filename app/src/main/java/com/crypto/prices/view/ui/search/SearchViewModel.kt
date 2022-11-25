@@ -30,7 +30,7 @@ class SearchViewModel(
     }*/
 
     init {
-        getData("")
+        // getData("")
     }
 
     fun getData(query: String) = viewModelScope.launch {

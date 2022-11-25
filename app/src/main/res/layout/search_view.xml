@@ -31,6 +31,7 @@
         android:text="Coins"
         android:textColor="@android:color/black"
         android:textSize="20sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
@@ -66,6 +67,7 @@
         android:text="NFTs"
         android:textColor="@android:color/black"
         android:textSize="20sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewCoins" />
 
@@ -101,6 +103,7 @@
         android:text="Exchanges"
         android:textColor="@android:color/black"
         android:textSize="20sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewNfts" />
 
@@ -154,7 +157,7 @@
         android:text="No Results Found"
         android:textColor="#FA1302"
         android:textSize="18sp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -36,6 +36,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initListeners() {
+        binding.searchView.requestFocusFromTouch()
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -111,6 +112,10 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
     // set data in all recycler views
     private fun setView(it: SearchData) {
+        binding.textViewCoins.visibility = View.VISIBLE
+        binding.textViewNfts.visibility = View.VISIBLE
+        binding.textViewExchanges.visibility = View.VISIBLE
+
         binding.recyclerViewCoins.layoutManager = LinearLayoutManager(this)
         // set coins
         val coinList = it?.coins
@@ -119,6 +124,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
             binding.recyclerViewCoins.visibility = View.GONE
         } else {
             binding.textViewNoDataCoins.visibility = View.GONE
+            binding.recyclerViewCoins.visibility = View.VISIBLE
             binding.recyclerViewCoins.adapter =
                 SearchCryptoAdapter(
                     this,
@@ -134,6 +140,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
             binding.recyclerViewNfts.visibility = View.GONE
         } else {
             binding.textViewNoDataNfts.visibility = View.GONE
+            binding.recyclerViewNfts.visibility = View.VISIBLE
             binding.recyclerViewNfts.adapter =
                 SearchNftsAdapter(this, if (nftList.size > 4) nftList.subList(0, 4) else nftList)
         }
@@ -146,6 +153,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
             binding.recyclerViewExchanges.visibility = View.GONE
         } else {
             binding.textViewNoDataExchanges.visibility = View.GONE
+            binding.recyclerViewExchanges.visibility = View.VISIBLE
             binding.recyclerViewExchanges.adapter =
                 SearchExchangesAdapter(
                     this,
