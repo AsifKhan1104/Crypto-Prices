@@ -31,11 +31,11 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(_binding?.root)
 
         getSupportActionBar()?.hide()
-        initListeners()
+        setUpListeners()
         setUpViewModel()
     }
 
-    private fun initListeners() {
+    private fun setUpListeners() {
         binding.searchView.requestFocusFromTouch()
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -46,6 +46,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
+                    mViewModel.getData(newText)
                 }
                 return true
             }
@@ -67,12 +68,12 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         binding.textViewError.text = s
         binding.textViewError.visibility = View.VISIBLE
         binding.loadingView.visibility = View.GONE
-        binding.searchViewParent.visibility = View.GONE
+        //binding.searchViewParent.visibility = View.GONE
     }
 
     private fun onLoading() {
         binding.textViewError.visibility = View.GONE
-        binding.searchViewParent.visibility = View.GONE
+        //binding.searchViewParent.visibility = View.GONE
         binding.loadingView.visibility = View.VISIBLE
     }
 
@@ -84,7 +85,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
     fun loadData() {
         try {
-            mViewModel.searchLiveData.observe(this, Observer {
+            mViewModel.getSearchResults().observe(this, Observer {
                 // blank observe here
                 when (it) {
                     is NetworkResult.Success -> {
