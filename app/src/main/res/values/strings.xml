@@ -56,4 +56,5 @@
     <string name="conversion_error">Conversion Error !!</string>
     <string name="dash">-</string>
     <string name="search_hint">Search coins</string>
+    <string name="no_results_found">No Results Found !!</string>
 </resources>
