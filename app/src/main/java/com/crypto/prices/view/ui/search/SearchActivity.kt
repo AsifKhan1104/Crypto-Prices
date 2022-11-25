@@ -6,8 +6,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.databinding.SearchViewBinding
@@ -15,6 +15,9 @@ import com.crypto.prices.model.SearchData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class SearchActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: SearchViewBinding? = null
@@ -31,21 +34,22 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(_binding?.root)
 
         getSupportActionBar()?.hide()
-        initListeners()
+        setUpListeners()
         setUpViewModel()
     }
 
-    private fun initListeners() {
+    private fun setUpListeners() {
         binding.searchView.requestFocusFromTouch()
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                mViewModel.getData(query!!)
+                mViewModel.fetchData(query!!)
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
+                    mViewModel.fetchData(it)
                 }
                 return true
             }
@@ -84,27 +88,28 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
     fun loadData() {
         try {
-            mViewModel.searchLiveData.observe(this, Observer {
-                // blank observe here
-                when (it) {
-                    is NetworkResult.Success -> {
-                        it.networkData?.let {
-                            //bind the data to the ui
-                            onLoadingFinished()
-                            setView(it)
+            lifecycleScope.launch {
+                mViewModel.getSearchResults().collect {
+                    when (it) {
+                        is NetworkResult.Success -> {
+                            it.networkData?.let {
+                                //bind the data to the ui
+                                onLoadingFinished()
+                                setView(it)
+                            }
+                        }
+                        is NetworkResult.Error -> {
+                            //show error message
+                            onError(it.networkErrorMessage.toString())
+                        }
+
+                        is NetworkResult.Loading -> {
+                            //show loader
+                            onLoading()
                         }
                     }
-                    is NetworkResult.Error -> {
-                        //show error message
-                        onError(it.networkErrorMessage.toString())
-                    }
-
-                    is NetworkResult.Loading -> {
-                        //show loader
-                        onLoading()
-                    }
                 }
-            })
+            }
         } catch (ex: Exception) {
             ex.message?.let { Log.e(TAG, it) }
         }
