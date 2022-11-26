@@ -47,7 +47,7 @@ data class Ath(
     val pln: BigDecimal,
     val rub: BigDecimal,
     val sar: BigDecimal,
-    val sats: Int,
+    val sats: BigDecimal,
     val sek: BigDecimal,
     val sgd: BigDecimal,
     val thb: BigDecimal,

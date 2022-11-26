@@ -1,6 +1,7 @@
 package com.crypto.prices.view.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.crypto.prices.R
 import com.crypto.prices.model.CoinX
+import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailSearchActivity
 import kotlinx.android.synthetic.main.item_trending.view.*
 
 class HomeTrendingAdapter(context: Context?, var data: List<CoinX>?) :
@@ -26,7 +28,7 @@ class HomeTrendingAdapter(context: Context?, var data: List<CoinX>?) :
     }
 
     class TrendingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //private val cardView = view.cardView
+        private val cardView = view.cardView
         private val imageViewId = view.imageViewId
         private val textViewName = view.textViewName
         private val textViewPrice = view.textViewPrice
@@ -44,13 +46,13 @@ class HomeTrendingAdapter(context: Context?, var data: List<CoinX>?) :
                 .into(imageViewId)
 
             // on click listener
-            /*cardView.setOnClickListener(object : View.OnClickListener {
+            cardView.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
-                    *//*val intent = Intent(context, MarketDetailActivity::class.java)
-                    intent.putExtra("market_listings_data", data)
-                    context.startActivity(intent)*//*
+                    val intent = Intent(context, CryptoDetailSearchActivity::class.java)
+                    intent.putExtra("id", data?.item?.id)
+                    context.startActivity(intent)
                 }
-            })*/
+            })
         }
     }
 }
