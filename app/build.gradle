@@ -16,8 +16,8 @@ android {
         applicationId "com.miner.doge_miner"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 9
-        versionName "1.2.1"
+        versionCode 10
+        versionName "1.2.2"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
