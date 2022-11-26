@@ -2,6 +2,7 @@ package com.crypto.prices.view.ui.market.categories
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -163,6 +164,11 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
             else -> {
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

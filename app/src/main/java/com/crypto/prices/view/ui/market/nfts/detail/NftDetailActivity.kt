@@ -3,6 +3,7 @@ package com.crypto.prices.view.ui.market.nfts.detail
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -165,6 +166,11 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
         when (view?.id) {
         }
     }
+
+    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }*/
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
