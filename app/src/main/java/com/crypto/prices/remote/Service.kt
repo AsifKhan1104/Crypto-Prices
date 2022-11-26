@@ -2,6 +2,7 @@ package com.crypto.prices.remote
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class Service {
     private val BASE_URL = "https://pro-api.coinmarketcap.com/";
@@ -12,6 +13,14 @@ class Service {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(Api::class.java)
+    }
+
+    fun getCMJsonService(): Api{
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(ScalarsConverterFactory.create())
             .build()
             .create(Api::class.java)
     }

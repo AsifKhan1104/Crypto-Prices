@@ -22,6 +22,7 @@ import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.activity.PrivacyPolicyActivity
 import com.crypto.prices.view.activity.TnCActivity
+import com.crypto.prices.view.ui.explore.CurrConverterActivity
 import com.google.gson.Gson
 
 class MoreFragment : Fragment(), View.OnClickListener {
@@ -98,10 +99,12 @@ class MoreFragment : Fragment(), View.OnClickListener {
                 Utility.openWebURL(requireContext(), "https://www.flaticon.com")
             }
             binding.relativeLayoutGames.id -> {
-                Utility.openChromeCustomTabUrlNews(
+                /*Utility.openChromeCustomTabUrlNews(
                     requireContext(),
                     requireContext().getString(R.string.gamezop_url)
-                )
+                )*/
+                val intent = Intent(requireContext(), CurrConverterActivity::class.java)
+                startActivity(intent)
             }
             binding.relativeLayoutPP.id -> {
                 val intent = Intent(requireContext(), PrivacyPolicyActivity::class.java)

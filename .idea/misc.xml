@@ -50,6 +50,7 @@
         <entry key="app/src/main/res/drawable/textbox_un_selected.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/ticker_selected.xml" value="0.1055" />
         <entry key="app/src/main/res/layout/activity_crypto_detail.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/activity_currency_converter.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_exchanges_detail.xml" value="0.23211212158203126" />
         <entry key="app/src/main/res/layout/activity_linechart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -91,6 +92,7 @@
         <entry key="app/src/main/res/layout/item_categories.xml" value="0.2729278564453125" />
         <entry key="app/src/main/res/layout/item_crypto.xml" value="0.3423202514648438" />
         <entry key="app/src/main/res/layout/item_crypto_shimmer.xml" value="0.109009009009009" />
+        <entry key="app/src/main/res/layout/item_currency_converter.xml" value="0.21878509521484377" />
         <entry key="app/src/main/res/layout/item_currency_select.xml" value="0.2506927490234375" />
         <entry key="app/src/main/res/layout/item_exchanges.xml" value="0.2795455932617188" />
         <entry key="app/src/main/res/layout/item_exchanges_shimmer.xml" value="0.1893162393162393" />

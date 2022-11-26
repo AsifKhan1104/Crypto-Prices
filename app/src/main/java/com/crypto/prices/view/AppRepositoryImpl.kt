@@ -6,6 +6,7 @@ import com.crypto.prices.model.exchangeRates.ExchangeRates
 import com.crypto.prices.remote.Service
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import okhttp3.ResponseBody
 import retrofit2.Response
 
 class AppRepositoryImpl : AppRepository {
@@ -49,6 +50,10 @@ class AppRepositoryImpl : AppRepository {
 
     override suspend fun getTrendingCoins(): Response<Trending> = service.getTrendingCoins()
     override suspend fun getExchangeRates(): Response<ExchangeRates> = service.getExchangeRates()
+    override suspend fun getSupportedCurrList(): Response<List<String>> = service.getSupportedCurrency()
+    override suspend fun getPriceConversion(map: MutableMap<String, String>): Response<String> =
+        Service().getCMJsonService().getPriceConversion(map)
+
     override suspend fun getSearchResults(query: String): Flow<Response<SearchData>> =
         flow { emit(service.getSearchResults(query)) }
 

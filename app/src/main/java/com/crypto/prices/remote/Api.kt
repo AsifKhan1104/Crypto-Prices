@@ -3,6 +3,7 @@ package com.crypto.prices.remote
 import com.crypto.prices.model.*
 import com.crypto.prices.model.crypto.search.CryptoDetailData
 import com.crypto.prices.model.exchangeRates.ExchangeRates
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 import java.math.BigDecimal
@@ -11,6 +12,10 @@ interface Api {
     @Headers("X-CMC_PRO_API_KEY: 5830540b-c91b-4428-8c1f-08b7073aa1b8")
     @GET("v1/cryptocurrency/listings/latest")
     suspend fun getListingsLatest(): Response<ListingsLatest>
+
+    @Headers("X-CMC_PRO_API_KEY: 5830540b-c91b-4428-8c1f-08b7073aa1b8")
+    @GET("v2/tools/price-conversion")
+    suspend fun getPriceConversion(@QueryMap map: Map<String, String>): Response<String>
 
     @GET("v3/coins/markets")
     suspend fun getCryptoCoins(@QueryMap map: Map<String, String>): Response<List<CryptoData>>
@@ -55,6 +60,9 @@ interface Api {
 
     @GET("v3/exchange_rates")
     suspend fun getExchangeRates(): Response<ExchangeRates>
+
+    @GET("v3/simple/supported_vs_currencies")
+    suspend fun getSupportedCurrency(): Response<List<String>>
 
     @GET("v3/search")
     suspend fun getSearchResults(@Query("query") query: String): Response<SearchData>

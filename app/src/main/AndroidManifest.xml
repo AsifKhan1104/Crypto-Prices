@@ -65,6 +65,9 @@
         <activity
             android:name=".view.ui.search.SearchActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ui.explore.CurrConverterActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".utils.MyFirebaseMessagingService"

@@ -19,4 +19,12 @@ public class SharedPrefsDataRetrieval {
         }.getType();
         return new Gson().fromJson(json, type);
     }
+
+    public List<String> getSupportedCurrData(Activity activity) {
+        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        String json = sharedPref.getString("supportedCurrencyList", null);
+        Type type = new TypeToken<List<String>>() {
+        }.getType();
+        return new Gson().fromJson(json, type);
+    }
 }
