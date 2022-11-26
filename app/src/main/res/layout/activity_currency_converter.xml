@@ -13,18 +13,38 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Spinner
-            android:id="@+id/spinnerFrom"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="120dp"
             android:layout_height="50dp"
+            app:cardCornerRadius="4dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText"
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinnerFrom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/editTextCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_marginStart="20dp"
+            app:cardCornerRadius="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTo"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
     <TextView
@@ -40,13 +60,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <Spinner
-        android:id="@+id/spinnerTo"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/spinnerCard"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
+        app:cardCornerRadius="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTo" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTo"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinnerTo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/buttonConvert"
@@ -61,9 +90,9 @@
         android:paddingBottom="10dp"
         android:text="Convert"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/spinnerTo"
-        app:layout_constraintStart_toEndOf="@+id/spinnerTo"
-        app:layout_constraintTop_toTopOf="@+id/spinnerTo" />
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerCard"
+        app:layout_constraintStart_toEndOf="@+id/spinnerCard"
+        app:layout_constraintTop_toTopOf="@+id/spinnerCard" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCurrency"

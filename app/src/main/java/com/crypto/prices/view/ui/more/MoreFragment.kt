@@ -75,6 +75,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
         binding.relativeLayoutPP.setOnClickListener(this)
         binding.relativeLayoutTnC.setOnClickListener(this)
         binding.relativeLayoutCC.setOnClickListener(this)
+        binding.relativeLayoutCalculator.setOnClickListener(this)
     }
 
     companion object {
@@ -99,12 +100,10 @@ class MoreFragment : Fragment(), View.OnClickListener {
                 Utility.openWebURL(requireContext(), "https://www.flaticon.com")
             }
             binding.relativeLayoutGames.id -> {
-                /*Utility.openChromeCustomTabUrlNews(
+                Utility.openChromeCustomTabUrlNews(
                     requireContext(),
                     requireContext().getString(R.string.gamezop_url)
-                )*/
-                val intent = Intent(requireContext(), CurrConverterActivity::class.java)
-                startActivity(intent)
+                )
             }
             binding.relativeLayoutPP.id -> {
                 val intent = Intent(requireContext(), PrivacyPolicyActivity::class.java)
@@ -126,6 +125,10 @@ class MoreFragment : Fragment(), View.OnClickListener {
                     val fragment = CurrencySelectFragment()
                     fragment.show(requireActivity()?.supportFragmentManager, "")
                 }
+            }
+            binding.relativeLayoutCalculator.id -> {
+                val intent = Intent(requireContext(), CurrConverterActivity::class.java)
+                startActivity(intent)
             }
             else -> {}
         }

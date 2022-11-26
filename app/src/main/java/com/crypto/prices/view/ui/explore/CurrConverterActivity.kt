@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
@@ -93,6 +92,7 @@ class CurrConverterActivity : AppCompatActivity(), View.OnClickListener {
 
         // add arraylist
         val responseList = ArrayList<String>()
+        responseList.add(binding.editText.text.toString())
         responseList.add(symbol.toString())
         responseList.add(name.toString())
         responseList.add(toCurrencySymbol)
