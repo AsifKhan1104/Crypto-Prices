@@ -7,6 +7,7 @@ import com.crypto.prices.view.ui.explore.NewsViewModel
 import com.crypto.prices.view.ui.home.HomeViewModel
 import com.crypto.prices.view.ui.market.categories.CategoriesViewModel
 import com.crypto.prices.view.ui.market.crypto.CryptoViewModel
+import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailSearchViewModel
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailViewModel
 import com.crypto.prices.view.ui.market.exchanges.ExchangesViewModel
 import com.crypto.prices.view.ui.market.exchanges.detail.ExchangesDetailSearchViewModel
@@ -37,6 +38,10 @@ class ViewModelFactory(
 
         if (modelClass.isAssignableFrom(CryptoDetailViewModel::class.java)) {
             return CryptoDetailViewModel(app, appRepository, map) as T
+        }
+
+        if (modelClass.isAssignableFrom(CryptoDetailSearchViewModel::class.java)) {
+            return CryptoDetailSearchViewModel(app, appRepository, map) as T
         }
 
         if (modelClass.isAssignableFrom(CategoriesViewModel::class.java)) {

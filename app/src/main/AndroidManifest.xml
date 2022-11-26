@@ -48,6 +48,9 @@
             android:name=".view.ui.market.crypto.detail.CryptoDetailActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".view.ui.market.crypto.detail.CryptoDetailSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".view.ui.market.categories.CategoriesCoinListActivity"
             android:screenOrientation="portrait" />
         <activity

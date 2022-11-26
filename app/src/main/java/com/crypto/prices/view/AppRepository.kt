@@ -1,6 +1,7 @@
 package com.crypto.prices.view
 
 import com.crypto.prices.model.*
+import com.crypto.prices.model.crypto.search.CryptoDetailData
 import com.crypto.prices.model.exchangeRates.ExchangeRates
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
@@ -13,6 +14,10 @@ interface AppRepository {
         id: String,
         map: MutableMap<String, String>
     ): Response<CryptoChartData>
+    suspend fun getCryptoCoinDetail(
+        id: String,
+        map: MutableMap<String, String>
+    ): Response<CryptoDetailData>
 
     suspend fun getCategories(map: MutableMap<String, String>): Response<List<CategoriesData>>
     suspend fun getExchanges(map: MutableMap<String, String>): Response<List<ExchangesData>>

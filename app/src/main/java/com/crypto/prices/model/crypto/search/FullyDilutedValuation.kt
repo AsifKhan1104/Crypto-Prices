@@ -1,0 +1,3 @@
+package com.crypto.prices.model.crypto.search
+
+class FullyDilutedValuation
