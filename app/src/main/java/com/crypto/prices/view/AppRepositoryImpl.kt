@@ -29,6 +29,8 @@ class AppRepositoryImpl : AppRepository {
         map: MutableMap<String, String>
     ) = service.getExchangesChart(id, map)
 
+    override suspend fun getExchange(id: String): Response<ExchangeDataSearch> = service.getExchange(id)
+
     override suspend fun getNfts(map: MutableMap<String, String>): Response<List<NftData>> = service.getNfts(map)
     override suspend fun getNftData(id: String): Response<NftDetailData> = service.getNftData(id)
 

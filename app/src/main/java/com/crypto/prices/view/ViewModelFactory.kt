@@ -9,6 +9,7 @@ import com.crypto.prices.view.ui.market.categories.CategoriesViewModel
 import com.crypto.prices.view.ui.market.crypto.CryptoViewModel
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailViewModel
 import com.crypto.prices.view.ui.market.exchanges.ExchangesViewModel
+import com.crypto.prices.view.ui.market.exchanges.detail.ExchangesDetailSearchViewModel
 import com.crypto.prices.view.ui.market.exchanges.detail.ExchangesDetailViewModel
 import com.crypto.prices.view.ui.market.nfts.NftViewModel
 import com.crypto.prices.view.ui.market.nfts.detail.NftDetailViewModel
@@ -60,6 +61,10 @@ class ViewModelFactory(
 
         if (modelClass.isAssignableFrom(ExchangesDetailViewModel::class.java)) {
             return ExchangesDetailViewModel(app, appRepository, map) as T
+        }
+
+        if (modelClass.isAssignableFrom(ExchangesDetailSearchViewModel::class.java)) {
+            return ExchangesDetailSearchViewModel(app, appRepository, map) as T
         }
 
         if (modelClass.isAssignableFrom(SearchViewModel::class.java)) {

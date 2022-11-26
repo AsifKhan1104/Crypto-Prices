@@ -1,6 +1,7 @@
 package com.crypto.prices.view.ui.search
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.crypto.prices.R
 import com.crypto.prices.model.Exchange
+import com.crypto.prices.view.ui.market.exchanges.detail.ExchangesDetailSearchActivity
 import kotlinx.android.synthetic.main.item_crypto.view.table_layout
 import kotlinx.android.synthetic.main.item_search.view.*
 
@@ -49,10 +51,9 @@ class SearchExchangesAdapter(context: Context?, var data: List<Exchange>?) :
             // on click listener
             tableLayout.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
-                    /*val intent = Intent(context, CryptoDetailActivity::class.java)
-                    intent.putExtra("categoryId", data?.id)
-                    intent.putExtra("categoryName", data?.name)
-                    context.startActivity(intent)*/
+                    val intent = Intent(context, ExchangesDetailSearchActivity::class.java)
+                    intent.putExtra("id", data?.id)
+                    context.startActivity(intent)
                 }
             })
         }

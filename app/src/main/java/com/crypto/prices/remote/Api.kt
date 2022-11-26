@@ -32,6 +32,11 @@ interface Api {
         @QueryMap map: Map<String, String>
     ): Response<ArrayList<ArrayList<BigDecimal>>>
 
+    @GET("v3/exchanges/{id}")
+    suspend fun getExchange(
+        @Path("id") id: String
+    ): Response<ExchangeDataSearch>
+
     @GET("v3/nfts/list")
     suspend fun getNfts(@QueryMap map: Map<String, String>): Response<List<NftData>>
 
