@@ -67,7 +67,7 @@ data class CryptoDetailData(
         val market_cap_change_percentage_24h: BigDecimal,
         val market_cap_change_percentage_24h_in_currency: MarketCapChangePercentage24hInCurrency,
         val market_cap_rank: Int,
-        val max_supply: Any,
+        val max_supply: BigDecimal,
         val mcap_to_tvl_ratio: Any,
         val price_change_24h: BigDecimal,
         val price_change_24h_in_currency: PriceChange24hInCurrency,

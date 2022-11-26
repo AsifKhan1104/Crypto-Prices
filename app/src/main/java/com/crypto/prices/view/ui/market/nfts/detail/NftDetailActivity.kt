@@ -1,5 +1,6 @@
 package com.crypto.prices.view.ui.market.nfts.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -15,6 +16,7 @@ import com.crypto.prices.model.NftDetailData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
+import com.crypto.prices.view.ui.search.SearchActivity
 import java.math.BigDecimal
 
 class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
@@ -159,18 +161,23 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    override fun onClick(view: View?) {
+        when (view?.id) {
+        }
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.getItemId()) {
+        return when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
                 return true
             }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onClick(view: View?) {
-        when (view?.id) {
+            R.id.action_search -> {
+                val intent = Intent(this, SearchActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.crypto.prices.view.ui.market.categories
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -18,6 +19,7 @@ import com.crypto.prices.view.TrailLoadStateAdapter
 import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.ui.market.crypto.CryptoPagingAdapter
 import com.crypto.prices.view.ui.market.crypto.CryptoViewModel
+import com.crypto.prices.view.ui.search.SearchActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -66,16 +68,6 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
         // get data from intent
         setUpViewModel()
         initData()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.getItemId()) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun initData() {
@@ -170,6 +162,21 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
             }
             else -> {
             }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+            R.id.action_search -> {
+                val intent = Intent(this, SearchActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
