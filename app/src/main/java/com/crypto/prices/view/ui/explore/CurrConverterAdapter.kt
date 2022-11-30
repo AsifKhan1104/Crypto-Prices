@@ -28,7 +28,7 @@ class CurrConverterAdapter(context: Context?, var data: ArrayList<String>) :
         private val textViewValue = view.textViewValue
 
         fun bind(context: Context, position: Int, data: ArrayList<String>) {
-            textViewSymbol.text = data.get(0) + " " + data.get(1) + " (" + data.get(2) + ") - "
+            textViewSymbol.text = data.get(0) + " " + data.get(1) + " (" + data.get(2) + ") "
             //textViewName.text = data.get(2) + " - "
             textViewValue.text = data.get(3) + " " + String.format("%.9f", data.get(4).toFloat())
         }

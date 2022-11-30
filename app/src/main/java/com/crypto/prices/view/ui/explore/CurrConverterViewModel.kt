@@ -36,7 +36,16 @@ class CurrConverterViewModel(
             if (Utility.isInternetAvailable()) {
                 val response = appRepository.getSupportedCurrList()
                 if (response.isSuccessful) {
-                    suppCurrLiveData.postValue(response.body()?.let { NetworkResult.Success(it) })
+                    var currList = response.body()?.let { it }!!
+                    if (currList.size > 0) {
+                        var capsCurrList = ArrayList<String>()
+                        for (items in currList) {
+                            capsCurrList.add(items.uppercase())
+                        }
+                        suppCurrLiveData.postValue(NetworkResult.Success(capsCurrList))
+                    } else {
+                        suppCurrLiveData.postValue(NetworkResult.Error("No Data found !!"))
+                    }
                 } else {
                     suppCurrLiveData.postValue(NetworkResult.Error(response.message()))
                 }
