@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // set title
+        supportActionBar?.title = getString(R.string.title_home)
 
         setDefaultCurrency()
         // default home page
@@ -54,25 +56,25 @@ class MainActivity : AppCompatActivity() {
         binding?.bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.navigation_home -> {
-                    //supportActionBar?.title = getString(R.string.title_home)
+                    supportActionBar?.title = getString(R.string.title_home)
                     openFragment(homeFragment)
                     activeFragment = homeFragment
                     true
                 }
                 R.id.navigation_market -> {
-                    //supportActionBar?.title = getString(R.string.title_market)
+                    supportActionBar?.title = getString(R.string.title_market)
                     openFragment(marketFragment)
                     activeFragment = marketFragment
                     true
                 }
                 R.id.navigation_explore -> {
-                    //supportActionBar?.title = getString(R.string.title_explore)
+                    supportActionBar?.title = getString(R.string.title_explore)
                     openFragment(newsFragment)
                     activeFragment = newsFragment
                     true
                 }
                 R.id.navigation_more -> {
-                    //supportActionBar?.title = getString(R.string.title_more)
+                    supportActionBar?.title = getString(R.string.title_more)
                     openFragment(moreFragment)
                     activeFragment = moreFragment
                     true
