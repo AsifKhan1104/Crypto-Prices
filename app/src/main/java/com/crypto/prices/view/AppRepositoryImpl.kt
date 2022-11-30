@@ -45,6 +45,9 @@ class AppRepositoryImpl : AppRepository {
     override suspend fun getDerivatives(map: MutableMap<String, String>): Response<List<DerivativesData>> =
         service.getDerivatives(map)
 
+    override suspend fun getDerivativesDetail(map: MutableMap<String, String>): Response<List<DerivativesDetailData>> =
+        service.getDerivativesDetail(map)
+
     override suspend fun getNfts(map: MutableMap<String, String>): Response<List<NftData>> =
         service.getNfts(map)
 

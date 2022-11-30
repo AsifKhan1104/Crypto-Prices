@@ -4,7 +4,6 @@ import com.crypto.prices.model.*
 import com.crypto.prices.model.crypto.search.CryptoDetailData
 import com.crypto.prices.model.exchangeRates.ExchangeRates
 import kotlinx.coroutines.flow.Flow
-import okhttp3.ResponseBody
 import retrofit2.Response
 import java.math.BigDecimal
 
@@ -15,6 +14,7 @@ interface AppRepository {
         id: String,
         map: MutableMap<String, String>
     ): Response<CryptoChartData>
+
     suspend fun getCryptoCoinDetail(
         id: String,
         map: MutableMap<String, String>
@@ -26,8 +26,10 @@ interface AppRepository {
         id: String,
         map: MutableMap<String, String>
     ): Response<ArrayList<ArrayList<BigDecimal>>>
+
     suspend fun getExchange(id: String): Response<ExchangeDataSearch>
     suspend fun getDerivatives(map: MutableMap<String, String>): Response<List<DerivativesData>>
+    suspend fun getDerivativesDetail(map: MutableMap<String, String>): Response<List<DerivativesDetailData>>
     suspend fun getNfts(map: MutableMap<String, String>): Response<List<NftData>>
     suspend fun getNftData(id: String): Response<NftDetailData>
     suspend fun getTrendingCoins(): Response<Trending>

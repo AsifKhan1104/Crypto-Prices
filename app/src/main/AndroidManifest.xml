@@ -63,6 +63,9 @@
             android:name=".view.ui.market.exchanges.detail.ExchangesDetailSearchActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".view.ui.market.derivatives.detail.DerivativesDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".view.ui.search.SearchActivity"
             android:screenOrientation="portrait" />
         <activity

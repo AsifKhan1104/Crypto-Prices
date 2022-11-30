@@ -51,6 +51,9 @@ interface Api {
     @GET("v3/derivatives/exchanges")
     suspend fun getDerivatives(@QueryMap map: Map<String, String>): Response<List<DerivativesData>>
 
+    @GET("v3/derivatives")
+    suspend fun getDerivativesDetail(@QueryMap map: Map<String, String>): Response<List<DerivativesDetailData>>
+
     @GET("v3/nfts/list")
     suspend fun getNfts(@QueryMap map: Map<String, String>): Response<List<NftData>>
 

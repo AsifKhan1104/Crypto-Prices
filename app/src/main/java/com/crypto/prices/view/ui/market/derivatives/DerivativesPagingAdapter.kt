@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.crypto.prices.R
 import com.crypto.prices.model.DerivativesData
-import com.crypto.prices.view.ui.market.exchanges.detail.ExchangesDetailActivity
+import com.crypto.prices.view.ui.market.derivatives.detail.DerivativesDetailActivity
 import kotlinx.android.synthetic.main.item_crypto.view.table_layout
 import kotlinx.android.synthetic.main.item_derivatives.view.*
 import kotlinx.android.synthetic.main.item_exchanges.view.*
@@ -62,8 +62,8 @@ class DerivativesPagingAdapter(context: Context?) :
             // on click listener
             tableLayout.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
-                    val intent = Intent(context, ExchangesDetailActivity::class.java)
-                    intent.putExtra("exchanges_data", data)
+                    val intent = Intent(context, DerivativesDetailActivity::class.java)
+                    intent.putExtra("derivatives_data", data)
                     context.startActivity(intent)
                 }
             })
