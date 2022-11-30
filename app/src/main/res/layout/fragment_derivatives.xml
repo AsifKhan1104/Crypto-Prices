@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <TableLayout
+        android:id="@+id/table_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10">
+
+            <TextView
+                android:id="@+id/textView_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1dp"
+                android:layout_weight="0.5"
+                android:background="#EEEEEE"
+                android:gravity="center_horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="#"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textView_exchange_header"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:fontFamily="sans-serif-smallcaps"
+                android:gravity="center"
+                android:text="Exchange"
+                android:textColor="@color/dark_gray"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/textView_volume"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="1dp"
+                android:layout_weight="2.5"
+                android:fontFamily="sans-serif-smallcaps"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="24H Volume(BTC)"
+                android:textColor="@color/dark_gray"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/textView_open_interest"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="1dp"
+                android:layout_weight="2.5"
+                android:fontFamily="sans-serif-smallcaps"
+                android:gravity="center_horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Open Interest(BTC)"
+                android:textColor="@color/dark_gray"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+        </TableRow>
+    </TableLayout>
+
+    <View
+        android:id="@+id/view_divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.5"
+        android:background="@color/divider_color"
+        app:layout_constraintTop_toBottomOf="@+id/table_layout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_divider" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:animateLayoutChanges="true"
+        android:animationCache="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_divider"
+        app:shimmer_repeat_mode="restart"
+        app:shimmer_shape="linear">
+
+        <!--For shimmer we are creating a same
+            layout but setting its background
+            as a gray colour and not providing
+            any view inside it-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--below we are displaying multiple
+                shimmer layouts using include
+                to show them in list format-->
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+            <include layout="@layout/item_exchanges_shimmer" />
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <TextView
+        android:id="@+id/textView_error"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/error_msg"
+        android:textColor="#FA1302"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

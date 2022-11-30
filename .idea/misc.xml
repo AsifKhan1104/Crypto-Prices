@@ -54,7 +54,7 @@
         <entry key="app/src/main/res/layout/activity_currency_converter.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_exchanges_detail.xml" value="0.23211212158203126" />
         <entry key="app/src/main/res/layout/activity_linechart.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2733812949640288" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23841583251953125" />
         <entry key="app/src/main/res/layout/activity_main_nav_drawer.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/layout/activity_market_detail.xml" value="0.22" />
@@ -75,6 +75,7 @@
         <entry key="app/src/main/res/layout/fragment_crypto.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_currency_select.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.37352294921875007" />
+        <entry key="app/src/main/res/layout/fragment_derivatives.xml" value="0.2792266845703125" />
         <entry key="app/src/main/res/layout/fragment_earn.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/fragment_exchanges.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2822695035460993" />
@@ -95,6 +96,7 @@
         <entry key="app/src/main/res/layout/item_crypto_shimmer.xml" value="0.109009009009009" />
         <entry key="app/src/main/res/layout/item_currency_converter.xml" value="0.21878509521484377" />
         <entry key="app/src/main/res/layout/item_currency_select.xml" value="0.2506927490234375" />
+        <entry key="app/src/main/res/layout/item_derivatives.xml" value="0.30868377685546877" />
         <entry key="app/src/main/res/layout/item_exchanges.xml" value="0.2795455932617188" />
         <entry key="app/src/main/res/layout/item_exchanges_shimmer.xml" value="0.1893162393162393" />
         <entry key="app/src/main/res/layout/item_listings.xml" value="0.22293676312968919" />
@@ -115,6 +117,7 @@
         <entry key="app/src/main/res/layout/refer_app_layout.xml" value="0.13648648648648648" />
         <entry key="app/src/main/res/layout/search_view.xml" value="0.28968353271484376" />
         <entry key="app/src/main/res/layout/tnc_activity.xml" value="0.23143115942028986" />
+        <entry key="app/src/main/res/layout/toolbar_main.xml" value="0.251666259765625" />
         <entry key="app/src/main/res/menu/activity_main_nav_drawer_drawer.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.18891733530405408" />

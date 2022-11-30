@@ -3,7 +3,6 @@ package com.crypto.prices.remote
 import com.crypto.prices.model.*
 import com.crypto.prices.model.crypto.search.CryptoDetailData
 import com.crypto.prices.model.exchangeRates.ExchangeRates
-import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 import java.math.BigDecimal
@@ -48,6 +47,9 @@ interface Api {
     suspend fun getExchange(
         @Path("id") id: String
     ): Response<ExchangeDataSearch>
+
+    @GET("v3/derivatives/exchanges")
+    suspend fun getDerivatives(@QueryMap map: Map<String, String>): Response<List<DerivativesData>>
 
     @GET("v3/nfts/list")
     suspend fun getNfts(@QueryMap map: Map<String, String>): Response<List<NftData>>

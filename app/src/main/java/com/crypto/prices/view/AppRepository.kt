@@ -27,7 +27,7 @@ interface AppRepository {
         map: MutableMap<String, String>
     ): Response<ArrayList<ArrayList<BigDecimal>>>
     suspend fun getExchange(id: String): Response<ExchangeDataSearch>
-
+    suspend fun getDerivatives(map: MutableMap<String, String>): Response<List<DerivativesData>>
     suspend fun getNfts(map: MutableMap<String, String>): Response<List<NftData>>
     suspend fun getNftData(id: String): Response<NftDetailData>
     suspend fun getTrendingCoins(): Response<Trending>
