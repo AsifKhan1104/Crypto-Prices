@@ -31,6 +31,12 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Make sure the toolbar exists in the activity and is not null
+        //val bindingToolbar =  ToolbarMainBinding.inflate(layoutInflater)
+        setSupportActionBar(binding.toolbar)
+        // Remove default title text
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         setDefaultCurrency()
         // default home page
