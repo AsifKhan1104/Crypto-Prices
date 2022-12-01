@@ -73,6 +73,7 @@
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1373873873873874" />
         <entry key="app/src/main/res/layout/content_nav_drawer_main.xml" value="0.10540540540540541" />
         <entry key="app/src/main/res/layout/custom_marker_view.xml" value="0.5230236706432996" />
+        <entry key="app/src/main/res/layout/dialog_derivatives_detail.xml" value="0.2402191162109375" />
         <entry key="app/src/main/res/layout/fragment_categories.xml" value="0.23191053602430559" />
         <entry key="app/src/main/res/layout/fragment_crypto.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_currency_select.xml" value="0.25" />

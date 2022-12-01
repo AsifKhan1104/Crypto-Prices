@@ -17,6 +17,7 @@ import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.crypto.prices.view.activity.MainActivity
 import java.text.SimpleDateFormat
+import java.util.*
 
 object Utility {
     const val isPro = "isPro"
@@ -168,6 +169,17 @@ object Utility {
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:SS'Z'")
         try {
             val time: Long = sdf.parse(value).getTime()
+            return TimeAgo.getTimeAgo(time)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return ""
+    }
+
+    // convert time to time ago
+    fun formatPublishedDateTimeLong(value: Long): String {
+        try {
+            val time: Long = Date(value).time
             return TimeAgo.getTimeAgo(time)
         } catch (e: ParseException) {
             e.printStackTrace()
