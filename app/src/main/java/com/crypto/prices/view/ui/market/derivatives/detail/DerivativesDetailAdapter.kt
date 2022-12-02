@@ -83,6 +83,7 @@ class DerivativesDetailAdapter(context: Context?, var data: List<DerivativesDeta
             bidAskSpread.text = if (data?.spread != null) data?.spread?.toString() + " %" else "-"
             indexPrice.text = String.format("%.4f", data?.index?.toFloat()) + " USDT"
             fundingRate.text = data?.funding_rate?.toString() + " %"
+            fundingRate.isSelected = true
 
             dialog.show()
         }

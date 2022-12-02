@@ -1,14 +1,20 @@
 package com.crypto.prices.view.ui.market.derivatives.detail
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.crypto.prices.databinding.ActivityDerivativesDetailBinding
@@ -18,6 +24,7 @@ import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.ui.search.SearchActivity
+
 
 class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: ActivityDerivativesDetailBinding? = null
@@ -35,17 +42,31 @@ class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
         _binding = ActivityDerivativesDetailBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
 
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         // get data from intent
         data = intent?.extras?.getParcelable<DerivativesData>("derivatives_data")!!
+        // set icon on action bar
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayUseLogoEnabled(true)
+        Glide.with(this).asDrawable().apply(RequestOptions.circleCropTransform()).load(data?.image)
+            .into(object : CustomTarget<Drawable?>() {
+                override fun onResourceReady(
+                    resource: Drawable,
+                    @Nullable transition: Transition<in Drawable?>?
+                ) {
+                    supportActionBar?.setLogo(resource)
+                }
+
+                override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
+            })
+
         setUpViewModel()
         setInfoData()
     }
 
     private fun setInfoData() {
         // set title
-        setTitle(data?.name)
+        setTitle("  " + data?.name)
 
         // set coin icon
         /*Glide.with(this)
@@ -115,11 +136,15 @@ class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setPerpetualData(derivativesList: List<DerivativesDetailData>) {
-        // show list of perpetuals
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = DerivativesDetailAdapter(context, derivativesList)
+        if (derivativesList != null && derivativesList.size > 0) {
+            // show list of perpetuals
+            binding.recyclerView.apply {
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(true)
+                adapter = DerivativesDetailAdapter(context, derivativesList)
+            }
+        } else {
+            onError("No Data Found !!")
         }
     }
 

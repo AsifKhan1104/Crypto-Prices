@@ -13,7 +13,7 @@ data class DerivativesData(
     val name: String,
     val number_of_futures_pairs: Int,
     val number_of_perpetual_pairs: Int,
-    val open_interest_btc: BigDecimal,
+    val open_interest_btc: BigDecimal?,
     val trade_volume_24h_btc: String,
     val url: String,
     val year_established: Int
