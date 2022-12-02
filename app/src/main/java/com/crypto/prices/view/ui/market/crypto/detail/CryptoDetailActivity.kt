@@ -413,13 +413,15 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
                 if (Utility.isFav(coin)) {
                     item.setIcon(R.drawable.star)
                     MySharedPrefs.getInstance(this).saveString(coin, "")
+                    Utility.removeFavList(this, coin)
                 } else {
                     item.setIcon(R.drawable.star_selected)
+                    Utility.saveFavList(this, coin)
                     MySharedPrefs.getInstance(this)
                         .saveString(
                             coin, data?.current_price!!.toString() + "#" +
                                     data?.price_change_percentage_24h!!.toString() + "#" +
-                                    data?.image
+                                    data?.image + "#crypto"
                         )
                 }
                 true

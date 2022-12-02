@@ -308,5 +308,26 @@ object Utility {
         }
         return true
     }
+
+    // save / remove fav list
+    fun saveFavList(context: Context, value: String) {
+        val sharedPref = context.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
+        val list = sharedPref.getStringSet("fav_list", null)
+        list?.add(value)
+        with(sharedPref.edit()) {
+            putStringSet("fav_list", list)
+            apply()
+        }
+    }
+
+    fun removeFavList(context: Context, value: String) {
+        val sharedPref = context.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
+        val list = sharedPref.getStringSet("fav_list", null)
+        list?.remove(value)
+        with(sharedPref.edit()) {
+            putStringSet("fav_list", list)
+            apply()
+        }
+    }
 }
 

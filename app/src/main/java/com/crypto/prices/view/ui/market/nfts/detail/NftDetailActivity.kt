@@ -189,13 +189,15 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
                 if (Utility.isFav(name!!)) {
                     item.setIcon(R.drawable.star)
                     MySharedPrefs.getInstance(this).saveString(name!!, "")
+                    Utility.removeFavList(this, name!!)
                 } else {
                     item.setIcon(R.drawable.star_selected)
+                    Utility.saveFavList(this, name!!)
                     MySharedPrefs.getInstance(this)
                         .saveString(
                             name!!, detailData?.floor_price?.toString() + "#" +
                                     detailData?.floor_price_in_usd_24h_percentage_change?.toString() + "#" +
-                                    detailData?.image
+                                    detailData?.image + "#nft"
                         )
                 }
                 true
