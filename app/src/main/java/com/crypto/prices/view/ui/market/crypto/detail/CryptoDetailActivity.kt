@@ -1,6 +1,5 @@
 package com.crypto.prices.view.ui.market.crypto.detail
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +16,7 @@ import com.crypto.prices.R
 import com.crypto.prices.databinding.ActivityCryptoDetailBinding
 import com.crypto.prices.model.CryptoChartData
 import com.crypto.prices.model.CryptoData
+import com.crypto.prices.utils.MySharedPrefs
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.utils.chart.CustomMarkerView
@@ -24,7 +24,6 @@ import com.crypto.prices.utils.chart.XAxisValueFormatter
 import com.crypto.prices.utils.chart.YAxisValueFormatter
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
-import com.crypto.prices.view.ui.search.SearchActivity
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.components.YAxis
@@ -59,13 +58,13 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
 
         // get data from intent
         data = intent?.extras?.getParcelable<CryptoData>("crypto_data")!!
+        // set title
+        setTitle(data?.name)
         setUpViewModel(data)
         setMarketStatsData()
     }
 
     private fun setMarketStatsData() {
-        // set title
-        setTitle(data?.name)
         // set coin icon
         Glide.with(this)
             .load(data?.image)
@@ -395,10 +394,13 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        if (Utility.isFav(data?.name!!)) {
+            menu.getItem(0).setIcon(R.drawable.star_selected)
+        }
         return super.onCreateOptionsMenu(menu)
-    }*/
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -406,9 +408,20 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
                 onBackPressed()
                 return true
             }
-            R.id.action_search -> {
-                val intent = Intent(this, SearchActivity::class.java)
-                startActivity(intent)
+            R.id.action_fav -> {
+                val coin = data?.name!!
+                if (Utility.isFav(coin)) {
+                    item.setIcon(R.drawable.star)
+                    MySharedPrefs.getInstance(this).saveString(coin, "")
+                } else {
+                    item.setIcon(R.drawable.star_selected)
+                    MySharedPrefs.getInstance(this)
+                        .saveString(
+                            coin, data?.current_price!!.toString() + "#" +
+                                    data?.price_change_percentage_24h!!.toString() + "#" +
+                                    data?.image
+                        )
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -47,6 +47,7 @@ class NftPagingAdapter(context: Context?) :
                 override fun onClick(p0: View?) {
                     val intent = Intent(context, NftDetailActivity::class.java)
                     intent.putExtra("id", data?.id)
+                    intent.putExtra("name", data?.name)
                     context.startActivity(intent)
                 }
             })

@@ -122,9 +122,12 @@
         <entry key="app/src/main/res/layout/search_view.xml" value="0.28968353271484376" />
         <entry key="app/src/main/res/layout/tnc_activity.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/toolbar_main.xml" value="0.251666259765625" />
+        <entry key="app/src/main/res/layout/widget_config.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/widget_layout.xml" value="0.1" />
         <entry key="app/src/main/res/menu/activity_main_nav_drawer_drawer.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.18891733530405408" />
+        <entry key="app/src/main/res/menu/menu_detail.xml" value="0.1" />
         <entry key="app/src/main/res/menu/nav_drawer_main.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/menu/nav_drawer_menu.xml" value="0.33" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2111111111111111" />

@@ -1,6 +1,5 @@
 package com.crypto.prices.view.ui.market.nfts.detail
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -14,16 +13,19 @@ import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.crypto.prices.databinding.ActivityNftDetailBinding
 import com.crypto.prices.model.NftDetailData
+import com.crypto.prices.utils.MySharedPrefs
 import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
-import com.crypto.prices.view.ui.search.SearchActivity
 import java.math.BigDecimal
 
 class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: ActivityNftDetailBinding? = null
     private lateinit var mViewModel: NftDetailViewModel
     private val TAG = "NftDetailActivity"
+    private var detailData: NftDetailData? = null
+    private var name: String? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -38,6 +40,7 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
 
         // get data from intent
         val id = intent?.getStringExtra("id")
+        name = intent?.getStringExtra("name")
         setUpViewModel(id)
     }
 
@@ -143,6 +146,7 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
                         it.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinished()
+                            detailData = it
                             setMarketStatsData(it)
                         }
                     }
@@ -167,10 +171,13 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        if (Utility.isFav(name!!)) {
+            menu.getItem(0).setIcon(R.drawable.star_selected)
+        }
         return super.onCreateOptionsMenu(menu)
-    }*/
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -178,9 +185,19 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
                 onBackPressed()
                 return true
             }
-            R.id.action_search -> {
-                val intent = Intent(this, SearchActivity::class.java)
-                startActivity(intent)
+            R.id.action_fav -> {
+                if (Utility.isFav(name!!)) {
+                    item.setIcon(R.drawable.star)
+                    MySharedPrefs.getInstance(this).saveString(name!!, "")
+                } else {
+                    item.setIcon(R.drawable.star_selected)
+                    MySharedPrefs.getInstance(this)
+                        .saveString(
+                            name!!, detailData?.floor_price?.toString() + "#" +
+                                    detailData?.floor_price_in_usd_24h_percentage_change?.toString() + "#" +
+                                    detailData?.image
+                        )
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

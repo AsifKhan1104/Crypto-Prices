@@ -24,4 +24,12 @@ internal class MySharedPrefs private constructor(context: Context) {
     internal fun getLong(key: String): Long? {
         return prefs.getLong(key, 0L)
     }
+
+    internal fun saveString(key: String, value: String) {
+        prefs.edit().apply { this.putString(key, value).apply() }
+    }
+
+    internal fun getString(key: String): String? {
+        return prefs.getString(key, "")
+    }
 }

@@ -298,5 +298,15 @@ object Utility {
         context.startActivity(intent)
         (context as Activity).finishAffinity()
     }
+
+    // check if coin/nft is fav or not
+    fun isFav(name: String): Boolean {
+        if (MySharedPrefs.getInstance(CryptoApplication.instance!!.applicationContext)
+                .getString(name).equals("")
+        ) {
+            return false
+        }
+        return true
+    }
 }
 
