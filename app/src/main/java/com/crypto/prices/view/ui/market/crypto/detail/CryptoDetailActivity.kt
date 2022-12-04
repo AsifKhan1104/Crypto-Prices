@@ -13,10 +13,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
+import com.crypto.prices.database.Watchlist
+import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.databinding.ActivityCryptoDetailBinding
 import com.crypto.prices.model.CryptoChartData
 import com.crypto.prices.model.CryptoData
-import com.crypto.prices.utils.MySharedPrefs
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.utils.chart.CustomMarkerView
@@ -44,6 +45,7 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
     private var chartData: CryptoChartData? = null
     private lateinit var selectedTextViewTimeFilter: TextView
     private lateinit var selectedTextViewFilter: TextView
+    private lateinit var mDatabase: WatchlistRepo
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -62,6 +64,8 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         setTitle(data?.name)
         setUpViewModel(data)
         setMarketStatsData()
+
+        mDatabase = WatchlistRepo(this)
     }
 
     private fun setMarketStatsData() {
@@ -396,7 +400,7 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_detail, menu)
-        if (Utility.isFav(data?.name!!)) {
+        if (mDatabase.isWatchlisted(data?.id!!)) {
             menu.getItem(0).setIcon(R.drawable.star_selected)
         }
         return super.onCreateOptionsMenu(menu)
@@ -409,20 +413,27 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
                 return true
             }
             R.id.action_fav -> {
-                val coin = data?.name!!
-                if (Utility.isFav(coin)) {
+                val id = data?.id!!
+                if (mDatabase.isWatchlisted(id)) {
                     item.setIcon(R.drawable.star)
-                    MySharedPrefs.getInstance(this).saveString(coin, "")
-                    Utility.removeFavList(this, coin)
+                    mDatabase.delete(id)
+                    Utility.showToast(this, "Coin removed from watchlist")
                 } else {
                     item.setIcon(R.drawable.star_selected)
-                    Utility.saveFavList(this, coin)
-                    MySharedPrefs.getInstance(this)
-                        .saveString(
-                            coin, data?.current_price!!.toString() + "#" +
-                                    data?.price_change_percentage_24h!!.toString() + "#" +
-                                    data?.image + "#crypto"
+                    mDatabase.insert(
+                        Watchlist(
+                            id,
+                            data?.image!!,
+                            data?.market_cap.toString(),
+                            data?.market_cap_rank.toString(),
+                            data?.name.toString(),
+                            data?.current_price.toString(),
+                            data?.price_change_percentage_24h.toString(),
+                            data?.symbol.toString(),
+                            "crypto"
                         )
+                    )
+                    Utility.showToast(this, "Coin added to watchlist")
                 }
                 true
             }

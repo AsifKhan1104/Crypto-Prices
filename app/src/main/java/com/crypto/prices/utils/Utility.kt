@@ -298,36 +298,5 @@ object Utility {
         context.startActivity(intent)
         (context as Activity).finishAffinity()
     }
-
-    // check if coin/nft is fav or not
-    fun isFav(name: String): Boolean {
-        if (MySharedPrefs.getInstance(CryptoApplication.instance!!.applicationContext)
-                .getString(name).equals("")
-        ) {
-            return false
-        }
-        return true
-    }
-
-    // save / remove fav list
-    fun saveFavList(context: Context, value: String) {
-        val sharedPref = context.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
-        val list = sharedPref.getStringSet("fav_list", null)
-        list?.add(value)
-        with(sharedPref.edit()) {
-            putStringSet("fav_list", list)
-            apply()
-        }
-    }
-
-    fun removeFavList(context: Context, value: String) {
-        val sharedPref = context.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
-        val list = sharedPref.getStringSet("fav_list", null)
-        list?.remove(value)
-        with(sharedPref.edit()) {
-            putStringSet("fav_list", list)
-            apply()
-        }
-    }
 }
 

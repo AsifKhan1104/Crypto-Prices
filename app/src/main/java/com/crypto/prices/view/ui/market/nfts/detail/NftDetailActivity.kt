@@ -11,9 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
+import com.crypto.prices.database.Watchlist
+import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.databinding.ActivityNftDetailBinding
 import com.crypto.prices.model.NftDetailData
-import com.crypto.prices.utils.MySharedPrefs
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
@@ -26,6 +27,8 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
     private val TAG = "NftDetailActivity"
     private var detailData: NftDetailData? = null
     private var name: String? = null
+    private lateinit var mId: String
+    private lateinit var mDatabase: WatchlistRepo
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -40,8 +43,11 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
 
         // get data from intent
         val id = intent?.getStringExtra("id")
+        mId = id!!
         name = intent?.getStringExtra("name")
         setUpViewModel(id)
+
+        mDatabase = WatchlistRepo(this)
     }
 
     private fun setMarketStatsData(detailData: NftDetailData?) {
@@ -173,7 +179,7 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_detail, menu)
-        if (Utility.isFav(name!!)) {
+        if (mDatabase.isWatchlisted(mId)) {
             menu.getItem(0).setIcon(R.drawable.star_selected)
         }
         return super.onCreateOptionsMenu(menu)
@@ -186,19 +192,26 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
                 return true
             }
             R.id.action_fav -> {
-                if (Utility.isFav(name!!)) {
+                if (mDatabase.isWatchlisted(mId)) {
                     item.setIcon(R.drawable.star)
-                    MySharedPrefs.getInstance(this).saveString(name!!, "")
-                    Utility.removeFavList(this, name!!)
+                    mDatabase.delete(mId)
+                    Utility.showToast(this, "NFT removed from watchlist")
                 } else {
                     item.setIcon(R.drawable.star_selected)
-                    Utility.saveFavList(this, name!!)
-                    MySharedPrefs.getInstance(this)
-                        .saveString(
-                            name!!, detailData?.floor_price?.toString() + "#" +
-                                    detailData?.floor_price_in_usd_24h_percentage_change?.toString() + "#" +
-                                    detailData?.image + "#nft"
+                    mDatabase.insert(
+                        Watchlist(
+                            mId,
+                            detailData?.image?.small.toString(),
+                            detailData?.market_cap?.usd.toString(),
+                            "",
+                            detailData?.name.toString(),
+                            detailData?.floor_price?.usd.toString(),
+                            detailData?.floor_price_in_usd_24h_percentage_change.toString(),
+                            detailData?.id.toString(),
+                            "nft"
                         )
+                    )
+                    Utility.showToast(this, "NFT added to watchlist")
                 }
                 true
             }

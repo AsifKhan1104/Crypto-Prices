@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
+import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.databinding.FragmentHomeBinding
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
@@ -24,6 +25,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var mHomeViewModel: HomeViewModel
     private lateinit var mNewsViewModel: NewsViewModel
     private val TAG = HomeFragment.javaClass.simpleName
+    private lateinit var mDatabase: WatchlistRepo
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -75,8 +77,22 @@ class HomeFragment : Fragment(), View.OnClickListener {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        mDatabase = WatchlistRepo(requireContext())
+        initWatchlist()
         setUpViewModel()
         return root
+    }
+
+    private fun initWatchlist() {
+        // check if any coins/nfts are watchlisted
+        val watchlist = mDatabase.getAllData()
+        if (watchlist != null && watchlist.size != 0) {
+            binding.groupWatchlist.visibility = View.VISIBLE
+            binding.recyclerViewWatchlist.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            binding.recyclerViewWatchlist.adapter =
+                HomeWatchlistAdapter(context, watchlist)
+        }
     }
 
     private fun setUpViewModel() {
