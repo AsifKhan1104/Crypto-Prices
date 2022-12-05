@@ -300,21 +300,46 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun onError(s: String) {
-        /*binding.textViewError.text = s
+        binding.textViewError.text = s
         binding.textViewError.visibility = View.VISIBLE
-        //binding.loadingView.visibility = View.GONE
-        binding.chart.visibility = View.GONE*/
+        binding.loadingView.visibility = View.GONE
+        binding.groupStats.visibility = View.INVISIBLE
     }
 
     private fun onLoading() {
-        //binding.textViewError.visibility = View.GONE
-        //binding.loadingView.visibility = View.VISIBLE
+        binding.groupStats.visibility = View.INVISIBLE
+        binding.textViewError.visibility = View.GONE
+        binding.loadingView.visibility = View.VISIBLE
     }
 
     private fun onLoadingFinished() {
-        /*binding.chart.visibility = View.VISIBLE
+        binding.groupStats.visibility = View.VISIBLE
         binding.textViewError.visibility = View.GONE
-        //binding.loadingView.visibility = View.GONE*/
+        binding.loadingView.visibility = View.GONE
+    }
+
+    private fun onErrorChart(s: String) {
+        binding.textViewErrorChart.text = s
+        binding.textViewErrorChart.visibility = View.VISIBLE
+        //binding.loadingViewChart.visibility = View.GONE
+        binding.chart.visibility = View.GONE
+        binding.tableLayout.visibility = View.GONE
+        binding.linearLayoutFilter.visibility = View.GONE
+    }
+
+    private fun onLoadingChart() {
+        binding.textViewErrorChart.visibility = View.GONE
+        binding.tableLayout.visibility = View.GONE
+        binding.linearLayoutFilter.visibility = View.GONE
+        //binding.loadingViewChart.visibility = View.VISIBLE
+    }
+
+    private fun onLoadingFinishedChart() {
+        binding.chart.visibility = View.VISIBLE
+        binding.tableLayout.visibility = View.VISIBLE
+        binding.linearLayoutFilter.visibility = View.VISIBLE
+        binding.textViewErrorChart.visibility = View.GONE
+        //binding.loadingViewChart.visibility = View.GONE
     }
 
     fun loadData() {
@@ -347,7 +372,7 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
                     is NetworkResult.Success -> {
                         it.networkData?.let {
                             //bind the data to the ui
-                            onLoadingFinished()
+                            onLoadingFinishedChart()
                             setChartData(
                                 it,
                                 if (selectedTextViewFilter == binding.textViewPriceFilter) true else false
@@ -356,12 +381,12 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
                     }
                     is NetworkResult.Error -> {
                         //show error message
-                        onError(it.networkErrorMessage.toString())
+                        onErrorChart(it.networkErrorMessage.toString())
                     }
 
                     is NetworkResult.Loading -> {
                         //show loader
-                        onLoading()
+                        onLoadingChart()
                     }
                 }
             })

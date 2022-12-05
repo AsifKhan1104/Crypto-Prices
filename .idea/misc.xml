@@ -52,7 +52,7 @@
         <entry key="app/src/main/res/drawable/textbox_selected.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/textbox_un_selected.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/ticker_selected.xml" value="0.1055" />
-        <entry key="app/src/main/res/layout/activity_crypto_detail.xml" value="0.2928870292887029" />
+        <entry key="app/src/main/res/layout/activity_crypto_detail.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_currency_converter.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_derivatives_detail.xml" value="0.20335998535156244" />
         <entry key="app/src/main/res/layout/activity_exchanges_detail.xml" value="0.23211212158203126" />

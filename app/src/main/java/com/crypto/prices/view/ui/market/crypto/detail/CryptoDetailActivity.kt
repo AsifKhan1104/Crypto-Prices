@@ -290,20 +290,20 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun onError(s: String) {
-        binding.textViewError.text = s
-        binding.textViewError.visibility = View.VISIBLE
+        binding.textViewErrorChart.text = s
+        binding.textViewErrorChart.visibility = View.VISIBLE
         //binding.loadingView.visibility = View.GONE
         binding.chart.visibility = View.GONE
     }
 
     private fun onLoading() {
-        binding.textViewError.visibility = View.GONE
+        binding.textViewErrorChart.visibility = View.GONE
         //binding.loadingView.visibility = View.VISIBLE
     }
 
     private fun onLoadingFinished() {
         binding.chart.visibility = View.VISIBLE
-        binding.textViewError.visibility = View.GONE
+        binding.textViewErrorChart.visibility = View.GONE
         //binding.loadingView.visibility = View.GONE
     }
 
