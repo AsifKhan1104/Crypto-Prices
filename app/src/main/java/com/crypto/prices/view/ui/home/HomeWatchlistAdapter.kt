@@ -54,7 +54,7 @@ class HomeWatchlistAdapter(context: Context?, var data: List<Watchlist>?) :
                 priceChangePerc = priceChangePerc.substring(1, priceChangePerc.length)
             }
             textViewPriceChange.setCompoundDrawablesWithIntrinsicBounds(priceArrow, 0, 0, 0)
-            textViewPriceChange.text = priceChangePerc + "%"
+            textViewPriceChange.text = String.format("%.6f", priceChangePerc.toFloat()) + "%"
 
             // set icons
             Glide.with(context)
