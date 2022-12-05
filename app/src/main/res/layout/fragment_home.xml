@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center_horizontal"
             android:text="Trending"
@@ -38,9 +38,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTrending"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="150dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusableInTouchMode="true"
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:animateLayoutChanges="true"
             android:animationCache="true"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +89,7 @@
             android:id="@+id/textViewErrorT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="@string/error_msg"
@@ -106,31 +106,103 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:background="@color/divider_color"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewTrending" />
+
+        <TextView
+            android:id="@+id/textViewWatchlistHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center_horizontal"
+            android:text="Watchlist"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_divider" />
+
+        <TextView
+            android:id="@+id/textViewWatchlistSubHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="Coins in your watchList"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewWatchlistHeader" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewWatchlist"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewWatchlistSubHeader" />
+
+        <TextView
+            android:id="@+id/textViewErrorW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="@string/error_msg"
+            android:textColor="#FA1302"
+            android:textSize="18sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/view_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewWatchlistSubHeader" />
+
+        <View
+            android:id="@+id/view_divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/divider_color"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewWatchlist" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_watchlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="textViewWatchlistHeader, textViewWatchlistSubHeader, recyclerViewWatchlist,
+            view_divider1,textViewErrorW" />
 
         <TextView
             android:id="@+id/textViewNewsHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center_horizontal"
             android:text="Crypto News"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_divider" />
+            app:layout_constraintTop_toBottomOf="@+id/view_divider1" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewNews"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
@@ -143,7 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:animateLayoutChanges="true"
             android:animationCache="true"
@@ -182,7 +254,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"

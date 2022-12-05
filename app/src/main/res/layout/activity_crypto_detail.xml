@@ -201,7 +201,7 @@
                     android:layout_height="match_parent" />
 
                 <ProgressBar
-                    android:id="@+id/loadingView"
+                    android:id="@+id/loadingViewChart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -212,7 +212,7 @@
                     android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/textViewError"
+                    android:id="@+id/textViewErrorChart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -226,6 +226,38 @@
                     android:textSize="18sp"
                     android:visibility="gone" />
             </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/loadingView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+            <TextView
+                android:id="@+id/textViewError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="@string/error_msg"
+                android:textColor="#FA1302"
+                android:textSize="18sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
             <TableLayout
                 android:id="@+id/tableLayout"
@@ -321,317 +353,331 @@
                 </TableRow>
             </TableLayout>
 
-            <TextView
-                android:id="@+id/textView_market_stat"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/parent_layout_stats"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="Market Statistics:"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout">
 
-            <TextView
+                <TextView
+                    android:id="@+id/textView_market_stat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Market Statistics:"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_mcr_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Market Cap Rank"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_market_stat" />
+
+                <TextView
+                    android:id="@+id/textView_mcr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_market_stat"
+                    tools:text="Market Cap Rank" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Market Cap"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_mcr" />
+
+                <TextView
+                    android:id="@+id/textView_mc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_mcr"
+                    tools:text="Market Cap" />
+
+                <TextView
+                    android:id="@+id/textView_fdmc_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Fully Diluted Market Cap"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_mc" />
+
+                <TextView
+                    android:id="@+id/textView_fdmc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_mc"
+                    tools:text="Fully Diluted Market Cap" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Total Volume"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_fdmc" />
+
+                <TextView
+                    android:id="@+id/textView_total_vol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_fdmc"
+                    tools:text="Total Volume" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Max Supply"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_total_vol" />
+
+                <TextView
+                    android:id="@+id/textView_max_supply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_total_vol"
+                    tools:text="Max Supply" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Circulating Supply"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_max_supply" />
+
+                <TextView
+                    android:id="@+id/textView_circ_supply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_max_supply"
+                    tools:text="Circulating Supply" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Total Supply"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_circ_supply" />
+
+                <TextView
+                    android:id="@+id/textView_total_supply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_circ_supply"
+                    tools:text="Total Supply" />
+
+                <!--<TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="24H Low"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_total_supply" />
+
+                <TextView
+                    android:id="@+id/textView_24l"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_total_supply"
+                    tools:text="24H Low" />-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="All-Time High"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_total_supply" />
+
+                <TextView
+                    android:id="@+id/textView_ath"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_ath_perc"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_total_supply"
+                    tools:text="All-Time High" />
+
+                <TextView
+                    android:id="@+id/textView_ath_perc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/ticker_selected"
+                    android:drawableStart="@drawable/ic_arrow_up_24"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/textView_ath"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/textView_ath"
+                    tools:text="2.7%" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="All-Time Low"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_ath" />
+
+                <TextView
+                    android:id="@+id/textView_atl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_atl_perc"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_ath"
+                    tools:text="All-Time Low" />
+
+                <TextView
+                    android:id="@+id/textView_atl_perc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/ticker_selected"
+                    android:drawableStart="@drawable/ic_arrow_up_24"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/textView_atl"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/textView_atl"
+                    tools:text="2.7%" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_stats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="Market Cap Rank"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_market_stat" />
-
-            <TextView
-                android:id="@+id/textView_mcr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_market_stat"
-                tools:text="Market Cap Rank" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="Market Cap"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_mcr" />
-
-            <TextView
-                android:id="@+id/textView_mc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_mcr"
-                tools:text="Market Cap" />
-
-            <TextView
-                android:id="@+id/textView_fdmc_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="Fully Diluted Market Cap"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_mc" />
-
-            <TextView
-                android:id="@+id/textView_fdmc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_mc"
-                tools:text="Fully Diluted Market Cap" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="Total Volume"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_fdmc" />
-
-            <TextView
-                android:id="@+id/textView_total_vol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_fdmc"
-                tools:text="Total Volume" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="Max Supply"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_vol" />
-
-            <TextView
-                android:id="@+id/textView_max_supply"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_vol"
-                tools:text="Max Supply" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="Circulating Supply"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_max_supply" />
-
-            <TextView
-                android:id="@+id/textView_circ_supply"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_max_supply"
-                tools:text="Circulating Supply" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="Total Supply"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_circ_supply" />
-
-            <TextView
-                android:id="@+id/textView_total_supply"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_circ_supply"
-                tools:text="Total Supply" />
-
-            <!--<TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="24H Low"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply" />
-
-            <TextView
-                android:id="@+id/textView_24l"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply"
-                tools:text="24H Low" />-->
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="sans-serif"
-                android:text="All-Time High"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply" />
-
-            <TextView
-                android:id="@+id/textView_ath"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toStartOf="@+id/textView_ath_perc"
-                app:layout_constraintTop_toBottomOf="@+id/textView_total_supply"
-                tools:text="All-Time High" />
-
-            <TextView
-                android:id="@+id/textView_ath_perc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="5dp"
-                android:background="@drawable/ticker_selected"
-                android:drawableStart="@drawable/ic_arrow_up_24"
-                android:fontFamily="sans-serif-light"
-                android:gravity="center_vertical"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/textView_ath"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/textView_ath"
-                tools:text="2.7%" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif"
-                android:text="All-Time Low"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_ath" />
-
-            <TextView
-                android:id="@+id/textView_atl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toStartOf="@+id/textView_atl_perc"
-                app:layout_constraintTop_toBottomOf="@+id/textView_ath"
-                tools:text="All-Time Low" />
-
-            <TextView
-                android:id="@+id/textView_atl_perc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="5dp"
-                android:background="@drawable/ticker_selected"
-                android:drawableStart="@drawable/ic_arrow_up_24"
-                android:fontFamily="sans-serif-light"
-                android:gravity="center_vertical"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/textView_atl"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/textView_atl"
-                tools:text="2.7%" />
+                app:constraint_referenced_ids="imageView_symbol,textView_symbol,textView_price,textView_24hp,textView_24h_header,textView_24h, view_divider,textView_24l_header,textView_24l,parent_layout_stats" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,5 @@
 package com.crypto.prices.view.ui.market.crypto.detail
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
+import com.crypto.prices.database.Watchlist
+import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.databinding.ActivityCryptoDetailBinding
 import com.crypto.prices.model.CryptoChartData
 import com.crypto.prices.model.CryptoData
@@ -24,7 +25,6 @@ import com.crypto.prices.utils.chart.XAxisValueFormatter
 import com.crypto.prices.utils.chart.YAxisValueFormatter
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
-import com.crypto.prices.view.ui.search.SearchActivity
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.components.YAxis
@@ -45,6 +45,7 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
     private var chartData: CryptoChartData? = null
     private lateinit var selectedTextViewTimeFilter: TextView
     private lateinit var selectedTextViewFilter: TextView
+    private lateinit var mDatabase: WatchlistRepo
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -59,13 +60,15 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
 
         // get data from intent
         data = intent?.extras?.getParcelable<CryptoData>("crypto_data")!!
+        // set title
+        setTitle(data?.name)
         setUpViewModel(data)
         setMarketStatsData()
+
+        mDatabase = WatchlistRepo(this)
     }
 
     private fun setMarketStatsData() {
-        // set title
-        setTitle(data?.name)
         // set coin icon
         Glide.with(this)
             .load(data?.image)
@@ -287,20 +290,20 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun onError(s: String) {
-        binding.textViewError.text = s
-        binding.textViewError.visibility = View.VISIBLE
+        binding.textViewErrorChart.text = s
+        binding.textViewErrorChart.visibility = View.VISIBLE
         //binding.loadingView.visibility = View.GONE
         binding.chart.visibility = View.GONE
     }
 
     private fun onLoading() {
-        binding.textViewError.visibility = View.GONE
+        binding.textViewErrorChart.visibility = View.GONE
         //binding.loadingView.visibility = View.VISIBLE
     }
 
     private fun onLoadingFinished() {
         binding.chart.visibility = View.VISIBLE
-        binding.textViewError.visibility = View.GONE
+        binding.textViewErrorChart.visibility = View.GONE
         //binding.loadingView.visibility = View.GONE
     }
 
@@ -395,10 +398,13 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        if (mDatabase.isWatchlisted(data?.id!!)) {
+            menu.getItem(0).setIcon(R.drawable.star_selected)
+        }
         return super.onCreateOptionsMenu(menu)
-    }*/
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -406,9 +412,30 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
                 onBackPressed()
                 return true
             }
-            R.id.action_search -> {
-                val intent = Intent(this, SearchActivity::class.java)
-                startActivity(intent)
+            R.id.action_fav -> {
+                val id = data?.id!!
+                if (mDatabase.isWatchlisted(id)) {
+                    item.setIcon(R.drawable.star)
+                    mDatabase.delete(id)
+                    Utility.showToast(this, "Coin removed from watchlist")
+                } else {
+                    item.setIcon(R.drawable.star_selected)
+                    mDatabase.insert(
+                        Watchlist(
+                            id,
+                            data?.image!!,
+                            data?.market_cap.toString(),
+                            data?.market_cap_rank.toString(),
+                            data?.name.toString(),
+                            data?.current_price.toString(),
+                            data?.price_change_percentage_24h.toString(),
+                            data?.symbol.toString(),
+                            Utility.getCurrencySymbol(this)!!,
+                            "crypto"
+                        )
+                    )
+                    Utility.showToast(this, "Coin added to watchlist")
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
