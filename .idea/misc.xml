@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1421875" />
         <entry key="app/src/main/res/drawable-v21/border_ripple.xml" value="0.1215" />
+        <entry key="app/src/main/res/drawable-v21/ic_arrow_up_balck_24.xml" value="0.127" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/drawable-v24/list_normal.xml" value="0.12162162162162163" />
         <entry key="app/src/main/res/drawable/border.xml" value="0.1" />
@@ -22,6 +23,7 @@
         <entry key="app/src/main/res/drawable/gradient_bg2.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/gradient_bg3.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/ic_arrow_down_24.xml" value="0.1055" />
+        <entry key="app/src/main/res/drawable/ic_arrow_drop_down_24.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/ic_arrow_up_24.xml" value="0.1055" />
         <entry key="app/src/main/res/drawable/ic_baseline_card_giftcard_24.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1445" />

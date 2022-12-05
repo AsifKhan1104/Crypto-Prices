@@ -15,6 +15,7 @@ import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailSearchActivity
 import com.crypto.prices.view.ui.market.nfts.detail.NftDetailActivity
 import kotlinx.android.synthetic.main.item_trending.view.*
+import java.math.BigDecimal
 
 class HomeWatchlistAdapter(context: Context?, var data: List<Watchlist>?) :
     RecyclerView.Adapter<HomeWatchlistAdapter.MyViewHolder>() {
@@ -35,15 +36,25 @@ class HomeWatchlistAdapter(context: Context?, var data: List<Watchlist>?) :
         private val imageViewId = view.imageViewId
         private val textViewName = view.textViewName
         private val textViewPrice = view.textViewPrice
-        private val textViewChange = view.textViewRank
+        private val textViewPriceChange = view.textViewRank
         private val textViewRankText = view.textViewRankText
 
         fun bind(context: Context, position: Int, data: Watchlist?) {
             textViewName.text = data?.name
             textViewPrice.text =
                 Utility.getCurrencySymbol(context as Activity) + data?.price
-            textViewChange.text = data?.priceChange24h + " %"
             textViewRankText.text = "Price"
+
+            // set arrow as per price
+            var priceChangePerc = data?.priceChange24h!!
+            var priceChangePercBD = data?.priceChange24h?.toBigDecimal()!!
+            var priceArrow = R.drawable.ic_arrow_up_black_24
+            if (priceChangePercBD.compareTo(BigDecimal.ZERO) < 0) {
+                priceArrow = R.drawable.ic_arrow_down_black_24
+                priceChangePerc = priceChangePerc.substring(1, priceChangePerc.length)
+            }
+            textViewPriceChange.setCompoundDrawablesWithIntrinsicBounds(priceArrow, 0, 0, 0)
+            textViewPriceChange.text = priceChangePerc + "%"
 
             // set icons
             Glide.with(context)
