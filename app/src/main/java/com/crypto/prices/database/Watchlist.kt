@@ -13,5 +13,6 @@ data class Watchlist(
     val price: String,
     val priceChange24h: String,
     val symbol: String,
+    val currency: String,
     val type: String
 )

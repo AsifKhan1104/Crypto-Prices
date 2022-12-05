@@ -430,6 +430,7 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
                             data?.current_price.toString(),
                             data?.price_change_percentage_24h.toString(),
                             data?.symbol.toString(),
+                            Utility.getCurrencySymbol(this)!!,
                             "crypto"
                         )
                     )

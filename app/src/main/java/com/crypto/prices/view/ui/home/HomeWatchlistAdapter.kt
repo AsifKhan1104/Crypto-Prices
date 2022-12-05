@@ -1,6 +1,5 @@
 package com.crypto.prices.view.ui.home
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.crypto.prices.R
 import com.crypto.prices.database.Watchlist
-import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailSearchActivity
 import com.crypto.prices.view.ui.market.nfts.detail.NftDetailActivity
 import kotlinx.android.synthetic.main.item_trending.view.*
@@ -47,7 +45,7 @@ class HomeWatchlistAdapter(context: Context?, var data: List<Watchlist>?) :
         fun bind(context: Context, position: Int, data: Watchlist?) {
             textViewName.text = data?.name
             textViewPrice.text =
-                Utility.getCurrencySymbol(context as Activity) + data?.price
+                data?.currency + data?.price
             textViewRankText.text = "Price"
 
             // set arrow as per price

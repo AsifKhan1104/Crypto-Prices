@@ -208,6 +208,7 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
                             detailData?.floor_price?.usd.toString(),
                             detailData?.floor_price_in_usd_24h_percentage_change.toString(),
                             detailData?.id.toString(),
+                            "$",
                             "nft"
                         )
                     )

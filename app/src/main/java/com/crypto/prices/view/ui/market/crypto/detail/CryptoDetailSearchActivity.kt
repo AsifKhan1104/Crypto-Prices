@@ -435,6 +435,7 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
                             data?.market_data?.current_price?.usd?.toString(),
                             data?.market_data?.price_change_24h_in_currency?.usd?.toString(),
                             data?.symbol.toString(),
+                            "$",
                             "crypto"
                         )
                     )
