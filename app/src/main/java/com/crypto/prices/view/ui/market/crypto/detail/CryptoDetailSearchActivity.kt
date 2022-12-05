@@ -3,6 +3,7 @@ package com.crypto.prices.view.ui.market.crypto.detail
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -12,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
+import com.crypto.prices.database.Watchlist
+import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.databinding.ActivityCryptoDetailBinding
 import com.crypto.prices.model.CryptoChartData
 import com.crypto.prices.model.crypto.search.CryptoDetailData
@@ -43,6 +46,8 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
     private var chartData: CryptoChartData? = null
     private lateinit var selectedTextViewTimeFilter: TextView
     private lateinit var selectedTextViewFilter: TextView
+    private lateinit var mDatabase: WatchlistRepo
+    private lateinit var data:CryptoDetailData
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -59,6 +64,8 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
         cryptoId = intent?.getStringExtra("id")!!
         initView()
         setUpViewModel()
+
+        mDatabase = WatchlistRepo(this)
     }
 
     private fun initView() {
@@ -351,6 +358,7 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
                         it.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinished()
+                            data = it
                             setMarketStatsData(it)
                         }
                     }
@@ -395,11 +403,44 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        if (mDatabase.isWatchlisted(cryptoId!!)) {
+            menu.getItem(0).setIcon(R.drawable.star_selected)
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
             android.R.id.home -> {
                 onBackPressed()
                 return true
+            }
+            R.id.action_fav -> {
+                val id = cryptoId!!
+                if (mDatabase.isWatchlisted(id)) {
+                    item.setIcon(R.drawable.star)
+                    mDatabase.delete(id)
+                    Utility.showToast(this, "Coin removed from watchlist")
+                } else {
+                    item.setIcon(R.drawable.star_selected)
+                    mDatabase.insert(
+                        Watchlist(
+                            id,
+                            data?.image.thumb!!,
+                            data?.market_data?.market_cap?.usd?.toString(),
+                            data?.market_cap_rank.toString(),
+                            data?.name.toString(),
+                            data?.market_data?.current_price?.toString(),
+                            data?.market_data?.price_change_24h_in_currency?.usd?.toString(),
+                            data?.symbol.toString(),
+                            "crypto"
+                        )
+                    )
+                    Utility.showToast(this, "Coin added to watchlist")
+                }
+                true
             }
         }
         return super.onOptionsItemSelected(item)
