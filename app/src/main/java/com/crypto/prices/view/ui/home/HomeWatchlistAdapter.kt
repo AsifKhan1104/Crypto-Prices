@@ -31,6 +31,11 @@ class HomeWatchlistAdapter(context: Context?, var data: List<Watchlist>?) :
         holder.bind(context!!, position, data?.let { it.get(position) })
     }
 
+    fun updateList(newList: List<Watchlist>?) {
+        data = newList
+        notifyDataSetChanged()
+    }
+
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val cardView = view.cardView
         private val imageViewId = view.imageViewId

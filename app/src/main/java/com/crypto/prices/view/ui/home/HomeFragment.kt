@@ -26,6 +26,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var mNewsViewModel: NewsViewModel
     private val TAG = HomeFragment.javaClass.simpleName
     private lateinit var mDatabase: WatchlistRepo
+    private var mWatchlistAdapter: HomeWatchlistAdapter? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -78,7 +79,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         mDatabase = WatchlistRepo(requireContext())
-        initWatchlist()
+        //initWatchlist()
         setUpViewModel()
         return root
     }
@@ -88,11 +89,22 @@ class HomeFragment : Fragment(), View.OnClickListener {
         val watchlist = mDatabase.getAllData()
         if (watchlist != null && watchlist.size != 0) {
             binding.groupWatchlist.visibility = View.VISIBLE
-            binding.recyclerViewWatchlist.layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            binding.recyclerViewWatchlist.adapter =
-                HomeWatchlistAdapter(context, watchlist)
+            if (mWatchlistAdapter == null) {
+                mWatchlistAdapter = HomeWatchlistAdapter(context, watchlist)
+                binding.recyclerViewWatchlist.layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                binding.recyclerViewWatchlist.adapter = mWatchlistAdapter
+            } else {
+                mWatchlistAdapter?.updateList(watchlist)
+            }
+        } else {
+            binding.groupWatchlist.visibility = View.GONE
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initWatchlist()
     }
 
     private fun setUpViewModel() {

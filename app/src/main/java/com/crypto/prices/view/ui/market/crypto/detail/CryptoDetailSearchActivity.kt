@@ -47,7 +47,7 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var selectedTextViewTimeFilter: TextView
     private lateinit var selectedTextViewFilter: TextView
     private lateinit var mDatabase: WatchlistRepo
-    private lateinit var data:CryptoDetailData
+    private lateinit var data: CryptoDetailData
 
     // This property is only valid between onCreateView and
     // onDestroyView.
