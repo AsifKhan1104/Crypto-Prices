@@ -38,7 +38,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTrending"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="150dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:background="?attr/selectableItemBackground"
@@ -106,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:background="@color/divider_color"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewTrending" />
@@ -116,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center_horizontal"
             android:text="Watchlist"
@@ -140,7 +140,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewWatchlist"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="150dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:background="?attr/selectableItemBackground"
@@ -170,7 +170,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:background="@color/divider_color"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewWatchlist" />
@@ -188,7 +188,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center_horizontal"
             android:text="Crypto News"
