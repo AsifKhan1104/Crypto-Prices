@@ -81,7 +81,7 @@
         </service>
 
         <receiver
-            android:name=".utils.MyWidgetProvider"
+            android:name=".view.widget.CollectionWidgetProvider"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -90,6 +90,9 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_config" />
         </receiver>
+        <service
+            android:name=".view.widget.WidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <!-- Package visibility -->
         <!--<queries>

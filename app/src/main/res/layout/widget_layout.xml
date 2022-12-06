@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dip"
-    android:background="@drawable/drawable_folder">
+    android:layout_margin="10dp">
 
-    <TextView
-        android:id="@+id/update"
-        style="@android:style/TextAppearance.Medium"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_margin="4dip"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="Static Text"></TextView>
+        android:background="#bbDEDFDE"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <ListView
+            android:id="@+id/widget_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</FrameLayout>

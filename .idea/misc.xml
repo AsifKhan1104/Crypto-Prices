@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/drawable/border_spin.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/border_spinner.xml" value="0.122" />
         <entry key="app/src/main/res/drawable/border_time_filter.xml" value="0.1035" />
+        <entry key="app/src/main/res/drawable/drawable_folder.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/gradient_bg.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/gradient_bg1.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/gradient_bg2.xml" value="0.119" />
@@ -88,7 +89,7 @@
         <entry key="app/src/main/res/layout/fragment_lottery.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_market.xml" value="0.12906646728515622" />
         <entry key="app/src/main/res/layout/fragment_market2.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_more.xml" value="0.3877732676238262" />
+        <entry key="app/src/main/res/layout/fragment_more.xml" value="0.2677925211097708" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.35189544677734375" />
         <entry key="app/src/main/res/layout/fragment_nft.xml" value="0.1526153564453125" />
         <entry key="app/src/main/res/layout/fragment_nfts.xml" value="0.25" />
@@ -125,7 +126,7 @@
         <entry key="app/src/main/res/layout/tnc_activity.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/toolbar_main.xml" value="0.251666259765625" />
         <entry key="app/src/main/res/layout/widget_config.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/widget_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/widget_layout.xml" value="0.20794219970703126" />
         <entry key="app/src/main/res/menu/activity_main_nav_drawer_drawer.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.18891733530405408" />
