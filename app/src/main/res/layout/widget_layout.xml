@@ -1,13 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:theme="@style/WidgetTheme">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="5dp"
+            android:background="@mipmap/app_logo" />
+
+        <TextView
+            android:id="@+id/textView_appname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_toRightOf="@+id/imageView"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:maxLines="1"
+            android:text="@string/app_name"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/textView_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_toRightOf="@+id/textView_appname"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:maxLines="1"
+            android:text=" - Top 10 coins"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="normal" />
+
+        <ImageView
+            android:id="@+id/imageViewRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_refresh_24" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#bbDEDFDE"
         android:orientation="vertical">
 
         <ListView
@@ -15,4 +71,4 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

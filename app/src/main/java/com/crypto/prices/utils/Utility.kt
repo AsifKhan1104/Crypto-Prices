@@ -280,6 +280,12 @@ object Utility {
         return selectedCurrency
     }
 
+    fun getCurrencyGlobal(context: Context): String? {
+        val sharedPref = context.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
+        val selectedCurrency = sharedPref.getString("selected_currency", null)
+        return selectedCurrency
+    }
+
     fun getCurrencyName(activity: Activity): String? {
         val sharedPref = activity.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
         val selectedCurrency = sharedPref.getString("selected_currency_name", null)
@@ -288,6 +294,12 @@ object Utility {
 
     fun getCurrencySymbol(activity: Activity): String? {
         val sharedPref = activity.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
+        val selectedCurrency = sharedPref.getString("selected_currency_symbol", null)
+        return selectedCurrency
+    }
+
+    fun getCurrencySymbolGlobal(context: Context): String? {
+        val sharedPref = context.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
         val selectedCurrency = sharedPref.getString("selected_currency_symbol", null)
         return selectedCurrency
     }

@@ -33,4 +33,11 @@
         <item name="tabIndicatorFullWidth">false</item>
         <item name="tabMode">scrollable</item>
     </style>
+
+    <!-- Widget theme -->
+    <style name="WidgetTheme" parent="AppTheme">
+        <item name="appWidgetRadius">10dp</item>
+        <item name="appWidgetInnerRadius">10dp</item>
+        <item name="appWidgetPadding">0dp</item>
+    </style>
 </resources>
