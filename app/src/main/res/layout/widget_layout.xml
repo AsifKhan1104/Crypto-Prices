@@ -47,7 +47,7 @@
             android:fontFamily="sans-serif"
             android:gravity="center_horizontal"
             android:maxLines="1"
-            android:text=" - Top 10 coins"
+            android:text=" - Top 20 coins"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textStyle="normal" />
