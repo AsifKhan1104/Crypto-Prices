@@ -14,6 +14,7 @@ import com.crypto.prices.view.AppRepository
 import com.crypto.prices.view.AppRepositoryImpl
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
 
 class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
     var cryptoList: List<CryptoData> = ArrayList()
@@ -43,7 +44,24 @@ class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
             R.id.textView_price, getCurrencySymbolGlobal(mContext!!) +
                     cryptoItem.current_price.toString()
         )
-        view.setTextViewText(R.id.textView_24hp, cryptoItem.price_change_percentage_24h.toString())
+        try {
+            // set arrow as per price
+            var priceChangePerc = cryptoItem.price_change_percentage_24h.toString()
+            var priceChangePercBD = cryptoItem.price_change_percentage_24h
+            var priceArrow = R.drawable.ic_arrow_up_black_24
+            if (priceChangePercBD!!.compareTo(BigDecimal.ZERO) < 0) {
+                priceArrow = R.drawable.ic_arrow_down_black_24
+                priceChangePerc = priceChangePerc.substring(1, priceChangePerc.length)
+            }
+            view.setImageViewResource(R.id.imageViewArrow, priceArrow)
+            view.setTextViewText(
+                R.id.textView_24hp,
+                String.format("%.6f", priceChangePerc.toFloat()) + "%"
+            )
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+
         return view
     }
 
