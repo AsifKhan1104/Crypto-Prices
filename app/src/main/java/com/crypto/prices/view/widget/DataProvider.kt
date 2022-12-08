@@ -2,6 +2,8 @@ package com.crypto.prices.view.widget
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Log
 import android.widget.RemoteViews
@@ -12,9 +14,13 @@ import com.crypto.prices.utils.Utility.getCurrencyGlobal
 import com.crypto.prices.utils.Utility.getCurrencySymbolGlobal
 import com.crypto.prices.view.AppRepository
 import com.crypto.prices.view.AppRepositoryImpl
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.InputStream
 import java.math.BigDecimal
+import java.net.URL
 
 class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
     var cryptoList: List<CryptoData> = ArrayList()
@@ -58,6 +64,23 @@ class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
                 R.id.textView_24hp,
                 String.format("%.6f", priceChangePerc.toFloat()) + "%"
             )
+
+            // set icon
+            GlobalScope.launch {
+                var myImage: Bitmap? = null
+                try {
+                    val `in`: InputStream = URL(cryptoItem.image).openStream()
+                    myImage = BitmapFactory.decodeStream(`in`)
+
+                    // now show bitmap in remoteview
+                    withContext(Dispatchers.Main) {
+                        view.setImageViewBitmap(R.id.imageView, myImage)
+                    }
+                } catch (e: Exception) {
+                    Log.e("ImageLoadingError", e.message!!)
+                    e.printStackTrace()
+                }
+            }
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
