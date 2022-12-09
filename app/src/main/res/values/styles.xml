@@ -40,4 +40,11 @@
         <item name="appWidgetInnerRadius">10dp</item>
         <item name="appWidgetPadding">0dp</item>
     </style>
+
+    <style name="Widget.AppWidget.AppWidget.Container" parent="android:Widget">
+        <item name="android:id">@android:id/background</item>
+        <item name="android:background">
+            ?android:attr/colorBackground
+        </item>
+    </style>
 </resources>
