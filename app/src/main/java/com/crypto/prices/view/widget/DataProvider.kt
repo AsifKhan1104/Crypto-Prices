@@ -1,37 +1,37 @@
 package com.crypto.prices.view.widget
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Log
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService.RemoteViewsFactory
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.AppWidgetTarget
 import com.crypto.prices.R
 import com.crypto.prices.model.CryptoData
 import com.crypto.prices.utils.Utility.getCurrencyGlobal
 import com.crypto.prices.utils.Utility.getCurrencySymbolGlobal
 import com.crypto.prices.view.AppRepository
 import com.crypto.prices.view.AppRepositoryImpl
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.io.InputStream
 import java.math.BigDecimal
-import java.net.URL
+
 
 class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
     var cryptoList: List<CryptoData> = ArrayList()
     var mContext: Context? = null
-    var currencySymbol: String? = null
 
     override fun onCreate() {
+        Log.e("TAGggg", "onCreate")
         initData()
     }
 
     override fun onDataSetChanged() {
+        Log.e("TAGggg", "onDataSetChanged")
         initData()
     }
 
@@ -66,7 +66,7 @@ class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
             )
 
             // set icon
-            GlobalScope.launch {
+            /*GlobalScope.launch {
                 var myImage: Bitmap? = null
                 try {
                     val `in`: InputStream = URL(cryptoItem.image).openStream()
@@ -80,7 +80,20 @@ class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
                     Log.e("ImageLoadingError", e.message!!)
                     e.printStackTrace()
                 }
-            }
+            }*/
+
+            val appWidgetTarget = AppWidgetTarget(
+                mContext!!,
+                R.id.imageView,
+                view,
+                ComponentName(mContext!!, this::class.java)
+            )
+            Log.e("TAGggg", "target")
+
+            Glide.with(mContext!!)
+                .asBitmap()
+                .load(cryptoItem.image)
+                .into(appWidgetTarget)
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
@@ -123,5 +136,13 @@ class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
 
     init {
         mContext = context
+    }
+
+    private fun getActiveWidgetIds(context: Context): IntArray {
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        val componentName = ComponentName(context, this::class.java)
+
+        // return ID of all active widgets within this AppWidgetProvider
+        return appWidgetManager.getAppWidgetIds(componentName)
     }
 }
