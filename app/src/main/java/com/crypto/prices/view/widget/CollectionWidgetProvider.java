@@ -28,10 +28,6 @@ public class CollectionWidgetProvider extends AppWidgetProvider {
             remoteViews.setRemoteAdapter(R.id.widget_list,
                     new Intent(context, WidgetService.class));
 
-            // Log.w("WidgetExample", String.valueOf(number));
-            // Set the text
-            // remoteViews.setTextViewText(R.id.update, String.valueOf(number));
-
             // Register an onClickListener
             /*Intent intent = new Intent(context, MyWidgetProvider.class);
 
