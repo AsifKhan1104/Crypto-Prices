@@ -62,7 +62,7 @@ class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
             view.setImageViewResource(R.id.imageViewArrow, priceArrow)
             view.setTextViewText(
                 R.id.textView_24hp,
-                String.format("%.6f", priceChangePerc.toFloat()) + "%"
+                String.format("%.2f", priceChangePerc.toFloat()) + "%"
             )
 
             // set icon
@@ -117,8 +117,6 @@ class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
             // check if request is successful
             if (response.isSuccessful) {
                 cryptoList = response.body()!!
-                Log.v("CryptoWidget", "response: " + response.toString())
-                Log.v("CryptoWidget", "response body: " + response.body().toString())
             }
         }
     }
