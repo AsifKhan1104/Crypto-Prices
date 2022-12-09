@@ -57,4 +57,5 @@
     <string name="dash">-</string>
     <string name="search_hint">Search coins</string>
     <string name="no_results_found">No Results Found !!</string>
+    <string name="widget_crypto">Top 20 crypto coins</string>
 </resources>
