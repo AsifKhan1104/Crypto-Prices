@@ -29,14 +29,14 @@ public class CollectionWidgetProvider extends AppWidgetProvider {
                     new Intent(context, WidgetService.class));
 
             // Register an onClickListener
-            /*Intent intent = new Intent(context, MyWidgetProvider.class);
+            /*Intent intent = new Intent(context, CollectionWidgetProvider.class);
 
             intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
                     0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            remoteViews.setOnClickPendingIntent(R.id.update, pendingIntent);*/
+            remoteViews.setOnClickPendingIntent(R.id.imageViewRefresh, pendingIntent);*/
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
         super.onUpdate(context, appWidgetManager, appWidgetIds);
