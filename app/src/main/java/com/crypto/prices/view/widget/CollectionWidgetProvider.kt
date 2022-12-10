@@ -52,7 +52,8 @@ class CollectionWidgetProvider : AppWidgetProvider() {
                 remoteViews
             )
         }
-        scheduleUpdates(context)
+        // commenting since widget service is not working in background
+        //scheduleUpdates(context)
         super.onUpdate(context, appWidgetManager, appWidgetIds)
     }
 
@@ -66,7 +67,8 @@ class CollectionWidgetProvider : AppWidgetProvider() {
 
     override fun onDeleted(context: Context, appWidgetIds: IntArray) {
         // reschedule update alarm so it does not include ID of currently removed widget
-        scheduleUpdates(context)
+        // commenting since widget service is not working in background
+        //scheduleUpdates(context)
         super.onDeleted(context, appWidgetIds)
     }
 
