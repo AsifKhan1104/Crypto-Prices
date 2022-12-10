@@ -1,11 +1,11 @@
-package com.crypto.prices.view.widget;
+package com.crypto.prices.view.widget.crypto;
 
 import android.content.Intent;
 import android.widget.RemoteViewsService;
 
-public class WidgetService extends RemoteViewsService {
+public class CryptoWidgetService extends RemoteViewsService {
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-        return new DataProvider(this, intent);
+        return new CryptoDataProvider(this, intent);
     }
 }

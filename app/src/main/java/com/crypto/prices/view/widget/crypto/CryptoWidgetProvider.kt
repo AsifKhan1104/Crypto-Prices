@@ -1,4 +1,4 @@
-package com.crypto.prices.view.widget
+package com.crypto.prices.view.widget.crypto
 
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -10,7 +10,7 @@ import android.content.Intent
 import android.widget.RemoteViews
 import com.crypto.prices.R
 
-class CollectionWidgetProvider : AppWidgetProvider() {
+class CryptoWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(
         context: Context, appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
@@ -18,7 +18,7 @@ class CollectionWidgetProvider : AppWidgetProvider() {
         // Get all ids
         val thisWidget = ComponentName(
             context,
-            CollectionWidgetProvider::class.java
+            CryptoWidgetProvider::class.java
         )
         val allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget)
         for (widgetId in allWidgetIds) {
@@ -28,7 +28,7 @@ class CollectionWidgetProvider : AppWidgetProvider() {
             )
             remoteViews.setRemoteAdapter(
                 R.id.widget_list,
-                Intent(context, WidgetService::class.java)
+                Intent(context, CryptoWidgetService::class.java)
             )
             appWidgetManager.notifyAppWidgetViewDataChanged(widgetId, R.id.widget_list)
 

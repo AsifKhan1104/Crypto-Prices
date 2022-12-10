@@ -1,4 +1,4 @@
-package com.crypto.prices.view.widget
+package com.crypto.prices.view.widget.crypto
 
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
 
-class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
+class CryptoDataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
     var cryptoList: List<CryptoData> = ArrayList()
     var mContext: Context? = null
 
