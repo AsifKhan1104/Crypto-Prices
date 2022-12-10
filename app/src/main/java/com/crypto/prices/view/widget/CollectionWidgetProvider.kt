@@ -2,20 +2,13 @@ package com.crypto.prices.view.widget
 
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.appwidget.AppWidgetProvider
 import android.appwidget.AppWidgetManager
+import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import com.crypto.prices.view.widget.CollectionWidgetProvider
 import android.widget.RemoteViews
 import com.crypto.prices.R
-import com.crypto.prices.view.widget.WidgetService
-import android.widget.Toast
-import androidx.annotation.RequiresApi
-import java.time.Duration
-import java.time.ZonedDateTime
 
 class CollectionWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(
@@ -37,6 +30,7 @@ class CollectionWidgetProvider : AppWidgetProvider() {
                 R.id.widget_list,
                 Intent(context, WidgetService::class.java)
             )
+            appWidgetManager.notifyAppWidgetViewDataChanged(widgetId, R.id.widget_list)
 
             // Register an onClickListener
             /*Intent intent = new Intent(context, CollectionWidgetProvider.class);
@@ -53,22 +47,24 @@ class CollectionWidgetProvider : AppWidgetProvider() {
             )
         }
         // commenting since widget service is not working in background
-        //scheduleUpdates(context)
+        scheduleUpdates(context)
         super.onUpdate(context, appWidgetManager, appWidgetIds)
     }
 
     override fun onEnabled(context: Context) {
         //Toast.makeText(context, "onEnabled called", Toast.LENGTH_LONG).show()
+        super.onEnabled(context)
     }
 
     override fun onDisabled(context: Context) {
-        //cancelUpdates(context)
+        cancelUpdates(context)
+        super.onDisabled(context)
     }
 
     override fun onDeleted(context: Context, appWidgetIds: IntArray) {
         // reschedule update alarm so it does not include ID of currently removed widget
         // commenting since widget service is not working in background
-        //scheduleUpdates(context)
+        scheduleUpdates(context)
         super.onDeleted(context, appWidgetIds)
     }
 
@@ -96,6 +92,10 @@ class CollectionWidgetProvider : AppWidgetProvider() {
         }
     }
 
+    private fun cancelUpdates(context: Context) {
+        context.alarmManager.cancel(getUpdatePendingIntent(context))
+    }
+
     private fun getUpdatePendingIntent(context: Context): PendingIntent {
         val widgetClass = this::class.java
         val widgetIds = getActiveWidgetIds(context)
@@ -114,6 +114,6 @@ class CollectionWidgetProvider : AppWidgetProvider() {
 
     companion object {
         private const val ACTION_CLICK = "ACTION_CLICK"
-        private val WIDGET_UPDATE_INTERVAL:Long = 60000
+        private val WIDGET_UPDATE_INTERVAL: Long = 60000
     }
 }
