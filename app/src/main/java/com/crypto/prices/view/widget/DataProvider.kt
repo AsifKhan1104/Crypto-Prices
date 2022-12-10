@@ -26,12 +26,10 @@ class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
     var mContext: Context? = null
 
     override fun onCreate() {
-        Log.e("TAGggg", "onCreate")
         initData()
     }
 
     override fun onDataSetChanged() {
-        Log.e("TAGggg", "onDataSetChanged")
         initData()
     }
 
@@ -88,7 +86,6 @@ class DataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
                 view,
                 ComponentName(mContext!!, this::class.java)
             )
-            Log.e("TAGggg", "target")
 
             Glide.with(mContext!!)
                 .asBitmap()
