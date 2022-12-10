@@ -114,6 +114,6 @@ class CollectionWidgetProvider : AppWidgetProvider() {
 
     companion object {
         private const val ACTION_CLICK = "ACTION_CLICK"
-        private val WIDGET_UPDATE_INTERVAL: Long = 60000
+        private val WIDGET_UPDATE_INTERVAL: Long = 3600000
     }
 }
