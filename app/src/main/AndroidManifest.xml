@@ -88,10 +88,24 @@
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_config" />
+                android:resource="@xml/widget_config_crypto" />
         </receiver>
         <service
             android:name=".view.widget.crypto.CryptoWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <receiver
+            android:name=".view.widget.watchlist.WatchlistWidgetProvider"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_config_watclist" />
+        </receiver>
+        <service
+            android:name=".view.widget.watchlist.WatchlistWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <!-- Package visibility -->

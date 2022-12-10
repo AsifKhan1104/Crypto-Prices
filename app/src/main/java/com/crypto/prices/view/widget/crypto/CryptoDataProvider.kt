@@ -20,7 +20,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
-
 class CryptoDataProvider(context: Context?, intent: Intent?) : RemoteViewsFactory {
     var cryptoList: List<CryptoData> = ArrayList()
     var mContext: Context? = null
@@ -39,7 +38,7 @@ class CryptoDataProvider(context: Context?, intent: Intent?) : RemoteViewsFactor
     }
 
     override fun getViewAt(position: Int): RemoteViews {
-        val view = RemoteViews(mContext!!.packageName, R.layout.item_crypto_widget)
+        val view = RemoteViews(mContext!!.packageName, R.layout.item_widget)
         val cryptoItem = cryptoList[position]
         view.setImageViewUri(R.id.imageView, Uri.parse(cryptoItem.image))
         view.setTextViewText(R.id.textView_symbol, cryptoItem.symbol)
@@ -64,22 +63,6 @@ class CryptoDataProvider(context: Context?, intent: Intent?) : RemoteViewsFactor
             )
 
             // set icon
-            /*GlobalScope.launch {
-                var myImage: Bitmap? = null
-                try {
-                    val `in`: InputStream = URL(cryptoItem.image).openStream()
-                    myImage = BitmapFactory.decodeStream(`in`)
-
-                    // now show bitmap in remoteview
-                    withContext(Dispatchers.Main) {
-                        view.setImageViewBitmap(R.id.imageView, myImage)
-                    }
-                } catch (e: Exception) {
-                    Log.e("ImageLoadingError", e.message!!)
-                    e.printStackTrace()
-                }
-            }*/
-
             val appWidgetTarget = AppWidgetTarget(
                 mContext!!,
                 R.id.imageView,
