@@ -22,6 +22,7 @@ import java.util.*
 object Utility {
     const val isPro = "isPro"
     const val spinWheelTime = "spinWheelTime"
+    const val gameZopUrl = "https://4323.play.gamezop.com"
 
     fun showToast(context: Context?, msg: String) =
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()

@@ -102,7 +102,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
             binding.relativeLayoutGames.id -> {
                 Utility.openChromeCustomTabUrlNews(
                     requireContext(),
-                    requireContext().getString(R.string.gamezop_url)
+                    Utility.gameZopUrl
                 )
             }
             binding.relativeLayoutPP.id -> {
