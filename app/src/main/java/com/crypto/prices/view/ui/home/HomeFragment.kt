@@ -10,14 +10,21 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
+import com.crypto.prices.database.Watchlist
 import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.databinding.FragmentHomeBinding
 import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.utils.Utility
+import com.crypto.prices.view.AppRepository
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.activity.MainActivity
 import com.crypto.prices.view.ui.explore.NewsAdapter
 import com.crypto.prices.view.ui.explore.NewsViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
@@ -94,11 +101,53 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 binding.recyclerViewWatchlist.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 binding.recyclerViewWatchlist.adapter = mWatchlistAdapter
+
+                // update the latest prices of crypto coins
+                getUpdatedPricesApi(watchlist)
             } else {
-                mWatchlistAdapter?.updateList(watchlist)
+                // update the latest prices of crypto coins
+                getUpdatedPricesApi(watchlist)
             }
         } else {
             binding.groupWatchlist.visibility = View.GONE
+        }
+    }
+
+    private fun getUpdatedPricesApi(watchlist: List<Watchlist>) {
+        val cryptoIds = StringBuilder()
+        for (i in watchlist) {
+            if (!i.type.equals("") && i.type.equals("crypto"))
+                cryptoIds.append(i.id + ",")
+        }
+
+        // now request these id's data
+        val map = HashMap<String, String?>()
+        map["vs_currency"] = Utility.getCurrencyGlobal(requireContext())
+        map["order"] = "market_cap_desc"
+        //map["per_page"] = "20"
+        map["ids"] = cryptoIds.toString()
+
+        GlobalScope.launch {
+            val appRepository: AppRepository = AppRepositoryImpl()
+            val response = appRepository.getCryptoPrices(map as MutableMap<String, String>)
+            // check if request is successful
+            if (response.isSuccessful) {
+                val cryptoList = response.body()!!
+                // set updated price & price_change_24%
+                for ((i, value1) in cryptoList.withIndex()) {
+                    for ((j, value2) in watchlist.withIndex()) {
+                        if (value1.id.equals(value2.id)) {
+                            watchlist[j].price = cryptoList[i].current_price.toString()
+                            watchlist[j].priceChange24h =
+                                cryptoList[i].price_change_percentage_24h.toString()
+                        }
+                    }
+                }
+                withContext(Dispatchers.Main) {
+                    // update recycler view
+                    mWatchlistAdapter?.updateList(watchlist)
+                }
+            }
         }
     }
 
