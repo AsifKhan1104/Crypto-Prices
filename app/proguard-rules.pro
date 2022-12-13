@@ -33,3 +33,7 @@ LineNumberTable, *Annotation*, EnclosingMethod
 -dontwarn com.startapp.**
 
 -dontwarn org.jetbrains.annotations.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+
+-keep class com.crypto.prices.model.** { *; }
