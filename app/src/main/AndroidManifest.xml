@@ -102,7 +102,7 @@
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_config_watclist" />
+                android:resource="@xml/widget_config_wathclist" />
         </receiver>
         <service
             android:name=".view.widget.watchlist.WatchlistWidgetService"

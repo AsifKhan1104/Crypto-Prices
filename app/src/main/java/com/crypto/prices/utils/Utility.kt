@@ -224,17 +224,16 @@ object Utility {
     fun composeEmail(context: Context) {
         // compose subject
         var subject: String = context.getString(R.string.app_name) + " Issue"
-        val selectorIntent = Intent(Intent.ACTION_SENDTO)
-        selectorIntent.data =
-            Uri.parse("mailto:indianapps47@gmail.com") // only email apps should handle this
 
-        val emailIntent = Intent(Intent.ACTION_SEND).apply {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_EMAIL, Array(1) { "indianapps47@gmail.com" })
             putExtra(Intent.EXTRA_SUBJECT, subject)
-            selector = selectorIntent
+            type = "text/plain"
         }
-        if (emailIntent.resolveActivity(context.packageManager) != null) {
-            context.startActivity(emailIntent)
-        }
+
+        val shareIntent = Intent.createChooser(sendIntent, "Send Email")
+        context.startActivity(shareIntent)
     }
 
     fun openWebURL(context: Context, url: String) {
