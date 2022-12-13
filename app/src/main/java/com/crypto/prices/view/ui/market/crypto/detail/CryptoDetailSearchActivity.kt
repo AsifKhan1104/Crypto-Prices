@@ -88,7 +88,7 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
         setTitle(masterData?.name)
         // set coin icon
         Glide.with(this)
-            .load(masterData?.image?.thumb)
+            .load(masterData?.image?.large)
             .into(binding.imageViewSymbol)
 
         binding.textViewSymbol.text = masterData?.symbol
