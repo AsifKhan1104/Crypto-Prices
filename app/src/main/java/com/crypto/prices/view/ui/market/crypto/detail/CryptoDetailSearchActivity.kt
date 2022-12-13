@@ -331,13 +331,13 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
         //binding.loadingViewChart.visibility = View.GONE
         binding.chart.visibility = View.GONE
         binding.tableLayout.visibility = View.GONE
-        binding.linearLayoutFilter.visibility = View.GONE
+        binding.linearLayoutFilter.visibility = View.INVISIBLE
     }
 
     private fun onLoadingChart() {
         binding.textViewErrorChart.visibility = View.GONE
         binding.tableLayout.visibility = View.GONE
-        binding.linearLayoutFilter.visibility = View.GONE
+        binding.linearLayoutFilter.visibility = View.INVISIBLE
         //binding.loadingViewChart.visibility = View.VISIBLE
     }
 
