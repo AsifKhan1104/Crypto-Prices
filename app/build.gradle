@@ -17,7 +17,7 @@ android {
         applicationId "com.miner.doge_miner"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 12
+        versionCode 13
         versionName "1.3.0"
         multiDexEnabled true
 
