@@ -11,7 +11,7 @@
     <!--<string name="startapp_app_id">206697107</string>-->
 
     <!--unity ad ids-->
-    <string name="unity_ad_id">4209865</string>
+    <!--<string name="unity_ad_id">4209865</string>-->
 
     <string name="logOut">Log Out</string>
     <string name="tnc"><![CDATA[Terms & Conditions]]></string>
