@@ -64,7 +64,8 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     }
 
     private fun initData() {
-        binding.textViewPrice.text = "Price (" + Utility.getCurrencySymbol(requireActivity()) + ")"
+        binding.textViewPrice.text =
+            getString(R.string.price) + "(" + Utility.getCurrencySymbol(requireActivity()) + ")"
         // on click listener
         binding.linearLayoutMC.setOnClickListener(this)
     }

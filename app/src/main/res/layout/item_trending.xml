@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:fontFamily="sans-serif-thin"
-            android:text="Market Cap Rank"
+            android:text="@string/market_cap_rank"
             android:textSize="10sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textViewRank"
             app:layout_constraintStart_toEndOf="@+id/textViewRank" />

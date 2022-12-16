@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.crypto.prices.R
 import com.crypto.prices.databinding.FragmentMarketBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -38,7 +39,8 @@ class MarketFragment : Fragment() {
         binding.viewPager.adapter = adapter
         binding.tabLayout.setupWithViewPager(
             binding.viewPager,
-            listOf("Cryptocurrency", "Categories", "NFTs", "Exchanges", "Derivatives")
+            listOf(getString(R.string.cryptocurrency), getString(R.string.categories), getString(R.string.nfts), getString(
+                            R.string.exchanges), getString(R.string.derivatives))
         )
 
         /*binding.viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
