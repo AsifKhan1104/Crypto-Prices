@@ -41,7 +41,7 @@
                 android:layout_weight="5"
                 android:fontFamily="sans-serif-smallcaps"
                 android:gravity="center"
-                android:text="Exchange"
+                android:text="@string/exchange"
                 android:textColor="@color/dark_gray"
                 android:textSize="12sp"
                 android:textStyle="normal" />
@@ -56,7 +56,7 @@
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="24H Volume(BTC)"
+                android:text="@string/volume_btc"
                 android:textColor="@color/dark_gray"
                 android:textSize="10sp"
                 android:textStyle="normal" />
@@ -71,7 +71,7 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Open Interest(BTC)"
+                android:text="@string/open_interest_btc"
                 android:textColor="@color/dark_gray"
                 android:textSize="10sp"
                 android:textStyle="normal" />

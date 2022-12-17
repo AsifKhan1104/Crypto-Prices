@@ -368,7 +368,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@string/market_statistics"
+                    android:text="@string/market_stats"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"

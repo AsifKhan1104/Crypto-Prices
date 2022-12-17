@@ -25,7 +25,6 @@ import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.ui.search.SearchActivity
 
-
 class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: ActivityDerivativesDetailBinding? = null
     private lateinit var mDetailViewModel: DerivativesDetailViewModel

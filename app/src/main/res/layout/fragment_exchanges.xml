@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="Exchange"
+                    android:text="@string/exchange"
                     android:textColor="@color/dark_gray"
                     android:textSize="12sp"
                     android:textStyle="normal" />
@@ -64,7 +64,7 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Trade Volume (BTC)"
+                android:text="@string/trade_volume_btc"
                 android:textColor="@color/dark_gray"
                 android:textSize="12sp"
                 android:textStyle="normal" />
@@ -79,7 +79,7 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Trust Score"
+                android:text="@string/trust_score"
                 android:textColor="@color/dark_gray"
                 android:textSize="12sp"
                 android:textStyle="normal" />
