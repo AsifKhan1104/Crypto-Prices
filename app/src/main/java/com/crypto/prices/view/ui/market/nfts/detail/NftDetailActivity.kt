@@ -195,7 +195,7 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
                 if (mDatabase.isWatchlisted(mId)) {
                     item.setIcon(R.drawable.star)
                     mDatabase.delete(mId)
-                    Utility.showToast(this, "NFT removed from watchlist")
+                    Utility.showToast(this, getString(R.string.nft_removed))
                 } else {
                     item.setIcon(R.drawable.star_selected)
                     mDatabase.insert(
@@ -212,7 +212,7 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
                             "nft"
                         )
                     )
-                    Utility.showToast(this, "NFT added to watchlist")
+                    Utility.showToast(this, getString(R.string.nft_added))
                 }
                 true
             }

@@ -49,7 +49,7 @@ class CurrConverterActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.buttonConvert.setOnClickListener(View.OnClickListener {
             if (TextUtils.isEmpty(binding.editText.text.toString())) {
-                Toast.makeText(this, "Please enter amount to convert", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.enter_amount_to_convert), Toast.LENGTH_LONG).show()
             } else {
                 toCurrencySymbol = binding.spinnerTo.selectedItem.toString().uppercase()
                 val map = HashMap<String, String>()

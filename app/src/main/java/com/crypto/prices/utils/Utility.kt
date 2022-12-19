@@ -32,7 +32,7 @@ object Utility {
 
     fun showDialog(context: Context?, title: String?, message: String?) {
         val builder = AlertDialog.Builder(context)
-        builder.setPositiveButton("ok") { dialog, _ -> dialog.dismiss() }
+        builder.setPositiveButton(context?.getString(R.string.ok)) { dialog, _ -> dialog.dismiss() }
         builder.setTitle(title)
         builder.setMessage(message)
         builder.setCancelable(false)

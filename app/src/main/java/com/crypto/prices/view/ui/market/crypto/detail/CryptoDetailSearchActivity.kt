@@ -422,7 +422,7 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
                 if (mDatabase.isWatchlisted(id)) {
                     item.setIcon(R.drawable.star)
                     mDatabase.delete(id)
-                    Utility.showToast(this, "Coin removed from watchlist")
+                    Utility.showToast(this, getString(R.string.coin_removed))
                 } else {
                     item.setIcon(R.drawable.star_selected)
                     mDatabase.insert(
@@ -439,7 +439,7 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
                             "crypto"
                         )
                     )
-                    Utility.showToast(this, "Coin added to watchlist")
+                    Utility.showToast(this, getString(R.string.coin_added))
                 }
                 true
             }
