@@ -56,7 +56,7 @@
     <string name="last_price">Harga terakhir</string>
     <string name="last_traded">Terakhir Diperdagangkan</string>
     <string name="twenty_four_hour_volume">Volume 24 jam</string>
-    <string name="enjoy_using_coinprices">Nikmati menggunakan Harga Koin?</string>
+    <string name="enjoy_using_the_app">Selamat menggunakan</string>
     <string name="rate_the_app">Beri nilai aplikasi</string>
     <string name="share_the_app">Bagikan aplikasi</string>
     <string name="contact_us">Hubungi kami</string>
@@ -75,6 +75,8 @@
     <string name="nft_added">NFT ditambahkan ke daftar pantauan</string>
     <string name="enter_amount_to_convert">Harap masukkan jumlah yang akan dikonversi</string>
     <string name="ok">Oke</string>
+    <string name="select_language">Pilih bahasa</string>
+    <string name="language">Bahasa</string>
 
     <string name="market_cap_rank">Peringkat Kapitalisasi Pasar</string>
     <string name="cryptocurrency">Mata uang kripto</string>

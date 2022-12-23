@@ -57,13 +57,14 @@ class MoreFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setUpData() {
-        binding.textViewEnjoy.text = "Enjoy using ${getString(R.string.app_name)}?"
-        binding.textViewRateUs.text = "Rate the ${getString(R.string.app_name)} App"
-        binding.textViewShare.text = "Share the ${getString(R.string.app_name)} App"
+        binding.textViewEnjoy.text = "${getString(R.string.enjoy_using_the_app)} ${getString(R.string.app_name)}?"
+        //binding.textViewRateUs.text = "Rate the ${getString(R.string.app_name)} App"
+        //binding.textViewShare.text = "Share the ${getString(R.string.app_name)} App"
         binding.textViewAppVersion.text =
             getString(R.string.app_name) + " " + BuildConfig.VERSION_NAME
         binding.textViewCurrencySelected.text = Utility.getCurrencyName(requireActivity()) + " (" +
                 Utility.getCurrencySymbol(requireActivity()) + ")"
+        binding.textViewLanguageSelected.text = Utility.getLanguage(requireActivity())
 
         // on click listeners
         binding.relativeLayoutRateUs.setOnClickListener(this)
@@ -75,6 +76,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
         binding.relativeLayoutPP.setOnClickListener(this)
         binding.relativeLayoutTnC.setOnClickListener(this)
         binding.relativeLayoutCC.setOnClickListener(this)
+        binding.relativeLayoutLanguage.setOnClickListener(this)
         binding.relativeLayoutCalculator.setOnClickListener(this)
     }
 
@@ -125,6 +127,10 @@ class MoreFragment : Fragment(), View.OnClickListener {
                     val fragment = CurrencySelectFragment()
                     fragment.show(requireActivity()?.supportFragmentManager, "")
                 }
+            }
+            binding.relativeLayoutLanguage.id -> {
+                val intent = Intent(requireContext(), LanguageSelectActivity::class.java)
+                startActivity(intent)
             }
             binding.relativeLayoutCalculator.id -> {
                 val intent = Intent(requireContext(), CurrConverterActivity::class.java)

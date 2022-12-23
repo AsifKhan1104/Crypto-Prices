@@ -56,7 +56,7 @@
     <string name="last_price">السعر الاخير</string>
     <string name="last_traded">آخر تداول</string>
     <string name="twenty_four_hour_volume">حجم 24H</string>
-    <string name="enjoy_using_coinprices">استمتع باستخدام CoinPrices؟</string>
+    <string name="enjoy_using_the_app">استمتع باستخدام</string>
     <string name="rate_the_app">قيم التطبيق</string>
     <string name="share_the_app">شارك التطبيق</string>
     <string name="contact_us">اتصل بنا</string>
@@ -75,6 +75,8 @@
     <string name="nft_added">تمت إضافة NFT إلى قائمة المراقبة</string>
     <string name="enter_amount_to_convert">الرجاء إدخال المبلغ للتحويل</string>
     <string name="ok">موافق</string>
+    <string name="select_language">اختار اللغة</string>
+    <string name="language">لغة</string>
 
     <!--<string name="market_cap_rank">تصنيف القيمة السوقية</string>
     <string name="cryptocurrency">عملة مشفرة</string>

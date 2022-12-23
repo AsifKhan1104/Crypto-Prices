@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         // set title
         supportActionBar?.title = getString(R.string.title_home)
 
-        setDefaultCurrency()
+        setDefaultCL()
         // default home page
         openFragment(homeFragment)
 
@@ -84,14 +84,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // set default currency in shared prefs
-    private fun setDefaultCurrency() {
+    // set default currency & language in shared prefs
+    private fun setDefaultCL() {
+        // currency
         val selectedCurrency = Utility.getCurrency(this)
         if (selectedCurrency == null) {
             // set default currency as usd
             Utility.setCurrency(this, "usd")
             Utility.setCurrencyName(this, "US Dollar")
             Utility.setCurrencySymbol(this, "$")
+        }
+
+        // language
+        val selectedLanguage = Utility.getLanguage(this)
+        if (selectedLanguage == null) {
+            Utility.setLanguage(this, "English")
         }
     }
 

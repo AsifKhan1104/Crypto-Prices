@@ -19,6 +19,7 @@
     <color name="tab_indicator_color">#AFB42B</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="selected_text_color">#AFB42B</color>
     <!--chart styling-->
     <color name="chart_bg_color">#FFFFFF</color>
     <color name="chart_color">#800000FF</color>

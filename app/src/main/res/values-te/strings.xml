@@ -58,7 +58,7 @@
     <string name="last_price">చివరి ధర</string>
     <string name="last_traded">చివరిగా ట్రేడ్ చేయబడింది</string>
     <string name="twenty_four_hour_volume">24H వాల్యూమ్</string>
-    <string name="enjoy_using_coinprices">కాయిన్ ధరలను ఉపయోగించడం ఆనందించాలా?</string>
+    <string name="enjoy_using_the_app">ఉపయోగించి ఆనందించండి</string>
     <string name="rate_the_app">యాప్‌ను రేట్ చేయండి</string>
     <string name="share_the_app">యాప్‌ను షేర్ చేయండి</string>
     <string name="contact_us">మమ్మల్ని సంప్రదించండి</string>
@@ -77,6 +77,8 @@
     <string name="nft_added">NFT వీక్షణ జాబితాకు జోడించబడింది</string>
     <string name="enter_amount_to_convert">దయచేసి మార్చడానికి మొత్తాన్ని నమోదు చేయండి</string>
     <string name="ok">అలాగే</string>
+    <string name="select_language">భాషను ఎంచుకోండి</string>
+    <string name="language">భాష</string>
 
     <!--don't translate-->
     <string name="market_cap_rank">Market Cap Rank</string>

@@ -56,7 +56,7 @@
     <string name="last_price">Utolsó ár</string>
     <string name="last_traded">Utolsó kereskedés</string>
     <string name="twenty_four_hour_volume">24 órás hangerő</string>
-    <string name="enjoy_using_coinprices">Élvezi a CoinPrices használatát?</string>
+    <string name="enjoy_using_the_app">Élvezze a használatát</string>
     <string name="rate_the_app">Értékelje az alkalmazást</string>
     <string name="share_the_app">Ossza meg az alkalmazást</string>
     <string name="contact_us">Lépjen kapcsolatba velünk</string>
@@ -75,6 +75,8 @@
     <string name="nft_added">Az NFT felkerült a figyelőlistára</string>
     <string name="enter_amount_to_convert">Kérjük, adja meg az átváltandó összeget</string>
     <string name="ok">rendben</string>
+    <string name="select_language">Válasszon nyelvet</string>
+    <string name="language">Nyelv</string>
 
     <string name="market_cap_rank">Piaci Cap Rank</string>
     <string name="cryptocurrency">Kriptovaluta</string>

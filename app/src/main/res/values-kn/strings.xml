@@ -58,7 +58,7 @@
     <string name="last_price">ಕೊನೆಯ ಬೆಲೆ</string>
     <string name="last_traded">ಕೊನೆಯ ವ್ಯಾಪಾರ</string>
     <string name="twenty_four_hour_volume">24H ಸಂಪುಟ</string>
-    <string name="enjoy_using_coinprices">CoinPrices ಬಳಸಿ ಆನಂದಿಸುತ್ತೀರಾ?</string>
+    <string name="enjoy_using_the_app">ಬಳಸಿ ಆನಂದಿಸಿ</string>
     <string name="rate_the_app">ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ರೇಟ್ ಮಾಡಿ</string>
     <string name="share_the_app">ಅಪ್ಲಿಕೇಶನ್ ಹಂಚಿಕೊಳ್ಳಿ</string>
     <string name="contact_us">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
@@ -77,6 +77,8 @@
     <string name="nft_added">NFT ಅನ್ನು ವೀಕ್ಷಣೆ ಪಟ್ಟಿಗೆ ಸೇರಿಸಲಾಗಿದೆ</string>
     <string name="enter_amount_to_convert">ದಯವಿಟ್ಟು ಪರಿವರ್ತಿಸಲು ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ</string>
     <string name="ok">ಸರಿ</string>
+    <string name="select_language">ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="language">ಭಾಷೆ</string>
 
     <!--don't translate-->
     <string name="market_cap_rank">Market Cap Rank</string>

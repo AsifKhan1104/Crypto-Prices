@@ -56,7 +56,7 @@
     <string name="last_price">最后价格</string>
     <string name="last_traded">最后交易</string>
     <string name="twenty_four_hour_volume">24小时成交量</string>
-    <string name="enjoy_using_coinprices">喜欢使用 CoinPrices？</string>
+    <string name="enjoy_using_the_app">享受使用</string>
     <string name="rate_the_app">评价应用程序</string>
     <string name="share_the_app">分享应用</string>
     <string name="contact_us">联系我们</string>
@@ -75,6 +75,8 @@
     <string name="nft_added">NFT 添加到关注列表</string>
     <string name="enter_amount_to_convert">请输入兑换金额</string>
     <string name="ok">行</string>
+    <string name="select_language">选择语言</string>
+    <string name="language">语</string>
 
     <string name="market_cap_rank">市值排名</string>
     <string name="cryptocurrency">加密货币</string>

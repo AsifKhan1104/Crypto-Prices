@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text="@string/enjoy_using_coinprices"
+            android:text="@string/enjoy_using_the_app"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -338,6 +338,57 @@
                         android:fontFamily="sans-serif-smallcaps"
                         android:gravity="center_vertical"
                         android:text="US Dollar ($)"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:alpha="0.5"
+                    android:background="@color/divider_color"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@+id/table_layout" />
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewLanguage"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/translate" />
+
+                    <TextView
+                        android:id="@+id/textViewLanguage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/imageViewLanguage"
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:text="@string/language"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textViewLanguageSelected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:gravity="center_vertical"
+                        android:text="English"
                         android:textColor="@android:color/darker_gray"
                         android:textSize="14sp" />
                 </RelativeLayout>

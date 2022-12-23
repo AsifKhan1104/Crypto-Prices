@@ -60,6 +60,7 @@
         <entry key="app/src/main/res/layout/activity_currency_converter.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_derivatives_detail.xml" value="0.20335998535156244" />
         <entry key="app/src/main/res/layout/activity_exchanges_detail.xml" value="0.23211212158203126" />
+        <entry key="app/src/main/res/layout/activity_language.xml" value="0.18392333984375" />
         <entry key="app/src/main/res/layout/activity_linechart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2733812949640288" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23841583251953125" />
@@ -110,6 +111,7 @@
         <entry key="app/src/main/res/layout/item_derivatives_detail.xml" value="0.26250915527343754" />
         <entry key="app/src/main/res/layout/item_exchanges.xml" value="0.2795455932617188" />
         <entry key="app/src/main/res/layout/item_exchanges_shimmer.xml" value="0.1893162393162393" />
+        <entry key="app/src/main/res/layout/item_language_select.xml" value="0.1893162393162393" />
         <entry key="app/src/main/res/layout/item_listings.xml" value="0.22293676312968919" />
         <entry key="app/src/main/res/layout/item_loading.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_market.xml" value="0.1" />

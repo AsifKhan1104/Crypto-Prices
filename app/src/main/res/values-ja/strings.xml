@@ -56,7 +56,7 @@
     <string name="last_price">最終価格</string>
     <string name="last_traded">最後の取引</string>
     <string name="twenty_four_hour_volume">24時間ボリューム</string>
-    <string name="enjoy_using_coinprices">CoinPrices の使用を楽しんでいますか?</string>
+    <string name="enjoy_using_the_app">使って楽しむ</string>
     <string name="rate_the_app">アプリを評価する</string>
     <string name="share_the_app">アプリを共有する</string>
     <string name="contact_us">お問い合わせ</string>
@@ -75,6 +75,8 @@
     <string name="nft_added">ウォッチリストに追加されたNFT</string>
     <string name="enter_amount_to_convert">換算する金額を入力してください</string>
     <string name="ok">わかった</string>
+    <string name="select_language">言語を選択する</string>
+    <string name="language">言語</string>
 
     <string name="market_cap_rank">時価総額ランク</string>
     <string name="cryptocurrency">暗号通貨</string>

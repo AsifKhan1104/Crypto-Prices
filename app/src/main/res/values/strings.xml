@@ -60,9 +60,9 @@
     <string name="last_price">Last Price</string>
     <string name="last_traded">Last Traded</string>
     <string name="twenty_four_hour_volume">24H Volume</string>
-    <string name="enjoy_using_coinprices">Enjoy using CoinPrices?</string>
-    <string name="rate_the_app">Rate the app</string>
-    <string name="share_the_app">Share the app</string>
+    <string name="enjoy_using_the_app">Enjoy using</string>
+    <string name="rate_the_app">Rate the CryptoTrail app</string>
+    <string name="share_the_app">Share the CryptoTrail app</string>
     <string name="contact_us">Contact us</string>
     <string name="currency">Currency</string>
     <string name="calculator">Calculator</string>
@@ -79,6 +79,8 @@
     <string name="nft_added">NFT added to watchlist</string>
     <string name="enter_amount_to_convert">Please enter amount to convert</string>
     <string name="ok">ok</string>
+    <string name="select_language">Select Language</string>
+    <string name="language">Language</string>
 
     <!--don't translate-->
     <string name="market_cap_rank">Market Cap Rank</string>

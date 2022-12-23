@@ -57,7 +57,7 @@
     <string name="last_price">Son fiyat</string>
     <string name="last_traded">Son İşlem</string>
     <string name="twenty_four_hour_volume">24 Saat Hacim</string>
-    <string name="enjoy_using_coinprices">CoinPrices\'ı kullanmaktan hoşlanıyor musunuz?</string>
+    <string name="enjoy_using_the_app">kullanmanın keyfini çıkarın</string>
     <string name="rate_the_app">Uygulamayı oyla</string>
     <string name="share_the_app">uygulamayı paylaş</string>
     <string name="contact_us">Bize Ulaşın</string>
@@ -76,6 +76,8 @@
     <string name="nft_added">NFT izleme listesine eklendi</string>
     <string name="enter_amount_to_convert">Lütfen dönüştürülecek tutarı girin</string>
     <string name="ok">Tamam</string>
+    <string name="select_language">Dil Seçin</string>
+    <string name="language">Dil</string>
 
     <string name="market_cap_rank">Piyasa Değeri Sıralaması</string>
     <string name="cryptocurrency">Kripto para</string>

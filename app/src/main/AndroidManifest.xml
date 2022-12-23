@@ -71,6 +71,10 @@
         <activity
             android:name=".view.ui.explore.CurrConverterActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ui.more.LanguageSelectActivity"
+            android:label="@string/select_language"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".utils.MyFirebaseMessagingService"

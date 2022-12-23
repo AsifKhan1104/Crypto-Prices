@@ -2,6 +2,7 @@ package com.crypto.prices.view.ui.more
 
 import android.app.Activity
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,8 +44,28 @@ class CurrencySelectAdapter(
             val currentSelectedCurrency = Utility.getCurrency(context as Activity).let { it }
             if (data?.currency!!.equals(currentSelectedCurrency)) {
                 parentLayout.background = context.getDrawable(R.drawable.list_pressed)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    textViewName.setTextColor(
+                        context.resources.getColor(
+                            R.color.selected_text_color,
+                            context.theme
+                        )
+                    )
+                } else {
+                    textViewName.setTextColor(context.resources.getColor(R.color.selected_text_color))
+                }
             } else {
                 parentLayout.background = context.getDrawable(R.drawable.list_not_pressed)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    textViewName.setTextColor(
+                        context.resources.getColor(
+                            R.color.black,
+                            context.theme
+                        )
+                    )
+                } else {
+                    textViewName.setTextColor(context.resources.getColor(R.color.black))
+                }
             }
 
             // on click listener

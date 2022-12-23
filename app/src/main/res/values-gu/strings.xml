@@ -56,7 +56,7 @@
     <string name="last_price">છેલ્લી કિંમત</string>
     <string name="last_traded">છેલ્લું ટ્રેડેડ</string>
     <string name="twenty_four_hour_volume">24H વોલ્યુમ</string>
-    <string name="enjoy_using_coinprices">CoinPrices નો ઉપયોગ કરીને આનંદ માણો છો?</string>
+    <string name="enjoy_using_the_app">ઉપયોગ કરીને આનંદ માણો</string>
     <string name="rate_the_app">એપ્લિકેશનને રેટ કરો</string>
     <string name="share_the_app">એપ્લિકેશન શેર કરો</string>
     <string name="contact_us">અમારો સંપર્ક કરો</string>
@@ -75,6 +75,8 @@
     <string name="nft_added">NFT વૉચલિસ્ટમાં ઉમેર્યું</string>
     <string name="enter_amount_to_convert">કન્વર્ટ કરવા માટે કૃપા કરીને રકમ દાખલ કરો</string>
     <string name="ok">બરાબર</string>
+    <string name="select_language">ભાષા પસંદ કરો</string>
+    <string name="language">ભાષા</string>
 
     <!--don't translate-->
     <string name="market_cap_rank">Market Cap Rank</string>

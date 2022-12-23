@@ -57,7 +57,7 @@
     <string name="last_price">Laatste prijs</string>
     <string name="last_traded">Laatst verhandeld</string>
     <string name="twenty_four_hour_volume">24H-volume</string>
-    <string name="enjoy_using_coinprices">Vind je het leuk om CoinPrices te gebruiken?</string>
+    <string name="enjoy_using_the_app">Geniet van het gebruik</string>
     <string name="rate_the_app">Beoordeel de app</string>
     <string name="share_the_app">Deel de app</string>
     <string name="contact_us">Neem contact op</string>
@@ -76,6 +76,8 @@
     <string name="nft_added">NFT toegevoegd aan volglijst</string>
     <string name="enter_amount_to_convert">Voer het bedrag in dat u wilt converteren</string>
     <string name="ok">oké</string>
+    <string name="select_language">Selecteer Taal</string>
+    <string name="language">Taal</string>
 
     <string name="market_cap_rank">Marktkapitalisatie</string>
     <string name="cryptocurrency">Cryptovaluta</string>

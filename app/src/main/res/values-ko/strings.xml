@@ -56,7 +56,7 @@
     <string name="last_price">마지막 가격</string>
     <string name="last_traded">마지막 거래</string>
     <string name="twenty_four_hour_volume">24시간 거래량</string>
-    <string name="enjoy_using_coinprices">CoinPrices를 즐겨 사용하시나요?</string>
+    <string name="enjoy_using_the_app">사용을 즐기십시오</string>
     <string name="rate_the_app">앱 평가하기</string>
     <string name="share_the_app">앱 공유</string>
     <string name="contact_us">문의하기</string>
@@ -75,6 +75,8 @@
     <string name="nft_added">관심 목록에 NFT 추가</string>
     <string name="enter_amount_to_convert">변환할 금액을 입력하세요</string>
     <string name="ok">좋아요</string>
+    <string name="select_language">언어 선택</string>
+    <string name="language">언어</string>
 
     <string name="market_cap_rank">시가 총액 순위</string>
     <string name="cryptocurrency">암호화폐</string>
