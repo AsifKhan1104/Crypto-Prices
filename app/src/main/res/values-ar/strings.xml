@@ -77,6 +77,8 @@
     <string name="ok">موافق</string>
     <string name="select_language">اختار اللغة</string>
     <string name="language">لغة</string>
+    <string name="currency_converter">محول العملات</string>
+    <string name="convert">يتحول</string>
 
     <!--<string name="market_cap_rank">تصنيف القيمة السوقية</string>
     <string name="cryptocurrency">عملة مشفرة</string>

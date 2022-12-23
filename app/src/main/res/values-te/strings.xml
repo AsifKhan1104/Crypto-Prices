@@ -79,6 +79,8 @@
     <string name="ok">అలాగే</string>
     <string name="select_language">భాషను ఎంచుకోండి</string>
     <string name="language">భాష</string>
+    <string name="currency_converter">కరెన్సీ కన్వర్టర్</string>
+    <string name="convert">మార్చు</string>
 
     <!--don't translate-->
     <string name="market_cap_rank">Market Cap Rank</string>

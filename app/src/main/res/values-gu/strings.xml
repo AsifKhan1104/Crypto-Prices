@@ -77,6 +77,8 @@
     <string name="ok">બરાબર</string>
     <string name="select_language">ભાષા પસંદ કરો</string>
     <string name="language">ભાષા</string>
+    <string name="currency_converter">ચલણ કન્વર્ટર</string>
+    <string name="convert">કન્વર્ટ કરો</string>
 
     <!--don't translate-->
     <string name="market_cap_rank">Market Cap Rank</string>

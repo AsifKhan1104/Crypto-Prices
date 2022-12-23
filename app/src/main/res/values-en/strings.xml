@@ -81,6 +81,8 @@
     <string name="ok">ok</string>
     <string name="select_language">Select Language</string>
     <string name="language">Language</string>
+    <string name="currency_converter">Currency Converter</string>
+    <string name="convert">Convert</string>
 
     <!--don't translate-->
     <string name="market_cap_rank">Market Cap Rank</string>

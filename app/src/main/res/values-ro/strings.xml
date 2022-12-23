@@ -79,6 +79,8 @@
     <string name="ok">Bine</string>
     <string name="select_language">Selecteaza limba</string>
     <string name="language">Limba</string>
+    <string name="currency_converter">Convertor valutar</string>
+    <string name="convert">Convertit</string>
 
     <string name="market_cap_rank">Poziția de capitalizare a pieței</string>
     <string name="cryptocurrency">Criptomonedă</string>

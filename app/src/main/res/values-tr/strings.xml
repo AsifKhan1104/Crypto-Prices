@@ -78,6 +78,8 @@
     <string name="ok">Tamam</string>
     <string name="select_language">Dil Seçin</string>
     <string name="language">Dil</string>
+    <string name="currency_converter">Döviz Çevirici</string>
+    <string name="convert">Dönüştürmek</string>
 
     <string name="market_cap_rank">Piyasa Değeri Sıralaması</string>
     <string name="cryptocurrency">Kripto para</string>

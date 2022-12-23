@@ -88,7 +88,7 @@
         android:paddingTop="10dp"
         android:paddingEnd="20dp"
         android:paddingBottom="10dp"
-        android:text="Convert"
+        android:text="@string/convert"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/spinnerCard"
         app:layout_constraintStart_toEndOf="@+id/spinnerCard"

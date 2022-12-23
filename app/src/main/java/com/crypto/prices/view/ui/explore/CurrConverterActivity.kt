@@ -45,7 +45,7 @@ class CurrConverterActivity : AppCompatActivity(), View.OnClickListener {
     private fun initView() {
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
         // set title
-        setTitle("Currency Converter")
+        setTitle(getString(R.string.currency_converter))
 
         binding.buttonConvert.setOnClickListener(View.OnClickListener {
             if (TextUtils.isEmpty(binding.editText.text.toString())) {

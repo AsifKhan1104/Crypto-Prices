@@ -77,6 +77,8 @@
     <string name="ok">ok</string>
     <string name="select_language">Seleziona la lingua</string>
     <string name="language">Lingua</string>
+    <string name="currency_converter">Convertitore di valuta</string>
+    <string name="convert">Convertire</string>
 
     <string name="market_cap_rank">Grado di capitalizzazione di mercato</string>
     <string name="cryptocurrency">Criptovaluta</string>

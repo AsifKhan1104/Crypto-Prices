@@ -77,6 +77,8 @@
     <string name="ok">行</string>
     <string name="select_language">选择语言</string>
     <string name="language">语</string>
+    <string name="currency_converter">货币换算</string>
+    <string name="convert">转变</string>
 
     <string name="market_cap_rank">市值排名</string>
     <string name="cryptocurrency">加密货币</string>

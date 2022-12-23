@@ -77,6 +77,8 @@
     <string name="ok">わかった</string>
     <string name="select_language">言語を選択する</string>
     <string name="language">言語</string>
+    <string name="currency_converter">通貨換算</string>
+    <string name="convert">変換</string>
 
     <string name="market_cap_rank">時価総額ランク</string>
     <string name="cryptocurrency">暗号通貨</string>

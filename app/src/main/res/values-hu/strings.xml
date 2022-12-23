@@ -77,6 +77,8 @@
     <string name="ok">rendben</string>
     <string name="select_language">Válasszon nyelvet</string>
     <string name="language">Nyelv</string>
+    <string name="currency_converter">Valutaváltó</string>
+    <string name="convert">Alakítani</string>
 
     <string name="market_cap_rank">Piaci Cap Rank</string>
     <string name="cryptocurrency">Kriptovaluta</string>

@@ -81,6 +81,8 @@
     <string name="ok">OK</string>
     <string name="select_language">Sprache auswählen</string>
     <string name="language">Sprache</string>
+    <string name="currency_converter">Währungsrechner</string>
+    <string name="convert">Konvertieren</string>
 
     <string name="market_cap_rank">Rang der Marktkapitalisierung</string>
     <string name="cryptocurrency">Kryptowährung</string>

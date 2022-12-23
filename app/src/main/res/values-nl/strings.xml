@@ -78,6 +78,8 @@
     <string name="ok">oké</string>
     <string name="select_language">Selecteer Taal</string>
     <string name="language">Taal</string>
+    <string name="currency_converter">Valuta-omzetter</string>
+    <string name="convert">Overzetten</string>
 
     <string name="market_cap_rank">Marktkapitalisatie</string>
     <string name="cryptocurrency">Cryptovaluta</string>
