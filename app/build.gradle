@@ -20,6 +20,8 @@ android {
         versionCode 13
         versionName "1.3.0"
         multiDexEnabled true
+        resConfigs("ar", "de", "en", "es", "fr", "gu", "hu", "id", "it", "ja", "ko", "nl",
+                   "pl", "pt", "ro", "ru", "sv", "ta", "te", "tr", "zh")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -56,7 +56,7 @@
                 android:textSize="20sp"
                 android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@+id/textViewCoins"
-                app:layout_constraintTop_toBottomOf="@+id/searchView" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewCoins" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewCoins"
