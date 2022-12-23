@@ -34,7 +34,6 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IFillFormatter
 import java.math.BigDecimal
 
-
 class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: ActivityCryptoDetailBinding? = null
     private lateinit var mCryptoDetailSearchViewModel: CryptoDetailSearchViewModel
@@ -330,13 +329,13 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
         binding.textViewErrorChart.visibility = View.VISIBLE
         //binding.loadingViewChart.visibility = View.GONE
         binding.chart.visibility = View.GONE
-        binding.tableLayout.visibility = View.GONE
+        binding.tableLayout.visibility = View.INVISIBLE
         binding.linearLayoutFilter.visibility = View.INVISIBLE
     }
 
     private fun onLoadingChart() {
         binding.textViewErrorChart.visibility = View.GONE
-        binding.tableLayout.visibility = View.GONE
+        binding.tableLayout.visibility = View.INVISIBLE
         binding.linearLayoutFilter.visibility = View.INVISIBLE
         //binding.loadingViewChart.visibility = View.VISIBLE
     }
