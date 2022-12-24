@@ -31,8 +31,6 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // sets locale as per device language
-        Localee.handleLocale(this)
         _binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
 

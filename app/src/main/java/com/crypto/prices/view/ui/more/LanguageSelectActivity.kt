@@ -12,7 +12,7 @@ import com.crypto.prices.utils.Utility
 class LanguageSelectActivity : AppCompatActivity(), LanguageSelectAdapter.ItemClick {
     private var _binding: ActivityLanguageBinding? = null
     private val TAG = "LanguageActivity"
-    private var mLanguageList = ArrayList<LanguageData>()
+    private var mLanguageList = Localee.fetchLanguageList()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,33 +22,6 @@ class LanguageSelectActivity : AppCompatActivity(), LanguageSelectAdapter.ItemCl
         super.onCreate(savedInstanceState)
         _binding = ActivityLanguageBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
-
-        constructLanguageList()
-    }
-
-    // create language list
-    private fun constructLanguageList() {
-        mLanguageList.add(LanguageData("عربى", "ar"))
-        mLanguageList.add(LanguageData("Deutsche", "de"))
-        mLanguageList.add(LanguageData("English", "en"))
-        mLanguageList.add(LanguageData("Español", "es"))
-        mLanguageList.add(LanguageData("Français", "fr"))
-        mLanguageList.add(LanguageData("ગુજરાતી", "gu"))
-        mLanguageList.add(LanguageData("हिंदी", "hi"))
-        mLanguageList.add(LanguageData("Magyar", "hu"))
-        mLanguageList.add(LanguageData("bahasa Indonesia", "id"))
-        mLanguageList.add(LanguageData("Italiano", "it"))
-        mLanguageList.add(LanguageData("日本", "ja"))
-        mLanguageList.add(LanguageData("ಕನ್ನಡ", "kn"))
-        mLanguageList.add(LanguageData("한국인", "ko"))
-        mLanguageList.add(LanguageData("Nederlands", "nl"))
-        mLanguageList.add(LanguageData("Polski", "pl"))
-        mLanguageList.add(LanguageData("Română", "ro"))
-        mLanguageList.add(LanguageData("Svenska", "sv"))
-        mLanguageList.add(LanguageData("தமிழ்", "ta"))
-        mLanguageList.add(LanguageData("తెలుగు", "te"))
-        mLanguageList.add(LanguageData("Türkçe", "tr"))
-        mLanguageList.add(LanguageData("中国人", "zh"))
 
         setUpRecyclerView()
     }

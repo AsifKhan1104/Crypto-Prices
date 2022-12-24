@@ -304,7 +304,7 @@ object Utility {
         return selectedCurrency
     }
 
-    // save language in shared prefs
+    // save language & locale in shared prefs
     fun setLanguage(activity: Activity, currency: String?) {
         val sharedPref = activity.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
         with(sharedPref.edit()) {
@@ -313,10 +313,24 @@ object Utility {
         }
     }
 
-    // get language from shared prefs
+    fun setLanguageLocale(activity: Activity, currency: String?) {
+        val sharedPref = activity.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putString("selected_language_locale", currency)
+            apply()
+        }
+    }
+
+    // get language & locale from shared prefs
     fun getLanguage(context: Context): String? {
         val sharedPref = context.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
         val selectedCurrency = sharedPref.getString("selected_language", null)
+        return selectedCurrency
+    }
+
+    fun getLanguageLocale(context: Context): String? {
+        val sharedPref = context.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
+        val selectedCurrency = sharedPref.getString("selected_language_locale", null)
         return selectedCurrency
     }
 
