@@ -189,9 +189,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginTop="10dp"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingStart="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayoutFilter">
 
@@ -364,15 +364,15 @@
                     android:id="@+id/textView_market_stat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="@string/market_stats"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -385,7 +385,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_market_stat" />
 
                 <TextView
@@ -397,7 +397,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_market_stat"
                     tools:text="Market Cap Rank" />
 
@@ -410,7 +410,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_mcr" />
 
                 <TextView
@@ -422,7 +422,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_mcr"
                     tools:text="Market Cap" />
 
@@ -436,7 +436,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_mc" />
 
                 <TextView
@@ -448,7 +448,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_mc"
                     tools:text="Fully Diluted Market Cap" />
 
@@ -461,7 +461,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_fdmc" />
 
                 <TextView
@@ -473,7 +473,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_fdmc"
                     tools:text="Total Volume" />
 
@@ -486,7 +486,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_total_vol" />
 
                 <TextView
@@ -498,7 +498,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_total_vol"
                     tools:text="Max Supply" />
 
@@ -511,7 +511,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_max_supply" />
 
                 <TextView
@@ -523,7 +523,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_max_supply"
                     tools:text="Circulating Supply" />
 
@@ -536,7 +536,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_circ_supply" />
 
                 <TextView
@@ -548,7 +548,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_circ_supply"
                     tools:text="Total Supply" />
 
@@ -586,7 +586,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_total_supply" />
 
                 <TextView
@@ -635,7 +635,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="normal"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_ath" />
 
                 <TextView
