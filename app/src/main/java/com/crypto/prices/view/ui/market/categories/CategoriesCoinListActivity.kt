@@ -14,6 +14,7 @@ import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.crypto.prices.databinding.FragmentCryptoBinding
 import com.crypto.prices.utils.Constants
+import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.TrailLoadStateAdapter
@@ -60,6 +61,7 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         _binding = FragmentCryptoBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
+        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
 
         // get data from intent
         selectedCategory = intent?.getStringExtra("categoryId")!!

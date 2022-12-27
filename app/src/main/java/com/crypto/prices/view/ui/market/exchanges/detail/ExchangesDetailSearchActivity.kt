@@ -17,6 +17,7 @@ import com.crypto.prices.databinding.ActivityExchangesDetailBinding
 import com.crypto.prices.model.ExchangeDataSearch
 import com.crypto.prices.model.ExchangesData
 import com.crypto.prices.utils.Constants
+import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.chart.CustomMarkerView
 import com.crypto.prices.utils.chart.XAxisValueFormatter
@@ -52,6 +53,7 @@ class ExchangesDetailSearchActivity : AppCompatActivity(), View.OnClickListener 
         super.onCreate(savedInstanceState)
         _binding = ActivityExchangesDetailBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
+        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
 
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
 

@@ -18,6 +18,7 @@ import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.databinding.ActivityCryptoDetailBinding
 import com.crypto.prices.model.CryptoChartData
 import com.crypto.prices.model.CryptoData
+import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.utils.chart.CustomMarkerView
@@ -55,6 +56,7 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         _binding = ActivityCryptoDetailBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
+        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
 
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
 

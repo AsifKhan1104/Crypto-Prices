@@ -20,6 +20,7 @@ import com.crypto.prices.R
 import com.crypto.prices.databinding.ActivityDerivativesDetailBinding
 import com.crypto.prices.model.DerivativesData
 import com.crypto.prices.model.DerivativesDetailData
+import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
@@ -40,6 +41,7 @@ class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         _binding = ActivityDerivativesDetailBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
+        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         // get data from intent

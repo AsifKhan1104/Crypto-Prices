@@ -3,19 +3,15 @@ package com.crypto.prices.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.os.LocaleList
 import androidx.appcompat.app.AppCompatActivity
-import com.crypto.prices.CryptoApplication
+import com.crypto.prices.R
+import com.crypto.prices.databinding.ActivitySplashBinding
+import com.crypto.prices.utils.MyAnalytics.trackScreenViews
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
-import com.crypto.prices.R
-import com.crypto.prices.databinding.ActivitySplashBinding
-import com.crypto.prices.utils.Localee
-import java.util.*
 
 /*import com.startapp.sdk.adsbase.StartAppAd
 import com.startapp.sdk.adsbase.StartAppSDK*/
@@ -33,6 +29,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
+        trackScreenViews(javaClass.simpleName, javaClass.simpleName)
 
         // set remote config
         val remoteConfig = Firebase.remoteConfig

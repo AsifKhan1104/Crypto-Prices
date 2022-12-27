@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.databinding.FragmentCurrencySelectBinding
+import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.SharedPrefsDataRetrieval
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -24,6 +25,7 @@ class CurrencySelectFragment : BottomSheetDialogFragment(), CurrencySelectAdapte
     ): View? {
         _binding = FragmentCurrencySelectBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
         showCurrencyList()
         return root
     }

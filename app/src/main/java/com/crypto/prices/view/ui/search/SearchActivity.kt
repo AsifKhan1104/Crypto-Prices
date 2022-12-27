@@ -12,9 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.databinding.SearchViewBinding
 import com.crypto.prices.model.SearchData
+import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -63,6 +68,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 mViewModel.fetchData(query!!)
+                MyAnalytics.trackSearch(query)
                 return true
             }
 

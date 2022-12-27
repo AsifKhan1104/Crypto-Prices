@@ -15,6 +15,7 @@ import com.crypto.prices.database.Watchlist
 import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.databinding.ActivityNftDetailBinding
 import com.crypto.prices.model.NftDetailData
+import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepositoryImpl
@@ -38,6 +39,7 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         _binding = ActivityNftDetailBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
+        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
 
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
 

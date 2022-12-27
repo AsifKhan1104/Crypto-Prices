@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.crypto.prices.R;
+import com.crypto.prices.utils.MyAnalytics;
 
 public class TnCActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -17,6 +18,7 @@ public class TnCActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tnc);
+        MyAnalytics.INSTANCE.trackScreenViews(getClass().getSimpleName(), getClass().getSimpleName());
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Data...");
         progressDialog.setCancelable(false);

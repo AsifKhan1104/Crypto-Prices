@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
 import com.crypto.prices.R
+import com.crypto.prices.utils.MyAnalytics
 
 class CryptoWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(
@@ -53,11 +54,13 @@ class CryptoWidgetProvider : AppWidgetProvider() {
 
     override fun onEnabled(context: Context) {
         //Toast.makeText(context, "onEnabled called", Toast.LENGTH_LONG).show()
+        MyAnalytics.trackScreenViews(javaClass.simpleName, "onEnabled")
         super.onEnabled(context)
     }
 
     override fun onDisabled(context: Context) {
         cancelUpdates(context)
+        MyAnalytics.trackScreenViews(javaClass.simpleName, "onDisabled")
         super.onDisabled(context)
     }
 

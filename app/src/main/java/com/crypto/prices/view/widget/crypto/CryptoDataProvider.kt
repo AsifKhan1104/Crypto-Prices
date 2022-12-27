@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.AppWidgetTarget
 import com.crypto.prices.R
 import com.crypto.prices.model.CryptoData
+import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.Utility.getCurrencyGlobal
 import com.crypto.prices.utils.Utility.getCurrencySymbolGlobal
 import com.crypto.prices.view.AppRepository
@@ -25,6 +26,7 @@ class CryptoDataProvider(context: Context?, intent: Intent?) : RemoteViewsFactor
     var mContext: Context? = null
 
     override fun onCreate() {
+        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
         initData()
     }
 

@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.databinding.FragmentNewsBinding
+import com.crypto.prices.utils.MyAnalytics
+import com.crypto.prices.utils.MyAnalytics.trackScreenViews
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
@@ -48,6 +50,7 @@ class NewsFragment : Fragment() {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         setUpViewModel()
+        trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
         return root
     }
 

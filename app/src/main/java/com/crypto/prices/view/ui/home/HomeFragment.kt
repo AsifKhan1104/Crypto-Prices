@@ -13,6 +13,7 @@ import com.crypto.prices.CryptoApplication
 import com.crypto.prices.database.Watchlist
 import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.databinding.FragmentHomeBinding
+import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
@@ -85,6 +86,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
         mDatabase = WatchlistRepo(requireContext())
         //initWatchlist()
         setUpViewModel()

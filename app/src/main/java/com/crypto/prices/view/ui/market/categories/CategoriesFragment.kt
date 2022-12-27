@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.crypto.prices.databinding.FragmentCategoriesBinding
+import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
@@ -54,6 +55,7 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
     ): View? {
         _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
         setUpViewModel()
         initData()
         return root

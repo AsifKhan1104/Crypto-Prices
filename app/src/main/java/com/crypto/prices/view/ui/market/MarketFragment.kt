@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.crypto.prices.R
 import com.crypto.prices.databinding.FragmentMarketBinding
+import com.crypto.prices.utils.MyAnalytics
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -29,6 +30,7 @@ class MarketFragment : Fragment() {
         Log.e(TAG, "OnCreateView")
         _binding = FragmentMarketBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
         setUpAdapter()
         return root
     }

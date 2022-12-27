@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.R
 import com.crypto.prices.databinding.ActivityCurrencyConverterBinding
+import com.crypto.prices.utils.MyAnalytics.trackScreenViews
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.SharedPrefsDataRetrieval
 import com.crypto.prices.view.AppRepositoryImpl
@@ -37,6 +38,7 @@ class CurrConverterActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         _binding = ActivityCurrencyConverterBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
+        trackScreenViews(javaClass.simpleName, javaClass.simpleName)
 
         initView()
         setUpViewModel()

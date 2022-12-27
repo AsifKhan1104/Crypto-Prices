@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.databinding.ActivityLanguageBinding
 import com.crypto.prices.model.LanguageData
 import com.crypto.prices.utils.Localee
+import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.Utility
 
 class LanguageSelectActivity : AppCompatActivity(), LanguageSelectAdapter.ItemClick {
@@ -22,6 +23,7 @@ class LanguageSelectActivity : AppCompatActivity(), LanguageSelectAdapter.ItemCl
         super.onCreate(savedInstanceState)
         _binding = ActivityLanguageBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
+        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
 
         setUpRecyclerView()
     }
