@@ -141,8 +141,8 @@
         <entry key="app/src/main/res/menu/menu_detail.xml" value="0.1" />
         <entry key="app/src/main/res/menu/nav_drawer_main.xml" value="0.11576576576576576" />
         <entry key="app/src/main/res/menu/nav_drawer_menu.xml" value="0.33" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2111111111111111" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2111111111111111" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
   </component>
