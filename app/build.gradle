@@ -17,7 +17,7 @@ android {
         applicationId "com.miner.doge_miner"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 14
+        versionCode 15
         versionName "1.4.0"
         multiDexEnabled true
         resConfigs("ar", "de", "en", "es", "fr", "gu","hi", "hu", "id", "it", "ja","kn", "ko", "nl",
