@@ -30,7 +30,7 @@ class MarketFragment : Fragment() {
         Log.e(TAG, "OnCreateView")
         _binding = FragmentMarketBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
+        MyAnalytics.trackScreenViews("MarketFragment", requireActivity().javaClass.simpleName)
         setUpAdapter()
         return root
     }

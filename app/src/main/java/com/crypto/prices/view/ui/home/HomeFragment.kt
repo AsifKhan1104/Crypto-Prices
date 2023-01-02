@@ -86,7 +86,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
+        MyAnalytics.trackScreenViews("HomeFragment", requireActivity().javaClass.simpleName)
         mDatabase = WatchlistRepo(requireContext())
         //initWatchlist()
         setUpViewModel()

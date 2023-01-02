@@ -38,7 +38,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
     ): View? {
         _binding = FragmentMoreBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
+        MyAnalytics.trackScreenViews("MoreFragment", requireActivity().javaClass.simpleName)
         return root
     }
 

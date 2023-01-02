@@ -26,7 +26,7 @@ class CryptoDataProvider(context: Context?, intent: Intent?) : RemoteViewsFactor
     var mContext: Context? = null
 
     override fun onCreate() {
-        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
+        MyAnalytics.trackScreenViews("CryptoDataProvider", javaClass.simpleName)
         initData()
     }
 

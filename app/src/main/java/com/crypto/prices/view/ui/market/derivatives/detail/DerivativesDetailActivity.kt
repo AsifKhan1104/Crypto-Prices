@@ -41,7 +41,7 @@ class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         _binding = ActivityDerivativesDetailBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
-        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
+        MyAnalytics.trackScreenViews("DerivativesDetailActivity", javaClass.simpleName)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         // get data from intent

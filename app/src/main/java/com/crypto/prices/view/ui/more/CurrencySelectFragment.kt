@@ -25,7 +25,7 @@ class CurrencySelectFragment : BottomSheetDialogFragment(), CurrencySelectAdapte
     ): View? {
         _binding = FragmentCurrencySelectBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
+        MyAnalytics.trackScreenViews("CurrencySelectFragment", requireActivity().javaClass.simpleName)
         showCurrencyList()
         return root
     }

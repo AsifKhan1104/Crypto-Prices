@@ -23,7 +23,7 @@ class LanguageSelectActivity : AppCompatActivity(), LanguageSelectAdapter.ItemCl
         super.onCreate(savedInstanceState)
         _binding = ActivityLanguageBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
-        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
+        MyAnalytics.trackScreenViews("LanguageSelectActivity", javaClass.simpleName)
 
         setUpRecyclerView()
     }

@@ -38,7 +38,7 @@ class CurrConverterActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         _binding = ActivityCurrencyConverterBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
-        trackScreenViews(javaClass.simpleName, javaClass.simpleName)
+        trackScreenViews("CurrConverterActivity", javaClass.simpleName)
 
         initView()
         setUpViewModel()

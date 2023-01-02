@@ -54,13 +54,13 @@ class CryptoWidgetProvider : AppWidgetProvider() {
 
     override fun onEnabled(context: Context) {
         //Toast.makeText(context, "onEnabled called", Toast.LENGTH_LONG).show()
-        MyAnalytics.trackScreenViews(javaClass.simpleName, "onEnabled")
+        MyAnalytics.trackScreenViews("CryptoWidgetProvider", "onEnabled")
         super.onEnabled(context)
     }
 
     override fun onDisabled(context: Context) {
         cancelUpdates(context)
-        MyAnalytics.trackScreenViews(javaClass.simpleName, "onDisabled")
+        MyAnalytics.trackScreenViews("CryptoWidgetProvider", "onDisabled")
         super.onDisabled(context)
     }
 

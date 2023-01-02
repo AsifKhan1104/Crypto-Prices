@@ -57,7 +57,7 @@ class ExchangesFragment : Fragment(), View.OnClickListener {
     ): View? {
         _binding = FragmentExchangesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
+        MyAnalytics.trackScreenViews("ExchangesFragment", requireActivity().javaClass.simpleName)
         setUpViewModel()
         initData()
         return root

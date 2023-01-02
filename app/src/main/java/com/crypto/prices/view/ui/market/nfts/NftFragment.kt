@@ -58,7 +58,7 @@ class NftFragment : Fragment(), View.OnClickListener {
     ): View? {
         _binding = FragmentNftBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
+        MyAnalytics.trackScreenViews("NftFragment", requireActivity().javaClass.simpleName)
         setUpViewModel()
         initData()
         return root

@@ -18,7 +18,7 @@ public class TnCActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tnc);
-        MyAnalytics.INSTANCE.trackScreenViews(getClass().getSimpleName(), getClass().getSimpleName());
+        MyAnalytics.INSTANCE.trackScreenViews("TnCActivity", getClass().getSimpleName());
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Data...");
         progressDialog.setCancelable(false);

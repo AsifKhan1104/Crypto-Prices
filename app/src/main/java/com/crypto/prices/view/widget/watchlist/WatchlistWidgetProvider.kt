@@ -55,13 +55,13 @@ class WatchlistWidgetProvider : AppWidgetProvider() {
 
     override fun onEnabled(context: Context) {
         //Toast.makeText(context, "onEnabled called", Toast.LENGTH_LONG).show()
-        MyAnalytics.trackScreenViews(javaClass.simpleName, "onEnabled")
+        MyAnalytics.trackScreenViews("WatchlistWidgetProvider", "onEnabled")
         super.onEnabled(context)
     }
 
     override fun onDisabled(context: Context) {
         cancelUpdates(context)
-        MyAnalytics.trackScreenViews(javaClass.simpleName, "onDisabled")
+        MyAnalytics.trackScreenViews("WatchlistWidgetProvider", "onDisabled")
         super.onDisabled(context)
     }
 

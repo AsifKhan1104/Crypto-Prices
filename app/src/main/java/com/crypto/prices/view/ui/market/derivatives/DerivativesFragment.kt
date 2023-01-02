@@ -57,7 +57,7 @@ class DerivativesFragment : Fragment(), View.OnClickListener {
     ): View? {
         _binding = FragmentDerivativesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
+        MyAnalytics.trackScreenViews("DerivativesFragment", requireActivity().javaClass.simpleName)
         setUpViewModel()
         initData()
         return root

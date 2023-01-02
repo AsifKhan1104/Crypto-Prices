@@ -39,7 +39,7 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         _binding = ActivityNftDetailBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
-        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
+        MyAnalytics.trackScreenViews("NftDetailActivity", javaClass.simpleName)
 
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
 

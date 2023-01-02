@@ -57,7 +57,7 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         _binding = ActivityCryptoDetailBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
-        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
+        MyAnalytics.trackScreenViews("CryptoDetailSearchActivity", javaClass.simpleName)
 
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
 

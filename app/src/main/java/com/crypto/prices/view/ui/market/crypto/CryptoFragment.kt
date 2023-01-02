@@ -59,7 +59,7 @@ class CryptoFragment : Fragment(), View.OnClickListener {
     ): View? {
         _binding = FragmentCryptoBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
+        MyAnalytics.trackScreenViews("CryptoFragment", requireActivity().javaClass.simpleName)
         setUpViewModel()
         initData()
         return root

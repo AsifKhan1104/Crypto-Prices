@@ -53,7 +53,7 @@ class ExchangesDetailSearchActivity : AppCompatActivity(), View.OnClickListener 
         super.onCreate(savedInstanceState)
         _binding = ActivityExchangesDetailBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
-        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
+        MyAnalytics.trackScreenViews("ExchangesDetailSearchActivity", javaClass.simpleName)
 
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
 

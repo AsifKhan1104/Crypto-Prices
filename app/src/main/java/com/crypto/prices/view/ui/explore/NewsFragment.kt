@@ -50,7 +50,7 @@ class NewsFragment : Fragment() {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         setUpViewModel()
-        trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
+        trackScreenViews("NewsFragment", requireActivity().javaClass.simpleName)
         return root
     }
 

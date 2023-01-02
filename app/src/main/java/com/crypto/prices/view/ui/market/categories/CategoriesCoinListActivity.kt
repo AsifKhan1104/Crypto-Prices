@@ -61,7 +61,7 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         _binding = FragmentCryptoBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
-        MyAnalytics.trackScreenViews(javaClass.simpleName, javaClass.simpleName)
+        MyAnalytics.trackScreenViews("CategoriesCoinListActivity", javaClass.simpleName)
 
         // get data from intent
         selectedCategory = intent?.getStringExtra("categoryId")!!

@@ -29,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
-        trackScreenViews(javaClass.simpleName, javaClass.simpleName)
+        trackScreenViews("SplashActivity", javaClass.simpleName)
 
         // set remote config
         val remoteConfig = Firebase.remoteConfig

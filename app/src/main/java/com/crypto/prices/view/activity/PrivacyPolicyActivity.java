@@ -18,7 +18,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tnc);
-        MyAnalytics.INSTANCE.trackScreenViews(getClass().getSimpleName(), getClass().getSimpleName());
+        MyAnalytics.INSTANCE.trackScreenViews("PrivacyPolicyActivity", getClass().getSimpleName());
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Data...");
         progressDialog.setCancelable(false);

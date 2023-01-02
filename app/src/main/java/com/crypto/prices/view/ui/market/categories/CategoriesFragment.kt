@@ -55,7 +55,7 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
     ): View? {
         _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        MyAnalytics.trackScreenViews(javaClass.simpleName, requireActivity().javaClass.simpleName)
+        MyAnalytics.trackScreenViews("CategoriesFragment", requireActivity().javaClass.simpleName)
         setUpViewModel()
         initData()
         return root
