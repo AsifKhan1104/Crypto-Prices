@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "784070784173",
-    "project_id": "cryptotrail-cd98c",
-    "storage_bucket": "cryptotrail-cd98c.appspot.com"
+    "project_number": "110444341411",
+    "project_id": "cryptotrail-29240",
+    "storage_bucket": "cryptotrail-29240.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:784070784173:android:78d946535566392eb54224",
+        "mobilesdk_app_id": "1:110444341411:android:77388c8553d4bbb55c3716",
         "android_client_info": {
-          "package_name": "com.miner.doge_miner"
+          "package_name": "com.asf.cryptoprices"
         }
       },
       "oauth_client": [
         {
-          "client_id": "784070784173-v607uf9e2nlqra8no471imhtva7kvm8b.apps.googleusercontent.com",
+          "client_id": "110444341411-oh79fdkgab0r8nrdg5vp5eah4909l1po.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDrzwLZp69SEh5IY6X8RPpINOrPctn4UmY"
+          "current_key": "AIzaSyD1Khs2nucSkaxzyvnhTRPXvY6n1lhHxqs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "784070784173-v607uf9e2nlqra8no471imhtva7kvm8b.apps.googleusercontent.com",
+              "client_id": "110444341411-oh79fdkgab0r8nrdg5vp5eah4909l1po.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

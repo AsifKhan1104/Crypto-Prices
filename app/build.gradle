@@ -14,11 +14,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.miner.doge_miner"
+        applicationId "com.asf.cryptoprices"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 15
-        versionName "1.4.0"
+        versionCode 2
+        versionName "1.1.0"
         multiDexEnabled true
         resConfigs("ar", "de", "en", "es", "fr", "gu","hi", "hu", "id", "it", "ja","kn", "ko", "nl",
                    "pl", "ro", "sv", "ta", "te", "tr", "zh")
