@@ -5,29 +5,28 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.FragmentCryptoBinding
 import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.TrailLoadStateAdapter
-import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.ui.market.crypto.CryptoPagingAdapter
 import com.crypto.prices.view.ui.market.crypto.CryptoViewModel
 import com.crypto.prices.view.ui.search.SearchActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: FragmentCryptoBinding? = null
-    private lateinit var mCryptoViewModel: CryptoViewModel
+    private val mCryptoViewModel: CryptoViewModel by viewModels()
     private val TAG = "CategoriesCoinListActivity"
     private var selectedMarketCap: String = "market_cap_desc"
     private var selectedCategory: String = ""
@@ -67,7 +66,7 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
         selectedCategory = intent?.getStringExtra("categoryId")!!
         var categoryName = intent?.getStringExtra("categoryName")!!
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setTitle(categoryName)
+        supportActionBar?.title = categoryName
         // get data from intent
         setUpViewModel()
         initData()
@@ -87,14 +86,11 @@ class CategoriesCoinListActivity : AppCompatActivity(), View.OnClickListener {
         map["per_page"] = Constants.itemsPerPage
         map["category"] = selectedCategory
 
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
-        mCryptoViewModel = ViewModelProvider(this, factory).get(CryptoViewModel::class.java)
-
-        loadData()
+        mCryptoViewModel.fetchData(map)
+        observeData()
     }
 
-    fun loadData() {
+    private fun observeData() {
         // observe internet connection
         if (!mCryptoViewModel.hasInternet) {
             onError(getString(R.string.no_internet_msg))

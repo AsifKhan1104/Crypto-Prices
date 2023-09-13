@@ -6,21 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.FragmentCategoriesBinding
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.ui.market.crypto.CryptoFragment
 
 class CategoriesFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentCategoriesBinding? = null
-    private lateinit var mCategoriesViewModel: CategoriesViewModel
+    private val mCategoriesViewModel: CategoriesViewModel by viewModels()
     private val TAG = CryptoFragment.javaClass.simpleName
     private var selectedMarketCap: String = "market_cap_desc"
     private lateinit var map: MutableMap<String, String>
@@ -70,17 +67,15 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
         map = HashMap()
         map["order"] = selectedMarketCap
 
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
-        mCategoriesViewModel = ViewModelProvider(this, factory).get(CategoriesViewModel::class.java)
+        mCategoriesViewModel.fetchDataViaApi(map)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadData()
+        observeData()
     }
 
-    fun loadData() {
+    private fun observeData() {
         try {
             mCategoriesViewModel.categoriesLiveData.observe(viewLifecycleOwner, Observer {
                 // blank observe here
@@ -94,6 +89,7 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
                             binding.recyclerView.adapter = CategoriesAdapter(context, it)
                         }
                     }
+
                     is NetworkResult.Error -> {
                         //show error message
                         onError(it.networkErrorMessage.toString())
@@ -121,14 +117,15 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
                     selectedMarketCap = "market_cap_asc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_up_24))
                     map["order"] = selectedMarketCap
-                    mCategoriesViewModel.getDataViaApi(map)
+                    mCategoriesViewModel.fetchDataViaApi(map)
                 } else {
                     selectedMarketCap = "market_cap_desc"
                     binding.imageViewMcArrow.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_down_24))
                     map["order"] = selectedMarketCap
-                    mCategoriesViewModel.getDataViaApi(map)
+                    mCategoriesViewModel.fetchDataViaApi(map)
                 }
             }
+
             else -> {
             }
         }

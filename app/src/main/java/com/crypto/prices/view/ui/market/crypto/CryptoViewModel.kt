@@ -11,17 +11,19 @@ import com.crypto.prices.model.CryptoData
 import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class CryptoViewModel(
+@HiltViewModel
+class CryptoViewModel @Inject constructor(
     app: CryptoApplication,
-    private val appRepository: AppRepository,
-    map: MutableMap<String, String>
+    private val appRepository: AppRepository
 ) : ViewModel() {
     lateinit var cryptoList: Flow<PagingData<CryptoData>>
     var hasInternet = true
 
-    init {
+    fun fetchData(map: MutableMap<String, String>) {
         if (Utility.isInternetAvailable()) {
             loadPagingData(map)
         } else {
@@ -29,7 +31,7 @@ class CryptoViewModel(
         }
     }
 
-    fun loadPagingData(map: MutableMap<String, String>) {
+    private fun loadPagingData(map: MutableMap<String, String>) {
         cryptoList = Pager(PagingConfig(pageSize = Constants.itemsPerPage.toInt())) {
             CryptoPagingSource(appRepository, map)
         }.flow

@@ -3,29 +3,26 @@ package com.crypto.prices.view.ui.market.categories
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
+import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.CategoriesData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class CategoriesViewModel(
+@HiltViewModel
+class CategoriesViewModel @Inject constructor(
     app: CryptoApplication,
-    private val appRepository: AppRepository,
-    map: MutableMap<String, String>
+    private val appRepository: AppRepository
 ) : ViewModel() {
     val application = app
-    val paramMap = map
     val categoriesLiveData: MutableLiveData<NetworkResult<List<CategoriesData>>> = MutableLiveData()
 
-    init {
-        getDataViaApi(paramMap)
-    }
-
-    fun getDataViaApi(mp: MutableMap<String, String>) = viewModelScope.launch {
+    fun fetchDataViaApi(mp: MutableMap<String, String>) = viewModelScope.launch {
         fetchData(mp)
     }
 
@@ -47,6 +44,7 @@ class CategoriesViewModel(
                 is IOException -> categoriesLiveData.postValue(
                     NetworkResult.Error(application.getString(R.string.network_failure))
                 )
+
                 else -> categoriesLiveData.postValue(
                     NetworkResult.Error(application.getString(R.string.conversion_error))
                 )

@@ -27,10 +27,6 @@ class ViewModelFactory(
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(CryptoViewModel::class.java)) {
-            return CryptoViewModel(app, appRepository, map) as T
-        }
-
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
             return HomeViewModel(app, appRepository) as T
         }
@@ -45,10 +41,6 @@ class ViewModelFactory(
 
         if (modelClass.isAssignableFrom(CryptoDetailSearchViewModel::class.java)) {
             return CryptoDetailSearchViewModel(app, appRepository, map) as T
-        }
-
-        if (modelClass.isAssignableFrom(CategoriesViewModel::class.java)) {
-            return CategoriesViewModel(app, appRepository, map) as T
         }
 
         if (modelClass.isAssignableFrom(NftViewModel::class.java)) {
@@ -86,7 +78,7 @@ class ViewModelFactory(
         if (modelClass.isAssignableFrom(SearchViewModel::class.java)) {
             return SearchViewModel(app, appRepository, map) as T
         }
-        
+
         throw IllegalArgumentException("Unknown class name")
     }
 
