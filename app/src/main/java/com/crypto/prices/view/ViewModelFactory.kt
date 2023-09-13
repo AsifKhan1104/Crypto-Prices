@@ -86,10 +86,7 @@ class ViewModelFactory(
         if (modelClass.isAssignableFrom(SearchViewModel::class.java)) {
             return SearchViewModel(app, appRepository, map) as T
         }
-
-        if (modelClass.isAssignableFrom(CurrConverterViewModel::class.java)) {
-            return CurrConverterViewModel(app, appRepository, map) as T
-        }
+        
         throw IllegalArgumentException("Unknown class name")
     }
 

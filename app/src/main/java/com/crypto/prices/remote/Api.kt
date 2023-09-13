@@ -71,7 +71,4 @@ interface Api {
 
     @GET("v3/search")
     suspend fun getSearchResults(@Query("query") query: String): Response<SearchData>
-
-    @GET("v2/everything")
-    suspend fun getAllNews(@QueryMap map: Map<String, String>): Response<NewsData>
 }

@@ -8,25 +8,24 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.ActivityCurrencyConverterBinding
 import com.crypto.prices.utils.MyAnalytics.trackScreenViews
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.SharedPrefsDataRetrieval
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.ui.search.SearchActivity
 import com.google.gson.Gson
+import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONObject
 
+@AndroidEntryPoint
 class CurrConverterActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: ActivityCurrencyConverterBinding? = null
-    private lateinit var mViewModel: CurrConverterViewModel
+    private val mViewModel: CurrConverterViewModel by viewModels()
     private val TAG = "CurrConverterActivity"
     private lateinit var toCurrencySymbol: String
 
@@ -105,11 +104,6 @@ class CurrConverterActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setUpViewModel() {
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
-        mViewModel =
-            ViewModelProvider(this, factory).get(CurrConverterViewModel::class.java)
-
         // check if supported currency exists in shared prefs
         var supportedCurrencyList = SharedPrefsDataRetrieval().getSupportedCurrData(this)
         // checking below if the array list is empty or not

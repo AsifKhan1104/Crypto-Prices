@@ -3,15 +3,18 @@ package com.crypto.prices.view
 import com.crypto.prices.model.*
 import com.crypto.prices.model.crypto.search.CryptoDetailData
 import com.crypto.prices.model.exchangeRates.ExchangeRates
+import com.crypto.prices.remote.Api
+import com.crypto.prices.remote.NewsApi
 import com.crypto.prices.remote.Service
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
+import javax.inject.Inject
 
-class AppRepositoryImpl : AppRepository {
-    val service = Service().getCGService()
-    val serviceCM = Service().getCMService()
-    val serviceNews = Service().getNewsService()
+class AppRepositoryImpl @Inject constructor(
+    private val service: Api,
+    private val serviceNews: NewsApi
+) : AppRepository {
 
     //override suspend fun getCryptoPrices(): Response<ListingsLatest> = serviceCM.getListingsLatest()
     override suspend fun getCryptoPrices(map: MutableMap<String, String>): Response<List<CryptoData>> =
