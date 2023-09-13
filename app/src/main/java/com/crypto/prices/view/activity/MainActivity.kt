@@ -15,7 +15,7 @@ import com.crypto.prices.view.ui.home.HomeFragment
 import com.crypto.prices.view.ui.market.MarketFragment
 import com.crypto.prices.view.ui.more.MoreFragment
 import com.crypto.prices.view.ui.search.SearchActivity
-
+import dagger.hilt.android.AndroidEntryPoint
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
