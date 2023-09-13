@@ -3,11 +3,8 @@ package com.crypto.prices.view
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.view.ui.explore.CurrConverterViewModel
 import com.crypto.prices.view.ui.explore.NewsViewModel
 import com.crypto.prices.view.ui.home.HomeViewModel
-import com.crypto.prices.view.ui.market.categories.CategoriesViewModel
-import com.crypto.prices.view.ui.market.crypto.CryptoViewModel
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailSearchViewModel
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailViewModel
 import com.crypto.prices.view.ui.market.derivatives.DerivativesViewModel
@@ -33,10 +30,6 @@ class ViewModelFactory(
 
         if (modelClass.isAssignableFrom(NewsViewModel::class.java)) {
             return NewsViewModel(app, appRepository) as T
-        }
-
-        if (modelClass.isAssignableFrom(CryptoDetailViewModel::class.java)) {
-            return CryptoDetailViewModel(app, appRepository, map) as T
         }
 
         if (modelClass.isAssignableFrom(CryptoDetailSearchViewModel::class.java)) {

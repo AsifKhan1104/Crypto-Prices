@@ -5,25 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.FragmentCryptoBinding
 import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.TrailLoadStateAdapter
-import com.crypto.prices.view.ViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class CryptoFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentCryptoBinding? = null
-    private lateinit var mCryptoViewModel: CryptoViewModel
+    private val mCryptoViewModel: CryptoViewModel by viewModels()
     private val TAG = CryptoFragment.javaClass.simpleName
     private var selectedMarketCap: String = "market_cap_desc"
     private lateinit var map: MutableMap<String, String>
@@ -78,9 +75,7 @@ class CryptoFragment : Fragment(), View.OnClickListener {
         map["order"] = selectedMarketCap
         map["per_page"] = Constants.itemsPerPage
 
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
-        mCryptoViewModel = ViewModelProvider(this, factory).get(CryptoViewModel::class.java)
+        mCryptoViewModel.fetchData(map)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -121,10 +116,12 @@ class CryptoFragment : Fragment(), View.OnClickListener {
                         loadState.prepend as LoadState.Error
                         onError(getString(R.string.error_msg))
                     }
+
                     loadState.append is LoadState.Error -> {
                         loadState.append as LoadState.Error
 
                     }
+
                     loadState.refresh is LoadState.Error -> {
                         loadState.refresh as LoadState.Error
                         onError(getString(R.string.error_msg))
@@ -157,6 +154,7 @@ class CryptoFragment : Fragment(), View.OnClickListener {
                     myAdapter.refresh()
                 }
             }
+
             else -> {
             }
         }

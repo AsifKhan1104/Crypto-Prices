@@ -7,13 +7,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.ActivityCryptoDetailBinding
+import com.bumptech.glide.Glide
 import com.crypto.prices.database.Watchlist
 import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.model.CryptoChartData
@@ -24,8 +23,6 @@ import com.crypto.prices.utils.Utility
 import com.crypto.prices.utils.chart.CustomMarkerView
 import com.crypto.prices.utils.chart.XAxisValueFormatter
 import com.crypto.prices.utils.chart.YAxisValueFormatter
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.components.YAxis
@@ -33,12 +30,14 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IFillFormatter
+import dagger.hilt.android.AndroidEntryPoint
 import java.math.BigDecimal
 
 
+@AndroidEntryPoint
 class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: ActivityCryptoDetailBinding? = null
-    private lateinit var mCryptoDetailViewModel: CryptoDetailViewModel
+    private val mCryptoDetailViewModel: CryptoDetailViewModel by viewModels()
     private val TAG = "CryptoDetailActivity"
 
     private lateinit var chart: LineChart
@@ -58,12 +57,12 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(_binding?.root)
         MyAnalytics.trackScreenViews("CryptoDetailActivity", javaClass.simpleName)
 
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // get data from intent
         data = intent?.extras?.getParcelable<CryptoData>("crypto_data")!!
         // set title
-        setTitle(data?.name)
+        title = data?.name
         setUpViewModel(data)
         setMarketStatsData()
 
@@ -92,7 +91,7 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         var formattedPriceChangePerc = data?.price_change_percentage_24h.toString()
         binding.textView24hp.text = if (priceChangePercNegative) formattedPriceChangePerc.substring(
             1, formattedPriceChangePerc.length
-        ) else formattedPriceChangePerc + "%"
+        ) else "$formattedPriceChangePerc%"
         binding.textViewMcr.text = "#" + data?.market_cap_rank?.toString()
         binding.textViewMc.text = Utility.getCurrencySymbol(this) + data?.market_cap?.toString()
         binding.textViewFdmc.text =
@@ -282,13 +281,10 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         val days = 1
         map["days"] = days.toString()
 
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
-        mCryptoDetailViewModel =
-            ViewModelProvider(this, factory).get(CryptoDetailViewModel::class.java)
+        mCryptoDetailViewModel.initCryptoChart(map as HashMap<String, String>)
 
-        // load remote data
-        loadData()
+        // observe remote data
+        observeData()
     }
 
     private fun onError(s: String) {
@@ -309,7 +305,7 @@ class CryptoDetailActivity : AppCompatActivity(), View.OnClickListener {
         //binding.loadingView.visibility = View.GONE
     }
 
-    fun loadData() {
+    fun observeData() {
         try {
             mCryptoDetailViewModel.cryptoChartLiveData.observe(this, Observer {
                 // blank observe here
