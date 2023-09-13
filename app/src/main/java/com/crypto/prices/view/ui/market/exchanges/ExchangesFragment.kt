@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.FragmentExchangesBinding
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
-import com.crypto.prices.databinding.FragmentExchangesBinding
 import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.view.AppRepositoryImpl

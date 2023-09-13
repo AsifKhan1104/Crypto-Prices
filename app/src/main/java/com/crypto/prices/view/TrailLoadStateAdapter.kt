@@ -8,7 +8,7 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
+import com.asf.cryptoprices.R
 import kotlinx.android.synthetic.main.load_state_view.view.*
 
 class TrailLoadStateAdapter(

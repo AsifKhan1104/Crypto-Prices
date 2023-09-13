@@ -8,17 +8,15 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.asf.cryptoprices.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.crypto.prices.R
 import com.crypto.prices.model.DerivativesData
 import com.crypto.prices.view.ui.market.derivatives.detail.DerivativesDetailActivity
 import kotlinx.android.synthetic.main.item_crypto.view.table_layout
-import kotlinx.android.synthetic.main.item_derivatives.view.*
-import kotlinx.android.synthetic.main.item_exchanges.view.*
+import kotlinx.android.synthetic.main.item_derivatives.view.textView_open_interest
 import kotlinx.android.synthetic.main.item_exchanges.view.textView_exchange
 import kotlinx.android.synthetic.main.item_exchanges.view.textView_volume
-import kotlinx.android.synthetic.main.item_nft.view.*
 import kotlinx.android.synthetic.main.item_nft.view.imageView_id
 
 class DerivativesPagingAdapter(context: Context?) :

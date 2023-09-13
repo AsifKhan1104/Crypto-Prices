@@ -3,7 +3,7 @@ package com.crypto.prices.view.ui.search
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
+import com.asf.cryptoprices.R
 import com.crypto.prices.model.SearchData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility

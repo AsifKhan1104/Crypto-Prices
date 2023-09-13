@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.crypto.prices.databinding.ActivityLanguageBinding
-import com.crypto.prices.model.LanguageData
+import com.asf.cryptoprices.databinding.ActivityLanguageBinding
 import com.crypto.prices.utils.Localee
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.Utility

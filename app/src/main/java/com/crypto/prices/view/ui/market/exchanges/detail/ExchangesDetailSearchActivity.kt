@@ -10,12 +10,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.ActivityExchangesDetailBinding
 import com.bumptech.glide.Glide
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
-import com.crypto.prices.databinding.ActivityExchangesDetailBinding
 import com.crypto.prices.model.ExchangeDataSearch
-import com.crypto.prices.model.ExchangesData
 import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
@@ -24,7 +23,6 @@ import com.crypto.prices.utils.chart.XAxisValueFormatter
 import com.crypto.prices.utils.chart.YAxisValueFormatterExchanges
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
-import com.crypto.prices.view.ui.market.exchanges.ExchangesViewModel
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.components.YAxis

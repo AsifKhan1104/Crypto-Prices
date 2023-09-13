@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
+import com.asf.cryptoprices.R
 import com.crypto.prices.model.exchangeRates.ExchangeRates
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility

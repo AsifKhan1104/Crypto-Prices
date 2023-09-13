@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.crypto.prices.R
+import com.asf.cryptoprices.R
 import com.crypto.prices.model.CryptoData
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailActivity
 import kotlinx.android.synthetic.main.item_crypto.view.*

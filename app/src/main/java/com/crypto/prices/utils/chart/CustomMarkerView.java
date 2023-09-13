@@ -3,7 +3,7 @@ package com.crypto.prices.utils.chart;
 import android.content.Context;
 import android.widget.TextView;
 
-import com.crypto.prices.R;
+import com.asf.cryptoprices.R;
 import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;

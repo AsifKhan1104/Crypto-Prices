@@ -10,10 +10,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.crypto.prices.BuildConfig
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.BuildConfig
+import com.asf.cryptoprices.databinding.FragmentMoreBinding
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
-import com.crypto.prices.databinding.FragmentMoreBinding
 import com.crypto.prices.utils.*
 import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.ViewModelFactory
@@ -35,7 +35,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMoreBinding.inflate(inflater, container, false)
         val root: View = binding.root
         MyAnalytics.trackScreenViews("MoreFragment", requireActivity().javaClass.simpleName)

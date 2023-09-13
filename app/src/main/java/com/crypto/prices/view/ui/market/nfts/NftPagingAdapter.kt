@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.crypto.prices.R
+import com.asf.cryptoprices.R
 import com.crypto.prices.model.NftData
 import com.crypto.prices.view.ui.market.nfts.detail.NftDetailActivity
 import kotlinx.android.synthetic.main.item_crypto.view.table_layout

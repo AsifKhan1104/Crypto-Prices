@@ -16,7 +16,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.crypto.prices.R;
+import com.asf.cryptoprices.R;
 import com.crypto.prices.view.activity.SplashActivity;
 
 import java.io.IOException;

@@ -6,8 +6,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.crypto.prices.R
-import com.crypto.prices.databinding.ActivityMainBinding
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.ActivityMainBinding
 import com.crypto.prices.utils.Localee
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.ui.explore.NewsFragment

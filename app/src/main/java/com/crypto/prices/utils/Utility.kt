@@ -12,9 +12,9 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
-import com.crypto.prices.BuildConfig
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.BuildConfig
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
 import com.crypto.prices.view.activity.MainActivity
 import java.text.SimpleDateFormat
 import java.util.*

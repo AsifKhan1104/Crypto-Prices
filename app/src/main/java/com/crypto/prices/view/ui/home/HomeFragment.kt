@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.asf.cryptoprices.databinding.FragmentHomeBinding
 import com.crypto.prices.CryptoApplication
 import com.crypto.prices.database.Watchlist
 import com.crypto.prices.database.WatchlistRepo
-import com.crypto.prices.databinding.FragmentHomeBinding
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility

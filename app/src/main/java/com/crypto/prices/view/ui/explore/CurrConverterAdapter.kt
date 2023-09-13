@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.crypto.prices.R
+import com.asf.cryptoprices.R
 import kotlinx.android.synthetic.main.item_currency_converter.view.*
 
 class CurrConverterAdapter(context: Context?, var data: ArrayList<String>) :

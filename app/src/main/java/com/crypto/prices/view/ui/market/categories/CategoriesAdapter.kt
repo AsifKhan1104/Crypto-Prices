@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.asf.cryptoprices.R
 import com.bumptech.glide.Glide
-import com.crypto.prices.R
 import com.crypto.prices.model.CategoriesData
 import kotlinx.android.synthetic.main.item_categories.view.*
 import kotlinx.android.synthetic.main.item_crypto.view.table_layout

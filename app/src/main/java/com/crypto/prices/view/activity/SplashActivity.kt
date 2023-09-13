@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import com.crypto.prices.R
-import com.crypto.prices.databinding.ActivitySplashBinding
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.ActivitySplashBinding
 import com.crypto.prices.utils.MyAnalytics.trackScreenViews
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
-import com.crypto.prices.databinding.FragmentCategoriesBinding
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.FragmentCategoriesBinding
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.AppRepositoryImpl

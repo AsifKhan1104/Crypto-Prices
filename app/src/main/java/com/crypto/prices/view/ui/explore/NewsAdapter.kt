@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.crypto.prices.R
+import com.asf.cryptoprices.R
 import com.crypto.prices.model.Article
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.utils.Utility.formatPublishedDateTime

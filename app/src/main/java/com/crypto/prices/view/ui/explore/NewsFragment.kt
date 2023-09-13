@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.asf.cryptoprices.databinding.FragmentNewsBinding
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.databinding.FragmentNewsBinding
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.MyAnalytics.trackScreenViews
 import com.crypto.prices.utils.NetworkResult

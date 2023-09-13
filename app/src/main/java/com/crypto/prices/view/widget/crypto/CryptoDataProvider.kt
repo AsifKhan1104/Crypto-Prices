@@ -10,7 +10,7 @@ import android.widget.RemoteViews
 import android.widget.RemoteViewsService.RemoteViewsFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.AppWidgetTarget
-import com.crypto.prices.R
+import com.asf.cryptoprices.R
 import com.crypto.prices.model.CryptoData
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.Utility.getCurrencyGlobal

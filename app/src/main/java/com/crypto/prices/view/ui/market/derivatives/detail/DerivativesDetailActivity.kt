@@ -16,8 +16,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
-import com.crypto.prices.databinding.ActivityDerivativesDetailBinding
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.ActivityDerivativesDetailBinding
 import com.crypto.prices.model.DerivativesData
 import com.crypto.prices.model.DerivativesDetailData
 import com.crypto.prices.utils.MyAnalytics

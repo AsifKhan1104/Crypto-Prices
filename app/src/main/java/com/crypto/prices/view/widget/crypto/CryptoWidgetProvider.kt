@@ -8,7 +8,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
-import com.crypto.prices.R
+import com.asf.cryptoprices.R
 import com.crypto.prices.utils.MyAnalytics
 
 class CryptoWidgetProvider : AppWidgetProvider() {

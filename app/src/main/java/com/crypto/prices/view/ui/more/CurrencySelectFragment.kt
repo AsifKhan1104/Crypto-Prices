@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.crypto.prices.databinding.FragmentCurrencySelectBinding
+import com.asf.cryptoprices.databinding.FragmentCurrencySelectBinding
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.SharedPrefsDataRetrieval
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

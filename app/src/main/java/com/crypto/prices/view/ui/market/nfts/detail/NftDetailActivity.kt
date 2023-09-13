@@ -10,10 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.ActivityNftDetailBinding
 import com.crypto.prices.database.Watchlist
 import com.crypto.prices.database.WatchlistRepo
-import com.crypto.prices.databinding.ActivityNftDetailBinding
 import com.crypto.prices.model.NftDetailData
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult

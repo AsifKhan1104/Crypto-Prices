@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.crypto.prices.R
+import com.asf.cryptoprices.R
 import com.crypto.prices.model.LanguageData
 import com.crypto.prices.utils.Utility
 import kotlinx.android.synthetic.main.item_crypto.view.textView_name

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.crypto.prices">
+    package="com.asf.cryptoprices">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
-        android:name=".CryptoApplication"
+        android:name="com.crypto.prices.CryptoApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/app_logo"
@@ -22,7 +22,7 @@
             android:value="@string/startapp_app_id" />-->
 
         <activity
-            android:name=".view.activity.SplashActivity"
+            android:name="com.crypto.prices.view.activity.SplashActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -34,50 +34,50 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name="com.crypto.prices.view.activity.MainActivity"
             android:exported="false"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.TnCActivity"
+            android:name="com.crypto.prices.view.activity.TnCActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.PrivacyPolicyActivity"
+            android:name="com.crypto.prices.view.activity.PrivacyPolicyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.market.crypto.detail.CryptoDetailActivity"
+            android:name="com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.market.crypto.detail.CryptoDetailSearchActivity"
+            android:name="com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailSearchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.market.categories.CategoriesCoinListActivity"
+            android:name="com.crypto.prices.view.ui.market.categories.CategoriesCoinListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.market.nfts.detail.NftDetailActivity"
+            android:name="com.crypto.prices.view.ui.market.nfts.detail.NftDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.market.exchanges.detail.ExchangesDetailActivity"
+            android:name="com.crypto.prices.view.ui.market.exchanges.detail.ExchangesDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.market.exchanges.detail.ExchangesDetailSearchActivity"
+            android:name="com.crypto.prices.view.ui.market.exchanges.detail.ExchangesDetailSearchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.market.derivatives.detail.DerivativesDetailActivity"
+            android:name="com.crypto.prices.view.ui.market.derivatives.detail.DerivativesDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.search.SearchActivity"
+            android:name="com.crypto.prices.view.ui.search.SearchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.explore.CurrConverterActivity"
+            android:name="com.crypto.prices.view.ui.explore.CurrConverterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ui.more.LanguageSelectActivity"
+            android:name="com.crypto.prices.view.ui.more.LanguageSelectActivity"
             android:label="@string/select_language"
             android:screenOrientation="portrait" />
 
         <service
-            android:name=".utils.MyFirebaseMessagingService"
+            android:name="com.crypto.prices.utils.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

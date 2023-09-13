@@ -13,8 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.R
-import com.crypto.prices.databinding.ActivityCurrencyConverterBinding
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.ActivityCurrencyConverterBinding
 import com.crypto.prices.utils.MyAnalytics.trackScreenViews
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.SharedPrefsDataRetrieval

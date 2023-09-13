@@ -9,7 +9,7 @@ import android.webkit.WebView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.crypto.prices.R;
+import com.asf.cryptoprices.R;
 import com.crypto.prices.utils.MyAnalytics;
 
 public class TnCActivity extends AppCompatActivity {

@@ -8,7 +8,7 @@ import android.widget.RemoteViews
 import android.widget.RemoteViewsService.RemoteViewsFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.AppWidgetTarget
-import com.crypto.prices.R
+import com.asf.cryptoprices.R
 import com.crypto.prices.database.Watchlist
 import com.crypto.prices.database.WatchlistRepo
 import java.math.BigDecimal

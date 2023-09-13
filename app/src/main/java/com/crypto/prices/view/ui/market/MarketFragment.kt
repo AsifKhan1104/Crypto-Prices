@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.crypto.prices.R
-import com.crypto.prices.databinding.FragmentMarketBinding
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.FragmentMarketBinding
 import com.crypto.prices.utils.MyAnalytics
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
