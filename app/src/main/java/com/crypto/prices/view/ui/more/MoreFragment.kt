@@ -8,15 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.asf.cryptoprices.R
 import com.asf.cryptoprices.BuildConfig
+import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.FragmentMoreBinding
-import com.crypto.prices.CryptoApplication
-import com.crypto.prices.utils.*
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
+import com.crypto.prices.utils.CurrencyData
+import com.crypto.prices.utils.MyAnalytics
+import com.crypto.prices.utils.NetworkResult
+import com.crypto.prices.utils.SharedPrefsDataRetrieval
+import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.activity.PrivacyPolicyActivity
 import com.crypto.prices.view.activity.TnCActivity
 import com.crypto.prices.view.ui.explore.CurrConverterActivity
@@ -24,7 +25,7 @@ import com.google.gson.Gson
 
 class MoreFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentMoreBinding? = null
-    private lateinit var mCurrencySelectViewModel: CurrencySelectViewModel
+    private val mCurrencySelectViewModel: CurrencySelectViewModel by viewModels()
     private val TAG = MoreFragment.javaClass.simpleName
 
     // This property is only valid between onCreateView and
@@ -48,10 +49,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setUpViewModel() {
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
-        mCurrencySelectViewModel =
-            ViewModelProvider(this, factory).get(CurrencySelectViewModel::class.java)
+        mCurrencySelectViewModel.getDataViaApi()
     }
 
     private fun setUpData() {

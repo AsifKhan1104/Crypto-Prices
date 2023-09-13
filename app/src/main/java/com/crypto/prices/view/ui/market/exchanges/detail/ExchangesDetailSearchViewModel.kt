@@ -3,24 +3,28 @@ package com.crypto.prices.view.ui.market.exchanges.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
+import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.ExchangeDataSearch
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class ExchangesDetailSearchViewModel(
+@HiltViewModel
+class ExchangesDetailSearchViewModel @Inject constructor(
     val app: CryptoApplication,
-    private val appRepository: AppRepository,
-    val map: MutableMap<String, String>
+    private val appRepository: AppRepository
 ) : ViewModel() {
     val exchangeLiveData: MutableLiveData<NetworkResult<ExchangeDataSearch>> =
         MutableLiveData()
+    private lateinit var map: MutableMap<String, String>
 
-    init {
+    fun initiateData(pMap: MutableMap<String, String>) {
+        map = pMap
         getData()
     }
 
@@ -47,6 +51,7 @@ class ExchangesDetailSearchViewModel(
                 is IOException -> exchangeLiveData.postValue(
                     NetworkResult.Error(app.getString(R.string.network_failure))
                 )
+
                 else -> exchangeLiveData.postValue(
                     NetworkResult.Error(app.getString(R.string.conversion_error))
                 )

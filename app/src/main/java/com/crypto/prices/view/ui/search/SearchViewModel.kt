@@ -2,21 +2,29 @@ package com.crypto.prices.view.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
+import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.SearchData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class SearchViewModel(
+@HiltViewModel
+class SearchViewModel @Inject constructor(
     val app: CryptoApplication,
-    private val appRepository: AppRepository,
-    map: MutableMap<String, String>
+    private val appRepository: AppRepository
 ) : ViewModel() {
     private val searchStateFlow =
         MutableStateFlow<NetworkResult<SearchData>>(NetworkResult.Error(app.getString(R.string.no_results_found)))

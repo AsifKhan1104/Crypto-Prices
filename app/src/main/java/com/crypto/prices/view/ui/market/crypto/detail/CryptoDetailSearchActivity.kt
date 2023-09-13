@@ -7,13 +7,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.ActivityCryptoDetailBinding
+import com.bumptech.glide.Glide
 import com.crypto.prices.database.Watchlist
 import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.model.CryptoChartData
@@ -24,8 +23,6 @@ import com.crypto.prices.utils.Utility
 import com.crypto.prices.utils.chart.CustomMarkerView
 import com.crypto.prices.utils.chart.XAxisValueFormatter
 import com.crypto.prices.utils.chart.YAxisValueFormatter
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.components.YAxis
@@ -33,12 +30,14 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IFillFormatter
+import dagger.hilt.android.AndroidEntryPoint
 import java.math.BigDecimal
 
+@AndroidEntryPoint
 class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: ActivityCryptoDetailBinding? = null
-    private lateinit var mCryptoDetailSearchViewModel: CryptoDetailSearchViewModel
-    private lateinit var mCryptoDetailViewModel: CryptoDetailViewModel
+    private val mCryptoDetailSearchViewModel: CryptoDetailSearchViewModel by viewModels()
+    private val mCryptoDetailViewModel: CryptoDetailViewModel by viewModels()
     private val TAG = "CryptoSearchActivity"
 
     private lateinit var chart: LineChart
@@ -282,10 +281,7 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
         val mapList: MutableMap<String, String> = HashMap()
         mapList["id"] = cryptoId.toString()
 
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, mapList)
-        mCryptoDetailSearchViewModel =
-            ViewModelProvider(this, factory).get(CryptoDetailSearchViewModel::class.java)
+        mCryptoDetailSearchViewModel.getData(mapList)
 
         binding.textViewPriceFilter.isSelected = true
         selectedTextViewFilter = binding.textViewPriceFilter
@@ -299,9 +295,7 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
         val days = 1
         map["days"] = days.toString()
 
-        val factoryChart = ViewModelFactory(CryptoApplication.instance!!, repository, map)
-        mCryptoDetailViewModel =
-            ViewModelProvider(this, factoryChart).get(CryptoDetailViewModel::class.java)
+        mCryptoDetailViewModel.initCryptoChart(map)
 
         // load remote data
         loadData()

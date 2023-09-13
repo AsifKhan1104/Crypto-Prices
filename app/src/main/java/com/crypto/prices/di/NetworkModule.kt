@@ -21,7 +21,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    @Singleton
+    /*@Singleton
     @Provides
     fun providesCMService(): Api {
         return Retrofit.Builder()
@@ -29,9 +29,9 @@ object NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(Api::class.java)
-    }
+    }*/
 
-    @Singleton
+    /*@Singleton
     @Provides
     fun providesCMJsonService(): Api {
         return Retrofit.Builder()
@@ -39,7 +39,7 @@ object NetworkModule {
             .addConverterFactory(ScalarsConverterFactory.create())
             .build()
             .create(Api::class.java)
-    }
+    }*/
 
     @Singleton
     @Provides

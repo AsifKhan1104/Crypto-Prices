@@ -7,13 +7,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.ActivityExchangesDetailBinding
 import com.bumptech.glide.Glide
-import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.ExchangeDataSearch
 import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.MyAnalytics
@@ -21,8 +20,6 @@ import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.chart.CustomMarkerView
 import com.crypto.prices.utils.chart.XAxisValueFormatter
 import com.crypto.prices.utils.chart.YAxisValueFormatterExchanges
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.components.YAxis
@@ -30,12 +27,14 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IFillFormatter
+import dagger.hilt.android.AndroidEntryPoint
 import java.math.BigDecimal
 
+@AndroidEntryPoint
 class ExchangesDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: ActivityExchangesDetailBinding? = null
-    private lateinit var mViewModel: ExchangesDetailSearchViewModel
-    private lateinit var mDetailViewModel: ExchangesDetailViewModel
+    private val mViewModel: ExchangesDetailSearchViewModel by viewModels()
+    private val mDetailViewModel: ExchangesDetailViewModel by viewModels()
     private val TAG = "ExchangesSearchActivity"
 
     private lateinit var chart: LineChart
@@ -220,9 +219,7 @@ class ExchangesDetailSearchActivity : AppCompatActivity(), View.OnClickListener 
         mapList["per_page"] = Constants.itemsPerPage
         mapList["id"] = exchangeId.toString()
 
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, mapList)
-        mViewModel = ViewModelProvider(this, factory).get(ExchangesDetailSearchViewModel::class.java)
+        mViewModel.initiateData(mapList)
 
         // create map of params needed for api
         val map: MutableMap<String, String> = HashMap()
@@ -233,9 +230,7 @@ class ExchangesDetailSearchActivity : AppCompatActivity(), View.OnClickListener 
         val days = 1
         map["days"] = days.toString()
 
-        val factoryChart = ViewModelFactory(CryptoApplication.instance!!, repository, map)
-        mDetailViewModel =
-            ViewModelProvider(this, factoryChart).get(ExchangesDetailViewModel::class.java)
+        mDetailViewModel.initiateChart(map)
 
         // load remote data
         loadData()

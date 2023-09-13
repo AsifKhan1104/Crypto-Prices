@@ -5,26 +5,25 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.ActivityNftDetailBinding
+import com.bumptech.glide.Glide
 import com.crypto.prices.database.Watchlist
 import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.model.NftDetailData
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import java.math.BigDecimal
 
+@AndroidEntryPoint
 class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: ActivityNftDetailBinding? = null
-    private lateinit var mViewModel: NftDetailViewModel
+    private val mViewModel: NftDetailViewModel by viewModels()
     private val TAG = "NftDetailActivity"
     private var detailData: NftDetailData? = null
     private var name: String? = null
@@ -117,13 +116,10 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
         val map: MutableMap<String, String> = HashMap()
         map["id"] = id.toString()
 
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
-        mViewModel =
-            ViewModelProvider(this, factory).get(NftDetailViewModel::class.java)
+        mViewModel.getData(map)
 
-        // load remote data
-        loadData()
+        // observe remote data
+        observeData()
     }
 
     private fun onError(s: String) {
@@ -145,7 +141,7 @@ class NftDetailActivity : AppCompatActivity(), View.OnClickListener {
         binding.loadingView.visibility = View.GONE
     }
 
-    fun loadData() {
+    private fun observeData() {
         try {
             mViewModel.nftDetailLiveData.observe(this, Observer {
                 // blank observe here

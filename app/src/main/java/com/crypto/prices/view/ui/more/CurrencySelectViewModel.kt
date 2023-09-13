@@ -3,39 +3,37 @@ package com.crypto.prices.view.ui.more
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
+import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.exchangeRates.ExchangeRates
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class CurrencySelectViewModel(
+@HiltViewModel
+class CurrencySelectViewModel @Inject constructor(
     app: CryptoApplication,
-    private val appRepository: AppRepository,
-    map: MutableMap<String, String>
+    private val appRepository: AppRepository
 ) : ViewModel() {
     val application = app
-    val paramMap = map
     val exchangeRateLiveData: MutableLiveData<NetworkResult<ExchangeRates>> = MutableLiveData()
 
-    init {
-        getDataViaApi(paramMap)
+    fun getDataViaApi() = viewModelScope.launch {
+        fetchData()
     }
 
-    fun getDataViaApi(mp:MutableMap<String, String>) = viewModelScope.launch {
-        fetchData(mp)
-    }
-
-    private suspend fun fetchData(latestMap: MutableMap<String, String>) {
+    private suspend fun fetchData() {
         exchangeRateLiveData.postValue(NetworkResult.Loading())
         try {
             if (Utility.isInternetAvailable()) {
                 val response = appRepository.getExchangeRates()
                 if (response.isSuccessful) {
-                    exchangeRateLiveData.postValue(response.body()?.let { NetworkResult.Success(it) })
+                    exchangeRateLiveData.postValue(
+                        response.body()?.let { NetworkResult.Success(it) })
                 } else {
                     exchangeRateLiveData.postValue(NetworkResult.Error(response.message()))
                 }
@@ -47,6 +45,7 @@ class CurrencySelectViewModel(
                 is IOException -> exchangeRateLiveData.postValue(
                     NetworkResult.Error(application.getString(R.string.network_failure))
                 )
+
                 else -> exchangeRateLiveData.postValue(
                     NetworkResult.Error(application.getString(R.string.conversion_error))
                 )

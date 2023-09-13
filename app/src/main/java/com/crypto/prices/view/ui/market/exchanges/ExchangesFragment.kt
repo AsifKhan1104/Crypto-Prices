@@ -5,24 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.FragmentExchangesBinding
-import com.crypto.prices.CryptoApplication
 import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.MyAnalytics
-import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.TrailLoadStateAdapter
-import com.crypto.prices.view.ViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class ExchangesFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentExchangesBinding? = null
-    private lateinit var mViewModel: ExchangesViewModel
+    private val mViewModel: ExchangesViewModel by viewModels()
     private val TAG = ExchangesFragment.javaClass.simpleName
     private lateinit var map: MutableMap<String, String>
     private lateinit var myAdapter: ExchangesPagingAdapter
@@ -72,9 +69,7 @@ class ExchangesFragment : Fragment(), View.OnClickListener {
         map = HashMap()
         map["per_page"] = Constants.itemsPerPage
 
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
-        mViewModel = ViewModelProvider(this, factory).get(ExchangesViewModel::class.java)
+        mViewModel.loadData(map)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

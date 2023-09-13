@@ -106,14 +106,14 @@ class CryptoDataProvider(context: Context?, intent: Intent?) : RemoteViewsFactor
         map["order"] = "market_cap_desc"
         map["per_page"] = "20"
 
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             val appRepository: AppRepository = AppRepositoryImpl()
             val response = appRepository.getCryptoPrices(map as MutableMap<String, String>)
             // check if request is successful
             if (response.isSuccessful) {
                 cryptoList = response.body()!!
             }
-        }
+        }*/
     }
 
     init {

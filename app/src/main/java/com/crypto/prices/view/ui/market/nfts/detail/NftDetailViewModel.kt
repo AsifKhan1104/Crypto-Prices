@@ -3,27 +3,24 @@ package com.crypto.prices.view.ui.market.nfts.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
+import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.NftDetailData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class NftDetailViewModel(
+@HiltViewModel
+class NftDetailViewModel @Inject constructor(
     app: CryptoApplication,
-    private val appRepository: AppRepository,
-    map: MutableMap<String, String>
+    private val appRepository: AppRepository
 ) : ViewModel() {
     val application = app
-    val paramMap = map
     val nftDetailLiveData: MutableLiveData<NetworkResult<NftDetailData>> = MutableLiveData()
-
-    init {
-        getData(paramMap)
-    }
 
     fun getData(mp:MutableMap<String, String>) = viewModelScope.launch {
         fetchData(mp)

@@ -3,33 +3,30 @@ package com.crypto.prices.view.ui.market.crypto.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
+import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.crypto.search.CryptoDetailData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class CryptoDetailSearchViewModel(
+@HiltViewModel
+class CryptoDetailSearchViewModel @Inject constructor(
     app: CryptoApplication,
-    private val appRepository: AppRepository,
-    map: MutableMap<String, String>
+    private val appRepository: AppRepository
 ) : ViewModel() {
     val application = app
-    val paramMap = map
     val cryptoDetailLiveData: MutableLiveData<NetworkResult<CryptoDetailData>> = MutableLiveData()
 
-    init {
-        getData()
+    fun getData(map: MutableMap<String, String>) = viewModelScope.launch {
+        fetchData(map)
     }
 
-    fun getData() = viewModelScope.launch {
-        fetchData()
-    }
-
-    private suspend fun fetchData() {
+    private suspend fun fetchData(paramMap: MutableMap<String, String>) {
         cryptoDetailLiveData.postValue(NetworkResult.Loading())
         try {
             if (Utility.isInternetAvailable()) {

@@ -17,6 +17,7 @@ import com.crypto.prices.view.ui.market.nfts.detail.NftDetailViewModel
 import com.crypto.prices.view.ui.more.CurrencySelectViewModel
 import com.crypto.prices.view.ui.search.SearchViewModel
 
+/*
 class ViewModelFactory(
     val app: CryptoApplication,
     val appRepository: AppRepository,
@@ -24,16 +25,13 @@ class ViewModelFactory(
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
+        */
+/*if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
             return HomeViewModel(app, appRepository) as T
         }
 
         if (modelClass.isAssignableFrom(NewsViewModel::class.java)) {
             return NewsViewModel(app, appRepository) as T
-        }
-
-        if (modelClass.isAssignableFrom(CryptoDetailSearchViewModel::class.java)) {
-            return CryptoDetailSearchViewModel(app, appRepository, map) as T
         }
 
         if (modelClass.isAssignableFrom(NftViewModel::class.java)) {
@@ -52,13 +50,21 @@ class ViewModelFactory(
             return ExchangesViewModel(app, appRepository, map) as T
         }
 
-        if (modelClass.isAssignableFrom(DerivativesViewModel::class.java)) {
+        *//*
+*/
+/*if (modelClass.isAssignableFrom(DerivativesViewModel::class.java)) {
             return DerivativesViewModel(app, appRepository, map) as T
-        }
+        }*//*
+*/
+/*
 
-        if (modelClass.isAssignableFrom(DerivativesDetailViewModel::class.java)) {
+        *//*
+*/
+/*if (modelClass.isAssignableFrom(DerivativesDetailViewModel::class.java)) {
             return DerivativesDetailViewModel(app, appRepository, map) as T
-        }
+        }*//*
+*/
+/*
 
         if (modelClass.isAssignableFrom(ExchangesDetailViewModel::class.java)) {
             return ExchangesDetailViewModel(app, appRepository, map) as T
@@ -70,9 +76,10 @@ class ViewModelFactory(
 
         if (modelClass.isAssignableFrom(SearchViewModel::class.java)) {
             return SearchViewModel(app, appRepository, map) as T
-        }
+        }*//*
+
 
         throw IllegalArgumentException("Unknown class name")
     }
 
-}
+}*/

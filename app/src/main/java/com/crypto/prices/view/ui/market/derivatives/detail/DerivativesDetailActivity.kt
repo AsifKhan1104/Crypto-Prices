@@ -6,29 +6,28 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.ActivityDerivativesDetailBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.crypto.prices.CryptoApplication
-import com.asf.cryptoprices.R
-import com.asf.cryptoprices.databinding.ActivityDerivativesDetailBinding
 import com.crypto.prices.model.DerivativesData
 import com.crypto.prices.model.DerivativesDetailData
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.ui.search.SearchActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: ActivityDerivativesDetailBinding? = null
-    private lateinit var mDetailViewModel: DerivativesDetailViewModel
+    private val mDetailViewModel: DerivativesDetailViewModel by viewModels()
     private val TAG = "DerivativesDetail"
 
     private var data: DerivativesData? = null
@@ -81,13 +80,8 @@ class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setUpViewModel() {
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
-        mDetailViewModel =
-            ViewModelProvider(this, factory).get(DerivativesDetailViewModel::class.java)
-
-        // load remote data
-        loadData()
+        // observe remote data
+        observeData()
     }
 
     private fun onError(s: String) {
@@ -108,7 +102,7 @@ class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
         binding.loadingView.visibility = View.GONE
     }
 
-    fun loadData() {
+    fun observeData() {
         try {
             mDetailViewModel.derivativesDetailLiveData.observe(this, Observer {
                 // blank observe here

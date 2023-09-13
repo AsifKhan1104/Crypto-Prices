@@ -9,15 +9,16 @@ import com.crypto.prices.model.DerivativesDetailData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class DerivativesDetailViewModel(
+@HiltViewModel
+class DerivativesDetailViewModel @Inject constructor(
     val app: CryptoApplication,
-    private val appRepository: AppRepository,
-    val map: MutableMap<String, String>
+    private val appRepository: AppRepository
 ) : ViewModel() {
-    val paramMap = map
     val derivativesDetailLiveData: MutableLiveData<NetworkResult<List<DerivativesDetailData>>> =
         MutableLiveData()
 

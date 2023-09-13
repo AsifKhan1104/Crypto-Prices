@@ -23,8 +23,8 @@ class CryptoDetailViewModel @Inject constructor(
     val cryptoChartLiveData: MutableLiveData<NetworkResult<CryptoChartData>> = MutableLiveData()
     var paramMap = HashMap<String, String>()
 
-    fun initCryptoChart(map: HashMap<String, String>) {
-        paramMap = map
+    fun initCryptoChart(map: MutableMap<String, String>) {
+        paramMap = map as HashMap<String, String>
         getCryptoChart("-1")
     }
 

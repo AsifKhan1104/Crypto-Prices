@@ -3,25 +3,28 @@ package com.crypto.prices.view.ui.market.exchanges.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
+import com.crypto.prices.CryptoApplication
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.math.BigDecimal
+import javax.inject.Inject
 
-class ExchangesDetailViewModel(
+@HiltViewModel
+class ExchangesDetailViewModel @Inject constructor(
     val app: CryptoApplication,
-    private val appRepository: AppRepository,
-    val map: MutableMap<String, String>
+    private val appRepository: AppRepository
 ) : ViewModel() {
-    val paramMap = map
+    private lateinit var paramMap: MutableMap<String, String>
     val exchangesChartLiveData: MutableLiveData<NetworkResult<ArrayList<ArrayList<BigDecimal>>>> =
         MutableLiveData()
 
-    init {
+    fun initiateChart(map: MutableMap<String, String>) {
+        paramMap = map
         getChart("-1")
     }
 
@@ -55,6 +58,7 @@ class ExchangesDetailViewModel(
                 is IOException -> exchangesChartLiveData.postValue(
                     NetworkResult.Error(app.getString(R.string.network_failure))
                 )
+
                 else -> exchangesChartLiveData.postValue(
                     NetworkResult.Error(app.getString(R.string.conversion_error))
                 )

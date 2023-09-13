@@ -5,24 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.FragmentNftBinding
 import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.MyAnalytics
-import com.crypto.prices.view.AppRepositoryImpl
 import com.crypto.prices.view.TrailLoadStateAdapter
-import com.crypto.prices.view.ViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class NftFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentNftBinding? = null
-    private lateinit var mViewModel: NftViewModel
+    private val mViewModel: NftViewModel by viewModels()
     private val TAG = NftFragment.javaClass.simpleName
     private var selectedMarketCap: String = "market_cap_usd_desc"
     private lateinit var map: MutableMap<String, String>
@@ -75,9 +72,7 @@ class NftFragment : Fragment(), View.OnClickListener {
         map["order"] = selectedMarketCap
         map["per_page"] = Constants.itemsPerPage
 
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
-        mViewModel = ViewModelProvider(this, factory).get(NftViewModel::class.java)
+        mViewModel.loadData(map)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

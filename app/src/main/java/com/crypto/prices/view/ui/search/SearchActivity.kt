@@ -5,23 +5,21 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asf.cryptoprices.databinding.SearchViewBinding
-import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.SearchData
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
-import kotlinx.coroutines.flow.collect
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SearchActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: SearchViewBinding? = null
-    private lateinit var mViewModel: SearchViewModel
+    private val mViewModel: SearchViewModel by viewModels()
     private val TAG = "SearchActivity"
 
     private lateinit var mAdapterCoins: SearchCryptoAdapter
@@ -78,13 +76,8 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setUpViewModel() {
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
-        mViewModel =
-            ViewModelProvider(this, factory).get(SearchViewModel::class.java)
-
-        // load remote data
-        loadData()
+        // observe data
+        observeData()
     }
 
     private fun onError(s: String) {
@@ -106,7 +99,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         binding.loadingView.visibility = View.GONE
     }
 
-    fun loadData() {
+    private fun observeData() {
         try {
             lifecycleScope.launch {
                 mViewModel.getSearchResults().collect {

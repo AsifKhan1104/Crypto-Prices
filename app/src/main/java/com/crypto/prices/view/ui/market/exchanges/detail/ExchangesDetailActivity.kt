@@ -7,21 +7,18 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.ActivityExchangesDetailBinding
 import com.bumptech.glide.Glide
-import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.ExchangesData
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.chart.CustomMarkerView
 import com.crypto.prices.utils.chart.XAxisValueFormatter
 import com.crypto.prices.utils.chart.YAxisValueFormatterExchanges
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.ui.search.SearchActivity
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
@@ -30,11 +27,13 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IFillFormatter
+import dagger.hilt.android.AndroidEntryPoint
 import java.math.BigDecimal
 
+@AndroidEntryPoint
 class ExchangesDetailActivity : AppCompatActivity(), View.OnClickListener {
     private var _binding: ActivityExchangesDetailBinding? = null
-    private lateinit var mDetailViewModel: ExchangesDetailViewModel
+    private val mDetailViewModel: ExchangesDetailViewModel by viewModels()
     private val TAG = "ExchangesDetailActivity"
 
     private lateinit var chart: LineChart
@@ -222,10 +221,7 @@ class ExchangesDetailActivity : AppCompatActivity(), View.OnClickListener {
         val days = 1
         map["days"] = days.toString()
 
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, map)
-        mDetailViewModel =
-            ViewModelProvider(this, factory).get(ExchangesDetailViewModel::class.java)
+        mDetailViewModel.initiateChart(map)
 
         // load remote data
         loadData()

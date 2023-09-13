@@ -11,17 +11,19 @@ import com.crypto.prices.model.ExchangesData
 import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class ExchangesViewModel(
+@HiltViewModel
+class ExchangesViewModel @Inject constructor(
     app: CryptoApplication,
-    private val appRepository: AppRepository,
-    map: MutableMap<String, String>
+    private val appRepository: AppRepository
 ) : ViewModel() {
     lateinit var exchangesList: Flow<PagingData<ExchangesData>>
     var hasInternet = true
 
-    init {
+    fun loadData(map: MutableMap<String, String>) {
         if (Utility.isInternetAvailable()) {
             loadPagingData(map)
         } else {
@@ -29,7 +31,7 @@ class ExchangesViewModel(
         }
     }
 
-    fun loadPagingData(map: MutableMap<String, String>) {
+    private fun loadPagingData(map: MutableMap<String, String>) {
         exchangesList = Pager(PagingConfig(pageSize = Constants.itemsPerPage.toInt())) {
             ExchangesPagingSource(appRepository, map)
         }.flow
