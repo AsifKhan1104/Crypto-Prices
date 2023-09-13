@@ -6,32 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asf.cryptoprices.databinding.FragmentHomeBinding
-import com.crypto.prices.CryptoApplication
-import com.crypto.prices.database.Watchlist
 import com.crypto.prices.database.WatchlistRepo
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
-import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.AppRepository
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
 import com.crypto.prices.view.activity.MainActivity
 import com.crypto.prices.view.ui.explore.NewsAdapter
 import com.crypto.prices.view.ui.explore.NewsViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentHomeBinding? = null
-    private lateinit var mHomeViewModel: HomeViewModel
-    private lateinit var mNewsViewModel: NewsViewModel
+    private val mHomeViewModel: HomeViewModel by viewModels()
+    private val mNewsViewModel: NewsViewModel by viewModels()
     private val TAG = HomeFragment.javaClass.simpleName
     private lateinit var mDatabase: WatchlistRepo
     private var mWatchlistAdapter: HomeWatchlistAdapter? = null
@@ -83,86 +73,37 @@ class HomeFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         MyAnalytics.trackScreenViews("HomeFragment", requireActivity().javaClass.simpleName)
         mDatabase = WatchlistRepo(requireContext())
         //initWatchlist()
-        setUpViewModel()
         return root
     }
 
     private fun initWatchlist() {
         // check if any coins/nfts are watchlisted
         val watchlist = mDatabase.getAllData()
-        if (watchlist != null && watchlist.size != 0) {
+        if (watchlist != null && watchlist.isNotEmpty()) {
             binding.groupWatchlist.visibility = View.VISIBLE
             if (mWatchlistAdapter == null) {
                 mWatchlistAdapter = HomeWatchlistAdapter(context, watchlist)
                 binding.recyclerViewWatchlist.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 binding.recyclerViewWatchlist.adapter = mWatchlistAdapter
-
-                // update the latest prices of crypto coins
-                getUpdatedPricesApi(watchlist)
-            } else {
-                // update the latest prices of crypto coins
-                getUpdatedPricesApi(watchlist)
             }
+
+            // update the latest prices of crypto coins
+            mHomeViewModel.fetchUpdatedPricesApi(watchlist)
         } else {
             binding.groupWatchlist.visibility = View.GONE
-        }
-    }
-
-    private fun getUpdatedPricesApi(watchlist: List<Watchlist>) {
-        val cryptoIds = StringBuilder()
-        for (i in watchlist) {
-            if (!i.type.equals("") && i.type.equals("crypto"))
-                cryptoIds.append(i.id + ",")
-        }
-
-        // now request these id's data
-        val map = HashMap<String, String?>()
-        map["vs_currency"] = Utility.getCurrencyGlobal(requireContext())
-        map["order"] = "market_cap_desc"
-        //map["per_page"] = "20"
-        map["ids"] = cryptoIds.toString()
-
-        GlobalScope.launch {
-            val appRepository: AppRepository = AppRepositoryImpl()
-            val response = appRepository.getCryptoPrices(map as MutableMap<String, String>)
-            // check if request is successful
-            if (response.isSuccessful) {
-                val cryptoList = response.body()!!
-                // set updated price & price_change_24%
-                for ((i, value1) in cryptoList.withIndex()) {
-                    for ((j, value2) in watchlist.withIndex()) {
-                        if (value1.id.equals(value2.id)) {
-                            watchlist[j].price = cryptoList[i].current_price.toString()
-                            watchlist[j].priceChange24h =
-                                cryptoList[i].price_change_percentage_24h.toString()
-                        }
-                    }
-                }
-                withContext(Dispatchers.Main) {
-                    // update recycler view
-                    mWatchlistAdapter?.updateList(watchlist)
-                }
-            }
         }
     }
 
     override fun onResume() {
         super.onResume()
         initWatchlist()
-    }
-
-    private fun setUpViewModel() {
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
-        mHomeViewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
-        mNewsViewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -188,6 +129,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
                                 HomeTrendingAdapter(context, it.coins)
                         }
                     }
+
                     is NetworkResult.Error -> {
                         //show error message
                         onErrorT(it.networkErrorMessage.toString())
@@ -199,25 +141,33 @@ class HomeFragment : Fragment(), View.OnClickListener {
                     }
                 }
             })
+            // observe watchlist data
+            mHomeViewModel.watchListLiveData.observe(viewLifecycleOwner, Observer {
+                it.let {
+                    //bind the data to the ui
+                    mWatchlistAdapter?.updateList(it)
+                }
+            })
         } catch (ex: Exception) {
             ex.message?.let { Log.e(TAG, it) }
         }
     }
 
-    fun loadNewsData() {
+    private fun loadNewsData() {
         try {
             mNewsViewModel.newsLiveData.observe(viewLifecycleOwner, Observer {
                 // blank observe here
                 when (it) {
                     is NetworkResult.Success -> {
-                        it.networkData?.let {
+                        it.networkData?.let { newsData ->
                             //bind the data to the ui
                             onLoadingFinishedN()
                             binding.recyclerViewNews.layoutManager = LinearLayoutManager(context)
                             binding.recyclerViewNews.adapter =
-                                NewsAdapter(context, it.articles.subList(0, 3))
+                                NewsAdapter(context, newsData.articles.subList(0, 3))
                         }
                     }
+
                     is NetworkResult.Error -> {
                         //show error message
                         onErrorN(it.networkErrorMessage.toString())

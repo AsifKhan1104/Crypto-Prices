@@ -3,16 +3,19 @@ package com.crypto.prices.view.ui.explore
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.crypto.prices.CryptoApplication
 import com.asf.cryptoprices.R
+import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.NewsData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class NewsViewModel(
+@HiltViewModel
+class NewsViewModel @Inject constructor(
     app: CryptoApplication,
     private val appRepository: AppRepository
 ) : ViewModel() {
@@ -23,7 +26,7 @@ class NewsViewModel(
         getNews()
     }
 
-    fun getNews() = viewModelScope.launch {
+    private fun getNews() = viewModelScope.launch {
         fetchData()
     }
 

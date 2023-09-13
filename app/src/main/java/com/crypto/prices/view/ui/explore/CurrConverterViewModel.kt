@@ -1,22 +1,21 @@
 package com.crypto.prices.view.ui.explore
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.asf.cryptoprices.R
+import com.crypto.prices.CryptoApplication
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
 class CurrConverterViewModel @Inject constructor(
-    @ApplicationContext val appContext: Context,
+    val app: CryptoApplication,
     private val appRepository: AppRepository
 ) : ViewModel() {
     val convertedLiveData: MutableLiveData<NetworkResult<String>> = MutableLiveData()
@@ -50,16 +49,16 @@ class CurrConverterViewModel @Inject constructor(
                     suppCurrLiveData.postValue(NetworkResult.Error(response.message()))
                 }
             } else {
-                suppCurrLiveData.postValue(NetworkResult.Error(appContext.getString(R.string.no_internet_msg)))
+                suppCurrLiveData.postValue(NetworkResult.Error(app.getString(R.string.no_internet_msg)))
             }
         } catch (t: Throwable) {
             when (t) {
                 is IOException -> suppCurrLiveData.postValue(
-                    NetworkResult.Error(appContext.getString(R.string.network_failure))
+                    NetworkResult.Error(app.getString(R.string.network_failure))
                 )
 
                 else -> suppCurrLiveData.postValue(
-                    NetworkResult.Error(appContext.getString(R.string.conversion_error))
+                    NetworkResult.Error(app.getString(R.string.conversion_error))
                 )
             }
         }
@@ -77,16 +76,16 @@ class CurrConverterViewModel @Inject constructor(
                     convertedLiveData.postValue(NetworkResult.Error(response.message()))
                 }
             } else {
-                convertedLiveData.postValue(NetworkResult.Error(appContext.getString(R.string.no_internet_msg)))
+                convertedLiveData.postValue(NetworkResult.Error(app.getString(R.string.no_internet_msg)))
             }
         } catch (t: Throwable) {
             when (t) {
                 is IOException -> convertedLiveData.postValue(
-                    NetworkResult.Error(appContext.getString(R.string.network_failure))
+                    NetworkResult.Error(app.getString(R.string.network_failure))
                 )
 
                 else -> convertedLiveData.postValue(
-                    NetworkResult.Error(appContext.getString(R.string.conversion_error))
+                    NetworkResult.Error(app.getString(R.string.conversion_error))
                 )
             }
         }

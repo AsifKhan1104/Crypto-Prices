@@ -6,20 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asf.cryptoprices.databinding.FragmentNewsBinding
-import com.crypto.prices.CryptoApplication
-import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.MyAnalytics.trackScreenViews
 import com.crypto.prices.utils.NetworkResult
-import com.crypto.prices.view.AppRepositoryImpl
-import com.crypto.prices.view.ViewModelFactory
 
 class NewsFragment : Fragment() {
     private var _binding: FragmentNewsBinding? = null
-    private lateinit var mNewsViewModel: NewsViewModel
+    private val mNewsViewModel: NewsViewModel by viewModels()
     private val TAG = NewsFragment.javaClass.simpleName
 
     // This property is only valid between onCreateView and
@@ -49,15 +45,8 @@ class NewsFragment : Fragment() {
     ): View? {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        setUpViewModel()
         trackScreenViews("NewsFragment", requireActivity().javaClass.simpleName)
         return root
-    }
-
-    private fun setUpViewModel() {
-        val repository = AppRepositoryImpl()
-        val factory = ViewModelFactory(CryptoApplication.instance!!, repository, HashMap())
-        mNewsViewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
