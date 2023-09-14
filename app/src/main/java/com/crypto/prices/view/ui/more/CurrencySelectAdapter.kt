@@ -13,7 +13,6 @@ import com.crypto.prices.utils.Utility
 import kotlinx.android.synthetic.main.item_crypto.view.textView_name
 import kotlinx.android.synthetic.main.item_currency_select.view.*
 
-
 class CurrencySelectAdapter(
     context: Context?,
     var data: List<CurrencyData>?,

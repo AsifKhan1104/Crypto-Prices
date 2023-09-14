@@ -23,6 +23,7 @@ import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.ui.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
@@ -35,6 +36,9 @@ class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var mDerivativesDetailAdapter: DerivativesDetailAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,7 +140,8 @@ class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
             binding.recyclerView.apply {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
-                adapter = DerivativesDetailAdapter(context, derivativesList)
+                adapter = mDerivativesDetailAdapter
+                mDerivativesDetailAdapter.updateList(derivativesList)
             }
         } else {
             onError("No Data Found !!")

@@ -13,11 +13,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.asf.cryptoprices.R
 import com.crypto.prices.model.DerivativesDetailData
 import com.crypto.prices.utils.Utility
-import kotlinx.android.synthetic.main.item_derivatives_detail.view.*
+import dagger.hilt.android.qualifiers.ActivityContext
+import kotlinx.android.synthetic.main.item_derivatives_detail.view.table_layout
+import kotlinx.android.synthetic.main.item_derivatives_detail.view.textView_open_interest
+import kotlinx.android.synthetic.main.item_derivatives_detail.view.textView_price
+import kotlinx.android.synthetic.main.item_derivatives_detail.view.textView_symbol
+import javax.inject.Inject
 
-class DerivativesDetailAdapter(context: Context?, var data: List<DerivativesDetailData>?) :
+class DerivativesDetailAdapter @Inject constructor(@ActivityContext val context: Context?) :
     RecyclerView.Adapter<DerivativesDetailAdapter.MyViewHolder>() {
-    val context = context
+    private var data: List<DerivativesDetailData>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MyViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_derivatives_detail, parent, false)
@@ -87,5 +92,10 @@ class DerivativesDetailAdapter(context: Context?, var data: List<DerivativesDeta
 
             dialog.show()
         }
+    }
+
+    fun updateList(list: List<DerivativesDetailData>) {
+        data = list
+        notifyDataSetChanged()
     }
 }

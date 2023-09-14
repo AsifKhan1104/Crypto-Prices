@@ -9,14 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.asf.cryptoprices.R
 import com.bumptech.glide.Glide
 import com.crypto.prices.model.CategoriesData
-import kotlinx.android.synthetic.main.item_categories.view.*
+import dagger.hilt.android.qualifiers.ActivityContext
+import kotlinx.android.synthetic.main.item_categories.view.imageView_topCoin1
+import kotlinx.android.synthetic.main.item_categories.view.imageView_topCoin2
+import kotlinx.android.synthetic.main.item_categories.view.imageView_topCoin3
+import kotlinx.android.synthetic.main.item_categories.view.textView_category
 import kotlinx.android.synthetic.main.item_crypto.view.table_layout
 import kotlinx.android.synthetic.main.item_crypto.view.textView_24hp
 import kotlinx.android.synthetic.main.item_crypto.view.textView_market_cap
+import javax.inject.Inject
 
-class CategoriesAdapter(context: Context?, var data: List<CategoriesData>?) :
+class CategoriesAdapter @Inject constructor(@ActivityContext val context: Context?) :
     RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>() {
-    private val context = context
+    private var data: List<CategoriesData>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = CategoriesViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_categories, parent, false)
@@ -68,5 +73,10 @@ class CategoriesAdapter(context: Context?, var data: List<CategoriesData>?) :
                 }
             })
         }
+    }
+
+    fun updateList(list: List<CategoriesData>) {
+        data = list
+        notifyDataSetChanged()
     }
 }

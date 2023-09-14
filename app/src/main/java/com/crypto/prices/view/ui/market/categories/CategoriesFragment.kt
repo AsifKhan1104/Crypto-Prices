@@ -15,6 +15,7 @@ import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.ui.market.crypto.CryptoFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CategoriesFragment : Fragment(), View.OnClickListener {
@@ -27,6 +28,9 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var mCategoriesAdapter: CategoriesAdapter
 
     private fun onError(s: String) {
         binding.textViewError.text = s
@@ -79,22 +83,23 @@ class CategoriesFragment : Fragment(), View.OnClickListener {
 
     private fun observeData() {
         try {
-            mCategoriesViewModel.categoriesLiveData.observe(viewLifecycleOwner, Observer {
+            mCategoriesViewModel.categoriesLiveData.observe(viewLifecycleOwner, Observer { result ->
                 // blank observe here
-                when (it) {
+                when (result) {
                     is NetworkResult.Success -> {
-                        it.networkData?.let {
+                        result.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinished()
                             binding.recyclerView.layoutManager =
                                 LinearLayoutManager(context)
-                            binding.recyclerView.adapter = CategoriesAdapter(context, it)
+                            binding.recyclerView.adapter = mCategoriesAdapter
+                            mCategoriesAdapter.updateList(it)
                         }
                     }
 
                     is NetworkResult.Error -> {
                         //show error message
-                        onError(it.networkErrorMessage.toString())
+                        onError(result.networkErrorMessage.toString())
                     }
 
                     is NetworkResult.Loading -> {

@@ -21,6 +21,7 @@ import com.crypto.prices.view.ui.search.SearchActivity
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONObject
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CurrConverterActivity : AppCompatActivity(), View.OnClickListener {
@@ -32,6 +33,9 @@ class CurrConverterActivity : AppCompatActivity(), View.OnClickListener {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var mCurrConverterAdapter: CurrConverterAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,7 +104,8 @@ class CurrConverterActivity : AppCompatActivity(), View.OnClickListener {
         responseList.add(price.toString())
 
         binding.recyclerViewCurrency.layoutManager = LinearLayoutManager(this)
-        binding.recyclerViewCurrency.adapter = CurrConverterAdapter(this, responseList)
+        binding.recyclerViewCurrency.adapter = mCurrConverterAdapter
+        mCurrConverterAdapter.updateList(responseList)
     }
 
     private fun setUpViewModel() {

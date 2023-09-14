@@ -6,17 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.asf.cryptoprices.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.asf.cryptoprices.R
 import com.crypto.prices.model.Coin
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailSearchActivity
+import dagger.hilt.android.qualifiers.ActivityContext
 import kotlinx.android.synthetic.main.item_crypto.view.table_layout
-import kotlinx.android.synthetic.main.item_search.view.*
+import kotlinx.android.synthetic.main.item_search.view.imageView
+import kotlinx.android.synthetic.main.item_search.view.textView_name
+import kotlinx.android.synthetic.main.item_search.view.textView_symbol
+import javax.inject.Inject
 
-class SearchCryptoAdapter(context: Context?, var data: List<Coin>?) :
+class SearchCryptoAdapter @Inject constructor(@ActivityContext val context: Context?) :
     RecyclerView.Adapter<SearchCryptoAdapter.MyViewHolder>() {
-    private val context = context
+    private var data: List<Coin>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MyViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
@@ -57,5 +61,10 @@ class SearchCryptoAdapter(context: Context?, var data: List<Coin>?) :
                 }
             })
         }
+    }
+
+    fun updateList(list: List<Coin>) {
+        data = list
+        notifyDataSetChanged()
     }
 }

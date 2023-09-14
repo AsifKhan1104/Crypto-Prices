@@ -15,6 +15,7 @@ import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchActivity : AppCompatActivity(), View.OnClickListener {
@@ -22,13 +23,18 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
     private val mViewModel: SearchViewModel by viewModels()
     private val TAG = "SearchActivity"
 
-    private lateinit var mAdapterCoins: SearchCryptoAdapter
-    private lateinit var mAdapterNfts: SearchNftsAdapter
-    private lateinit var mAdapterExchanges: SearchExchangesAdapter
-
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var mAdapterCoins: SearchCryptoAdapter
+
+    @Inject
+    lateinit var mAdapterExchanges: SearchExchangesAdapter
+
+    @Inject
+    lateinit var mAdapterNfts: SearchNftsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,15 +49,12 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setUpRecyclerView() {
         binding.recyclerViewCoins.layoutManager = LinearLayoutManager(this)
-        mAdapterCoins = SearchCryptoAdapter(this, ArrayList())
         binding.recyclerViewCoins.adapter = mAdapterCoins
 
         binding.recyclerViewNfts.layoutManager = LinearLayoutManager(this)
-        mAdapterNfts = SearchNftsAdapter(this, ArrayList())
         binding.recyclerViewNfts.adapter = mAdapterNfts
 
         binding.recyclerViewExchanges.layoutManager = LinearLayoutManager(this)
-        mAdapterExchanges = SearchExchangesAdapter(this, ArrayList())
         binding.recyclerViewExchanges.adapter = mAdapterExchanges
     }
 
@@ -136,40 +139,41 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
         // set coins
         val coinList = it?.coins
-        if (coinList.size == 0) {
+        if (coinList.isEmpty()) {
             binding.textViewNoDataCoins.visibility = View.VISIBLE
             binding.recyclerViewCoins.visibility = View.GONE
         } else {
             binding.textViewNoDataCoins.visibility = View.GONE
             binding.recyclerViewCoins.visibility = View.VISIBLE
-            mAdapterCoins.data = if (coinList.size > 4) coinList.subList(0, 4) else coinList
-            mAdapterCoins.notifyDataSetChanged()
+            mAdapterCoins.updateList(if (coinList.size > 4) coinList.subList(0, 4) else coinList)
         }
 
         // set nfts
         val nftList = it?.nfts
-        if (nftList.size == 0) {
+        if (nftList.isEmpty()) {
             binding.textViewNoDataNfts.visibility = View.VISIBLE
             binding.recyclerViewNfts.visibility = View.GONE
         } else {
             binding.textViewNoDataNfts.visibility = View.GONE
             binding.recyclerViewNfts.visibility = View.VISIBLE
-            mAdapterNfts.data = if (nftList.size > 4) nftList.subList(0, 4) else nftList
-            mAdapterNfts.notifyDataSetChanged()
+            mAdapterNfts.updateList(if (nftList.size > 4) nftList.subList(0, 4) else nftList)
         }
 
         binding.recyclerViewExchanges.layoutManager = LinearLayoutManager(this)
         // set exchanges
         val exchangeList = it?.exchanges
-        if (exchangeList.size == 0) {
+        if (exchangeList.isEmpty()) {
             binding.textViewNoDataExchanges.visibility = View.VISIBLE
             binding.recyclerViewExchanges.visibility = View.GONE
         } else {
             binding.textViewNoDataExchanges.visibility = View.GONE
             binding.recyclerViewExchanges.visibility = View.VISIBLE
-            mAdapterExchanges.data =
-                if (exchangeList.size > 4) exchangeList.subList(0, 4) else exchangeList
-            mAdapterExchanges.notifyDataSetChanged()
+            mAdapterExchanges.updateList(
+                if (exchangeList.size > 4) exchangeList.subList(
+                    0,
+                    4
+                ) else exchangeList
+            )
         }
     }
 
