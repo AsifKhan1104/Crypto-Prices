@@ -6,18 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.asf.cryptoprices.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.asf.cryptoprices.R
 import com.crypto.prices.data.offline.Watchlist
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailSearchActivity
 import com.crypto.prices.view.ui.market.nfts.detail.NftDetailActivity
-import kotlinx.android.synthetic.main.item_trending.view.*
+import dagger.hilt.android.qualifiers.ActivityContext
+import kotlinx.android.synthetic.main.item_trending.view.cardView
+import kotlinx.android.synthetic.main.item_trending.view.imageViewId
+import kotlinx.android.synthetic.main.item_trending.view.textViewName
+import kotlinx.android.synthetic.main.item_trending.view.textViewPrice
+import kotlinx.android.synthetic.main.item_trending.view.textViewRank
+import kotlinx.android.synthetic.main.item_trending.view.textViewRankText
 import java.math.BigDecimal
+import javax.inject.Inject
 
-class HomeWatchlistAdapter(context: Context?, var data: List<Watchlist>?) :
+class HomeWatchlistAdapter @Inject constructor(@ActivityContext val context: Context?) :
     RecyclerView.Adapter<HomeWatchlistAdapter.MyViewHolder>() {
-    private val context = context
+    private var data: List<Watchlist>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MyViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_trending, parent, false)
@@ -26,7 +33,7 @@ class HomeWatchlistAdapter(context: Context?, var data: List<Watchlist>?) :
     override fun getItemCount() = if (data != null) data!!.size else 0
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(context!!, position, data?.let { it.get(position) })
+        holder.bind(context!!, position, data?.let { it[position] })
     }
 
     fun updateList(newList: List<Watchlist>?) {
@@ -66,18 +73,16 @@ class HomeWatchlistAdapter(context: Context?, var data: List<Watchlist>?) :
                 .into(imageViewId)
 
             // on click listener
-            cardView.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(p0: View?) {
-                    var intent: Intent
-                    if (data?.type.equals("crypto")) {
-                        intent = Intent(context, CryptoDetailSearchActivity::class.java)
-                    } else {
-                        intent = Intent(context, NftDetailActivity::class.java)
-                    }
-                    intent.putExtra("id", data?.id)
-                    context.startActivity(intent)
+            cardView.setOnClickListener {
+                var intent: Intent
+                if (data?.type.equals("crypto")) {
+                    intent = Intent(context, CryptoDetailSearchActivity::class.java)
+                } else {
+                    intent = Intent(context, NftDetailActivity::class.java)
                 }
-            })
+                intent.putExtra("id", data?.id)
+                context.startActivity(intent)
+            }
         }
     }
 }

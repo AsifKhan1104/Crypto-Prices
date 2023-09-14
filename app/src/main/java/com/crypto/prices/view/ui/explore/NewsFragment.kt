@@ -13,6 +13,7 @@ import com.asf.cryptoprices.databinding.FragmentNewsBinding
 import com.crypto.prices.utils.MyAnalytics.trackScreenViews
 import com.crypto.prices.utils.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class NewsFragment : Fragment() {
@@ -23,6 +24,9 @@ class NewsFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var mNewsAdapter: NewsAdapter
 
     private fun onError(s: String) {
         binding.textViewError.text = s
@@ -58,20 +62,22 @@ class NewsFragment : Fragment() {
 
     fun loadData() {
         try {
-            mNewsViewModel.newsLiveData.observe(viewLifecycleOwner, Observer {
+            mNewsViewModel.newsLiveData.observe(viewLifecycleOwner, Observer { result ->
                 // blank observe here
-                when (it) {
+                when (result) {
                     is NetworkResult.Success -> {
-                        it.networkData?.let {
+                        result.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinished()
                             binding.recyclerViewNews.layoutManager = LinearLayoutManager(context)
-                            binding.recyclerViewNews.adapter = NewsAdapter(context, it.articles)
+                            binding.recyclerViewNews.adapter = mNewsAdapter
+                            mNewsAdapter.update(it.articles)
                         }
                     }
+
                     is NetworkResult.Error -> {
                         //show error message
-                        onError(it.networkErrorMessage.toString())
+                        onError(result.networkErrorMessage.toString())
                     }
 
                     is NetworkResult.Loading -> {

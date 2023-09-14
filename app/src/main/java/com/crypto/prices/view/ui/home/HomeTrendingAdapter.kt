@@ -11,11 +11,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.asf.cryptoprices.R
 import com.crypto.prices.model.CoinX
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailSearchActivity
+import dagger.hilt.android.qualifiers.ActivityContext
 import kotlinx.android.synthetic.main.item_trending.view.*
+import javax.inject.Inject
 
-class HomeTrendingAdapter(context: Context?, var data: List<CoinX>?) :
+class HomeTrendingAdapter @Inject constructor(@ActivityContext val context: Context?) :
     RecyclerView.Adapter<HomeTrendingAdapter.TrendingViewHolder>() {
-    private val context = context
+    private var data: List<CoinX>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = TrendingViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_trending, parent, false)
@@ -54,5 +56,10 @@ class HomeTrendingAdapter(context: Context?, var data: List<CoinX>?) :
                 }
             })
         }
+    }
+
+    fun updateList(list: List<CoinX>) {
+        data = list
+        notifyDataSetChanged()
     }
 }

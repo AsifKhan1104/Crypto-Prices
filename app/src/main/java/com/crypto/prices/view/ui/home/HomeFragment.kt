@@ -17,6 +17,7 @@ import com.crypto.prices.view.activity.MainActivity
 import com.crypto.prices.view.ui.explore.NewsAdapter
 import com.crypto.prices.view.ui.explore.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), View.OnClickListener {
@@ -26,11 +27,19 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private val mNewsViewModel: NewsViewModel by viewModels()
     private val TAG = HomeFragment.javaClass.simpleName
     private lateinit var mDatabase: WatchlistRepo
-    private var mWatchlistAdapter: HomeWatchlistAdapter? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var mWatchlistAdapter: HomeWatchlistAdapter
+
+    @Inject
+    lateinit var mNewsAdapter: NewsAdapter
+
+    @Inject
+    lateinit var mHomeTrendingAdapter: HomeTrendingAdapter
 
     private fun onErrorT(s: String) {
         binding.textViewErrorT.text = s
@@ -89,12 +98,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
         val watchlist = mDatabase.getAllData()
         if (watchlist != null && watchlist.isNotEmpty()) {
             binding.groupWatchlist.visibility = View.VISIBLE
-            if (mWatchlistAdapter == null) {
-                mWatchlistAdapter = HomeWatchlistAdapter(context, watchlist)
-                binding.recyclerViewWatchlist.layoutManager =
-                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.recyclerViewWatchlist.adapter = mWatchlistAdapter
-            }
+            binding.recyclerViewWatchlist.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            binding.recyclerViewWatchlist.adapter = mWatchlistAdapter
 
             // update the latest prices of crypto coins
             mHomeViewModel.fetchUpdatedPricesApi(watchlist)
@@ -118,23 +124,23 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     fun loadData() {
         try {
-            mHomeViewModel.trendingLiveData.observe(viewLifecycleOwner, Observer {
+            mHomeViewModel.trendingLiveData.observe(viewLifecycleOwner, Observer { result ->
                 // blank observe here
-                when (it) {
+                when (result) {
                     is NetworkResult.Success -> {
-                        it.networkData?.let {
+                        result.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinishedT()
                             binding.recyclerViewTrending.layoutManager =
                                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                            binding.recyclerViewTrending.adapter =
-                                HomeTrendingAdapter(context, it.coins)
+                            binding.recyclerViewTrending.adapter = mHomeTrendingAdapter
+                            mHomeTrendingAdapter.updateList(it.coins)
                         }
                     }
 
                     is NetworkResult.Error -> {
                         //show error message
-                        onErrorT(it.networkErrorMessage.toString())
+                        onErrorT(result.networkErrorMessage.toString())
                     }
 
                     is NetworkResult.Loading -> {
@@ -147,7 +153,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
             mHomeViewModel.watchListLiveData.observe(viewLifecycleOwner, Observer {
                 it.let {
                     //bind the data to the ui
-                    mWatchlistAdapter?.updateList(it)
+                    mWatchlistAdapter.updateList(it)
                 }
             })
         } catch (ex: Exception) {
@@ -165,8 +171,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
                             //bind the data to the ui
                             onLoadingFinishedN()
                             binding.recyclerViewNews.layoutManager = LinearLayoutManager(context)
-                            binding.recyclerViewNews.adapter =
-                                NewsAdapter(context, newsData.articles.subList(0, 3))
+
+                            binding.recyclerViewNews.adapter = mNewsAdapter
+                            mNewsAdapter.update(newsData.articles.subList(0, 3))
                         }
                     }
 

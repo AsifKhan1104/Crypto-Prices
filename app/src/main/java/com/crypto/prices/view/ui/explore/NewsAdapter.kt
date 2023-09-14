@@ -13,11 +13,13 @@ import com.asf.cryptoprices.R
 import com.crypto.prices.model.Article
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.utils.Utility.formatPublishedDateTime
+import dagger.hilt.android.qualifiers.ActivityContext
 import kotlinx.android.synthetic.main.item_news.view.*
+import javax.inject.Inject
 
-class NewsAdapter(context: Context?, var data: List<Article>?) :
+class NewsAdapter @Inject constructor(@ActivityContext val context: Context?) :
     RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
-    private val context = context
+    private var data: List<Article>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = NewsViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
@@ -62,9 +64,8 @@ class NewsAdapter(context: Context?, var data: List<Article>?) :
         }
     }
 
-    /*fun update(newReqs: List<WithdrawReq>) {
-        requests.clear()
-        requests.addAll(newReqs)
+    fun update(listArticle: List<Article>) {
+        data = listArticle
         notifyDataSetChanged()
-    }*/
+    }
 }
