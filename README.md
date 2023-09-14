@@ -40,6 +40,10 @@ programming language for Android developement.
 that converts async callbacks for long-running tasks, such as database or network access, into
 sequential code.
 
+[Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - Hilt is a
+dependency injection library for Android that reduces the boilerplate code of doing manual
+dependency injection in your project.
+
 [Live Data](https://developer.android.com/topic/libraries/architecture/livedata) - LiveData is an
 observable data holder class.
 
