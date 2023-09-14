@@ -30,6 +30,8 @@ CryptoTrail is a free crypto tracker app that allows you to:
 
 [Coroutines](https://kotlinlang.org/docs/coroutines-guide.html) - Coroutines are a Kotlin feature that converts async callbacks for long-running tasks, such as database or network access, into sequential code.
 
+[Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - Hilt is a dependency injection library for Android that reduces the boilerplate code of doing manual dependency injection in your project.
+
 [Live Data](https://developer.android.com/topic/libraries/architecture/livedata) - LiveData is an observable data holder class.
 
 [View Model](https://developer.android.com/topic/libraries/architecture/viewmodel) - The ViewModel class is designed to store and manage UI-related data in a lifecycle conscious way.
