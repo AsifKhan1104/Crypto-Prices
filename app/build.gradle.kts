@@ -15,8 +15,8 @@ android {
         applicationId = "com.asf.cryptoprices"
         minSdk = 19
         targetSdk = 33
-        versionCode = 2
-        versionName = "1.1.0"
+        versionCode = 3
+        versionName = "1.2.0"
         multiDexEnabled = true
         resConfigs(
             "ar", "de", "en", "es", "fr", "gu", "hi", "hu", "id", "it", "ja", "kn", "ko", "nl",
