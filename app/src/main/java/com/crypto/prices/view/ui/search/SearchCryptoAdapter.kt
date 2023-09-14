@@ -26,10 +26,10 @@ class SearchCryptoAdapter @Inject constructor(@ActivityContext val context: Cont
         LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
     )
 
-    override fun getItemCount() = data!!.size
+    override fun getItemCount() = if (data == null) 0 else data!!.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(context!!, position, data!!.get(position))
+        holder.bind(context!!, position, data?.get(position))
     }
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
