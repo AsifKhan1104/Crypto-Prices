@@ -14,9 +14,11 @@ import com.asf.cryptoprices.databinding.FragmentDerivativesBinding
 import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.view.TrailLoadStateAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DerivativesFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentDerivativesBinding? = null
     private val mViewModel: DerivativesViewModel by viewModels()
@@ -110,10 +112,12 @@ class DerivativesFragment : Fragment(), View.OnClickListener {
                         loadState.prepend as LoadState.Error
                         onError(getString(R.string.error_msg))
                     }
+
                     loadState.append is LoadState.Error -> {
                         loadState.append as LoadState.Error
 
                     }
+
                     loadState.refresh is LoadState.Error -> {
                         loadState.refresh as LoadState.Error
                         onError(getString(R.string.error_msg))

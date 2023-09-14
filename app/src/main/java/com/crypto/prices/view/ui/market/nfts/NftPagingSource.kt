@@ -3,7 +3,7 @@ package com.crypto.prices.view.ui.market.nfts
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.crypto.prices.model.NftData
-import com.crypto.prices.view.AppRepository
+import com.crypto.prices.data.online.AppRepository
 
 class NftPagingSource(
     val appRepository: AppRepository,

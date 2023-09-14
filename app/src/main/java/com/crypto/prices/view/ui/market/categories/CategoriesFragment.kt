@@ -14,7 +14,9 @@ import com.asf.cryptoprices.databinding.FragmentCategoriesBinding
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.ui.market.crypto.CryptoFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CategoriesFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentCategoriesBinding? = null
     private val mCategoriesViewModel: CategoriesViewModel by viewModels()

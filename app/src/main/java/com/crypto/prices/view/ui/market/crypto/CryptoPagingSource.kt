@@ -3,7 +3,7 @@ package com.crypto.prices.view.ui.market.crypto
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.crypto.prices.model.CryptoData
-import com.crypto.prices.view.AppRepository
+import com.crypto.prices.data.online.AppRepository
 
 class CryptoPagingSource(
     val appRepository: AppRepository,

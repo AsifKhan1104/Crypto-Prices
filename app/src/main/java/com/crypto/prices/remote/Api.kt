@@ -12,10 +12,6 @@ interface Api {
     @GET("v1/cryptocurrency/listings/latest")
     suspend fun getListingsLatest(): Response<ListingsLatest>
 
-    @Headers("X-CMC_PRO_API_KEY: 5830540b-c91b-4428-8c1f-08b7073aa1b8")
-    @GET("v2/tools/price-conversion")
-    suspend fun getPriceConversion(@QueryMap map: Map<String, String>): Response<String>
-
     @GET("v3/coins/markets")
     suspend fun getCryptoCoins(@QueryMap map: Map<String, String>): Response<List<CryptoData>>
 

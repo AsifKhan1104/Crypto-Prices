@@ -1,7 +1,7 @@
 package com.crypto.prices.di
 
-import com.crypto.prices.view.AppRepository
-import com.crypto.prices.view.AppRepositoryImpl
+import com.crypto.prices.data.online.AppRepository
+import com.crypto.prices.data.online.AppRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.asf.cryptoprices.R
-import com.crypto.prices.database.Watchlist
+import com.crypto.prices.data.offline.Watchlist
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailSearchActivity
 import com.crypto.prices.view.ui.market.nfts.detail.NftDetailActivity
 import kotlinx.android.synthetic.main.item_trending.view.*

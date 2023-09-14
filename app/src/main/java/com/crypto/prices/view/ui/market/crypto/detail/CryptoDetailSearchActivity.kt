@@ -13,8 +13,8 @@ import androidx.lifecycle.Observer
 import com.asf.cryptoprices.R
 import com.asf.cryptoprices.databinding.ActivityCryptoDetailBinding
 import com.bumptech.glide.Glide
-import com.crypto.prices.database.Watchlist
-import com.crypto.prices.database.WatchlistRepo
+import com.crypto.prices.data.offline.Watchlist
+import com.crypto.prices.data.offline.WatchlistRepo
 import com.crypto.prices.model.CryptoChartData
 import com.crypto.prices.model.crypto.search.CryptoDetailData
 import com.crypto.prices.utils.MyAnalytics

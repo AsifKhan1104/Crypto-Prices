@@ -10,7 +10,7 @@ import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.CryptoData
 import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.AppRepository
+import com.crypto.prices.data.online.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

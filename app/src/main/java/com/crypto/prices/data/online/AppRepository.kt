@@ -1,4 +1,4 @@
-package com.crypto.prices.view
+package com.crypto.prices.data.online
 
 import com.crypto.prices.model.*
 import com.crypto.prices.model.crypto.search.CryptoDetailData

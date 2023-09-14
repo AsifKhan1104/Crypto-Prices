@@ -8,15 +8,13 @@ import android.net.Uri
 import android.util.Log
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService.RemoteViewsFactory
+import com.asf.cryptoprices.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.AppWidgetTarget
-import com.asf.cryptoprices.R
 import com.crypto.prices.model.CryptoData
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.Utility.getCurrencyGlobal
 import com.crypto.prices.utils.Utility.getCurrencySymbolGlobal
-import com.crypto.prices.view.AppRepository
-import com.crypto.prices.view.AppRepositoryImpl
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
@@ -107,8 +105,7 @@ class CryptoDataProvider(context: Context?, intent: Intent?) : RemoteViewsFactor
         map["per_page"] = "20"
 
         /*GlobalScope.launch {
-            val appRepository: AppRepository = AppRepositoryImpl()
-            val response = appRepository.getCryptoPrices(map as MutableMap<String, String>)
+            val response = getCryptoPrices(map as MutableMap<String, String>)
             // check if request is successful
             if (response.isSuccessful) {
                 cryptoList = response.body()!!

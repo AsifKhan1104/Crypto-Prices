@@ -7,7 +7,7 @@ import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.SearchData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.AppRepository
+import com.crypto.prices.data.online.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

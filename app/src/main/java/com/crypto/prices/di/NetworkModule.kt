@@ -2,6 +2,7 @@ package com.crypto.prices.di
 
 import com.crypto.prices.remote.Api
 import com.crypto.prices.remote.NewsApi
+import com.crypto.prices.remote.PriceConversionApi
 import com.crypto.prices.utils.Constants.BASE_URL
 import com.crypto.prices.utils.Constants.BASE_URL_CG
 import com.crypto.prices.utils.Constants.BASE_URL_NEWS
@@ -31,15 +32,15 @@ object NetworkModule {
             .create(Api::class.java)
     }*/
 
-    /*@Singleton
+    @Singleton
     @Provides
-    fun providesCMJsonService(): Api {
+    fun providesCMJsonService(): PriceConversionApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(ScalarsConverterFactory.create())
             .build()
-            .create(Api::class.java)
-    }*/
+            .create(PriceConversionApi::class.java)
+    }
 
     @Singleton
     @Provides

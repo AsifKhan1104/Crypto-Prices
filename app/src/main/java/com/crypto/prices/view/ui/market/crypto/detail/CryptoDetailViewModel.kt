@@ -8,7 +8,7 @@ import com.crypto.prices.CryptoApplication
 import com.crypto.prices.model.CryptoChartData
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.AppRepository
+import com.crypto.prices.data.online.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException

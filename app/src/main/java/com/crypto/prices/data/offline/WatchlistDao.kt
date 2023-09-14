@@ -1,4 +1,4 @@
-package com.crypto.prices.database
+package com.crypto.prices.data.offline
 
 import androidx.room.Dao
 import androidx.room.Insert

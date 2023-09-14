@@ -1,11 +1,11 @@
-package com.crypto.prices.view
+package com.crypto.prices.data.online
 
 import com.crypto.prices.model.*
 import com.crypto.prices.model.crypto.search.CryptoDetailData
 import com.crypto.prices.model.exchangeRates.ExchangeRates
 import com.crypto.prices.remote.Api
 import com.crypto.prices.remote.NewsApi
-import com.crypto.prices.remote.Service
+import com.crypto.prices.remote.PriceConversionApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
@@ -13,7 +13,8 @@ import javax.inject.Inject
 
 class AppRepositoryImpl @Inject constructor(
     private val service: Api,
-    private val serviceNews: NewsApi
+    private val serviceNews: NewsApi,
+    private val servicePriceConversion: PriceConversionApi
 ) : AppRepository {
 
     //override suspend fun getCryptoPrices(): Response<ListingsLatest> = serviceCM.getListingsLatest()
@@ -62,7 +63,7 @@ class AppRepositoryImpl @Inject constructor(
         service.getSupportedCurrency()
 
     override suspend fun getPriceConversion(map: MutableMap<String, String>): Response<String> =
-        Service().getCMJsonService().getPriceConversion(map)
+        servicePriceConversion.getPriceConversion(map)
 
     override suspend fun getSearchResults(query: String): Flow<Response<SearchData>> =
         flow { emit(service.getSearchResults(query)) }

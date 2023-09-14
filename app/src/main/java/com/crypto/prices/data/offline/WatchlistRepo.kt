@@ -1,4 +1,4 @@
-package com.crypto.prices.database
+package com.crypto.prices.data.offline
 
 import android.content.Context
 

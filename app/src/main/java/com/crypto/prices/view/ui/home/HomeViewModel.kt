@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.asf.cryptoprices.R
 import com.crypto.prices.CryptoApplication
-import com.crypto.prices.database.Watchlist
+import com.crypto.prices.data.offline.Watchlist
 import com.crypto.prices.model.Trending
 import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.utils.Utility
-import com.crypto.prices.view.AppRepository
+import com.crypto.prices.data.online.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
