@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.asf.cryptoprices.databinding.FragmentNewsBinding
 import com.crypto.prices.utils.MyAnalytics.trackScreenViews
 import com.crypto.prices.utils.NetworkResult
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewsFragment : Fragment() {
     private var _binding: FragmentNewsBinding? = null
     private val mNewsViewModel: NewsViewModel by viewModels()

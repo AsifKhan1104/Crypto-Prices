@@ -17,6 +17,7 @@ import com.crypto.prices.view.ui.more.MoreFragment
 import com.crypto.prices.view.ui.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 

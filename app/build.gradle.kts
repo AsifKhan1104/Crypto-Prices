@@ -95,6 +95,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.4.0-beta02")
     implementation("androidx.navigation:navigation-ui-ktx:2.4.0-beta02")
+    // TO satisfy fragment transitive dependency
+    implementation ("androidx.fragment:fragment-ktx:1.5.2")
     implementation("androidx.room:room-runtime:2.4.3")
     kapt("androidx.room:room-compiler:2.4.3")
     // google play billing

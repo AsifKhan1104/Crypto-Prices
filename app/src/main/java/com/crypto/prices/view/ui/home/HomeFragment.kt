@@ -16,7 +16,9 @@ import com.crypto.prices.utils.NetworkResult
 import com.crypto.prices.view.activity.MainActivity
 import com.crypto.prices.view.ui.explore.NewsAdapter
 import com.crypto.prices.view.ui.explore.NewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentHomeBinding? = null
@@ -78,7 +80,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         val root: View = binding.root
         MyAnalytics.trackScreenViews("HomeFragment", requireActivity().javaClass.simpleName)
         mDatabase = WatchlistRepo(requireContext())
-        //initWatchlist()
+
         return root
     }
 

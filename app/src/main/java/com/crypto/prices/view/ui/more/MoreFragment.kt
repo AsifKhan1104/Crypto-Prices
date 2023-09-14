@@ -22,7 +22,9 @@ import com.crypto.prices.view.activity.PrivacyPolicyActivity
 import com.crypto.prices.view.activity.TnCActivity
 import com.crypto.prices.view.ui.explore.CurrConverterActivity
 import com.google.gson.Gson
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MoreFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentMoreBinding? = null
     private val mCurrencySelectViewModel: CurrencySelectViewModel by viewModels()

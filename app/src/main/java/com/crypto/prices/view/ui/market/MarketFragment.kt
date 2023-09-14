@@ -12,7 +12,9 @@ import com.asf.cryptoprices.databinding.FragmentMarketBinding
 import com.crypto.prices.utils.MyAnalytics
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MarketFragment : Fragment() {
 
     private var _binding: FragmentMarketBinding? = null

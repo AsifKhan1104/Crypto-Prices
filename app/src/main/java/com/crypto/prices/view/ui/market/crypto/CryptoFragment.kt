@@ -15,9 +15,11 @@ import com.crypto.prices.utils.Constants
 import com.crypto.prices.utils.MyAnalytics
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.view.TrailLoadStateAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CryptoFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentCryptoBinding? = null
     private val mCryptoViewModel: CryptoViewModel by viewModels()
