@@ -18,5 +18,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CryptoPricesDb"
+rootProject.name = "CryptoTrail"
 include(":app")

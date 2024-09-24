@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "com.asf.cryptoprices"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.asf.cryptoprices"
         minSdk = 19
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 3
         versionName = "1.2.0"
         multiDexEnabled = true
