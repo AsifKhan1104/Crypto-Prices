@@ -37,3 +37,20 @@ LineNumberTable, *Annotation*, EnclosingMethod
 -dontwarn javax.annotation.**
 
 -keep class com.crypto.prices.model.** { *; }
+
+-dontwarn com.crypto.prices.Hilt_CryptoApplication
+-dontwarn com.crypto.prices.view.activity.Hilt_MainActivity
+-dontwarn com.crypto.prices.view.ui.explore.Hilt_CurrConverterActivity
+-dontwarn com.crypto.prices.view.ui.explore.Hilt_NewsFragment
+-dontwarn com.crypto.prices.view.ui.home.Hilt_HomeFragment
+-dontwarn com.crypto.prices.view.ui.market.Hilt_MarketFragment
+-dontwarn com.crypto.prices.view.ui.market.categories.Hilt_CategoriesCoinListActivity
+-dontwarn com.crypto.prices.view.ui.market.crypto.Hilt_CryptoFragment
+-dontwarn com.crypto.prices.view.ui.market.crypto.detail.Hilt_CryptoDetailActivity
+-dontwarn com.crypto.prices.view.ui.market.crypto.detail.Hilt_CryptoDetailSearchActivity
+-dontwarn com.crypto.prices.view.ui.market.derivatives.detail.Hilt_DerivativesDetailActivity
+-dontwarn com.crypto.prices.view.ui.market.exchanges.detail.Hilt_ExchangesDetailActivity
+-dontwarn com.crypto.prices.view.ui.market.exchanges.detail.Hilt_ExchangesDetailSearchActivity
+-dontwarn com.crypto.prices.view.ui.market.nfts.detail.Hilt_NftDetailActivity
+-dontwarn com.crypto.prices.view.ui.more.Hilt_MoreFragment
+-dontwarn com.crypto.prices.view.ui.search.Hilt_SearchActivity
