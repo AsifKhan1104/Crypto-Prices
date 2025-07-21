@@ -3,20 +3,20 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
     id("kotlin-android-extensions")
-    kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.asf.cryptoprices"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.asf.cryptoprices"
         minSdk = 19
-        targetSdk = 34
-        versionCode = 3
-        versionName = "1.2.0"
+        targetSdk = 35
+        versionCode = 4
+        versionName = "1.2.1"
         multiDexEnabled = true
         resConfigs(
             "ar", "de", "en", "es", "fr", "gu", "hi", "hu", "id", "it", "ja", "kn", "ko", "nl",
@@ -46,8 +46,8 @@ android {
         viewBinding = true
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -98,7 +98,7 @@ dependencies {
     // TO satisfy fragment transitive dependency
     implementation ("androidx.fragment:fragment-ktx:1.5.2")
     implementation("androidx.room:room-runtime:2.4.3")
-    kapt("androidx.room:room-compiler:2.4.3")
+    ksp("androidx.room:room-compiler:2.4.2")
     // google play billing
     // implementation ("com.android.billingclient:billing-ktx:4.0.0")
     // lucky wheel
@@ -113,7 +113,7 @@ dependencies {
     implementation("androidx.paging:paging-runtime-ktx:3.1.1")
     // hilt
     implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    ksp("com.google.dagger:hilt-android-compiler:2.44")
 
     testImplementation("junit:junit:4.12")
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
@@ -121,6 +121,7 @@ dependencies {
 }
 
 // Allow references to generated code
+/*
 kapt {
     correctErrorTypes = true
-}
+}*/
