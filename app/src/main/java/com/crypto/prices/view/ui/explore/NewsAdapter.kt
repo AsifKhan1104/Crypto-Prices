@@ -2,65 +2,61 @@ package com.crypto.prices.view.ui.explore
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.ItemNewsBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.asf.cryptoprices.R
 import com.crypto.prices.model.Article
 import com.crypto.prices.utils.Utility
 import com.crypto.prices.utils.Utility.formatPublishedDateTime
 import dagger.hilt.android.qualifiers.ActivityContext
-import kotlinx.android.synthetic.main.item_news.view.*
 import javax.inject.Inject
 
-class NewsAdapter @Inject constructor(@ActivityContext val context: Context?) :
+class NewsAdapter @Inject constructor(@ActivityContext private val context: Context?) :
     RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+
     private var data: List<Article>? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = NewsViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
-    )
-
-    override fun getItemCount() = data!!.size
-
-    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        holder.bind(context!!, position, data!!.get(position))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
+        val binding = ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return NewsViewHolder(binding)
     }
 
-    class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val cardViewNews = view.cardViewNews
-        private val imageView = view.imageView
-        private val textViewTitle = view.textViewTitle
-        private val textViewSource = view.textViewSource
-        private val textViewDate = view.textViewDate
+    override fun getItemCount(): Int = data?.size ?: 0
 
-        fun bind(context: Context, position: Int, article: Article) {
-            // show news icon
+    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+        context?.let { ctx ->
+            data?.get(position)?.let { article ->
+                holder.bind(ctx, article)
+            }
+        }
+    }
+
+    class NewsViewHolder(private val binding: ItemNewsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(context: Context, article: Article) {
             val reqOptions = RequestOptions()
                 .transform(CenterCrop(), RoundedCorners(16))
-                .placeholder(R.drawable.image_placeholder) // any placeholder to load at start
-                .error(R.drawable.image_placeholder)  // any image in case of error
+                .placeholder(R.drawable.image_placeholder)
+                .error(R.drawable.image_placeholder)
 
             Glide.with(context)
-                .load(article.urlToImage) // image url
-                /*.override(200, 200) // resizing*/
+                .load(article.urlToImage)
                 .apply(reqOptions)
-                .into(imageView)  // imageview object
+                .into(binding.imageView)
 
-            textViewTitle.text = article.title
-            textViewSource.text = article.source.name
-            textViewDate.text = formatPublishedDateTime(article.publishedAt)
+            binding.textViewTitle.text = article.title
+            binding.textViewSource.text = article.source.name
+            binding.textViewDate.text = formatPublishedDateTime(article.publishedAt)
 
-            // on click listener
-            cardViewNews.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(p0: View?) {
-                    Utility.openChromeCustomTabUrlNews(context, article.url)
-                }
-            })
+            binding.cardViewNews.setOnClickListener {
+                Utility.openChromeCustomTabUrlNews(context, article.url)
+            }
         }
     }
 

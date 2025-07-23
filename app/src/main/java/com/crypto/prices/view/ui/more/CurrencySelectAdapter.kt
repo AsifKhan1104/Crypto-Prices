@@ -4,97 +4,70 @@ import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.ItemCurrencySelectBinding
 import com.crypto.prices.utils.CurrencyData
 import com.crypto.prices.utils.Utility
-import kotlinx.android.synthetic.main.item_crypto.view.textView_name
-import kotlinx.android.synthetic.main.item_currency_select.view.*
 
 class CurrencySelectAdapter(
-    context: Context?,
-    var data: List<CurrencyData>?,
-    itemClick: ItemClick
-) :
-    RecyclerView.Adapter<CurrencySelectAdapter.CryptoViewHolder>() {
-    private val context = context
-    private val mItemClick = itemClick
+    private val context: Context?,
+    private var data: List<CurrencyData>?,
+    private val itemClick: ItemClick
+) : RecyclerView.Adapter<CurrencySelectAdapter.CryptoViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = CryptoViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_currency_select, parent, false),
-        mItemClick
-    )
-
-    override fun getItemCount() = data!!.size
-
-    override fun onBindViewHolder(holder: CryptoViewHolder, position: Int) {
-        holder.bind(context!!, position, data!!.get(position))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CryptoViewHolder {
+        val binding = ItemCurrencySelectBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CryptoViewHolder(binding, itemClick)
     }
 
-    class CryptoViewHolder(view: View, itemClick: ItemClick) : RecyclerView.ViewHolder(view) {
-        private val parentLayout = view.parent_layout
-        private val textViewName = view.textView_name
-        private val mItemClick = itemClick
+    override fun getItemCount() = data?.size ?: 0
 
-        fun bind(context: Context, position: Int, data: CurrencyData?) {
-            textViewName.text = data?.name + " (" + data?.symbol + ")"
-            val currentSelectedCurrency = Utility.getCurrency(context as Activity).let { it }
-            if (data?.currency!!.equals(currentSelectedCurrency)) {
-                parentLayout.background = context.getDrawable(R.drawable.list_pressed)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    textViewName.setTextColor(
-                        context.resources.getColor(
-                            R.color.selected_text_color,
-                            context.theme
-                        )
-                    )
+    override fun onBindViewHolder(holder: CryptoViewHolder, position: Int) {
+        context?.let { ctx ->
+            data?.get(position)?.let { currencyData ->
+                holder.bind(ctx, currencyData)
+            }
+        }
+    }
+
+    class CryptoViewHolder(
+        private val binding: ItemCurrencySelectBinding,
+        private val itemClick: ItemClick
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(context: Context, data: CurrencyData) {
+            binding.textViewName.text = "${data.name} (${data.symbol})"
+
+            val currentSelectedCurrency = Utility.getCurrency(context as Activity)
+            if (data.currency == currentSelectedCurrency) {
+                binding.parentLayout.background = context.getDrawable(R.drawable.list_pressed)
+                val colorRes = R.color.selected_text_color
+                val color = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    context.resources.getColor(colorRes, context.theme)
                 } else {
-                    textViewName.setTextColor(context.resources.getColor(R.color.selected_text_color))
+                    context.resources.getColor(colorRes)
                 }
+                binding.textViewName.setTextColor(color)
             } else {
-                parentLayout.background = context.getDrawable(R.drawable.list_not_pressed)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    textViewName.setTextColor(
-                        context.resources.getColor(
-                            R.color.black,
-                            context.theme
-                        )
-                    )
+                binding.parentLayout.background = context.getDrawable(R.drawable.list_not_pressed)
+                val colorRes = R.color.black
+                val color = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    context.resources.getColor(colorRes, context.theme)
                 } else {
-                    textViewName.setTextColor(context.resources.getColor(R.color.black))
+                    context.resources.getColor(colorRes)
                 }
+                binding.textViewName.setTextColor(color)
             }
 
-            // on click listener
-            parentLayout.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(p0: View?) {
-                    // save selected currency in shared prefs
-                    Utility.setCurrency(context as Activity, data?.currency)
-                    Utility.setCurrencyName(context as Activity, data?.name)
-                    Utility.setCurrencySymbol(context as Activity, data?.symbol)
-                    mItemClick.onItemClicked()
-
-                    /*// show dialog before restarting the app
-                    val builder = AlertDialog.Builder(context)
-                    builder.setMessage("To make selected currency active, app restart is required. \nRestarting in 10 seconds")
-                        .setTitle("Alert")
-                        .setIcon(R.drawable.alert)
-                    builder.setCancelable(false)
-                    *//*.setNeutralButton("OK", { dialog, id ->
-                        Utility.restartApp(context)
-                    })*//*
-                    val alert: AlertDialog = builder.create()
-                    alert.show()
-
-                    // restarting the app in 10 secs
-                    GlobalScope.launch {
-                        delay(10000)*/
-                    Utility.restartApp(context)
-                    /*}*/
-                }
-            })
+            binding.parentLayout.setOnClickListener {
+                Utility.setCurrency(context as Activity, data.currency)
+                Utility.setCurrencyName(context, data.name)
+                Utility.setCurrencySymbol(context, data.symbol)
+                itemClick.onItemClicked()
+                Utility.restartApp(context)
+            }
         }
     }
 

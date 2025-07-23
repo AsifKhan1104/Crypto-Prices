@@ -115,7 +115,7 @@ class DerivativesDetailActivity : AppCompatActivity(), View.OnClickListener {
                         it.networkData?.let {
                             //bind the data to the ui
                             onLoadingFinished()
-                            setPerpetualData(it?.filter { it?.market?.equals(data?.name) })
+                            setPerpetualData(it.filter { it.market.equals(data?.name) })
                         }
                     }
                     is NetworkResult.Error -> {

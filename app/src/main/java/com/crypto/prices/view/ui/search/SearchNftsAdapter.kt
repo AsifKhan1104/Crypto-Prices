@@ -3,69 +3,59 @@ package com.crypto.prices.view.ui.search
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.asf.cryptoprices.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.asf.cryptoprices.databinding.ItemSearchBinding
 import com.crypto.prices.model.Nft
 import com.crypto.prices.view.ui.market.nfts.detail.NftDetailActivity
 import dagger.hilt.android.qualifiers.ActivityContext
-import kotlinx.android.synthetic.main.item_crypto.view.table_layout
-import kotlinx.android.synthetic.main.item_search.view.imageView
-import kotlinx.android.synthetic.main.item_search.view.textView_name
-import kotlinx.android.synthetic.main.item_search.view.textView_symbol
 import javax.inject.Inject
 
-class SearchNftsAdapter @Inject constructor(@ActivityContext val context: Context?) :
-    RecyclerView.Adapter<SearchNftsAdapter.MyViewHolder>() {
+class SearchNftsAdapter @Inject constructor(
+    @ActivityContext private val context: Context?
+) : RecyclerView.Adapter<SearchNftsAdapter.MyViewHolder>() {
+
     private var data: List<Nft>? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MyViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
-    )
-
-    override fun getItemCount() = if (data == null) 0 else data!!.size
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(context!!, position, data?.get(position))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val binding = ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
-    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val tableLayout = view.table_layout
-        private val imageView = view.imageView
-        private val textViewSymbol = view.textView_symbol
-        private val textViewName = view.textView_name
+    override fun getItemCount(): Int = data?.size ?: 0
 
-        fun bind(context: Context, position: Int, data: Nft?) {
-            try {
-                textViewSymbol.text = data?.symbol
-                textViewName.text = data?.name
-
-                // set icons
-                Glide.with(context)
-                    .load(data?.thumb)
-                    .apply(RequestOptions.circleCropTransform())
-                    .into(imageView)
-            } catch (ex: Exception) {
-                ex.printStackTrace()
-            }
-
-            // on click listener
-            tableLayout.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(p0: View?) {
-                    val intent = Intent(context, NftDetailActivity::class.java)
-                    intent.putExtra("id", data?.id)
-                    intent.putExtra("name", data?.name)
-                    context.startActivity(intent)
-                }
-            })
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val nft = data?.get(position)
+        if (context != null && nft != null) {
+            holder.bind(context, nft)
         }
     }
 
     fun updateList(list: List<Nft>) {
         data = list
         notifyDataSetChanged()
+    }
+
+    inner class MyViewHolder(private val binding: ItemSearchBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(context: Context, nft: Nft) {
+            binding.textViewSymbol.text = nft.symbol
+            binding.textViewName.text = nft.name
+
+            Glide.with(context)
+                .load(nft.thumb)
+                .apply(RequestOptions.circleCropTransform())
+                .into(binding.imageView)
+
+            binding.tableLayout.setOnClickListener {
+                val intent = Intent(context, NftDetailActivity::class.java).apply {
+                    putExtra("id", nft.id)
+                    putExtra("name", nft.name)
+                }
+                context.startActivity(intent)
+            }
+        }
     }
 }

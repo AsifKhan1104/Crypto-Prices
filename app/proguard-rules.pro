@@ -36,21 +36,47 @@ LineNumberTable, *Annotation*, EnclosingMethod
 -dontwarn okio.**
 -dontwarn javax.annotation.**
 
--keep class com.crypto.prices.model.** { *; }
+-keep class com.crypto.prices.CryptoApplication { *; }
 
--dontwarn com.crypto.prices.Hilt_CryptoApplication
--dontwarn com.crypto.prices.view.activity.Hilt_MainActivity
--dontwarn com.crypto.prices.view.ui.explore.Hilt_CurrConverterActivity
--dontwarn com.crypto.prices.view.ui.explore.Hilt_NewsFragment
--dontwarn com.crypto.prices.view.ui.home.Hilt_HomeFragment
--dontwarn com.crypto.prices.view.ui.market.Hilt_MarketFragment
--dontwarn com.crypto.prices.view.ui.market.categories.Hilt_CategoriesCoinListActivity
--dontwarn com.crypto.prices.view.ui.market.crypto.Hilt_CryptoFragment
--dontwarn com.crypto.prices.view.ui.market.crypto.detail.Hilt_CryptoDetailActivity
--dontwarn com.crypto.prices.view.ui.market.crypto.detail.Hilt_CryptoDetailSearchActivity
--dontwarn com.crypto.prices.view.ui.market.derivatives.detail.Hilt_DerivativesDetailActivity
--dontwarn com.crypto.prices.view.ui.market.exchanges.detail.Hilt_ExchangesDetailActivity
--dontwarn com.crypto.prices.view.ui.market.exchanges.detail.Hilt_ExchangesDetailSearchActivity
--dontwarn com.crypto.prices.view.ui.market.nfts.detail.Hilt_NftDetailActivity
--dontwarn com.crypto.prices.view.ui.more.Hilt_MoreFragment
--dontwarn com.crypto.prices.view.ui.search.Hilt_SearchActivity
+# Hilt/Dagger related rules
+-keep class dagger.** { *; }
+-keep interface dagger.** { *; }
+-keep class javax.inject.** { *; }
+
+# Keep generated Hilt classes
+-keep class * implements dagger.hilt.android.components.* { *; }
+-keep class * extends dagger.hilt.android.internal.managers.* { *; }
+-keep class * extends dagger.hilt.internal.* { *; }
+
+# Keep Hilt annotations
+-keepattributes *Annotation*
+
+# If you use EntryPoint and other generated classes
+-keep class **_HiltComponents { *; }
+-keep class **_HiltModules { *; }
+
+# Keep injectable fields and constructors
+-keepclassmembers,allowobfuscation class * {
+    @javax.inject.Inject <init>(...);
+}
+
+-keepclassmembers class * {
+    @javax.inject.Inject <fields>;
+}
+
+# Retrofit interface methods - keep all interface methods annotated with @retrofit2.http.*
+-keep interface * {
+    @retrofit2.http.* <methods>;
+}
+
+# Keep Retrofit annotations
+-keepattributes RuntimeVisibleAnnotations
+
+# For OkHttp (if you use it)
+-dontwarn okhttp3.**
+-keep class okhttp3.** { *; }
+
+# Gson uses reflection, so keep model classes' fields
+-keep class com.crypto.prices.model.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*

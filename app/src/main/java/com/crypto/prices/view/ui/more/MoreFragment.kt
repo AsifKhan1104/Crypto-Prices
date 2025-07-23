@@ -123,7 +123,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
                     // load currency list from shared prefs
                     // open bottom sheet dialog fragment
                     val fragment = CurrencySelectFragment()
-                    fragment.show(requireActivity()?.supportFragmentManager, "")
+                    fragment.show(requireActivity().supportFragmentManager, "")
                 }
             }
             binding.relativeLayoutLanguage.id -> {
@@ -147,9 +147,9 @@ class MoreFragment : Fragment(), View.OnClickListener {
                         it.networkData?.let {
                             //bind the data to the ui
                             //onLoadingFinished()
-                            val currencyList = CurrencyData().buildCurrencyList(it?.rates)
+                            val currencyList = CurrencyData().buildCurrencyList(it.rates)
                             // now save this list in shared prefs
-                            val sharedPref = requireActivity()?.getPreferences(MODE_PRIVATE)
+                            val sharedPref = requireActivity().getPreferences(MODE_PRIVATE)
                             with(sharedPref.edit()) {
                                 putString(
                                     "currencyList",
@@ -160,7 +160,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
 
                             // open bottom sheet dialog fragment
                             val fragment = CurrencySelectFragment()
-                            fragment.show(requireActivity()?.supportFragmentManager, "")
+                            fragment.show(requireActivity().supportFragmentManager, "")
                         }
                     }
                     is NetworkResult.Error -> {

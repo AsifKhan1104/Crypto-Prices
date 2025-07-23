@@ -3,69 +3,57 @@ package com.crypto.prices.view.ui.market.exchanges
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.ItemExchangesBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.crypto.prices.model.ExchangesData
 import com.crypto.prices.view.ui.market.exchanges.detail.ExchangesDetailActivity
-import kotlinx.android.synthetic.main.item_crypto.view.table_layout
-import kotlinx.android.synthetic.main.item_exchanges.view.textView_exchange
-import kotlinx.android.synthetic.main.item_exchanges.view.textView_trust_score
-import kotlinx.android.synthetic.main.item_exchanges.view.textView_volume
-import kotlinx.android.synthetic.main.item_nft.view.imageView_id
 
-class ExchangesPagingAdapter(context: Context?) :
-    PagingDataAdapter<ExchangesData, ExchangesPagingAdapter.MyViewHolder>(ExchangesPagingAdapter.MyComparator) {
-    private val context = context
+class ExchangesPagingAdapter(private val context: Context?) :
+    PagingDataAdapter<ExchangesData, ExchangesPagingAdapter.MyViewHolder>(MyComparator) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) =
-        ExchangesPagingAdapter.MyViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_exchanges, parent, false)
-        )
-
-    //override fun getItemCount() = data!!.size
-
-    override fun onBindViewHolder(holder: ExchangesPagingAdapter.MyViewHolder, position: Int) {
-        holder.bind(context!!, position, getItem(position) as ExchangesData)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val binding = ItemExchangesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
-    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val tableLayout = view.table_layout
-        private val imageView = view.imageView_id
-        private val textViewExchange = view.textView_exchange
-        private val textViewVolume = view.textView_volume
-        private val textViewTrustScore = view.textView_trust_score
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        context?.let {
+            getItem(position)?.let { data ->
+                holder.bind(it, data)
+            }
+        }
+    }
 
-        fun bind(context: Context, position: Int, data: ExchangesData?) {
-            textViewExchange.text = data?.name
-            textViewVolume.text = data?.trade_volume_24h_btc?.toString()
-            textViewTrustScore.text = data?.trust_score?.toString()
+    class MyViewHolder(private val binding: ItemExchangesBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-            // set icons
+        fun bind(context: Context, data: ExchangesData) {
+            binding.textViewExchange.text = data.name
+            binding.textViewVolume.text = data.trade_volume_24h_btc?.toString()
+            binding.textViewTrustScore.text = data.trust_score?.toString()
+
+            // Load image
             Glide.with(context)
-                .load(data?.image)
+                .load(data.image)
                 .apply(RequestOptions.circleCropTransform())
-                .into(imageView)
+                .into(binding.imageViewId)
 
-            // on click listener
-            tableLayout.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(p0: View?) {
-                    val intent = Intent(context, ExchangesDetailActivity::class.java)
-                    intent.putExtra("exchanges_data", data)
-                    context.startActivity(intent)
-                }
-            })
+            // Click listener
+            binding.tableLayout.setOnClickListener {
+                val intent = Intent(context, ExchangesDetailActivity::class.java)
+                intent.putExtra("exchanges_data", data)
+                context.startActivity(intent)
+            }
         }
     }
 
     object MyComparator : DiffUtil.ItemCallback<ExchangesData>() {
         override fun areItemsTheSame(oldItem: ExchangesData, newItem: ExchangesData): Boolean {
-            // Id is unique.
             return oldItem.id == newItem.id
         }
 

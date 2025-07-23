@@ -125,20 +125,20 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
         binding.textView24l.text = Utility.getCurrencySymbol(this) + data?.low_24h?.usd?.toString()
 
         // set arrow %
-        var athChangePerc: String? = data?.ath_change_percentage?.usd?.toString()
-        var atlChangePerc: String? = data?.atl_change_percentage?.usd?.toString()
+        var athChangePerc: String? = data.ath_change_percentage.usd.toString()
+        var atlChangePerc: String? = data.atl_change_percentage.usd.toString()
         var priceArrowAltH = R.drawable.ic_arrow_up_24
-        if (data?.ath_change_percentage?.usd?.compareTo(BigDecimal.ZERO) < 0) {
+        if (data.ath_change_percentage.usd.compareTo(BigDecimal.ZERO) < 0) {
             priceArrowAltH = R.drawable.ic_arrow_down_24
-            athChangePerc = data?.ath_change_percentage?.usd?.toString()
-                .substring(1, data?.ath_change_percentage?.usd?.toString()!!.length)
+            athChangePerc = data.ath_change_percentage.usd.toString()
+                .substring(1, data.ath_change_percentage.usd.toString().length)
         }
         binding.textViewAthPerc.setCompoundDrawablesWithIntrinsicBounds(priceArrowAltH, 0, 0, 0)
         var priceArrowAltL = R.drawable.ic_arrow_up_24
-        if (data?.atl_change_percentage?.usd?.compareTo(BigDecimal.ZERO) < 0) {
+        if (data.atl_change_percentage.usd.compareTo(BigDecimal.ZERO) < 0) {
             priceArrowAltL = R.drawable.ic_arrow_down_24
-            atlChangePerc = data?.atl_change_percentage?.usd?.toString()
-                .substring(1, data?.atl_change_percentage?.usd?.toString()!!.length)
+            atlChangePerc = data.atl_change_percentage.usd.toString()
+                .substring(1, data.atl_change_percentage.usd.toString().length)
         }
         binding.textViewAtlPerc.setCompoundDrawablesWithIntrinsicBounds(priceArrowAltL, 0, 0, 0)
 
@@ -423,13 +423,13 @@ class CryptoDetailSearchActivity : AppCompatActivity(), View.OnClickListener {
                     mDatabase.insert(
                         Watchlist(
                             id,
-                            data?.image.thumb!!,
-                            data?.market_data?.market_cap?.usd?.toString(),
-                            data?.market_cap_rank.toString(),
-                            data?.name.toString(),
-                            data?.market_data?.current_price?.usd?.toString(),
-                            data?.market_data?.price_change_24h_in_currency?.usd?.toString(),
-                            data?.symbol.toString(),
+                            data.image.thumb,
+                            data.market_data.market_cap.usd.toString(),
+                            data.market_cap_rank.toString(),
+                            data.name,
+                            data.market_data.current_price.usd.toString(),
+                            data.market_data.price_change_24h_in_currency.usd.toString(),
+                            data.symbol,
                             "$",
                             "crypto"
                         )

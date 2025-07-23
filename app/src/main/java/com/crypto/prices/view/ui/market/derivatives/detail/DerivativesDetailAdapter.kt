@@ -5,90 +5,73 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.DialogDerivativesDetailBinding
+import com.asf.cryptoprices.databinding.ItemDerivativesDetailBinding
 import com.crypto.prices.model.DerivativesDetailData
 import com.crypto.prices.utils.Utility
 import dagger.hilt.android.qualifiers.ActivityContext
-import kotlinx.android.synthetic.main.item_derivatives_detail.view.table_layout
-import kotlinx.android.synthetic.main.item_derivatives_detail.view.textView_open_interest
-import kotlinx.android.synthetic.main.item_derivatives_detail.view.textView_price
-import kotlinx.android.synthetic.main.item_derivatives_detail.view.textView_symbol
 import javax.inject.Inject
 
-class DerivativesDetailAdapter @Inject constructor(@ActivityContext val context: Context?) :
+class DerivativesDetailAdapter @Inject constructor(@ActivityContext private val context: Context?) :
     RecyclerView.Adapter<DerivativesDetailAdapter.MyViewHolder>() {
+
     private var data: List<DerivativesDetailData>? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MyViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_derivatives_detail, parent, false)
-    )
-
-    override fun getItemCount() = data!!.size
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(context!!, position, data!!.get(position))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val binding = ItemDerivativesDetailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
-    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val parentLayout = view.table_layout
-        private val textViewSymbol = view.textView_symbol
-        private val textViewPrice = view.textView_price
-        private val textViewOpenInterest = view.textView_open_interest
+    override fun getItemCount(): Int = data?.size ?: 0
 
-        fun bind(context: Context, position: Int, detailData: DerivativesDetailData) {
-            textViewSymbol.text = detailData?.symbol
-            textViewPrice.text = "$" + detailData?.price
-            if (detailData?.open_interest != null) {
-                textViewOpenInterest.text = "$" + detailData?.open_interest?.toString()
-            } else {
-                textViewOpenInterest.text = "-"
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        context?.let { ctx ->
+            data?.get(position)?.let { item ->
+                holder.bind(ctx, item)
             }
+        }
+    }
 
-            // parent view click listener
-            parentLayout.setOnClickListener(View.OnClickListener {
+    class MyViewHolder(private val binding: ItemDerivativesDetailBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(context: Context, detailData: DerivativesDetailData) {
+            binding.textViewSymbol.text = detailData.symbol
+            binding.textViewPrice.text = "$${detailData.price}"
+            binding.textViewOpenInterest.text = detailData.open_interest?.let { "$$it" } ?: "-"
+
+            binding.tableLayout.setOnClickListener {
                 showCustomDialog(context, detailData)
-            })
+            }
         }
 
-        fun showCustomDialog(context: Context, data: DerivativesDetailData?) {
+        private fun showCustomDialog(context: Context, data: DerivativesDetailData) {
             val dialog = Dialog(context)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.setCancelable(true)
-            dialog.setContentView(R.layout.dialog_derivatives_detail)
-            val market = dialog.findViewById(R.id.textViewMarket) as TextView
-            val ctType = dialog.findViewById(R.id.textViewCType) as TextView
-            val openInterest = dialog.findViewById(R.id.textViewOpenInterest) as TextView
-            val hPerc = dialog.findViewById(R.id.textView24HChange) as TextView
-            val lastPrice = dialog.findViewById(R.id.textViewLastPrice) as TextView
-            val indexBasisPerc = dialog.findViewById(R.id.textViewIndexBasis) as TextView
-            val marketPair = dialog.findViewById(R.id.textViewPair) as TextView
-            val lastTraded = dialog.findViewById(R.id.textViewLastTraded) as TextView
-            val hVolume = dialog.findViewById(R.id.textView24HVol) as TextView
-            val bidAskSpread = dialog.findViewById(R.id.textViewBidAskSpread) as TextView
-            val indexPrice = dialog.findViewById(R.id.textViewIndexPrice) as TextView
-            val fundingRate = dialog.findViewById(R.id.textViewFundingRate) as TextView
 
-            // set text
-            market.text = data?.market
-            ctType.text = data?.contract_type
-            openInterest.text =
-                if (data?.open_interest != null) "$" + data?.open_interest?.toString() else "-"
-            hPerc.text = String.format("%.4f", data?.price_percentage_change_24h?.toFloat()) + " %"
-            lastPrice.text = "$" + data?.price
-            indexBasisPerc.text = data?.index?.toString()
-            marketPair.text = data?.symbol
-            lastTraded.text = Utility.formatPublishedDateTimeLong(data?.last_traded_at!!)
-            hVolume.text = "$" + String.format("%.2f", data?.volume_24h?.toFloat())
-            bidAskSpread.text = if (data?.spread != null) data?.spread?.toString() + " %" else "-"
-            indexPrice.text = String.format("%.4f", data?.index?.toFloat()) + " USDT"
-            fundingRate.text = data?.funding_rate?.toString() + " %"
-            fundingRate.isSelected = true
+            val dialogBinding = DialogDerivativesDetailBinding.inflate(LayoutInflater.from(context))
+            dialog.setContentView(dialogBinding.root)
+
+            dialogBinding.apply {
+                textViewMarket.text = data.market
+                textViewCType.text = data.contract_type
+                textViewOpenInterest.text = data.open_interest?.let { "$$it" } ?: "-"
+                textView24HChange.text = String.format("%.4f", data.price_percentage_change_24h?.toFloat()) + " %"
+                textViewLastPrice.text = "$${data.price}"
+                textViewIndexBasis.text = data.index?.toString()
+                textViewPair.text = data.symbol
+                textViewLastTraded.text = Utility.formatPublishedDateTimeLong(data.last_traded_at!!)
+                textView24HVol.text = "$" + String.format("%.2f", data.volume_24h?.toFloat())
+                textViewBidAskSpread.text = data.spread?.toString()?.plus(" %") ?: "-"
+                textViewIndexPrice.text = String.format("%.4f", data.index?.toFloat()) + " USDT"
+                textViewFundingRate.text = data.funding_rate?.toString()?.plus(" %")
+                textViewFundingRate.isSelected = true
+            }
 
             dialog.show()
         }

@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }.commitNow()
 
         // handle bottom navigation
-        binding?.bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.navigation_home -> {
                     supportActionBar?.title = getString(R.string.title_home)
@@ -63,24 +63,28 @@ class MainActivity : AppCompatActivity() {
                     activeFragment = homeFragment
                     true
                 }
+
                 R.id.navigation_market -> {
                     supportActionBar?.title = getString(R.string.title_market)
                     openFragment(marketFragment)
                     activeFragment = marketFragment
                     true
                 }
+
                 R.id.navigation_explore -> {
                     supportActionBar?.title = getString(R.string.title_explore)
                     openFragment(newsFragment)
                     activeFragment = newsFragment
                     true
                 }
+
                 R.id.navigation_more -> {
                     supportActionBar?.title = getString(R.string.title_more)
                     openFragment(moreFragment)
                     activeFragment = moreFragment
                     true
                 }
+
                 else -> false
             }
         }
@@ -121,7 +125,7 @@ class MainActivity : AppCompatActivity() {
     // handling show more button from home page
     fun clickExploreMenu() {
         supportActionBar?.title = getString(R.string.title_explore)
-        binding?.bottomNavigationView?.menu.getItem(2).setChecked(true)
+        binding.bottomNavigationView.menu.getItem(2)?.setChecked(true)
         openFragment(newsFragment)
         activeFragment = newsFragment
     }

@@ -138,7 +138,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         binding.textViewExchanges.visibility = View.VISIBLE
 
         // set coins
-        val coinList = it?.coins
+        val coinList = it.coins
         if (coinList.isEmpty()) {
             binding.textViewNoDataCoins.visibility = View.VISIBLE
             binding.recyclerViewCoins.visibility = View.GONE
@@ -149,7 +149,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         // set nfts
-        val nftList = it?.nfts
+        val nftList = it.nfts
         if (nftList.isEmpty()) {
             binding.textViewNoDataNfts.visibility = View.VISIBLE
             binding.recyclerViewNfts.visibility = View.GONE
@@ -161,7 +161,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.recyclerViewExchanges.layoutManager = LinearLayoutManager(this)
         // set exchanges
-        val exchangeList = it?.exchanges
+        val exchangeList = it.exchanges
         if (exchangeList.isEmpty()) {
             binding.textViewNoDataExchanges.visibility = View.VISIBLE
             binding.recyclerViewExchanges.visibility = View.GONE

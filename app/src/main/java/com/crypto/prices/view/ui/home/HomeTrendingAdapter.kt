@@ -3,58 +3,54 @@ package com.crypto.prices.view.ui.home
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.asf.cryptoprices.databinding.ItemTrendingBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.asf.cryptoprices.R
 import com.crypto.prices.model.CoinX
 import com.crypto.prices.view.ui.market.crypto.detail.CryptoDetailSearchActivity
 import dagger.hilt.android.qualifiers.ActivityContext
-import kotlinx.android.synthetic.main.item_trending.view.*
 import javax.inject.Inject
 
-class HomeTrendingAdapter @Inject constructor(@ActivityContext val context: Context?) :
+class HomeTrendingAdapter @Inject constructor(@ActivityContext private val context: Context?) :
     RecyclerView.Adapter<HomeTrendingAdapter.TrendingViewHolder>() {
+
     private var data: List<CoinX>? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = TrendingViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_trending, parent, false)
-    )
-
-    override fun getItemCount() = data!!.size
-
-    override fun onBindViewHolder(holder: TrendingViewHolder, position: Int) {
-        holder.bind(context!!, position, data!!.get(position))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrendingViewHolder {
+        val binding = ItemTrendingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return TrendingViewHolder(binding)
     }
 
-    class TrendingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val cardView = view.cardView
-        private val imageViewId = view.imageViewId
-        private val textViewName = view.textViewName
-        private val textViewPrice = view.textViewPrice
-        private val textViewChange = view.textViewRank
+    override fun getItemCount(): Int = data?.size ?: 0
 
-        fun bind(context: Context, position: Int, data: CoinX) {
-            textViewName.text = data.item.name + " (" + data.item.symbol + ")"
-            textViewPrice.text = String.format("%.9f", data.item.price_btc) + " btc"
-            textViewChange.text = data.item.market_cap_rank.toString()
+    override fun onBindViewHolder(holder: TrendingViewHolder, position: Int) {
+        context?.let { ctx ->
+            data?.get(position)?.let { coin ->
+                holder.bind(ctx, coin)
+            }
+        }
+    }
 
-            // set icons
+    class TrendingViewHolder(private val binding: ItemTrendingBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(context: Context, data: CoinX) {
+            binding.textViewName.text = "${data.item.name} (${data.item.symbol})"
+            binding.textViewPrice.text = String.format("%.9f", data.item.price_btc) + " btc"
+            binding.textViewRank.text = data.item.market_cap_rank.toString()
+
             Glide.with(context)
                 .load(data.item.small)
                 .apply(RequestOptions.circleCropTransform())
-                .into(imageViewId)
+                .into(binding.imageViewId)
 
-            // on click listener
-            cardView.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(p0: View?) {
-                    val intent = Intent(context, CryptoDetailSearchActivity::class.java)
-                    intent.putExtra("id", data?.item?.id)
-                    context.startActivity(intent)
-                }
-            })
+            binding.cardView.setOnClickListener {
+                val intent = Intent(context, CryptoDetailSearchActivity::class.java)
+                intent.putExtra("id", data.item.id)
+                context.startActivity(intent)
+            }
         }
     }
 

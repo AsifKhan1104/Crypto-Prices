@@ -3,80 +3,65 @@ package com.crypto.prices.view.ui.market.categories
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.asf.cryptoprices.R
+import com.asf.cryptoprices.databinding.ItemCategoriesBinding
 import com.bumptech.glide.Glide
 import com.crypto.prices.model.CategoriesData
+import com.crypto.prices.view.ui.market.categories.CategoriesCoinListActivity
 import dagger.hilt.android.qualifiers.ActivityContext
-import kotlinx.android.synthetic.main.item_categories.view.imageView_topCoin1
-import kotlinx.android.synthetic.main.item_categories.view.imageView_topCoin2
-import kotlinx.android.synthetic.main.item_categories.view.imageView_topCoin3
-import kotlinx.android.synthetic.main.item_categories.view.textView_category
-import kotlinx.android.synthetic.main.item_crypto.view.table_layout
-import kotlinx.android.synthetic.main.item_crypto.view.textView_24hp
-import kotlinx.android.synthetic.main.item_crypto.view.textView_market_cap
 import javax.inject.Inject
 
-class CategoriesAdapter @Inject constructor(@ActivityContext val context: Context?) :
+class CategoriesAdapter @Inject constructor(@ActivityContext private val context: Context?) :
     RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>() {
+
     private var data: List<CategoriesData>? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = CategoriesViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_categories, parent, false)
-    )
-
-    override fun getItemCount() = data!!.size
-
-    override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        holder.bind(context!!, position, data!!.get(position))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
+        val binding = ItemCategoriesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CategoriesViewHolder(binding)
     }
 
-    class CategoriesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val tableLayout = view.table_layout
-        private val imageViewIcon1 = view.imageView_topCoin1
-        private val imageViewIcon2 = view.imageView_topCoin2
-        private val imageViewIcon3 = view.imageView_topCoin3
-        private val textViewName = view.textView_category
-        private val textView24hp = view.textView_24hp
-        private val textViewMarketCap = view.textView_market_cap
+    override fun getItemCount(): Int = data?.size ?: 0
 
-        fun bind(context: Context, position: Int, data: CategoriesData?) {
-            try {
-                textViewName.text = data?.name
-                textView24hp.text =
-                    String.format("%.1f", data?.market_cap_change_24h).toString() + "%"
-                textViewMarketCap.text = data?.market_cap?.toString()
-
-                // set icons
-                Glide.with(context)
-                    .load(data?.top_3_coins?.get(0))
-                    .into(imageViewIcon1)
-                Glide.with(context)
-                    .load(data?.top_3_coins?.get(1))
-                    .into(imageViewIcon2)
-                Glide.with(context)
-                    .load(data?.top_3_coins?.get(2))
-                    .into(imageViewIcon3)
-            } catch (ex: Exception) {
-                ex.printStackTrace()
+    override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
+        context?.let { ctx ->
+            data?.get(position)?.let { item ->
+                holder.bind(ctx, item)
             }
-
-            // on click listener
-            tableLayout.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(p0: View?) {
-                    val intent = Intent(context, CategoriesCoinListActivity::class.java)
-                    intent.putExtra("categoryId", data?.id)
-                    intent.putExtra("categoryName", data?.name)
-                    context.startActivity(intent)
-                }
-            })
         }
     }
 
     fun updateList(list: List<CategoriesData>) {
         data = list
         notifyDataSetChanged()
+    }
+
+    class CategoriesViewHolder(private val binding: ItemCategoriesBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(context: Context, data: CategoriesData) {
+            try {
+                binding.textViewCategory.text = data.name
+                binding.textView24hp.text = "${String.format("%.1f", data.market_cap_change_24h)}%"
+                binding.textViewMarketCap.text = data.market_cap?.toString()
+
+                val coins = data.top_3_coins
+                if (!coins.isNullOrEmpty()) {
+                    if (coins.size > 0) Glide.with(context).load(coins[0]).into(binding.imageViewTopCoin1)
+                    if (coins.size > 1) Glide.with(context).load(coins[1]).into(binding.imageViewTopCoin2)
+                    if (coins.size > 2) Glide.with(context).load(coins[2]).into(binding.imageViewTopCoin3)
+                }
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+            }
+
+            binding.tableLayout.setOnClickListener {
+                val intent = Intent(context, CategoriesCoinListActivity::class.java)
+                intent.putExtra("categoryId", data.id)
+                intent.putExtra("categoryName", data.name)
+                context.startActivity(intent)
+            }
+        }
     }
 }
